@@ -62,16 +62,24 @@ app.use(cors());
 // 	});
 // });
 
-app.get("/form-data-S-M", function (req, res) {});
+app.get("/form-data-S-M", function (req, res) {
+	getShoeMeasurement();
+});
 
 function getShoeMeasurement() {
 	let dbCon = new sql.ConnectionPool(dbConfig);
 	dbCon
 		.connect()
 		.then(function () {
+			const gender = req.query.gender;
+			const unit = req.query.unit;
+			const size = req.query.size;
 			let request = new sql.Request(dbCon);
 			request
-				.query("SELECT * FROM test")
+				.query(
+					`SELECT Brand, Size FROM test where gender = @gender and units = @unit and size = @size`,
+					{ gender, unit, size }
+				)
 				.then(function (recordSet) {
 					console.log(recordSet);
 					dbCon.close();
