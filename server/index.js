@@ -13,7 +13,7 @@ let db = require("../server/database/a.sql");
 // 	server: "localhost",
 // 	database: "DB-Project",
 // };
-const pool = new sql.ConnectionPool({
+const dbConfig = new sql.ConnectionPool({
 	user: "sa",
 	password: "Olivier123!",
 	server: "localhost",
@@ -43,24 +43,49 @@ app.use(cors());
 // });
 // describe("Shoe Measurement", () => {
 // 	it("200 Response", () => {
-app.get("/form-data-S-M", async (req, res) => {
-	const gender = req.query.gender;
-	try {
-		await pool.connect();
-		const result = await pool
-			.request()
-			.query(`SELECT * FROM test WHERE gender = @gender`, { gender });
-		const users = result.recordset;
-		res.json(users);
-	} catch (error) {
-		console.log(error);
-		res.sendStatus(500);
-	} finally {
-		pool.close();
-	}
-});
+// app.get("/form-data-S-M", async (req, res) => {
+// 	const gender = req.query.gender;
+// 	try {
+// 		await dbConfig.connect();
+// 		const result = await dbConfig
+// 			.request()
+// 			.query(`SELECT * FROM test WHERE gender = @gender`, { gender });
+// 		const users = result.recordset;
+// 		res.json(users);
+// 	} catch (error) {
+// 		console.log(error);
+// 		res.sendStatus(500);
+// 	} finally {
+// 		dbConfig.close();
+// 	}
+// });
 // 	});
 // });
+
+app.get("/form-data-S-M", function (req, res) {});
+
+function getShoeMeasurement() {
+	let dbCon = new sql.ConnectionPool(dbConfig);
+	dbCon
+		.connect()
+		.then(function () {
+			let request = new sql.Request(dbCon);
+			request
+				.query("SELECT * FROM test")
+				.then(function (recordSet) {
+					console.log(recordSet);
+					dbCon.close();
+				})
+				.catch(function (err) {
+					console.log(err);
+					dbCon.close();
+				});
+		})
+		.catch(function (err) {
+			console.log(err);
+			dbCon.close();
+		});
+}
 
 app.listen(port, () => {
 	// function hi() {
