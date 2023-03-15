@@ -41,32 +41,39 @@ app.use(cors());
 
 // 	res.send(`Gender received: ${gender}`);
 // });
-app.get("/form-data-S-M", async (req, res) => {
-	const gender = req.query.gender;
-	try {
-		await pool.connect();
-		const result = await pool
-			.request()
-			.query(`SELECT * FROM test WHERE gender = @gender`, { gender });
-		const users = result.recordset;
-		res.json(users);
-	} catch (error) {
-		console.log(error);
-		res.sendStatus(500);
-	} finally {
-		pool.close();
-	}
+describe("Shoe Measurement", () => {
+	it("200 Response", () => {
+		app.get("/form-data-S-M", async (req, res) => {
+			const gender = req.query.gender;
+			try {
+				await pool.connect();
+				const result = await pool
+					.request()
+					.query(`SELECT * FROM test WHERE gender = @gender`, { gender });
+				const users = result.recordset;
+				res.json(users);
+			} catch (error) {
+				console.log(error);
+				res.sendStatus(500);
+			} finally {
+				pool.close();
+			}
+		});
+	});
 });
 
 app.listen(port, () => {
-	console.log("   ______   ______  ________  ________  _______   _______  ");
-	console.log("  /       /      |/        |/        |/        /         / ");
-	console.log(" /$$$$$$  |$$$$$$/ $$$$$$$$/ $$$$$$$$/ $$$$$$$  |$$$$$$$  |");
-	console.log(" $$ __$$/   $$ |      /$$/  $$ |__    $$ |__$$ |$$ |__$$ | ");
-	console.log(" $$         $$ |     /$$/   $$    |   $$    $$< $$    $$<  ");
-	console.log("  $$$$$$ |  $$ |    /$$/    $$$$$/    $$$$$$$  |$$$$$$$  |");
-	console.log(" /  __$$ | _$$ |_  /$$/____ $$ |_____ $$ |  $$ |$$ |  $$ | ");
-	console.log("$$    $$/ / $$   |/$$      |$$       |$$ |  $$ |$$ |  $$ |");
-	console.log("  $$$$$$/  $$$$$$/ $$$$$$$$/ $$$$$$$$/$$/   $$/ $$/   $$/ ");
+	// function hi() {
+	// 	console.log("   ______   ______  ________  ________  _______   _______  ");
+	// 	console.log("  /       /      |/        |/        |/        /         / ");
+	// 	console.log(" /$$$$$$  |$$$$$$/ $$$$$$$$/ $$$$$$$$/ $$$$$$$  |$$$$$$$  |");
+	// 	console.log(" $$ __$$/   $$ |      /$$/  $$ |__    $$ |__$$ |$$ |__$$ | ");
+	// 	console.log(" $$         $$ |     /$$/   $$    |   $$    $$< $$    $$<  ");
+	// 	console.log("  $$$$$$ |  $$ |    /$$/    $$$$$/    $$$$$$$  |$$$$$$$  |");
+	// 	console.log(" /  __$$ | _$$ |_  /$$/____ $$ |_____ $$ |  $$ |$$ |  $$ | ");
+	// 	console.log("$$    $$/ / $$   |/$$      |$$       |$$ |  $$ |$$ |  $$ |");
+	// 	console.log("  $$$$$$/  $$$$$$/ $$$$$$$$/ $$$$$$$$/$$/   $$/ $$/   $$/ ");
+	// }
+	// hi();
 	console.log(`Running on http://localhost:${port}`);
 });
