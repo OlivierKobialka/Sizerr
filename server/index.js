@@ -41,26 +41,26 @@ app.use(cors());
 
 // 	res.send(`Gender received: ${gender}`);
 // });
-describe("Shoe Measurement", () => {
-	it("200 Response", () => {
-		app.get("/form-data-S-M", async (req, res) => {
-			const gender = req.query.gender;
-			try {
-				await pool.connect();
-				const result = await pool
-					.request()
-					.query(`SELECT * FROM test WHERE gender = @gender`, { gender });
-				const users = result.recordset;
-				res.json(users);
-			} catch (error) {
-				console.log(error);
-				res.sendStatus(500);
-			} finally {
-				pool.close();
-			}
-		});
-	});
+// describe("Shoe Measurement", () => {
+// 	it("200 Response", () => {
+app.get("/form-data-S-M", async (req, res) => {
+	const gender = req.query.gender;
+	try {
+		await pool.connect();
+		const result = await pool
+			.request()
+			.query(`SELECT * FROM test WHERE gender = @gender`, { gender });
+		const users = result.recordset;
+		res.json(users);
+	} catch (error) {
+		console.log(error);
+		res.sendStatus(500);
+	} finally {
+		pool.close();
+	}
 });
+// 	});
+// });
 
 app.listen(port, () => {
 	// function hi() {
