@@ -49,8 +49,6 @@ const Shoes = () => {
 			console.log(response.data);
 		} catch (error) {
 			console.error(error);
-
-			console.
 		}
 	};
 
