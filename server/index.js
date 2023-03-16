@@ -62,7 +62,7 @@ app.use(cors());
 // 	});
 // });
 
-app.get("/api/v8/Shoes", function (req, res) {
+app.get("/api/Shoes", function (req, res) {
 	getShoeMeasurement();
 	res.send("Hello World!");
 });

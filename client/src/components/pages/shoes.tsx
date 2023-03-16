@@ -41,11 +41,15 @@ const Shoes = () => {
 			size: FormValuesMeasurements.size,
 			gender: FormValuesMeasurements.gender,
 		};
+		console.log("By Measurements:", formData);
 		try {
-			const response = await axios.post(
-				"//localhost:8080/form-data-S-M",
-				formData
-			);
+			const response = await axios.get("http://localhost:8080/api/Shoes", {
+				params: {
+					unit: selectedValue,
+					size: FormValuesMeasurements.size,
+					gender: FormValuesMeasurements.gender,
+				},
+			});
 			console.log(response.data);
 		} catch (error) {
 			console.error(error);
