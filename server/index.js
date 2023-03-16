@@ -5,7 +5,7 @@ const app = express();
 const port = 8080;
 const sql = require("mssql");
 
-let db = require("../server/database/a.sql");
+let db = require("../server/database/Shoes.sql");
 
 // const dbConfig = {
 // 	user: "sa",
@@ -17,7 +17,7 @@ const dbConfig = new sql.ConnectionPool({
 	user: "sa",
 	password: "Olivier123!",
 	server: "localhost",
-	database: "DB-Project",
+	database: "Sizes",
 });
 
 //? set middleware
@@ -62,8 +62,9 @@ app.use(cors());
 // 	});
 // });
 
-app.get("/form-data-S-M", function (req, res) {
-	getShoeMeasurement();
+app.get("/api/v8/Shoes", function (req, res) {
+	// getShoeMeasurement();
+	res.send("Hello World!");
 });
 
 function getShoeMeasurement() {
@@ -74,12 +75,20 @@ function getShoeMeasurement() {
 			const gender = req.query.gender;
 			const unit = req.query.unit;
 			const size = req.query.size;
-			let request = new sql.Request(dbCon);
+			if (gender === "Male") {
+				let request = new sql.Request(dbCon);
+				request.query(
+					`SELECT Brand, Size FROM ShoesMen where units = @unit and size = @size`,
+					{ unit, size }
+				);
+			} else {
+				let request = new sql.Request(dbCon);
+				request.query(
+					`SELECT Brand, Size FROM ShoesWomen where units = @unit and size = @size`,
+					{ unit, size }
+				);
+			}
 			request
-				.query(
-					`SELECT Brand, Size FROM test where gender = @gender and units = @unit and size = @size`,
-					{ gender, unit, size }
-				)
 				.then(function (recordSet) {
 					console.log(recordSet);
 					dbCon.close();
@@ -96,17 +105,17 @@ function getShoeMeasurement() {
 }
 
 app.listen(port, () => {
-	// function hi() {
-	// 	console.log("   ______   ______  ________  ________  _______   _______  ");
-	// 	console.log("  /       /      |/        |/        |/        /         / ");
-	// 	console.log(" /$$$$$$  |$$$$$$/ $$$$$$$$/ $$$$$$$$/ $$$$$$$  |$$$$$$$  |");
-	// 	console.log(" $$ __$$/   $$ |      /$$/  $$ |__    $$ |__$$ |$$ |__$$ | ");
-	// 	console.log(" $$         $$ |     /$$/   $$    |   $$    $$< $$    $$<  ");
-	// 	console.log("  $$$$$$ |  $$ |    /$$/    $$$$$/    $$$$$$$  |$$$$$$$  |");
-	// 	console.log(" /  __$$ | _$$ |_  /$$/____ $$ |_____ $$ |  $$ |$$ |  $$ | ");
-	// 	console.log("$$    $$/ / $$   |/$$      |$$       |$$ |  $$ |$$ |  $$ |");
-	// 	console.log("  $$$$$$/  $$$$$$/ $$$$$$$$/ $$$$$$$$/$$/   $$/ $$/   $$/ ");
-	// }
-	// hi();
+	function hi() {
+		console.log("   ______   ______  ________  ________  _______   _______  ");
+		console.log("  /       /      |/        |/        |/        /         / ");
+		console.log(" /$$$$$$  |$$$$$$/ $$$$$$$$/ $$$$$$$$/ $$$$$$$  |$$$$$$$  |");
+		console.log(" $$ __$$/   $$ |      /$$/  $$ |__    $$ |__$$ |$$ |__$$ | ");
+		console.log(" $$         $$ |     /$$/   $$    |   $$    $$< $$    $$<  ");
+		console.log("  $$$$$$ |  $$ |    /$$/    $$$$$/    $$$$$$$  |$$$$$$$  |");
+		console.log(" /  __$$ | _$$ |_  /$$/____ $$ |_____ $$ |  $$ |$$ |  $$ | ");
+		console.log("$$    $$/ / $$   |/$$      |$$       |$$ |  $$ |$$ |  $$ |");
+		console.log("  $$$$$$/  $$$$$$/ $$$$$$$$/ $$$$$$$$/$$/   $$/ $$/   $$/ ");
+	}
+	hi();
 	console.log(`Running on http://localhost:${port}`);
 });
