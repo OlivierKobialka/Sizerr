@@ -64,7 +64,7 @@ app.use(cors());
 
 app.get("/api/Shoes", function (req, res) {
 	getShoeMeasurement();
-	res.send("Hello World!");
+	res.send(JSON.stringify({ status: 200, error: null, response: "Success" }));
 });
 
 function getShoeMeasurement() {
