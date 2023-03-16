@@ -63,7 +63,7 @@ app.use(cors());
 // });
 
 app.get("/api/v8/Shoes", function (req, res) {
-	// getShoeMeasurement();
+	getShoeMeasurement();
 	res.send("Hello World!");
 });
 
@@ -78,13 +78,13 @@ function getShoeMeasurement() {
 			if (gender === "Male") {
 				let request = new sql.Request(dbCon);
 				request.query(
-					`SELECT Brand, Size FROM ShoesMen where units = @unit and size = @size`,
+					`SELECT Brand, Size FROM shoesMen where units = @unit and size = @size`,
 					{ unit, size }
 				);
 			} else {
 				let request = new sql.Request(dbCon);
 				request.query(
-					`SELECT Brand, Size FROM ShoesWomen where units = @unit and size = @size`,
+					`SELECT Brand, Size FROM shoesWomen where units = @unit and size = @size`,
 					{ unit, size }
 				);
 			}
@@ -105,17 +105,17 @@ function getShoeMeasurement() {
 }
 
 app.listen(port, () => {
-	function hi() {
-		console.log("   ______   ______  ________  ________  _______   _______  ");
-		console.log("  /       /      |/        |/        |/        /         / ");
-		console.log(" /$$$$$$  |$$$$$$/ $$$$$$$$/ $$$$$$$$/ $$$$$$$  |$$$$$$$  |");
-		console.log(" $$ __$$/   $$ |      /$$/  $$ |__    $$ |__$$ |$$ |__$$ | ");
-		console.log(" $$         $$ |     /$$/   $$    |   $$    $$< $$    $$<  ");
-		console.log("  $$$$$$ |  $$ |    /$$/    $$$$$/    $$$$$$$  |$$$$$$$  |");
-		console.log(" /  __$$ | _$$ |_  /$$/____ $$ |_____ $$ |  $$ |$$ |  $$ | ");
-		console.log("$$    $$/ / $$   |/$$      |$$       |$$ |  $$ |$$ |  $$ |");
-		console.log("  $$$$$$/  $$$$$$/ $$$$$$$$/ $$$$$$$$/$$/   $$/ $$/   $$/ ");
-	}
-	hi();
+	// function hi() {
+	// 	console.log("   ______   ______  ________  ________  _______   _______  ");
+	// 	console.log("  /       /      |/        |/        |/        /         / ");
+	// 	console.log(" /$$$$$$  |$$$$$$/ $$$$$$$$/ $$$$$$$$/ $$$$$$$  |$$$$$$$  |");
+	// 	console.log(" $$ __$$/   $$ |      /$$/  $$ |__    $$ |__$$ |$$ |__$$ | ");
+	// 	console.log(" $$         $$ |     /$$/   $$    |   $$    $$< $$    $$<  ");
+	// 	console.log("  $$$$$$ |  $$ |    /$$/    $$$$$/    $$$$$$$  |$$$$$$$  |");
+	// 	console.log(" /  __$$ | _$$ |_  /$$/____ $$ |_____ $$ |  $$ |$$ |  $$ | ");
+	// 	console.log("$$    $$/ / $$   |/$$      |$$       |$$ |  $$ |$$ |  $$ |");
+	// 	console.log("  $$$$$$/  $$$$$$/ $$$$$$$$/ $$$$$$$$/$$/   $$/ $$/   $$/ ");
+	// }
+	// hi();
 	console.log(`Running on http://localhost:${port}`);
 });
