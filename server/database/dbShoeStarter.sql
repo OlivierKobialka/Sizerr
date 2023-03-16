@@ -191,3 +191,69 @@ VALUES
 ('Nike','L',38,41,97,104,31.5,34.5,81,88,40.5,43,105,112),
 ('Nike','XL',41,44.5,104,114,34.5,38.5,88,98,43,45.5,112,120),
 ('Nike','XXL',44.5,48.5,114,124,38.5,42.5,98,108,45.5,48,120,128)
+
+
+
+------------------------------------------------------------------
+
+create table bottomsMan
+(
+    ID TINYINT NOT NULL IDENTITY(1,1),
+    Brand VARCHAR(50) NOT NULL,
+    Size VARCHAR(6) NOT NULL,
+    WaistIN_min DECIMAL(3,1) NOT NULL,
+    WaistIN_max DECIMAL(3,1) NOT NULL,
+    WaistCM_min TINYINT NOT NULL,
+    WaistCM_max TINYINT NOT NULL,
+    HipIN_min DECIMAL(3,1) NOT NULL,
+    HipIN_max DECIMAL(3,1) NOT NULL,
+    HipCM_min TINYINT NOT NULL,
+    HipCM_max TINYINT NOT NULL,
+    HeightIN_min DECIMAL(3,1) NOT NULL,
+    HeightIN_max DECIMAL(3,1) NOT NULL,
+    HeightCM_min TINYINT NOT NULL,
+    HeightCM_max TINYINT NOT NULL)
+
+
+create table bottomsWoman
+(
+     ID TINYINT NOT NULL IDENTITY(1,1),
+    Brand VARCHAR(50) NOT NULL,
+    Size VARCHAR(6) NOT NULL,
+    WaistIN_min DECIMAL(3,1) NOT NULL,
+    WaistIN_max DECIMAL(3,1) NOT NULL,
+    WaistCM_min TINYINT NOT NULL,
+    WaistCM_max TINYINT NOT NULL,
+    HipIN_min DECIMAL(3,1) NOT NULL,
+    HipIN_max DECIMAL(3,1) NOT NULL,
+    HipCM_min TINYINT NOT NULL,
+    HipCM_max TINYINT NOT NULL,
+    HeightIN_min DECIMAL(3,1) NOT NULL,
+    HeightIN_max DECIMAL(3,1) NOT NULL,
+    HeightCM_min TINYINT NOT NULL,
+    HeightCM_max TINYINT NOT NULL)
+
+
+insert into bottomsMan (Brand, Size, WaistIN_min, WaistIN_max, WaistCM_min, WaistCM_max, HipIN_min, HipIN_max, HipCM_min, HipCM_max, HeightIN_min, HeightIN_max, HeightCM_min, HeightCM_max)
+VALUES
+('Nike','XXS',22.5,25.5,57,65,28.5,31.5,72,80,0,5.7,0,170),
+('Nike','XS',25.5,29,65,73,31.5,35,80,88,5.7,6,170,183),
+('Nike','S',29,32,73,81,35,37.5,88,96,5.7,6.0,170,183),
+('Nike','M',32,35,81,89,37.5,41,96,104,5.7,6.0,170,183),
+('Nike','L',35,38,89,97,41,44,104,112,5.7,6.0,170,183),
+('Nike','XL',38,43,97,109,44,47,112,120,5.7,6.0,170,183),
+('Nike','XXL',43,47.5,109,121,47,50.5,120,128,5.7,6.0,170,183),
+('Nike','XXXL',47.5,52.5,121,133,50.5,53.5,128,136,5.7,6.0,170,183)
+
+
+
+
+insert into bottomsWoman (Brand, Size, WaistIN_min, WaistIN_max, WaistCM_min, WaistCM_max, HipIN_min, HipIN_max, HipCM_min, HipCM_max, HeightIN_min, HeightIN_max, HeightCM_min, HeightCM_max)
+VALUES
+('Nike','XXS',21.25,23.5,54,60,30.5,33,78,84,0,5.7,0,170),
+('Nike','XS',23.5,26,60,67,33,35.5,84,91,5.7,6,170,183),
+('Nike','S',26,29,67,74,35.5,38.5,91,98,5.7,6.0,170,183),
+('Nike','M',29,31.5,74,81,38,40.5,98,105,5.7,6.0,170,183),
+('Nike','L',31.5,34.5,81,88,40.5,43,105,112,5.7,6.0,170,183),
+('Nike','XL',34.5,38.5,88,98,43,45.5,112,120,5.7,6.0,170,183),
+('Nike','XXL',38.5,42.5,98,108,45.5,48,120,128,5.7,6.0,170,183)
