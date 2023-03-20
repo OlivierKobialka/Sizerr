@@ -154,7 +154,7 @@ const Analitycs = () => {
 						onChange={handleEmailChange}
 					/>
 					{/* COMMENT */}
-					<Box className='flex w-full justify-between'>
+					<Box className='flex w-full justify-between mt-4'>
 						<Typography className='text-gray-400' fontWeight={600}>
 							Add Comment
 						</Typography>
