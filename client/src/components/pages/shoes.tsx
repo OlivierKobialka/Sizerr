@@ -31,7 +31,7 @@ const Shoes = () => {
 			[name]: value,
 		});
 	};
-
+	const [resultMeasurement, setResultMeasurement] = useState("");
 	const handleSubmitMeasurements = async (
 		event: React.FormEvent<HTMLFormElement>
 	) => {
@@ -50,6 +50,7 @@ const Shoes = () => {
 					gender: FormValuesMeasurements.gender,
 				},
 			});
+			setResultMeasurement(response.data);
 			console.log(response.data);
 		} catch (error) {
 			console.error(error);
@@ -77,7 +78,7 @@ const Shoes = () => {
 		});
 	};
 
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const formData = {
 			measurement: selectedValueBrand,
@@ -86,6 +87,19 @@ const Shoes = () => {
 			gender: FormValuesBrand.gender,
 		};
 		console.log("By Brand:", formData);
+		// try {
+		// 	const response = await axios.get("http://localhost:8080/api/Shoes", {
+		// 		params: {
+		// 			brand: FormValuesBrand.brand,
+		// 			size: FormValuesBrand.size,
+		// 			gender: FormValuesBrand.gender,
+		// 			measurement: selectedValueBrand,
+		// 		},
+		// 	});
+		// 	console.log(response.data);
+		// } catch (error) {
+		// 	console.error(error);
+		// }
 	};
 
 	const Option = [
@@ -118,7 +132,7 @@ const Shoes = () => {
 		<Tab.Group>
 			<Box className='flex flex-col  lg:mx-[20%]'>
 				<Box className='container flex rounded-2xl flex-col items-center pt-3 h-auto xs:w-[400px] xs:place-items-center'>
-					<Tab.List className='bg-blue-500 mb-2 px-3 py-2 flex justify-between rounded-xl w-full gap-3'>
+					<Tab.List className='bg-blue-500 mb-2 px-3 py-2 flex justify-between  rounded-xl w-full gap-3'>
 						<Tab
 							className={({ selected }) =>
 								classNames(
@@ -146,7 +160,7 @@ const Shoes = () => {
 					</Tab.List>
 				</Box>
 				<Tab.Panels className='w-full'>
-					<Tab.Panel className='w-full lg:w-[650px] flex'>
+					<Tab.Panel className='w-full lg:w-[650px] flex flex-col'>
 						<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
 							<Box className='w-full flex flex-col place-items-center gap-2'>
 								<form
@@ -214,6 +228,11 @@ const Shoes = () => {
 								</form>
 							</Box>
 						</Box>
+						<table className="table-auto">
+							<tr>
+								<th>{resultMeasurement}</th>
+							</tr>
+						</table>
 					</Tab.Panel>
 					<Tab.Panel className='w-full lg:w-[650px] flex'>
 						<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
