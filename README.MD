@@ -14,4 +14,4 @@ npm run start
 ```
 
 ## Programming Languages we used
-[![My Skills](https://skills.thijs.gg/icons?i=ts,js,react,tailwind,nodejs,mysql)](https://skills.thijs.gg)
+[![My Skills](https://skills.thijs.gg/icons?i=ts,js,react,tailwind,nodejs,mysql,docker)](https://skills.thijs.gg)
