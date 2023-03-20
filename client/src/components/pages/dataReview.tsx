@@ -1,9 +1,32 @@
-import React from "react";
-import { Box, Stack, Typography } from "@pankod/refine-mui";
+import React, { useState } from "react";
+import {
+	Box,
+	Stack,
+	Typography,
+	TextField,
+	Button,
+	Rating,
+} from "@pankod/refine-mui";
 import ReactApexChart from "react-apexcharts";
 import axios from "axios";
+import InputUnstyled, { InputUnstyledProps } from "@mui/base/InputUnstyled";
+import { styled } from "@mui/system";
 
 const Analitycs = () => {
+	const [comment, setComment] = useState("");
+	const [remainingChars, setRemainingChars] = useState(150);
+	const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const { value } = event.target;
+		setComment(value);
+		setRemainingChars(150 - value.length);
+	};
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		console.log(`Comment submitted: ${comment}`);
+		setComment("");
+		setRemainingChars(150);
+	};
+
 	const ShoeSizes = {
 		chart: {
 			id: "basic-column",
@@ -60,35 +83,65 @@ const Analitycs = () => {
 	];
 
 	return (
-		<Box
-			p={4}
-			flex={1}
-			bgcolor='#fcfcfc'
-			id='chart'
-			display='flex'
-			flexDirection='column'
-			borderRadius='15px'>
-			<Stack my='20px' direction='row' gap={4} flexWrap='wrap'>
-				<Typography fontSize={28} fontWeight={700} color='#11142d'>
-					Avg. Shoe Size
-				</Typography>
-			</Stack>
-			<Box className='hidden sm:block'>
-				<ReactApexChart
-					series={TotalRevenueSeries}
-					type='bar'
-					height={300}
-					options={ShoeSizes}
-				/>
+		<Box className='flex-col xl:flex-row flex xl:gap-x-4 gap-y-4'>
+			<Box
+				id='chart'
+				className='p-4 flex-1 grid rounded-2xl bg-[#fcfcfc] xl:w-2/3'>
+				<Stack direction='row' gap={4} flexWrap='wrap'>
+					<Typography fontSize={28} fontWeight={700} color='#11142d'>
+						Avg. Shoe Size
+					</Typography>
+				</Stack>
+				<Box className='hidden sm:block'>
+					<ReactApexChart
+						series={TotalRevenueSeries}
+						type='bar'
+						height={300}
+						options={ShoeSizes}
+					/>
+				</Box>
+				{/* ROW */}
+				<Box className='block sm:hidden'>
+					<ReactApexChart
+						series={TotalRevenueSeriesRow}
+						type='bar'
+						height={350}
+						options={ShoeSizesRow}
+					/>
+				</Box>
 			</Box>
-      {/* ROW */}
-			<Box className='block sm:hidden'>
-				<ReactApexChart
-					series={TotalRevenueSeriesRow}
-					type='bar'
-					height={350}
-					options={ShoeSizesRow}
-				/>
+			<Box className='p-4 flex-1 flex flex-col rounded-2xl bg-[#fcfcfc] xl:w-1/3'>
+				<Typography
+					fontSize={28}
+					fontWeight={700}
+					color='#11142d'
+					className='pb-5'>
+					Express your opinion
+				</Typography>
+				<form onSubmit={handleSubmit} className='flex flex-col'>
+					<Box className='flex w-full justify-between'>
+						<Typography className='text-gray-400' fontWeight={600}>
+							Add Comment
+						</Typography>
+						<Typography className='text-gray-400'>{`${comment.length}/150`}</Typography>
+					</Box>
+					<TextField
+						// label='Leave a comment'
+						value={comment}
+						onChange={handleCommentChange}
+						fullWidth
+						multiline
+						rows={4}
+						inputProps={{ maxLength: 150 }} // set the maximum character count
+					/>
+					{/* <Rating precision={0.5} /> */}
+					<button
+						className='bg-primary cursor-pointer text-white py-2 rounded-2xl'
+						type='submit'
+						disabled={!comment || remainingChars < 0}>
+						Submit
+					</button>
+				</form>
 			</Box>
 		</Box>
 	);
