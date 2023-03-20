@@ -13,6 +13,10 @@ import InputUnstyled, { InputUnstyledProps } from "@mui/base/InputUnstyled";
 import { styled } from "@mui/system";
 
 const Analitycs = () => {
+	const [opinion, setOpinion] = useState({
+		email: "",
+		comment: "",
+	});
 	const [comment, setComment] = useState("");
 	const [email, setEmail] = useState("");
 	const [remainingChars, setRemainingChars] = useState(150);
@@ -26,12 +30,28 @@ const Analitycs = () => {
 		const { value } = event.target;
 		setEmail(value);
 	};
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		console.log(`Comment Submitted! \n Email: ${email}, Comment: ${comment}`);
+		const formData = {
+			email: email,
+			comment: comment,
+		};
+		console.log(formData);
 		setComment("");
 		setEmail("");
 		setRemainingChars(150);
+		try {
+			const response = await axios.post("http://localhost:8080/api/Opinion", {
+				params: {
+					email: email,
+					comment: comment,
+				},
+			});
+			setOpinion(response.data);
+			console.log(response.data);
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	const ShoeSizes = {
@@ -126,12 +146,14 @@ const Analitycs = () => {
 					Express your opinion here!
 				</Typography>
 				<form onSubmit={handleSubmit} className='flex flex-col'>
+					{/* EMAIL */}
 					<TextField
 						label='Email'
 						type='email'
 						value={email}
 						onChange={handleEmailChange}
 					/>
+					{/* COMMENT */}
 					<Box className='flex w-full justify-between'>
 						<Typography className='text-gray-400' fontWeight={600}>
 							Add Comment
