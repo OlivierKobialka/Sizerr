@@ -14,16 +14,23 @@ import { styled } from "@mui/system";
 
 const Analitycs = () => {
 	const [comment, setComment] = useState("");
+	const [email, setEmail] = useState("");
 	const [remainingChars, setRemainingChars] = useState(150);
 	const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = event.target;
 		setComment(value);
 		setRemainingChars(150 - value.length);
 	};
+
+	const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const { value } = event.target;
+		setEmail(value);
+	};
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		console.log(`Comment submitted: ${comment}`);
+		console.log(`Comment Submitted! \n Email: ${email}, Comment: ${comment}`);
 		setComment("");
+		setEmail("");
 		setRemainingChars(150);
 	};
 
@@ -119,7 +126,12 @@ const Analitycs = () => {
 					Express your opinion here!
 				</Typography>
 				<form onSubmit={handleSubmit} className='flex flex-col'>
-					<TextField label='Email' />
+					<TextField
+						label='Email'
+						type='email'
+						value={email}
+						onChange={handleEmailChange}
+					/>
 					<Box className='flex w-full justify-between'>
 						<Typography className='text-gray-400' fontWeight={600}>
 							Add Comment
