@@ -11,6 +11,17 @@ const Analitycs = () => {
 				show: false,
 			},
 		},
+		plotOptions: {
+			bar: {
+				horizontal: false,
+				endingShape: "rounded",
+				borderRadius: 4,
+				backgroundColor: "#475be8",
+				hover: {
+					backgroundColor: "#475be8",
+				},
+			},
+		},
 		xaxis: {
 			categories: [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
 		},
@@ -21,6 +32,7 @@ const Analitycs = () => {
 			data: [12, 14, 2, 47, 32, 44, 14, 55, 41, 69, 91, 148, 22, 43, 21],
 		},
 	];
+	//? ROW CHART
 	const ShoeSizesRow = {
 		chart: {
 			id: "basic-column",
@@ -36,6 +48,7 @@ const Analitycs = () => {
 				horizontal: true,
 				endingShape: "rounded",
 				columnHeight: "20px",
+				borderRadius: 2,
 			},
 		},
 	};
@@ -64,15 +77,16 @@ const Analitycs = () => {
 				<ReactApexChart
 					series={TotalRevenueSeries}
 					type='bar'
-					height={310}
+					height={300}
 					options={ShoeSizes}
 				/>
 			</Box>
+      {/* ROW */}
 			<Box className='block sm:hidden'>
 				<ReactApexChart
 					series={TotalRevenueSeriesRow}
 					type='bar'
-					height={310}
+					height={350}
 					options={ShoeSizesRow}
 				/>
 			</Box>
