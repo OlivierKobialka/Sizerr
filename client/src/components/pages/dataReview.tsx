@@ -116,31 +116,36 @@ const Analitycs = () => {
 					fontWeight={700}
 					color='#11142d'
 					className='pb-5'>
-					Express your opinion
+					Express your opinion here!
 				</Typography>
 				<form onSubmit={handleSubmit} className='flex flex-col'>
+					<TextField label='Email' />
 					<Box className='flex w-full justify-between'>
 						<Typography className='text-gray-400' fontWeight={600}>
 							Add Comment
 						</Typography>
 						<Typography className='text-gray-400'>{`${comment.length}/150`}</Typography>
 					</Box>
-					<TextField
-						// label='Leave a comment'
-						value={comment}
-						onChange={handleCommentChange}
-						fullWidth
-						multiline
-						rows={4}
-						inputProps={{ maxLength: 150 }} // set the maximum character count
-					/>
-					{/* <Rating precision={0.5} /> */}
-					<button
-						className='bg-primary cursor-pointer text-white py-2 rounded-2xl'
-						type='submit'
-						disabled={!comment || remainingChars < 0}>
-						Submit
-					</button>
+					<Box className='flex flex-col h-[200px] place-content-between'>
+						<TextField
+							value={comment}
+							onChange={handleCommentChange}
+							fullWidth
+							multiline
+							rows={4}
+							inputProps={{ maxLength: 150 }} // set the maximum character count
+						/>
+						<button
+							className={`bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 rounded-2xl ${
+								!comment || remainingChars < 0
+									? "cursor-not-allowed opacity-50"
+									: ""
+							}`}
+							type='submit'
+							disabled={!comment || remainingChars < 0}>
+							Submit
+						</button>
+					</Box>
 				</form>
 			</Box>
 		</Box>
