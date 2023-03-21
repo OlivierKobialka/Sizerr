@@ -5,6 +5,9 @@ const app = express();
 const port = 8080;
 const sql = require("mssql");
 
+const shoesMeasurements = require("./routes/Shoes/Shoes-M");
+const shoesBrand = require("./routes/Shoes/Shoes-B");
+
 let db = require("../server/database/Shoes.sql");
 
 const dbConfig = new sql.ConnectionPool({
@@ -12,6 +15,9 @@ const dbConfig = new sql.ConnectionPool({
 	password: "Olivier123!",
 	server: "localhost",
 	database: "Sizes",
+	options: {
+		encrypt: true,
+	},
 });
 
 //? set middleware
@@ -19,35 +25,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.get("/api/Shoes", function (req, res) {
-// 	let connect = new sql.ConnectionPool(dbConfig);
-// 	connect.connect().then(function () {
-// 		const gender = req.query.gender;
-// 		const unit = req.query.unit;
-// 		const size = req.query.size;
-// 		let request = new sql.Request(connect);
-// 		request.query(`Select * from shoesMen`);
-// 		request
-// 			.then(function (recordSet) {
-// 				console.log(recordSet);
-// 				connect.close();
-// 			})
-// 			.catch(function (err) {
-// 				console.log(err);
-// 				connect.close();
-// 			});
-// 			res.send(JSON.stringify({ status: 200, error: null, response: `Success` }));
-// 	});
-// });
-app.get("/api/Shoes", function (req, res) {
-	const fetchedData = {
-		gender: req.query.gender,
-		unit: req.query.unit,
-		size: req.query.size,
-	}
-	console.log(fetchedData)
-	res.send(fetchedData);
-});
+app.get("/api/Shoes-M", shoesMeasurements);
+app.get("/api/Shoes-B", shoesBrand);
 // app.get("/api/Shoes", function (req, res) {
 // 	let dbCon = new sql.ConnectionPool(dbConfig);
 // 	dbCon

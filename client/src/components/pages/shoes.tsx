@@ -52,7 +52,7 @@ const Shoes = () => {
 		};
 		console.log("By Measurements:", formData);
 		try {
-			const response = await axios.get("http://localhost:8080/api/Shoes", {
+			const response = await axios.get("http://localhost:8080/api/Shoes-M", {
 				params: {
 					unit: selectedValue,
 					size: FormValuesMeasurements.size,
@@ -101,19 +101,19 @@ const Shoes = () => {
 			gender: FormValuesBrand.gender,
 		};
 		console.log("By Brand:", formData);
-		// try {
-		// 	const response = await axios.get("http://localhost:8080/api/Shoes", {
-		// 		params: {
-		// 			brand: FormValuesBrand.brand,
-		// 			size: FormValuesBrand.size,
-		// 			gender: FormValuesBrand.gender,
-		// 			measurement: selectedValueBrand,
-		// 		},
-		// 	});
-		// 	console.log(response.data);
-		// } catch (error) {
-		// 	console.error(error);
-		// }
+		try {
+			const response = await axios.get("http://localhost:8080/api/Shoes-B", {
+				params: {
+					brand: FormValuesBrand.brand,
+					size: FormValuesBrand.size,
+					gender: FormValuesBrand.gender,
+					measurement: selectedValueBrand,
+				},
+			});
+			console.log(response.data);
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	const Option = [
