@@ -1,7 +1,4 @@
-﻿Opis założeń - Sizerr    grupa 1  
-
-
-Nasza aplikacja pozwala na przekonwertowanie wymiarów ciała na rozmiary w różnych firmach ubraniowych. 
+﻿Nasza aplikacja pozwala na przekonwertowanie wymiarów ciała na rozmiary w różnych firmach ubraniowych. 
 1. Użytkownik określa płeć i rozmiar stopy w centymetrach lub calach, a aplikacja zwraca europejski, amerykański, brytyjski rozmiar buta dla danej marki. 
 2. Możliwa jest też konwersja odwrotna. Użytkownik podaje np. rozmiar europejski i markę, a aplikacja zwraca wymiar amerykański, brytyjski, w centymetrach i calach. Możliwa jest też konwersja innych parametrów, takich jak 
    1. wymiary dołu(spodni)
