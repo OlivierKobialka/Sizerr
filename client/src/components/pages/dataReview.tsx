@@ -110,31 +110,37 @@ const Analitycs = () => {
 	];
 
 	return (
-		<Box className='flex-col xl:flex-row flex xl:gap-x-4 gap-y-4'>
-			<Box
-				id='chart'
-				className='p-4 flex-1 grid rounded-2xl bg-[#fcfcfc] xl:w-2/3'>
-				<Stack direction='row' gap={4} flexWrap='wrap'>
-					<Typography fontSize={28} fontWeight={700} color='#11142d'>
-						Avg. Shoe Size
-					</Typography>
-				</Stack>
-				<Box className='hidden sm:block'>
-					<ReactApexChart
-						series={TotalRevenueSeries}
-						type='bar'
-						height={300}
-						options={ShoeSizes}
-					/>
+		<Box className='flex-col xl:flex-row-reverse flex xl:gap-x-4 gap-y-4'>
+			<Box className='flex-1 xl:w-2/3 flex flex-col'>
+				<Box id='chart' className='p-4  grid rounded-2xl bg-[#fcfcfc]'>
+					<Stack direction='row' gap={4} flexWrap='wrap'>
+						<Typography fontSize={28} fontWeight={700} color='#11142d'>
+							Avg. Shoe Size
+						</Typography>
+					</Stack>
+					<Box className='hidden sm:block'>
+						<ReactApexChart
+							series={TotalRevenueSeries}
+							type='bar'
+							height={350}
+							options={ShoeSizes}
+						/>
+					</Box>
+					{/* MOBILE */}
+					<Box className='block sm:hidden'>
+						<ReactApexChart
+							series={TotalRevenueSeriesRow}
+							type='bar'
+							height={250}
+							options={ShoeSizesRow}
+						/>
+					</Box>
 				</Box>
-				{/* ROW */}
-				<Box className='block sm:hidden'>
-					<ReactApexChart
-						series={TotalRevenueSeriesRow}
-						type='bar'
-						height={350}
-						options={ShoeSizesRow}
-					/>
+				{/* SMALLER CHARTS */}
+				<Box className='grid grid-cols-1 gap-4 pt-4 md:grid-cols-3'>
+					<Box className='w-full bg-[#fcfcfc] rounded-2xl'>1</Box>
+					<Box className='w-full bg-[#fcfcfc] rounded-2xl'>2</Box>
+					<Box className='w-full bg-[#fcfcfc] rounded-2xl'>3</Box>
 				</Box>
 			</Box>
 			<Box className='p-4 flex-1 flex flex-col rounded-2xl bg-[#fcfcfc] xl:w-1/3'>

@@ -144,7 +144,7 @@ const Shoes = () => {
 
 	return (
 		<Tab.Group>
-			<Box className='flex flex-col  lg:mx-[20%]'>
+			<Box className='flex flex-col  xl:mx-[20%]'>
 				<Box className='container flex rounded-2xl flex-col items-center pt-3 h-auto xs:w-[400px] xs:place-items-center'>
 					<Tab.List className='bg-blue-500 mb-2 px-3 py-2 flex justify-between  rounded-xl w-full gap-3'>
 						<Tab

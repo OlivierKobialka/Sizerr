@@ -139,7 +139,7 @@ const Wear: React.FC = () => {
 
 	return (
 		<Tab.Group>
-			<Box className='flex flex-col  lg:mx-[20%]'>
+			<Box className='flex flex-col  xl:mx-[20%]'>
 				<Box className='container flex rounded-2xl flex-col items-center pt-3 h-auto xs:w-[400px]'>
 					<Tab.List className='bg-blue-500 mb-2 px-3 py-2 flex justify-between rounded-xl w-full gap-3'>
 						<Tab
@@ -178,7 +178,7 @@ const Wear: React.FC = () => {
 											<InputLabel>Gender</InputLabel>
 											<Select
 												required
-												className='w-64'
+												className='w-64 md:w-56'
 												label='Gender'
 												name='gender'
 												value={FormValuesMeasurements.gender}
@@ -197,7 +197,7 @@ const Wear: React.FC = () => {
 											name='chest'
 											value={FormValuesMeasurements.chest}
 											onChange={handleInputChangeMeasurements}
-											className='w-64 pt-2 md:w-56'
+											className='w-64 pt-2  md:w-56'
 											required
 										/>
 										<TextField
@@ -206,6 +206,7 @@ const Wear: React.FC = () => {
 											value={FormValuesMeasurements.hips}
 											onChange={handleInputChangeMeasurements}
 											type='number'
+											className='w-64 md:w-56'
 											required
 										/>
 										<TextField
@@ -214,6 +215,7 @@ const Wear: React.FC = () => {
 											value={FormValuesMeasurements.inseam}
 											onChange={handleInputChangeMeasurements}
 											type='number'
+											className='w-64 md:w-56'
 											required
 										/>
 										<TextField
@@ -222,6 +224,7 @@ const Wear: React.FC = () => {
 											value={FormValuesMeasurements.waist}
 											onChange={handleInputChangeMeasurements}
 											type='number'
+											className='w-64 md:w-56'
 											required
 										/>
 									</Box>
