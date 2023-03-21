@@ -3,7 +3,6 @@ import { Box, Stack, Typography } from "@mui/material";
 import ReactApexChart from "react-apexcharts";
 
 const Charts = () => {
-	//! CHART DATA
 	const ShoeSizes = {
 		chart: {
 			id: "basic-column",
@@ -27,7 +26,7 @@ const Charts = () => {
 		},
 	};
 
-	const TotalRevenueSeries = [
+	const avgShoeSize = [
 		{
 			data: [12, 14, 2, 47, 32, 44, 14, 55, 41, 69, 91, 148, 22, 43, 21],
 		},
@@ -35,7 +34,6 @@ const Charts = () => {
 	//? ROW CHART
 	const ShoeSizesRow = {
 		chart: {
-			id: "basic-column",
 			toolbar: {
 				show: false,
 			},
@@ -53,7 +51,7 @@ const Charts = () => {
 		},
 	};
 
-	const TotalRevenueSeriesRow = [
+	const avgShoeSizeRow = [
 		{
 			data: [12, 14, 2, 47, 32, 44, 14, 55, 41, 69, 91, 148, 22, 43, 21],
 		},
@@ -61,20 +59,42 @@ const Charts = () => {
 	const maleCount = 32134;
 	const femaleCount = 12321;
 
-	const genderChart = {
+	const genderCountChart = {
 		series: [maleCount, femaleCount],
 		options: {
 			chart: {
 				type: "donut",
 			},
-
+			dataLabels: {
+				enabled: false,
+			},
+			colors: ["#475be8", "#3399ff"],
 			labels: ["Male", "Female"],
-
 			legend: {
 				show: false,
 			},
 		},
 	};
+	const Send = 24;
+	const NotSend = 34;
+
+	const feedbackCounterChart = {
+		series: [Send, NotSend],
+		options: {
+			chart: {
+				type: "donut",
+			},
+			dataLabels: {
+				enabled: false,
+			},
+            colors: ["#475be8", "#3399ff"],
+			labels: ["Send", "Not Send"],
+			legend: {
+				show: false,
+			},
+		},
+	};
+
 	return (
 		<Box className='flex-1 xl:w-3/4 flex flex-col'>
 			<Box id='chart' className='p-4  grid rounded-2xl bg-[#fcfcfc]'>
@@ -85,7 +105,7 @@ const Charts = () => {
 				</Stack>
 				<Box className='hidden sm:block'>
 					<ReactApexChart
-						series={TotalRevenueSeries}
+						series={avgShoeSize}
 						type='bar'
 						height={350}
 						options={ShoeSizes}
@@ -94,7 +114,7 @@ const Charts = () => {
 				{/* MOBILE */}
 				<Box className='block sm:hidden'>
 					<ReactApexChart
-						series={TotalRevenueSeriesRow}
+						series={avgShoeSizeRow}
 						type='bar'
 						height={250}
 						options={ShoeSizesRow}
@@ -105,8 +125,8 @@ const Charts = () => {
 			<Box className='grid grid-cols-1 gap-4 pt-4 lg:grid-cols-2 h-36'>
 				<Box className=' w-full flex place-content-center bg-[#fcfcfc] rounded-2xl'>
 					<ReactApexChart
-						options={genderChart.options}
-						series={genderChart.series}
+						options={genderCountChart.options}
+						series={genderCountChart.series}
 						type='donut'
 						height={150}
 						className='w-1/2'
@@ -122,18 +142,18 @@ const Charts = () => {
 				</Box>
 				<Box className=' w-full flex place-content-center bg-[#fcfcfc] rounded-2xl'>
 					<ReactApexChart
-						options={genderChart.options}
-						series={genderChart.series}
+						options={feedbackCounterChart.options}
+						series={feedbackCounterChart.series}
 						type='donut'
 						height={150}
 						className='w-1/2'
 					/>
 					<Box className='flex flex-col w-1/2'>
 						<Typography fontWeight={700} fontSize={24} className='text-black'>
-							Gender
+							Feedback
 						</Typography>
 						<Typography fontWeight={700} fontSize={24} className='text-black'>
-							Count
+							counter
 						</Typography>
 					</Box>
 				</Box>

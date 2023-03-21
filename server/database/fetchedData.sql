@@ -6,9 +6,14 @@ CREATE TABLE Comment
     comment varchar(150) NOT NULL,
 )
 
-create table avgShoeSize
+CREATE TABLE avgShoeSize
 (
     sizeUK int,
     sizeUS int,
     sizeEU int,
+)
+
+CREATE TABLE feedbackCounter
+(
+    feedbackCounter int,
 )

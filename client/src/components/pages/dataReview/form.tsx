@@ -84,7 +84,7 @@ const Form = () => {
 						}`}
 						type='submit'
 						disabled={!comment || remainingChars < 0}>
-						Submit
+						Submit your feedback!
 					</button>
 				</Box>
 			</form>
