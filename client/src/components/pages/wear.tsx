@@ -23,12 +23,6 @@ type FormData = {
 	gender: string;
 };
 
-type Option = {
-	id: number;
-	value: string;
-	text: string;
-};
-
 const Wear: React.FC = () => {
 	//! MEASUREMENTS
 	const [FormValuesMeasurements, setFormValuesMeasurements] = useState({
@@ -108,7 +102,7 @@ const Wear: React.FC = () => {
 		console.log("By Brand:", formData);
 	};
 
-	const Option: Option = [
+	const Option = [
 		{ id: 1, value: "male", text: "Male" },
 		{ id: 2, value: "female", text: "Female" },
 	];
