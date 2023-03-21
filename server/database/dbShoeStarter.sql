@@ -286,20 +286,17 @@ VALUES
 ------------------------------------------------------------------
 
 
-create table Conversions
-(
-  BrandID TINYINT NOT NULL,
-  [Date] DATETIME NOT NULL,
-  Garement VARCHAR(10) NOT NULL CHECK (Garement IN ('shoesMan','shoesWoman','topsMan','topsWoman','bottomsWoman','bottomsMan')),
-  Size VARCHAR(6) NOT NULL,
-  SizeUS TINYINT NOT NULL,
-  SizeUK TINYINT NOT NULL,
-  SizeEU TINYINT NOT NULL,
-  FOREIGN KEY (BrandID) REFERENCES Brand(ID)
-)
-
-
-
+-- create table Conversions
+-- (
+--   BrandID TINYINT NOT NULL,
+--   [Date] DATETIME NOT NULL,
+--   Garement VARCHAR(10) NOT NULL CHECK (Garement IN ('shoesMan','shoesWoman','topsMan','topsWoman','bottomsWoman','bottomsMan')),
+--   Size VARCHAR(6) NOT NULL,
+--   SizeUS TINYINT NOT NULL,
+--   SizeUK TINYINT NOT NULL,
+--   SizeEU TINYINT NOT NULL,
+--   FOREIGN KEY (BrandID) REFERENCES Brand(ID)
+-- )
 
 
 create table Brand
