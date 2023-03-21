@@ -13,15 +13,15 @@ import {
 	MenuItem,
 } from "@pankod/refine-mui";
 
-interface FormData {
+type FormData = {
 	unit: string;
-	chest?: number;
-	bust?: number;
-	hips: number;
-	inseam: number;
-	waist: number;
+	chest?: string;
+	bust?: string;
+	hips: string;
+	inseam: string;
+	waist: string;
 	gender: string;
-}
+};
 
 type Option = {
 	id: number;
