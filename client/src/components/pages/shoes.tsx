@@ -13,6 +13,8 @@ import React, { useState } from "react";
 import { Tab } from "@headlessui/react";
 import classNames from "classnames";
 import axios from "axios";
+import { SelectInputProps } from "@mui/material/Select/SelectInput";
+import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 
 const Shoes = () => {
 	//! MEASUREMENTS
@@ -22,15 +24,22 @@ const Shoes = () => {
 		gender: "",
 	});
 
-	const handleInputChangeMeasurements = (
-		event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-	) => {
-		const { name, value } = event.target;
-		setFormValuesMeasurements({
-			...FormValuesMeasurements,
-			[name]: value,
-		});
-	};
+	const handleInputChangeMeasurements: OutlinedInputProps["onChange"] =
+		event => {
+			const { name, value } = event.target;
+			setFormValuesMeasurements({
+				...FormValuesMeasurements,
+				[name]: value,
+			});
+		};
+	const handleSelectChangeMeasurements: SelectInputProps["onChange"] =
+		event => {
+			const { name, value } = event.target;
+			setFormValuesMeasurements({
+				...FormValuesMeasurements,
+				[name]: value,
+			});
+		};
 	const [resultMeasurement, setResultMeasurement] = useState("");
 	const handleSubmitMeasurements = async (
 		event: React.FormEvent<HTMLFormElement>
@@ -68,9 +77,14 @@ const Shoes = () => {
 		gender: "",
 		measurement: "",
 	});
-	const handleInputChange = (
-		event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-	) => {
+	const handleInputChange: OutlinedInputProps["onChange"] = event => {
+		const { name, value } = event.target;
+		setFormValuesBrand({
+			...FormValuesBrand,
+			[name]: value,
+		});
+	};
+	const handleSelectChange: SelectInputProps["onChange"] = event => {
 		const { name, value } = event.target;
 		setFormValuesBrand({
 			...FormValuesBrand,
@@ -175,7 +189,7 @@ const Shoes = () => {
 												name='gender'
 												label='Gender'
 												value={FormValuesMeasurements.gender}
-												onChange={handleInputChangeMeasurements}>
+												onChange={handleSelectChangeMeasurements}>
 												{Option.map(option => (
 													<MenuItem key={option.id} value={option.value}>
 														{option.text}
@@ -228,7 +242,7 @@ const Shoes = () => {
 								</form>
 							</Box>
 						</Box>
-						<table className="table-auto">
+						<table className='table-auto'>
 							<tr>
 								<th>{resultMeasurement}</th>
 							</tr>
@@ -247,7 +261,7 @@ const Shoes = () => {
 												label='Gender'
 												required
 												value={FormValuesBrand.gender}
-												onChange={handleInputChange}>
+												onChange={handleSelectChange}>
 												{Option.map(option => (
 													<MenuItem key={option.value} value={option.value}>
 														{option.text}
