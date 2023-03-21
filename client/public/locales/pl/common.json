@@ -59,10 +59,10 @@
       }
     },
     "error": {
-      "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
-      "404": "Sorry, the page you visited does not exist.",
+      "info": "Najprawdopodobniej zapomniałeś(-aś) dodać {{action}} komponent do {{resource}} zasobu.",
+      "404": "Przepraszamy, ale nie możemy znaleźć strony, której szukasz.",
       "resource404": "Are you sure you have created the {{resource}} resource.",
-      "backHome": "Back Home"
+      "backHome": "Powrót"
     }
   },
   "actions": {
