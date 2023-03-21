@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Tab } from "@headlessui/react";
 import classNames from "classnames";
-
+import { SelectInputProps } from "@mui/material/Select/SelectInput";
+import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 import React, { useState } from "react";
 import {
 	Box,
@@ -40,15 +41,22 @@ const Wear: React.FC = () => {
 		gender: "",
 	});
 
-	const handleInputChangeMeasurements = (
-		event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-	) => {
-		const { name, value } = event.target;
-		setFormValuesMeasurements({
-			...FormValuesMeasurements,
-			[name]: value,
-		});
-	};
+	const handleInputChangeMeasurements: OutlinedInputProps["onChange"] =
+		event => {
+			const { name, value } = event.target;
+			setFormValuesMeasurements({
+				...FormValuesMeasurements,
+				[name]: value,
+			});
+		};
+	const handleSelectChangeMeasurements: SelectInputProps["onChange"] =
+		event => {
+			const { name, value } = event.target;
+			setFormValuesMeasurements({
+				...FormValuesMeasurements,
+				[name]: value,
+			});
+		};
 
 	const handleSubmitMeasurements = (
 		event: React.FormEvent<HTMLFormElement>
@@ -75,9 +83,14 @@ const Wear: React.FC = () => {
 		size: "",
 		gender: "",
 	});
-	const handleInputChange = (
-		event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-	) => {
+	const handleInputChange: OutlinedInputProps["onChange"] = event => {
+		const { name, value } = event.target;
+		setFormValuesBrand({
+			...FormValuesBrand,
+			[name]: value,
+		});
+	};
+	const handleSelectChange: SelectInputProps["onChange"] = event => {
 		const { name, value } = event.target;
 		setFormValuesBrand({
 			...FormValuesBrand,
@@ -175,7 +188,7 @@ const Wear: React.FC = () => {
 												label='Gender'
 												name='gender'
 												value={FormValuesMeasurements.gender}
-												onChange={handleInputChangeMeasurements}>
+												onChange={handleSelectChangeMeasurements}>
 												{Option.map(option => (
 													<MenuItem key={option.id} value={option.value}>
 														{option.text}
@@ -245,7 +258,7 @@ const Wear: React.FC = () => {
 												label={handleOptionChange}
 												name='gender'
 												value={FormValuesBrand.gender}
-												onChange={handleInputChange}>
+												onChange={handleSelectChange}>
 												{Option.map(option => (
 													<MenuItem key={option.id} value={option.value}>
 														{option.text}

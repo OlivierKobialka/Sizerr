@@ -9,9 +9,13 @@ async function shoesMeasurements(req, res) {
 		if (gender === "male") {
 			const result =
 				await sql.query`SELECT * FROM dbo.shoesMan WHERE Size = ${size} AND Unit = ${unit}`;
+
+			res.json(result.recordset);
 		} else {
 			const result =
 				await sql.query`SELECT * FROM dbo.shoesWoman WHERE Size = ${size} AND Unit = ${unit}`;
+
+			res.json(result.recordset);
 		}
 	} catch (error) {
 		console.log(error);
