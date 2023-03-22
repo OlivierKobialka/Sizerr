@@ -18,6 +18,6 @@ npm run dev
 npm run start
 ```
 
-## Programming Languages we used
+## What we used to make this project
 
 [![](https://skills.thijs.gg/icons?i=ts,js,react,tailwind,nodejs,mysql,docker,git)](https://github.com/OlivierKobialka)
