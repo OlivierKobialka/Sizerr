@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get("/api/Opinion", userComment);
+app.post("/api/Opinion", userComment);
 
 app.get("/api/Shoes-M", shoesMeasurements);
 app.get("/api/Shoes-B", shoesBrand);
