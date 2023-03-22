@@ -33,6 +33,7 @@ app.get("/api/Shoes-B", shoesBrand);
 
 app.listen(port, () => {
 	function hi() {
+		console.clear();
 		console.log("   ______   ______  ________  ________  _______   _______  ");
 		console.log("  /       /      |/        |/        |/        /         / ");
 		console.log(" /$$$$$$  |$$$$$$/ $$$$$$$$/ $$$$$$$$/ $$$$$$$  |$$$$$$$  |");
