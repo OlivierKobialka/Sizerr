@@ -69,17 +69,18 @@ const Charts = () => {
 				enabled: false,
 			},
 			colors: ["#475be8", "#3399ff"],
-			labels: ["Male", "Female"],
+			labels: ["Male's", "Female's"],
 			legend: {
 				show: false,
 			},
 		},
 	};
-	const Send = 24;
-	const NotSend = 34;
+	const Feedback = 24;
+	const Suggestion = 34;
+	const Question = 12;
 
-	const feedbackCounterChart = {
-		series: [Send, NotSend],
+	const feedbackCategoryCounter = {
+		series: [Feedback, Suggestion, Question],
 		options: {
 			chart: {
 				type: "donut",
@@ -87,8 +88,8 @@ const Charts = () => {
 			dataLabels: {
 				enabled: false,
 			},
-			colors: ["#475be8", "#3399ff"],
-			labels: ["Send", "Not Send"],
+			colors: ["#475be8", "#3399ff", "#ffcc00"],
+			labels: ["Feedbacks", "Suggestions", "Questions"],
 			legend: {
 				show: false,
 			},
@@ -142,8 +143,8 @@ const Charts = () => {
 				</Box>
 				<Box className=' w-full flex place-content-center bg-[#fcfcfc] rounded-2xl'>
 					<ReactApexChart
-						options={feedbackCounterChart.options}
-						series={feedbackCounterChart.series}
+						options={feedbackCategoryCounter.options}
+						series={feedbackCategoryCounter.series}
 						type='donut'
 						height={150}
 						className='w-1/2'
@@ -153,7 +154,7 @@ const Charts = () => {
 							Feedback
 						</Typography>
 						<Typography fontWeight={700} fontSize={24} className='text-black'>
-							counter
+							category
 						</Typography>
 					</Box>
 				</Box>

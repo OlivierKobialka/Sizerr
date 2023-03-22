@@ -87,7 +87,10 @@ const Form = () => {
 						rows={4}
 						inputProps={{ maxLength: 150 }}
 					/>
-					<Box className='flex justify-between my-2 w-full md:w-1/2 xl:w-2/3'>
+					<Typography fontWeight={600} className='pt-2 pb-1 text-gray-400'>
+						Category
+					</Typography>
+					<Box className='flex justify-between mb-2 w-full md:w-1/2 xl:w-2/3'>
 						<button
 							type='button'
 							className={`${
