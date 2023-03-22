@@ -10,11 +10,17 @@ const Form = () => {
 	});
 	const [comment, setComment] = useState("");
 	const [email, setEmail] = useState("");
+	const [selectedButton, setSelectedButton] = useState<string | null>(null);
 	const [remainingChars, setRemainingChars] = useState(150);
+
 	const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = event.target;
 		setComment(value);
 		setRemainingChars(150 - value.length);
+	};
+
+	const handleButtonClick = (button: string) => {
+		setSelectedButton(button === selectedButton ? null : button);
 	};
 
 	const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +37,7 @@ const Form = () => {
 		console.log(formData);
 		setComment("");
 		setEmail("");
+		setSelectedButton(null);
 		setRemainingChars(150);
 		try {
 			const response = await axios.post("http://localhost:8080/api/Opinion", {
@@ -46,11 +53,7 @@ const Form = () => {
 			console.error(error);
 		}
 	};
-	const [selectedButton, setSelectedButton] = useState<string | null>(null);
 
-	const handleButtonClick = (button: string) => {
-		setSelectedButton(button === selectedButton ? null : button);
-	};
 	return (
 		<Box className='p-4 flex-1 flex flex-col rounded-2xl bg-[#fcfcfc] xl:w-1/4'>
 			<Typography
@@ -86,6 +89,7 @@ const Form = () => {
 					/>
 					<Box className='flex justify-between my-2 w-full md:w-1/2 xl:w-2/3'>
 						<button
+							type='button'
 							className={`${
 								selectedButton === "feedback"
 									? "bg-primary font-bold text-white rounded-3xl"
@@ -95,6 +99,7 @@ const Form = () => {
 							Feedback
 						</button>
 						<button
+							type='button'
 							className={`${
 								selectedButton === "suggestion"
 									? "bg-primary font-bold text-white rounded-3xl"
@@ -104,6 +109,7 @@ const Form = () => {
 							Suggestion
 						</button>
 						<button
+							type='button'
 							className={`${
 								selectedButton === "question"
 									? "bg-primary font-bold text-white rounded-3xl"
