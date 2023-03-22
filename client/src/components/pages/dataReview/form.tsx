@@ -1,6 +1,14 @@
 import React, { useState } from "react";
-import { Box, Typography, TextField } from "@mui/material";
+import { Box, Typography, TextField, Snackbar } from "@mui/material";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import axios from "axios";
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+	props,
+	ref
+) {
+	return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
+});
 
 const Form = () => {
 	const [opinion, setOpinion] = useState({
@@ -10,7 +18,7 @@ const Form = () => {
 	});
 	const [comment, setComment] = useState("");
 	const [email, setEmail] = useState("");
-	const [selectedButton, setSelectedButton] = useState<string | null>(null);
+	const [selectedButton, setSelectedButton] = useState<string>("feedback");
 	const [remainingChars, setRemainingChars] = useState(150);
 
 	const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +28,7 @@ const Form = () => {
 	};
 
 	const handleButtonClick = (button: string) => {
-		setSelectedButton(button === selectedButton ? null : button);
+		setSelectedButton(button === selectedButton ? selectedButton : button);
 	};
 
 	const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +45,7 @@ const Form = () => {
 		console.log(formData);
 		setComment("");
 		setEmail("");
-		setSelectedButton(null);
+		setSelectedButton(selectedButton);
 		setRemainingChars(150);
 		try {
 			const response = await axios.post("http://localhost:8080/api/Opinion", {
@@ -52,6 +60,21 @@ const Form = () => {
 		} catch (error) {
 			console.error(error);
 		}
+	};
+
+	//! SNACKBAR
+	const [open, setOpen] = React.useState(false);
+	const handleClickSnackbar = () => {
+		setOpen(true);
+	};
+	const handleClose = (
+		event?: React.SyntheticEvent | Event,
+		reason?: string
+	) => {
+		if (reason === "clickaway") {
+			return;
+		}
+		setOpen(false);
 	};
 
 	return (
@@ -129,10 +152,19 @@ const Form = () => {
 								? "cursor-not-allowed opacity-50"
 								: ""
 						}`}
+						onClick={handleClickSnackbar}
 						type='submit'
 						disabled={!comment || remainingChars < 0}>
 						Submit your feedback!
 					</button>
+					<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+						<Alert
+							onClose={handleClose}
+							severity='success'
+							sx={{ width: "100%" }}>
+							Send successfully!
+						</Alert>
+					</Snackbar>
 				</Box>
 			</form>
 		</Box>
