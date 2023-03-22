@@ -87,7 +87,7 @@ const Charts = () => {
 			dataLabels: {
 				enabled: false,
 			},
-            colors: ["#475be8", "#3399ff"],
+			colors: ["#475be8", "#3399ff"],
 			labels: ["Send", "Not Send"],
 			legend: {
 				show: false,
@@ -122,7 +122,7 @@ const Charts = () => {
 				</Box>
 			</Box>
 			{/* SMALLER CHARTS */}
-			<Box className='grid grid-cols-1 gap-4 pt-4 lg:grid-cols-2 h-36'>
+			<Box className='grid grid-cols-1 gap-4 pt-4 md:grid-cols-2 h-36'>
 				<Box className=' w-full flex place-content-center bg-[#fcfcfc] rounded-2xl'>
 					<ReactApexChart
 						options={genderCountChart.options}

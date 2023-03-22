@@ -6,6 +6,7 @@ const Form = () => {
 	const [opinion, setOpinion] = useState({
 		email: "",
 		comment: "",
+		category: "",
 	});
 	const [comment, setComment] = useState("");
 	const [email, setEmail] = useState("");
@@ -25,6 +26,7 @@ const Form = () => {
 		const formData = {
 			email: email,
 			comment: comment,
+			category: selectedButton,
 		};
 		console.log(formData);
 		setComment("");
@@ -35,6 +37,7 @@ const Form = () => {
 				params: {
 					email: email,
 					comment: comment,
+					category: selectedButton,
 				},
 			});
 			setOpinion(response.data);
@@ -42,6 +45,11 @@ const Form = () => {
 		} catch (error) {
 			console.error(error);
 		}
+	};
+	const [selectedButton, setSelectedButton] = useState<string | null>(null);
+
+	const handleButtonClick = (button: string) => {
+		setSelectedButton(button === selectedButton ? null : button);
 	};
 	return (
 		<Box className='p-4 flex-1 flex flex-col rounded-2xl bg-[#fcfcfc] xl:w-1/4'>
@@ -67,15 +75,45 @@ const Form = () => {
 					</Typography>
 					<Typography className='text-gray-400'>{`${comment.length}/150`}</Typography>
 				</Box>
-				<Box className='flex flex-col h-[200px] place-content-between'>
+				<Box className='flex flex-col place-content-between'>
 					<TextField
 						value={comment}
 						onChange={handleCommentChange}
 						fullWidth
 						multiline
 						rows={4}
-						inputProps={{ maxLength: 150 }} // set the maximum character count
+						inputProps={{ maxLength: 150 }}
 					/>
+					<Box className='flex justify-between my-2 w-full md:w-1/2 xl:w-2/3'>
+						<button
+							className={`${
+								selectedButton === "feedback"
+									? "bg-primary font-bold text-white rounded-3xl"
+									: "bg-gray-200 rounded-3xl font-bold text-black"
+							} py-1 px-4`}
+							onClick={() => handleButtonClick("feedback")}>
+							Feedback
+						</button>
+						<button
+							className={`${
+								selectedButton === "suggestion"
+									? "bg-primary font-bold text-white rounded-3xl"
+									: "bg-gray-200 rounded-3xl font-bold text-black"
+							} py-1 px-4`}
+							onClick={() => handleButtonClick("suggestion")}>
+							Suggestion
+						</button>
+						<button
+							className={`${
+								selectedButton === "question"
+									? "bg-primary font-bold text-white rounded-3xl"
+									: "bg-gray-200 rounded-3xl font-bold text-black"
+							} py-1 px-4`}
+							onClick={() => handleButtonClick("question")}>
+							Question
+						</button>
+					</Box>
+
 					<button
 						className={`bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 rounded-2xl ${
 							!comment || remainingChars < 0
