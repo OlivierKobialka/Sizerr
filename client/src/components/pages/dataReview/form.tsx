@@ -114,12 +114,12 @@ const Form = () => {
 						<button
 							type='button'
 							className={`${
-								selectedButton === "question"
+								selectedButton === "complain"
 									? "bg-primary font-bold text-white rounded-3xl"
 									: "bg-gray-200 rounded-3xl font-bold text-black"
 							} py-1 px-4`}
-							onClick={() => handleButtonClick("question")}>
-							Question
+							onClick={() => handleButtonClick("complain")}>
+							Complain
 						</button>
 					</Box>
 

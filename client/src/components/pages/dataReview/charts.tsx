@@ -77,10 +77,10 @@ const Charts = () => {
 	};
 	const Feedback = 24;
 	const Suggestion = 34;
-	const Question = 12;
+	const Complain = 12;
 
 	const feedbackCategoryCounter = {
-		series: [Feedback, Suggestion, Question],
+		series: [Feedback, Suggestion, Complain],
 		options: {
 			chart: {
 				type: "donut",
@@ -89,7 +89,7 @@ const Charts = () => {
 				enabled: false,
 			},
 			colors: ["#475be8", "#3399ff", "#ffcc00"],
-			labels: ["Feedbacks", "Suggestions", "Questions"],
+			labels: ["Feedbacks", "Suggestions", "Complains"],
 			legend: {
 				show: false,
 			},
