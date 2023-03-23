@@ -1,7 +1,9 @@
+const dbConfig = require("../../index");
+
 async function userComment(req, res) {
-	const email = req.query.email;
-	const comment = req.query.comment;
-	const category = req.query.category;
+	const email = req.body.email;
+	const comment = req.body.comment;
+	const category = req.body.category;
 
 	try {
 		await sql.connect(dbConfig);
@@ -9,7 +11,7 @@ async function userComment(req, res) {
 		const result =
 			await sql.query`INSERT INTO Comment (email, comment, category) VALUES (${email}, ${comment}, ${category})`;
 
-		res.json(result.recordset);
+		res.status(200).json({ message: "Comment added successfully" });
 	} catch (error) {
 		console.log(error);
 		res.status(500).send("Server Error");
