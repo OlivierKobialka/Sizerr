@@ -22,6 +22,7 @@ export const dbConfig = new sql.ConnectionPool({
 });
 
 //? set middleware
+app.use(dbConfig);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
