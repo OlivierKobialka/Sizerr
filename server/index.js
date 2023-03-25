@@ -26,6 +26,7 @@ app.use(dbConfig);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
+//? set middleware
 
 app.post("/api/Opinion", async function userComment(req, res) {
 	const email = req.body.email;
@@ -46,6 +47,7 @@ app.post("/api/Opinion", async function userComment(req, res) {
 		sql.close();
 	}
 });
+
 app.get("/api/opinionCategory", async (req, res) => {
 	try {
 		const result = await dbConfig.query(
