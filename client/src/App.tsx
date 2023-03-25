@@ -22,7 +22,6 @@ import {
 	Shoes,
 	Convert,
 	StyleTips,
-	FindYourShape,
 	DataReview,
 } from "components/pages";
 
@@ -31,7 +30,6 @@ import {
 	TbShoe,
 	TbTable,
 	TbStar,
-	TbSearch,
 	TbChartBar,
 } from "react-icons/tb";
 
@@ -79,12 +77,6 @@ function App() {
 								list: StyleTips,
 								show: StyleTips,
 								icon: <TbStar />,
-							},
-							{
-								name: "Find-Shape",
-								list: FindYourShape,
-								show: FindYourShape,
-								icon: <TbSearch />,
 							},
 							{
 								name: "Opinion",
