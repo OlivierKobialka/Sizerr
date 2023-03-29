@@ -29,10 +29,7 @@ app.use(cors());
 //? set middleware
 
 app.post("/api/Opinion", async function userComment(req, res) {
-	const email = req.body.email;
-	const comment = req.body.comment;
-	const category = req.body.category;
-
+	const { email, comment, category } = req.body;
 	try {
 		// await sql.connect(dbConfig);
 
