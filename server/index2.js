@@ -26,6 +26,35 @@ sql.connect(dbConfig, err => {
 	}
 });
 
+app.get("/api/Shoes-M", async function (req, res) {
+	const { unit, size, gender } = req.body;
+	try {
+		const pool = await sql.connect(dbConfig);
+
+		if (gender === "male" && unit === "cm") {
+			const result = await pool.request()
+				.query`SELECT * FROM dbo.shoesMan WHERE sizeCM = ${size}`;
+
+			res.send(result.recordset);
+		}
+		if (gender === "male" && unit === "inch") {
+			const result = await pool.request()
+				.query`SELECT * FROM dbo.shoesMan WHERE sizeIN = ${size}`;
+
+			res.send(result.recordset);
+		}
+		// } else {
+		// 	const result =
+		// 		await sql.query`SELECT * FROM dbo.shoesWoman WHERE Size = ${size} AND Unit = ${unit}`;
+
+		// 	res.send(result);
+		// }
+	} catch (error) {
+		console.log(error);
+		res.status(500).send(`Error`);
+	}
+});
+
 app.post("/api/Opinion", async function userComment(req, res) {
 	const { email, comment, category } = req.body;
 	try {
