@@ -6,6 +6,7 @@ const port = 8080;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.json());
 // app.use(cors());
 
 const dbConfig = {
@@ -26,32 +27,29 @@ sql.connect(dbConfig, err => {
 	}
 });
 
-app.get("/api/Shoes-M", async function (req, res) {
-	const { unit, size, gender } = req.body;
+app.get("/api/Shoes-M", async (req, res) => {
+	const { unit, size, gender } = req.query;
+
 	try {
 		const pool = await sql.connect(dbConfig);
 
+		let result;
+
 		if (gender === "male" && unit === "cm") {
-			const result = await pool.request()
-				.query`SELECT * FROM dbo.shoesMan WHERE sizeCM = ${size}`;
-
-			res.send(result.recordset);
-		}
-		if (gender === "male" && unit === "inch") {
-			const result = await pool.request()
+			result = await pool.request()
+				.query`SELECT * FROM dbo.shoesMan WHERE sizeCM = CAST(${size} AS NUMERIC(10, 2))`;
+		} else if (gender === "male" && unit === "inch") {
+			result = await pool.request()
 				.query`SELECT * FROM dbo.shoesMan WHERE sizeIN = ${size}`;
-
-			res.send(result.recordset);
+		} else {
+			res.status(400).send("Invalid query parameters");
+			return;
 		}
-		// } else {
-		// 	const result =
-		// 		await sql.query`SELECT * FROM dbo.shoesWoman WHERE Size = ${size} AND Unit = ${unit}`;
 
-		// 	res.send(result);
-		// }
+		res.send(result.recordset);
 	} catch (error) {
-		console.log(error);
-		res.status(500).send(`Error`);
+		console.error(error);
+		res.status(500).send("Error");
 	}
 });
 
