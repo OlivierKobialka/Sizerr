@@ -9,18 +9,21 @@ app.use(bodyParser.json());
 // app.use(cors());
 
 const dbConfig = {
-	user: process.env.DB_USER,
-	password: process.env.DB_PASWORD,
-	server: process.env.DB_SERVER,
-	database: process.env.DB_DATABASE,
+	user: "sa",
+	password: "Olivier123!",
+	server: "localhost",
+	database: "Sizes",
 	options: {
 		encrypt: true,
-		trustServerCertificate: false,
+		trustServerCertificate: true,
 	},
 };
 sql.connect(dbConfig, err => {
-	if (err) console.log(err);
-	console.log("Connected to database");
+	if (err) {
+		console.log(err);
+	} else {
+		console.log("Connected to database");
+	}
 });
 
 app.post("/api/Opinion", async function userComment(req, res) {
