@@ -21,9 +21,9 @@ const dbConfig = {
 };
 sql.connect(dbConfig, err => {
 	if (err) {
-		console.log(err);
+		console.error(err);
 	} else {
-		console.log("Connected to database");
+		console.log("Connected to database!");
 	}
 });
 
