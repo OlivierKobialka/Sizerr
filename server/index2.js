@@ -53,7 +53,7 @@ app.get("/api/Shoes-M", async (req, res) => {
 });
 
 app.post("/api/Opinion", async function userComment(req, res) {
-	const { email, comment, category } = req.body;
+	const { email, comment, category } = req.query;
 	try {
 		await sql.connect(dbConfig);
 
