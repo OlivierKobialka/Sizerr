@@ -1,6 +1,6 @@
 # Sizerr - A simple Size Calculator
 
-Project for DataBase with database integration
+Project for DataBase with SQL database integration and TypeScript React 
 
 ## How to run
 
