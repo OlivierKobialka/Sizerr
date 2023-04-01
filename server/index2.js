@@ -20,6 +20,8 @@ const dbConfig = {
 		trustServerCertificate: true,
 	},
 };
+const pool = new sql.ConnectionPool(dbConfig);
+
 sql.connect(dbConfig, err => {
 	if (err) {
 		console.error(err);
@@ -28,35 +30,21 @@ sql.connect(dbConfig, err => {
 	}
 });
 
-app.get("/Shoes", (req, res) => {
-	res.send("Hello, World!");
-});
-
 app.get("/api/Shoes-B", async (req, res) => {
 	const { brand, size, gender, measurement } = req.query;
 
 	try {
-		const pool = await sql.connect(config);
-		// const result = await pool
-		// 	.request()
-		// 	.input("brand", sql.NVarChar, brand)
-		// 	.input("size", sql.NVarChar, size)
-		// 	.input("gender", sql.NVarChar, gender)
-		// 	.input("measurement", sql.NVarChar, measurement)
-		// 	.query(
-		// 		`SELECT * FROM shoesMan WHERE brand=@brand AND size=@size AND gender=@gender AND measurement=@measurement`
-		// 	);
+		const pool = await sql.connect(dbConfig);
 		if (measurement === "us") {
 			if (gender === "male") {
 				const result = await pool.request()
 					.query`SELECT * from shoesMan WHERE brand=${brand} AND sizeUS=${size}`;
 			}
 		}
-
-		res.send(result.recordset);
+		res.status(200).send("OK");
 	} catch (err) {
 		console.log(err);
-		res.status(500).send("Huj wszytsko strzelił kurwa!");
+		res.status(500).send("Błąd");
 	}
 });
 
