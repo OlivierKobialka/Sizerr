@@ -179,6 +179,15 @@ const Shoes = () => {
 		"Size CM",
 		"Size INCH",
 	];
+	interface IShoes {
+		brand: string;
+		sizeEU: number & Float;
+		sizeUS: number & Float;
+		sizeUK: number & Float;
+		sizeCM: number & Float;
+		sizeINCH: number & Float;
+	}
+	type Float = number & { __float: never };
 
 	return (
 		<>
