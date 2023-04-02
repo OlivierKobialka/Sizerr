@@ -45,7 +45,7 @@ app.get("/api/Shoes-B", async (req, res) => {
 				.query`SELECT * from shoesWoman WHERE brand=${brand} AND ${paramSize}=${size}`;
 		}
 
-		res.status(200).send("OK");
+		res.status(200).send("Response Send!");
 		// res.status(200).send(result.recordset);
 	} catch (err) {
 		console.log(err);
