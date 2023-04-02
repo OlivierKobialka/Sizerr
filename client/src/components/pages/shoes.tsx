@@ -13,9 +13,11 @@ import {
 	TableHead,
 	Table,
 	TableContainer,
+	TableBody,
 } from "@pankod/refine-mui";
 import React, { useState } from "react";
 import { Tab } from "@headlessui/react";
+import clsx from "clsx";
 import classNames from "classnames";
 import axios from "axios";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
@@ -88,7 +90,9 @@ const Shoes = () => {
 		setSelectedValue(event.target.value);
 	};
 	//! BRAND
+	const [showTable, setShowTable] = useState(false);
 	const [shoesData, setShoesData] = useState([]);
+
 	const [FormValuesBrand, setFormValuesBrand] = useState({
 		brand: "",
 		size: "",
@@ -355,28 +359,29 @@ const Shoes = () => {
 					</Tab.Panels>
 				</Box>
 			</Tab.Group>
-			<Box>
+			{/* Table */}
+			<Box
+				className={clsx("bg-red-500", {
+					hidden: !showTable,
+					block: showTable,
+				})}>
 				<TableContainer>
 					<Table>
 						<TableHead>
 							<TableRow>
-								<TableCell>Brand</TableCell>
-								<TableCell align='right'>Size</TableCell>
-								<TableCell align='right'>Price</TableCell>
-								<TableCell align='right'>Color</TableCell>
+								<TableCell>Column 1</TableCell>
+								<TableCell>Column 2</TableCell>
+								<TableCell>Column 3</TableCell>
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{shoesData.map(shoe => (
-								<TableRow key={shoe.id}>
-									<TableCell component='th' scope='row'>
-										{shoe.brand}
-									</TableCell>
-									<TableCell align='right'>{shoe.size}</TableCell>
-									<TableCell align='right'>{shoe.price}</TableCell>
-									<TableCell align='right'>{shoe.color}</TableCell>
+							{/* {tableData.map(row => (
+								<TableRow key={row.id}>
+									<TableCell>{row.column1}</TableCell>
+									<TableCell>{row.column2}</TableCell>
+									<TableCell>{row.column3}</TableCell>
 								</TableRow>
-							))}
+							))} */}
 						</TableBody>
 					</Table>
 				</TableContainer>
