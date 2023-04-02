@@ -91,7 +91,6 @@ const Shoes = () => {
 		setSelectedValue(event.target.value);
 	};
 	//! BRAND
-	const [showTable, setShowTable] = useState(true);
 	const [shoesData, setShoesData] = useState([]);
 
 	const [FormValuesBrand, setFormValuesBrand] = useState({
@@ -171,6 +170,7 @@ const Shoes = () => {
 		});
 	};
 	//! TABLE
+	const [showTable, setShowTable] = useState(false);
 	const tableHeader = [
 		"Brand",
 		"Size EU",
@@ -188,6 +188,10 @@ const Shoes = () => {
 		sizeINCH: number & Float;
 	}
 	type Float = number & { __float: never };
+
+	const [fetchedShoeSizes, setFetchedShoeSizes] = useState<IShoes[]>([]);
+
+	
 
 	return (
 		<>
@@ -395,15 +399,7 @@ const Shoes = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							<TableRow>
-								<TableCell>123</TableCell>
-								<TableCell>234</TableCell>
-								<TableCell>345</TableCell>
-								<TableCell>123</TableCell>
-								<TableCell>234</TableCell>
-								<TableCell>345</TableCell>
-							</TableRow>
-							{/* {tableData.map((item, index) => (
+							{fetchedShoeSizes.map((item, index) => (
 								<TableRow key={index}>
 									<TableCell>{item.brand}</TableCell>
 									<TableCell>{item.sizeEU}</TableCell>
@@ -412,7 +408,7 @@ const Shoes = () => {
 									<TableCell>{item.sizeCM}</TableCell>
 									<TableCell>{item.sizeINCH}</TableCell>
 								</TableRow>
-							))} */}
+							))}
 						</TableBody>
 					</Table>
 				</TableContainer>
