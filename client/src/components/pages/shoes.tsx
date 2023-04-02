@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
 	FormControl,
 	InputLabel,
@@ -15,7 +16,7 @@ import {
 	TableContainer,
 	TableBody,
 } from "@pankod/refine-mui";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tab } from "@headlessui/react";
 import clsx from "clsx";
 import classNames from "classnames";
@@ -90,7 +91,7 @@ const Shoes = () => {
 		setSelectedValue(event.target.value);
 	};
 	//! BRAND
-	const [showTable, setShowTable] = useState(false);
+	const [showTable, setShowTable] = useState(true);
 	const [shoesData, setShoesData] = useState([]);
 
 	const [FormValuesBrand, setFormValuesBrand] = useState({
@@ -169,6 +170,15 @@ const Shoes = () => {
 			measurement: "",
 		});
 	};
+	//! TABLE
+	const tableHeader = [
+		"Brand",
+		"Size EU",
+		"Size US",
+		"Size UK",
+		"Size CM",
+		"Size INCH",
+	];
 
 	return (
 		<>
@@ -361,25 +371,37 @@ const Shoes = () => {
 			</Tab.Group>
 			{/* Table */}
 			<Box
-				className={clsx("bg-red-500", {
+				className={clsx("mt-2 rounded-2xl border-2 border-primary", {
 					hidden: !showTable,
 					block: showTable,
 				})}>
-				<TableContainer>
+				<TableContainer className='rounded-2xl'>
 					<Table>
 						<TableHead>
+							{/* Table Headers */}
 							<TableRow>
-								<TableCell>Column 1</TableCell>
-								<TableCell>Column 2</TableCell>
-								<TableCell>Column 3</TableCell>
+								{tableHeader.map((item, index) => (
+									<TableCell key={index}>{item}</TableCell>
+								))}
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{/* {tableData.map(row => (
-								<TableRow key={row.id}>
-									<TableCell>{row.column1}</TableCell>
-									<TableCell>{row.column2}</TableCell>
-									<TableCell>{row.column3}</TableCell>
+							<TableRow>
+								<TableCell>123</TableCell>
+								<TableCell>234</TableCell>
+								<TableCell>345</TableCell>
+								<TableCell>123</TableCell>
+								<TableCell>234</TableCell>
+								<TableCell>345</TableCell>
+							</TableRow>
+							{/* {tableData.map((item, index) => (
+								<TableRow key={index}>
+									<TableCell>{item.brand}</TableCell>
+									<TableCell>{item.sizeEU}</TableCell>
+									<TableCell>{item.sizeUS}</TableCell>
+									<TableCell>{item.sizeUK}</TableCell>
+									<TableCell>{item.sizeCM}</TableCell>
+									<TableCell>{item.sizeINCH}</TableCell>
 								</TableRow>
 							))} */}
 						</TableBody>
