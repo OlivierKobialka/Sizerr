@@ -35,18 +35,16 @@ app.get("/api/Shoes-B", async (req, res) => {
 
 	try {
 		const pool = await sql.connect(dbConfig);
-		const measurementUp = measurement.toUpperCase();
-		const paramSize = `size${measurementUp}`;
+		const paramSize = `size${measurement.toUpperCase()}`;
 		if (gender === "male") {
-			const result = await pool.request()
-				.query`SELECT * from shoesMan WHERE ${paramSize}=${size}`;
+			const result =
+				await sql.query`SELECT * from shoesMan WHERE ${paramSize}=${size}`;
 		} else {
-			const result = await pool.request()
-				.query`SELECT * from shoesWoman WHERE ${paramSize}=${size}`;
+			const result =
+				await sql.query`SELECT * from shoesWoman WHERE ${paramSize}=${size}`;
 		}
 
 		res.status(200).send("Response Send!");
-		res.status(200).send(result.recordset);
 	} catch (err) {
 		console.log(err);
 		res.status(500).send("Błąd");
