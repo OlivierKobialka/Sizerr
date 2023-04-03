@@ -17,21 +17,9 @@ import { ColorModeContextProvider } from "contexts";
 import { Title, Sider, Layout, Header } from "components/layout";
 import { OffLayoutArea } from "components/offLayoutArea";
 //! pages
-import {
-	Wear,
-	Shoes,
-	Convert,
-	StyleTips,
-	DataReview,
-} from "components/pages";
+import { Wear, Shoes, Convert, StyleTips, DataReview } from "components/pages";
 
-import {
-	TbShirt,
-	TbShoe,
-	TbTable,
-	TbStar,
-	TbChartBar,
-} from "react-icons/tb";
+import { TbShirt, TbShoe, TbTable, TbStar, TbChartBar } from "react-icons/tb";
 
 function App() {
 	const { t, i18n } = useTranslation();

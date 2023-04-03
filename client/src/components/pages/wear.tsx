@@ -112,10 +112,11 @@ const Wear: React.FC = () => {
 	const [value, setValue] = React.useState(0);
 
 	const handleOptionChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-		setSelectedOption(event.target.value as string);
-		if (event.target.value === "men") {
+		const selectedValue = event.target.value;
+		setSelectedOption(selectedValue as string);
+		if (selectedValue === "men") {
 			setLabel("Chest");
-		} else if (event.target.value === "women") {
+		} else if (selectedValue === "women") {
 			setLabel("Bust");
 		}
 	};
