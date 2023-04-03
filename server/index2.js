@@ -39,14 +39,14 @@ app.get("/api/Shoes-B", async (req, res) => {
 		const paramSize = `size${measurementUp}`;
 		if (gender === "male") {
 			const result = await pool.request()
-				.query`SELECT * from shoesMan WHERE brand=${brand} AND ${paramSize}=${size}`;
+				.query`SELECT * from shoesMan WHERE ${paramSize}=${size}`;
 		} else {
 			const result = await pool.request()
-				.query`SELECT * from shoesWoman WHERE brand=${brand} AND ${paramSize}=${size}`;
+				.query`SELECT * from shoesWoman WHERE ${paramSize}=${size}`;
 		}
 
 		res.status(200).send("Response Send!");
-		// res.status(200).send(result.recordset);
+		res.status(200).send(result.recordset);
 	} catch (err) {
 		console.log(err);
 		res.status(500).send("Błąd");

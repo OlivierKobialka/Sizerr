@@ -170,7 +170,7 @@ const Shoes = () => {
 		});
 	};
 	//! TABLE
-	const [showTable, setShowTable] = useState(false);
+	const [showTable, setShowTable] = useState(true);
 	const tableHeader = [
 		"Brand",
 		"Size EU",
@@ -190,8 +190,6 @@ const Shoes = () => {
 	type Float = number & { __float: never };
 
 	const [fetchedShoeSizes, setFetchedShoeSizes] = useState<IShoes[]>([]);
-
-	
 
 	return (
 		<>
@@ -282,9 +280,9 @@ const Shoes = () => {
 											required
 										/>
 										<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
-											<button onClick={handleClear} className='mr-3'>
+											{/* <button onClick={handleClear} className='mr-3'>
 												clear
-											</button>
+											</button> */}
 											<button
 												type='submit'
 												className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
@@ -366,9 +364,9 @@ const Shoes = () => {
 											</FormControl>
 										</Box>
 										<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
-											<button onClick={handleClear} className='mr-3'>
+											{/* <button onClick={handleClear} className='mr-3'>
 												clear
-											</button>
+											</button> */}
 											<button
 												type='submit'
 												className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
@@ -388,7 +386,7 @@ const Shoes = () => {
 					hidden: !showTable,
 					block: showTable,
 				})}>
-				<TableContainer className='rounded-2xl'>
+				<TableContainer className='rounded-2xl h-56'>
 					<Table>
 						<TableHead>
 							{/* Table Headers */}
