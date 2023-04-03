@@ -22,9 +22,9 @@ const dbConfig = {
 };
 const pool = new sql.ConnectionPool(dbConfig);
 
-sql.connect(dbConfig, err => {
-	if (err) {
-		console.log(err);
+sql.connect(dbConfig, error => {
+	if (error) {
+		console.log(error);
 	} else {
 		console.log("  Connected to database!");
 	}
@@ -45,8 +45,8 @@ app.get("/api/Shoes-B", async (req, res) => {
 		}
 
 		res.status(200 || 304).send("Response Send!");
-	} catch (err) {
-		console.log(err);
+	} catch (error) {
+		console.log(error);
 		res.status(500).send("Błąd");
 	} 
 });
