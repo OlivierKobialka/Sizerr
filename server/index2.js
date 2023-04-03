@@ -24,9 +24,9 @@ const pool = new sql.ConnectionPool(dbConfig);
 
 sql.connect(dbConfig, err => {
 	if (err) {
-		console.error(err);
+		console.log(err);
 	} else {
-		console.log("Connected to database!");
+		console.log("  Connected to database!");
 	}
 });
 
