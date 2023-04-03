@@ -30,6 +30,11 @@ sql.connect(dbConfig, error => {
 	}
 });
 
+//TODO jak zrobic zeby wyswietlic odpowidz z bazy danych poprzez zapytanie
+//TODO sprawdzic czy zapytanie jest poprawne
+//TODO zrobic kazde app.get || app.post w osobnym pliku jako funkcja
+
+//TODO GO TO => shoes.tsx line 173
 app.get("/api/Shoes-B", async (req, res) => {
 	const { brand, size, gender, measurement } = req.query;
 
@@ -48,7 +53,7 @@ app.get("/api/Shoes-B", async (req, res) => {
 	} catch (error) {
 		console.log(error);
 		res.status(500).send("Błąd");
-	} 
+	}
 });
 
 app.get("/api/Shoes-M", async (req, res) => {
