@@ -53,7 +53,7 @@ app.get("/api/Shoes-B", async (req, res) => {
 	}
 });
 
-app.get("/api/Shoes-B", async (req, res) => {
+app.get("/api/Shoes-M", async (req, res) => {
 	const { unit, size, gender } = req.query;
 
 	try {
@@ -86,8 +86,7 @@ app.post("/api/Opinion", async function userComment(req, res) {
 
 		const result =
 			await dbConfig.query`INSERT INTO Comment (email, comment, category) VALUES (${email}, ${comment}, ${category})`;
-
-		res.send(result);
+		res.send("Comment added!");
 	} catch (error) {
 		console.log(error);
 	} finally {
