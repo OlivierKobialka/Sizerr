@@ -1,15 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { Box, Typography, TextField, Snackbar } from "@mui/material";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
+import { Box, Typography, TextField } from "@mui/material";
 import axios from "axios";
-
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-	props,
-	ref
-) {
-	return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
-});
 
 const Form = () => {
 	const [opinion, setOpinion] = useState({
@@ -158,14 +150,6 @@ const Form = () => {
 						disabled={!comment || remainingChars < 0}>
 						Submit your feedback!
 					</button>
-					<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-						<Alert
-							onClose={handleClose}
-							severity='success'
-							sx={{ width: "100%" }}>
-							Send successfully!
-						</Alert>
-					</Snackbar>
 				</Box>
 			</form>
 		</Box>
