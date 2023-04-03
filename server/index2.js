@@ -34,7 +34,7 @@ app.get("/api/Shoes-B", async (req, res) => {
 	const { brand, size, gender, measurement } = req.query;
 
 	try {
-		const pool = await sql.connect(dbConfig);
+		await sql.connect(dbConfig);
 		const paramSize = `size${measurement.toUpperCase()}`;
 		if (gender === "male") {
 			const result =
@@ -44,11 +44,11 @@ app.get("/api/Shoes-B", async (req, res) => {
 				await sql.query`SELECT * from shoesWoman WHERE ${paramSize}=${size}`;
 		}
 
-		res.status(200).send("Response Send!");
+		res.status(200 || 304).send("Response Send!");
 	} catch (err) {
 		console.log(err);
 		res.status(500).send("Błąd");
-	}
+	} 
 });
 
 app.get("/api/Shoes-M", async (req, res) => {
