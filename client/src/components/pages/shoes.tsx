@@ -316,6 +316,7 @@ const Shoes = () => {
 													className='w-96 mb-3'
 													name='gender'
 													label='Gender'
+													color='info'
 													required
 													value={FormValuesBrand.gender}
 													onChange={handleSelectChange}>
@@ -332,6 +333,7 @@ const Shoes = () => {
 													type='text'
 													name='brand'
 													label='Brand'
+													color='info'
 													value={FormValuesBrand.brand}
 													onChange={handleInputChange}
 													required
@@ -342,6 +344,7 @@ const Shoes = () => {
 												type='number'
 												name='size'
 												label='Size'
+												color='info'
 												value={FormValuesBrand.size}
 												onChange={handleInputChange}
 												required
