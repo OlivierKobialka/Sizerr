@@ -91,7 +91,16 @@ const Shoes = () => {
 		setSelectedValue(event.target.value);
 	};
 	//! BRAND
-	const [shoesData, setShoesData] = useState([]);
+	interface IShoes {
+		brand: string;
+		sizeEU: number & Float;
+		sizeUS: number & Float;
+		sizeUK: number & Float;
+		sizeCM: number & Float;
+		sizeINCH: number & Float;
+	}
+	type Float = number & { __float: never };
+	const [fetchedShoeSizes, setFetchedShoeSizes] = useState<IShoes[]>([]);
 
 	const [FormValuesBrand, setFormValuesBrand] = useState({
 		brand: "",
@@ -138,7 +147,7 @@ const Shoes = () => {
 				},
 			});
 			console.log(response.data);
-			setShoesData(response.data);
+			setFetchedShoeSizes(response.data);
 		} catch (error) {
 			console.error(error);
 		}
@@ -180,17 +189,6 @@ const Shoes = () => {
 		"Size CM",
 		"Size INCH",
 	];
-	interface IShoes {
-		brand: string;
-		sizeEU: number & Float;
-		sizeUS: number & Float;
-		sizeUK: number & Float;
-		sizeCM: number & Float;
-		sizeINCH: number & Float;
-	}
-	type Float = number & { __float: never };
-
-	const [fetchedShoeSizes, setFetchedShoeSizes] = useState<IShoes[]>([]);
 
 	return (
 		<>

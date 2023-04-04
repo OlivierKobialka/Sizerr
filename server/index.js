@@ -31,8 +31,6 @@ sql.connect(dbConfig, error => {
 });
 
 //TODO zrobic kazde app.get || app.post w osobnym pliku jako funkcja
-
-//TODO GO TO => shoes.tsx line 173
 app.get("/api/Shoes-B", async (req, res) => {
 	const { brand, size, gender, measurement } = req.query;
 
