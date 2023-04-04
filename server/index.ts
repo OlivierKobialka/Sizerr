@@ -1,8 +1,10 @@
-const sql = require("mssql");
-const bodyParser = require("body-parser");
-const express = require("express");
+import * as sql from "mssql";
+import express, { Request, Response } from "express";
+import cors from "cors";
+import { config } from "dotenv";
+import { bodyParser } from "body-parser";
+
 const app = express();
-const cors = require("cors");
 const port = 8080;
 
 app.use(cors());
@@ -31,7 +33,7 @@ sql.connect(dbConfig, error => {
 });
 
 //TODO zrobic kazde app.get || app.post w osobnym pliku jako funkcja
-app.get("/api/Shoes-B", async (req, res) => {
+app.get("/api/Shoes-B", async (req: Request, res: Response) => {
 	const { brand, size, gender, measurement } = req.query;
 
 	try {
@@ -43,7 +45,6 @@ app.get("/api/Shoes-B", async (req, res) => {
 				.request()
 				.input("size", size)
 				.query(`SELECT * from shoesMan WHERE ${paramSize}=@size`);
-
 		} else {
 			result = await pool
 				.request()
@@ -84,20 +85,20 @@ app.get("/api/Shoes-M", async (req, res) => {
 	}
 });
 
-app.post("/api/Opinion", async function userComment(req, res) {
-	const { email, comment, category } = req.query;
-	try {
-		await sql.connect(dbConfig);
+// app.post("/api/Opinion", async function userComment(req, res) {
+// 	const { email, comment, category } = req.query;
+// 	try {
+// 		await sql.connect(dbConfig);
 
-		const result =
-			await dbConfig.query`INSERT INTO Comment (email, comment, category) VALUES (${email}, ${comment}, ${category})`;
-		res.send("Comment added!");
-	} catch (error) {
-		console.log(error);
-	} finally {
-		sql.close();
-	}
-});
+// 		const result =
+// 			await dbConfig.query`INSERT INTO Comment (email, comment, category) VALUES (${email}, ${comment}, ${category})`;
+// 		res.send("Comment added!");
+// 	} catch (error) {
+// 		console.log(error);
+// 	} finally {
+// 		sql.close();
+// 	}
+// });
 
 app.listen(port, () => {
 	// function hi() {
