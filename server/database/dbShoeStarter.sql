@@ -316,6 +316,12 @@ VALUES
   (2, 'Adidas')
 
 
+-------------------------------------------------
+
+EXEC sp_rename 'ShoesWoman.sizeUE', 'sizeEU', 'COLUMN';
+EXEC sp_rename 'ShoesMan.sizeUE', 'sizeEU', 'COLUMN';
+
+
 
 
 
