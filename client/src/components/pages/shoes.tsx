@@ -101,13 +101,13 @@ const Shoes = () => {
 	}
 	type Float = number & { __float: never };
 	const [fetchedShoeSizes, setFetchedShoeSizes] = useState<IShoes[]>([]);
-
 	const [FormValuesBrand, setFormValuesBrand] = useState({
 		brand: "",
 		size: "",
 		gender: "",
 		measurement: "",
 	});
+
 	const handleInputChange: OutlinedInputProps["onChange"] = event => {
 		const { name, value } = event.target;
 		setFormValuesBrand({
@@ -123,7 +123,16 @@ const Shoes = () => {
 		});
 	};
 
-	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+	// ? fetching data from database
+	const handleSubmit = async (
+		event: React.FormEvent<HTMLFormElement>,
+		brand: string,
+		sizeEU: number & Float,
+		sizeUS: number & Float,
+		sizeUK: number & Float,
+		sizeCM: number & Float,
+		sizeINCH: number & Float
+	) => {
 		setFormValuesMeasurements({
 			unit: "",
 			size: "",
@@ -137,27 +146,30 @@ const Shoes = () => {
 			gender: FormValuesBrand.gender,
 		};
 		console.log("By Brand:", formData);
+
 		try {
 			const response = await axios.get("http://localhost:8080/api/Shoes-B", {
 				params: {
-					brand: FormValuesBrand.brand,
-					size: FormValuesBrand.size,
-					gender: FormValuesBrand.gender,
-					measurement: selectedValueBrand,
+					brand: brand,
+					sizeEU: sizeEU,
+					sizeUS: sizeUS,
+					sizeUK: sizeUK,
+					sizeCM: sizeCM,
+					sizeINCH: sizeINCH,
 				},
 			});
 			console.log(response.data);
 			setFetchedShoeSizes(response.data);
 		} catch (error) {
-			console.error(error);
+			console.log(error);
 		}
 	};
 
+	// ? radio gener shoesBrand
 	const Option = [
 		{ id: 1, value: "male", text: "Male" },
 		{ id: 2, value: "female", text: "Female" },
 	];
-
 	const [selectedValueBrand, setSelectedValueBrand] = React.useState("eu");
 	const handleRadioChangeBrand = (
 		event: React.ChangeEvent<HTMLInputElement>
@@ -165,22 +177,10 @@ const Shoes = () => {
 		setSelectedValueBrand(event.target.value);
 	};
 
-	const handleClear = () => {
-		setFormValuesMeasurements({
-			unit: "",
-			size: "",
-			gender: "",
-		});
-		setFormValuesBrand({
-			brand: "",
-			size: "",
-			gender: "",
-			measurement: "",
-		});
-	};
 	//! TABLE
 	//TODO jak wypisac dane z bazy do tabeli
 	const [showTable, setShowTable] = useState(true);
+
 	const tableHeader = [
 		"Brand",
 		"Size EU",
@@ -189,6 +189,14 @@ const Shoes = () => {
 		"Size CM",
 		"Size INCH",
 	];
+
+	useEffect(() => {
+		if (fetchedShoeSizes.length === 0) {
+			setShowTable(false);
+		} else {
+			setShowTable(true);
+		}
+	}, [fetchedShoeSizes]);
 
 	return (
 		<>
@@ -388,7 +396,6 @@ const Shoes = () => {
 				<TableContainer className='rounded-2xl h-56'>
 					<Table>
 						<TableHead>
-							{/* Table Headers */}
 							<TableRow>
 								{tableHeader.map((item, index) => (
 									<TableCell key={index}>{item}</TableCell>
