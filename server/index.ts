@@ -1,11 +1,11 @@
 import * as sql from "mssql";
-import express, { Request, Response } from "express";
+import express, { Request, Response, Application } from "express";
 import cors from "cors";
 import { config } from "dotenv";
 import { bodyParser } from "body-parser";
 
-const app = express();
-const port = 8080;
+const app: Application = express();
+const port: number = 8080;
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +24,7 @@ const dbConfig = {
 };
 const pool = new sql.ConnectionPool(dbConfig);
 
-sql.connect(dbConfig, error => {
+sql.connect(dbConfig, (error: any) => {
 	if (error) {
 		console.log(error);
 	} else {
