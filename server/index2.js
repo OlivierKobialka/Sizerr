@@ -30,8 +30,6 @@ sql.connect(dbConfig, error => {
 	}
 });
 
-//TODO jak zrobic zeby wyswietlic odpowidz z bazy danych poprzez zapytanie
-//TODO sprawdzic czy zapytanie jest poprawne
 //TODO zrobic kazde app.get || app.post w osobnym pliku jako funkcja
 
 //TODO GO TO => shoes.tsx line 173
@@ -39,20 +37,26 @@ app.get("/api/Shoes-B", async (req, res) => {
 	const { brand, size, gender, measurement } = req.query;
 
 	try {
-		await sql.connect(dbConfig);
+		const pool = await sql.connect(dbConfig);
 		const paramSize = `size${measurement.toUpperCase()}`;
+		let result;
 		if (gender === "male") {
-			const result =
-				await sql.query`SELECT * from shoesMan WHERE ${paramSize}=${size}`;
+			result = await pool
+				.request()
+				.input("size", size)
+				.query(`SELECT * from shoesMan WHERE ${paramSize}=@size`);
+
 		} else {
-			const result =
-				await sql.query`SELECT * from shoesWoman WHERE ${paramSize}=${size}`;
+			result = await pool
+				.request()
+				.query(`SELECT * from shoesWoman WHERE ${paramSize} = @size`, [
+					{ name: "size", value: size },
+				]);
 		}
 
-		res.status(200 || 304).send("Response Send!");
+		res.status(200).json({ shoes: result.recordset });
 	} catch (error) {
-		console.log(error);
-		res.status(500).send("Błąd");
+		res.status(500).send(`Error: ${error}`);
 	}
 });
 
