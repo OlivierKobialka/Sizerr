@@ -5,7 +5,13 @@ async function shoesBrand(req, res, dbConfig) {
 
 	try {
 		const pool = await sql.connect(dbConfig);
-		const paramSize = `size${measurement.toUpperCase()}`;
+		let paramSize;
+		if (measurement !== undefined) {
+			paramSize = `size${measurement.toUpperCase()}`;
+		} else {
+			throw new Error("Measurement parameter is undefined");
+		}
+
 		let result;
 		if (gender === "male") {
 			result = await pool
