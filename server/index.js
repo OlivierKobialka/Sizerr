@@ -5,6 +5,8 @@ const sql = require("mssql");
 const dotenv = require("dotenv");
 const app = express();
 const port = 8080;
+//! Import routes
+const { shoesBrand } = require("./routes/Shoes/Shoes-B");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,31 +33,9 @@ sql.connect(dbConfig, error => {
 	}
 });
 
-//TODO zrobic kazde app.get || app.post w osobnym pliku jako funkcja
-app.get("/api/Shoes-B", async (req, res) => {
-	const { brand, size, gender, measurement } = req.query;
-
-	try {
-		const pool = await sql.connect(dbConfig);
-		const paramSize = `size${measurement.toUpperCase()}`;
-		let result;
-		if (gender === "male") {
-			result = await pool
-				.request()
-				.input("size", size)
-				.query(`SELECT * from shoesMan WHERE ${paramSize}=@size`);
-		} else {
-			result = await pool
-				.request()
-				.query(`SELECT * from shoesWoman WHERE ${paramSize} = @size`, [
-					{ name: "size", value: size },
-				]);
-		}
-
-		res.status(200).json({ shoesBrand: result.recordset });
-	} catch (error) {
-		res.status(500).send(`Error: ${error}`);
-	}
+//! Routes
+app.get("/api/Shoes-B", (req, res) => {
+	shoesBrand(req, res, dbConfig);
 });
 
 // app.get("/api/Shoes-M", async (req, res) => {
@@ -100,18 +80,18 @@ app.get("/api/Shoes-B", async (req, res) => {
 // });
 
 app.listen(port, () => {
-	// function hi() {
-	// 	console.clear();
-	// 	console.log("   ______   ______  ________  ________  _______   _______  ");
-	// 	console.log("  /       /      |/        |/        |/        /         / ");
-	// 	console.log(" /$$$$$$  |$$$$$$/ $$$$$$$$/ $$$$$$$$/ $$$$$$$  |$$$$$$$  |");
-	// 	console.log(" $$ __$$/   $$ |      /$$/  $$ |__    $$ |__$$ |$$ |__$$ | ");
-	// 	console.log(" $$         $$ |     /$$/   $$    |   $$    $$< $$    $$<  ");
-	// 	console.log("  $$$$$$ |  $$ |    /$$/    $$$$$/    $$$$$$$  |$$$$$$$  |");
-	// 	console.log(" /  __$$ | _$$ |_  /$$/____ $$ |_____ $$ |  $$ |$$ |  $$ | ");
-	// 	console.log("$$    $$/ / $$   |/$$      |$$       |$$ |  $$ |$$ |  $$ |");
-	// 	console.log("  $$$$$$/  $$$$$$/ $$$$$$$$/ $$$$$$$$/$$/   $$/ $$/   $$/ ");
-	// }
-	// hi();
+	function hi() {
+		console.clear();
+		// 	console.log("   ______   ______  ________  ________  _______   _______  ");
+		// 	console.log("  /       /      |/        |/        |/        /         / ");
+		// 	console.log(" /$$$$$$  |$$$$$$/ $$$$$$$$/ $$$$$$$$/ $$$$$$$  |$$$$$$$  |");
+		// 	console.log(" $$ __$$/   $$ |      /$$/  $$ |__    $$ |__$$ |$$ |__$$ | ");
+		// 	console.log(" $$         $$ |     /$$/   $$    |   $$    $$< $$    $$<  ");
+		// 	console.log("  $$$$$$ |  $$ |    /$$/    $$$$$/    $$$$$$$  |$$$$$$$  |");
+		// 	console.log(" /  __$$ | _$$ |_  /$$/____ $$ |_____ $$ |  $$ |$$ |  $$ | ");
+		// 	console.log("$$    $$/ / $$   |/$$      |$$       |$$ |  $$ |$$ |  $$ |");
+		// 	console.log("  $$$$$$/  $$$$$$/ $$$$$$$$/ $$$$$$$$/$$/   $$/ $$/   $$/ ");
+	}
+	hi();
 	console.log(`  Running on http://localhost:${port}`);
 });

@@ -1,27 +1,29 @@
-async function shoesBrand(req, res) {
-	const brand = req.query.brand;
-	const size = req.query.size;
-	const gender = req.query.gender;
-	const measurement = req.query.measurement;
+const sql = require("mssql");
+
+async function shoesBrand(req, res, dbConfig) {
+	const { brand, size, gender, measurement } = req.query;
 
 	try {
-		await sql.connect(dbConfig);
-
+		const pool = await sql.connect(dbConfig);
+		const paramSize = `size${measurement.toUpperCase()}`;
+		let result;
 		if (gender === "male") {
-			const result =
-				await sql.query`SELECT * FROM dbo.shoesMan WHERE Size = ${size} AND Unit = ${unit}`;
-
-			res.json(result.recordset);
+			result = await pool
+				.request()
+				.input("size", size)
+				.query(`SELECT * from shoesMan WHERE ${paramSize}=@size`);
 		} else {
-			const result =
-				await sql.query`SELECT * FROM dbo.shoesWoman WHERE Size = ${size} AND Unit = ${unit}`;
-
-			res.json(result.recordset);
+			result = await pool
+				.request()
+				.query(`SELECT * from shoesWoman WHERE ${paramSize} = @size`, [
+					{ name: "size", value: size },
+				]);
 		}
+
+		res.status(200).json({ shoesBrand: result.recordset });
 	} catch (error) {
-		console.log(error);
-		res.status(500).send("Server Error");
-	} finally {
-		sql.close();
+		res.status(500).send(`${error}`);
 	}
 }
+
+module.exports = { shoesBrand };
