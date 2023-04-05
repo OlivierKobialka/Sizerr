@@ -8,6 +8,7 @@ const app = express();
 const port = 8080;
 // ROUTES
 const { shoesBrand } = require("./routes/Shoes/Shoes-B");
+const { shoesMeasurements } = require("./routes/Shoes/Shoes-M");
 
 // MIDDLEWARE
 app.use(cors());
@@ -40,6 +41,9 @@ sql.connect(dbConfig, error => {
 //! Routes
 app.get("/api/Shoes-B", (req, res) => {
 	shoesBrand(req, res, dbConfig);
+});
+app.get("/api/Shoes-M", (req, res) => {
+	shoesMeasurements(req, res, dbConfig);
 });
 
 // app.get("/api/Shoes-M", async (req, res) => {
