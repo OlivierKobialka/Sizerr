@@ -48,10 +48,13 @@ const Shoes = () => {
 				[name]: value,
 			});
 		};
-	const [resultMeasurement, setResultMeasurement] = useState("");
+	const [resultMeasurement, setResultMeasurement] = useState([]);
 
 	const handleSubmitMeasurements = async (
-		event: React.FormEvent<HTMLFormElement>
+		event: React.FormEvent<HTMLFormElement>,
+		unit: string,
+		size: string,
+		gender: string
 	) => {
 		event.preventDefault();
 		setFormValuesBrand({
@@ -66,23 +69,19 @@ const Shoes = () => {
 			gender: FormValuesMeasurements.gender,
 		};
 		console.log("By Measurements:", formData);
-		const queryString = new URLSearchParams({
-			unit: selectedValue,
-			size: FormValuesMeasurements.size,
-			gender: FormValuesMeasurements.gender,
-		}).toString();
+
 		try {
-			const response = await fetch(
-				`http://localhost:8080/api/Shoes-M?${queryString}`
-			);
-			if (!response.ok) {
-				throw new Error(`HTTP error! status: ${response.status}`);
-			}
-			const data = await response.json();
-			setResultMeasurement(data);
-			console.log(data);
+			const response = await axios.get("http://localhost:8080/api/Shoes-M", {
+				params: {
+					unit: selectedValue,
+					size: FormValuesMeasurements.size,
+					gender: FormValuesMeasurements.gender,
+				},
+			});
+			console.log(response.data);
+			setResultMeasurement(response.data);
 		} catch (error) {
-			console.error(error);
+			console.log(error);
 		}
 	};
 
