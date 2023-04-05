@@ -1,11 +1,10 @@
-import * as sql from "mssql";
-import express, { Request, Response, Application } from "express";
-import cors from "cors";
-import { config } from "dotenv";
-import { bodyParser } from "body-parser";
-
-const app: Application = express();
-const port: number = 8080;
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const sql = require("mssql");
+const dotenv = require("dotenv");
+const app = express();
+const port = 8080;
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +23,7 @@ const dbConfig = {
 };
 const pool = new sql.ConnectionPool(dbConfig);
 
-sql.connect(dbConfig, (error: any) => {
+sql.connect(dbConfig, error => {
 	if (error) {
 		console.log(error);
 	} else {
@@ -33,7 +32,7 @@ sql.connect(dbConfig, (error: any) => {
 });
 
 //TODO zrobic kazde app.get || app.post w osobnym pliku jako funkcja
-app.get("/api/Shoes-B", async (req: Request, res: Response) => {
+app.get("/api/Shoes-B", async (req, res) => {
 	const { brand, size, gender, measurement } = req.query;
 
 	try {
@@ -59,31 +58,31 @@ app.get("/api/Shoes-B", async (req: Request, res: Response) => {
 	}
 });
 
-app.get("/api/Shoes-M", async (req, res) => {
-	const { unit, size, gender } = req.query;
+// app.get("/api/Shoes-M", async (req, res) => {
+// 	const { unit, size, gender } = req.query;
 
-	try {
-		const pool = await sql.connect(dbConfig);
+// 	try {
+// 		const pool = await sql.connect(dbConfig);
 
-		let result;
+// 		let result;
 
-		if (gender === "male" && unit === "cm") {
-			result = await pool.request()
-				.query`SELECT * FROM dbo.shoesMan WHERE sizeCM = CAST(${size} AS NUMERIC(10, 2))`;
-		} else if (gender === "male" && unit === "inch") {
-			result = await pool.request()
-				.query`SELECT * FROM dbo.shoesMan WHERE sizeIN = ${size}`;
-		} else {
-			res.status(400).send("Invalid query parameters");
-			return;
-		}
+// 		if (gender === "male" && unit === "cm") {
+// 			result = await pool.request()
+// 				.query`SELECT * FROM dbo.shoesMan WHERE sizeCM = CAST(${size} AS NUMERIC(10, 2))`;
+// 		} else if (gender === "male" && unit === "inch") {
+// 			result = await pool.request()
+// 				.query`SELECT * FROM dbo.shoesMan WHERE sizeIN = ${size}`;
+// 		} else {
+// 			res.status(400).send("Invalid query parameters");
+// 			return;
+// 		}
 
-		res.send(result.recordset);
-	} catch (error) {
-		console.error(error);
-		res.status(500).send("Error");
-	}
-});
+// 		res.send(result.recordset);
+// 	} catch (error) {
+// 		console.error(error);
+// 		res.status(500).send("Error");
+// 	}
+// });
 
 // app.post("/api/Opinion", async function userComment(req, res) {
 // 	const { email, comment, category } = req.query;

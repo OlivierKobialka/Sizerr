@@ -5,7 +5,7 @@
 	"type": "commonjs",
 	"main": "index.js",
 	"scripts": {
-		"start": "node index2.js",
+		"start": "node index.js",
 		"watch": "nodemon index.js"
 	},
 	"keywords": [],
