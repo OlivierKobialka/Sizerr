@@ -127,11 +127,9 @@ const Shoes = () => {
 	const handleSubmit = async (
 		event: React.FormEvent<HTMLFormElement>,
 		brand: string,
-		sizeEU: number & Float,
-		sizeUS: number & Float,
-		sizeUK: number & Float,
-		sizeCM: number & Float,
-		sizeINCH: number & Float
+		size: string,
+		gender: string,
+		measurement: string
 	) => {
 		setFormValuesMeasurements({
 			unit: "",
@@ -150,12 +148,10 @@ const Shoes = () => {
 		try {
 			const response = await axios.get("http://localhost:8080/api/Shoes-B", {
 				params: {
-					brand: brand,
-					sizeEU: sizeEU,
-					sizeUS: sizeUS,
-					sizeUK: sizeUK,
-					sizeCM: sizeCM,
-					sizeINCH: sizeINCH,
+					measurement: selectedValueBrand,
+					brand: FormValuesBrand.brand,
+					size: FormValuesBrand.size,
+					gender: FormValuesBrand.gender,
 				},
 			});
 			console.log(response.data);
