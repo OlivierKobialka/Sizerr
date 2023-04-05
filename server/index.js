@@ -5,14 +5,16 @@ const sql = require("mssql");
 const dotenv = require("dotenv");
 const app = express();
 const port = 8080;
-//! Import routes
+// ROUTES
 const { shoesBrand } = require("./routes/Shoes/Shoes-B");
 
+// MIDDLEWARE
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 
+// DATABASE
 const dbConfig = {
 	user: "sa",
 	password: "Olivier123!",
@@ -25,6 +27,7 @@ const dbConfig = {
 };
 const pool = new sql.ConnectionPool(dbConfig);
 
+// CONNECT TO DATABASE
 sql.connect(dbConfig, error => {
 	if (error) {
 		console.log(error);
