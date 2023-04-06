@@ -255,7 +255,7 @@ const Shoes = () => {
 													// checked={selectedValue === "cm"}
 												/>
 												<FormControlLabel
-													value='inch'
+													value='in'
 													control={<Radio />}
 													label='INCH'
 													// checked={selectedValue === "inch"}
@@ -290,7 +290,7 @@ const Shoes = () => {
 								</tr>
 							</table>
 						</Tab.Panel>
-						<Tab.Panel className='w-full lg:w-[650px] flex'>
+						<Tab.Panel className='w-full lg:w-[650px] flex flex-col'>
 							<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
 								<Box className='w-full flex flex-col place-items-center gap-2'>
 									<form onSubmit={handleSubmit}>
@@ -368,40 +368,40 @@ const Shoes = () => {
 									</form>
 								</Box>
 							</Box>
+							{/* Table */}
+							<Box
+								className={clsx("mt-2 rounded-2xl border-2 border-primary", {
+									// hidden: !showTable,
+									// block: showTable,
+								})}>
+								<TableContainer className='rounded-2xl h-auto'>
+									<Table>
+										<TableHead>
+											<TableRow>
+												{tableHeader.map((item, index) => (
+													<TableCell key={index}>{item}</TableCell>
+												))}
+											</TableRow>
+										</TableHead>
+										<TableBody>
+											{fetchedShoeSizes.map((item, index) => (
+												<TableRow key={index}>
+													<TableCell>{item.brand}</TableCell>
+													<TableCell>{item.sizeEU}</TableCell>
+													<TableCell>{item.sizeUS}</TableCell>
+													<TableCell>{item.sizeUK}</TableCell>
+													<TableCell>{item.sizeCM}</TableCell>
+													<TableCell>{item.sizeIN}</TableCell>
+												</TableRow>
+											))}
+										</TableBody>
+									</Table>
+								</TableContainer>
+							</Box>
 						</Tab.Panel>
 					</Tab.Panels>
 				</Box>
 			</Tab.Group>
-			{/* Table */}
-			<Box
-				className={clsx("mt-2 rounded-2xl border-2 border-primary", {
-					// hidden: !showTable,
-					// block: showTable,
-				})}>
-				<TableContainer className='rounded-2xl h-auto'>
-					<Table>
-						<TableHead>
-							<TableRow>
-								{tableHeader.map((item, index) => (
-									<TableCell key={index}>{item}</TableCell>
-								))}
-							</TableRow>
-						</TableHead>
-						<TableBody>
-							{fetchedShoeSizes.map((item, index) => (
-								<TableRow key={index}>
-									<TableCell>{item.brand}</TableCell>
-									<TableCell>{item.sizeEU}</TableCell>
-									<TableCell>{item.sizeUS}</TableCell>
-									<TableCell>{item.sizeUK}</TableCell>
-									<TableCell>{item.sizeCM}</TableCell>
-									<TableCell>{item.sizeIN}</TableCell>
-								</TableRow>
-							))}
-						</TableBody>
-					</Table>
-				</TableContainer>
-			</Box>
 		</>
 	);
 };

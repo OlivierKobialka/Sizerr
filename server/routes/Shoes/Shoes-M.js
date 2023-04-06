@@ -1,11 +1,10 @@
 const sql = require("mssql");
 
-async function shoesMeasurements(req, res, dbConfig) {
-	const { gender, unit, size } = req.query;
+async function shoesMeasurement(req, res, dbConfig) {
+	const { unit, size, gender } = req.query;
 
 	try {
 		const pool = await sql.connect(dbConfig);
-
 		let paramSize;
 		if (unit !== undefined) {
 			paramSize = `size${unit.toUpperCase()}`;
@@ -24,19 +23,15 @@ async function shoesMeasurements(req, res, dbConfig) {
 		} else {
 			result = await pool
 				.request()
-				.input("size", size)
 				.query(`SELECT * from shoesWoman WHERE ${paramSize}=@size`, [
 					{ name: "size", value: size },
 				]);
 		}
 
-		res.status(200).json({ shoesMeasurements: result.recordset });
+		res.status(200).json({ shoesMeasurement: result.recordset });
 	} catch (error) {
-		console.log(error);
-		res.status(500).send("Server Error");
-	} finally {
-		sql.close();
+		res.status(500).send(`${error}`);
 	}
 }
 
-module.exports = { shoesMeasurements };
+module.exports = { shoesMeasurement };
