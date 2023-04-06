@@ -1,2 +1,2 @@
-SELECT * from shoesMan where sizeUK = 10
+SELECT * from shoesWoman where sizeUK = 10
 

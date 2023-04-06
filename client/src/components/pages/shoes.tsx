@@ -153,14 +153,13 @@ const Shoes = () => {
 					gender: FormValuesBrand.gender,
 				},
 			});
-			console.log(response.data);
-			setFetchedShoeSizes(response.data);
+			setFetchedShoeSizes(response.data.shoesBrand);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	// ? radio gener shoesBrand
+	// ? radio gender shoesBrand
 	const Option = [
 		{ id: 1, value: "male", text: "Male" },
 		{ id: 2, value: "female", text: "Female" },
@@ -174,7 +173,7 @@ const Shoes = () => {
 
 	//! TABLE
 	//TODO jak wypisac dane z bazy do tabeli
-	const [showTable, setShowTable] = useState(true);
+	// const [showTable, setShowTable] = useState(true);
 
 	const tableHeader = [
 		"Brand",
@@ -184,14 +183,6 @@ const Shoes = () => {
 		"Size CM",
 		"Size INCH",
 	];
-
-	useEffect(() => {
-		if (fetchedShoeSizes.length === 0) {
-			setShowTable(false);
-		} else {
-			setShowTable(true);
-		}
-	}, [fetchedShoeSizes]);
 
 	return (
 		<>
@@ -369,9 +360,6 @@ const Shoes = () => {
 											</FormControl>
 										</Box>
 										<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
-											{/* <button onClick={handleClear} className='mr-3'>
-												clear
-											</button> */}
 											<button
 												type='submit'
 												className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
@@ -388,8 +376,8 @@ const Shoes = () => {
 			{/* Table */}
 			<Box
 				className={clsx("mt-2 rounded-2xl border-2 border-primary", {
-					hidden: !showTable,
-					block: showTable,
+					// hidden: !showTable,
+					// block: showTable,
 				})}>
 				<TableContainer className='rounded-2xl h-56'>
 					<Table>
