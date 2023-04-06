@@ -96,7 +96,7 @@ const Shoes = () => {
 		sizeUS: number & Float;
 		sizeUK: number & Float;
 		sizeCM: number & Float;
-		sizeINCH: number & Float;
+		sizeIN: number & Float;
 	}
 	type Float = number & { __float: never };
 	const [fetchedShoeSizes, setFetchedShoeSizes] = useState<IShoes[]>([]);
