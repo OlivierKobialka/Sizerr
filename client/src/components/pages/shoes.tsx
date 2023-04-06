@@ -378,7 +378,7 @@ const Shoes = () => {
 					// hidden: !showTable,
 					// block: showTable,
 				})}>
-				<TableContainer className='rounded-2xl h-56'>
+				<TableContainer className='rounded-2xl h-auto'>
 					<Table>
 						<TableHead>
 							<TableRow>
