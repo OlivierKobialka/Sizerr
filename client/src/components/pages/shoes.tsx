@@ -172,7 +172,6 @@ const Shoes = () => {
 	};
 
 	//! TABLE
-	//TODO jak wypisac dane z bazy do tabeli
 	// const [showTable, setShowTable] = useState(true);
 
 	const tableHeader = [
