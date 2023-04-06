@@ -26,6 +26,16 @@ import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 
 const Shoes = () => {
 	//! MEASUREMENTS
+	interface IShoes {
+		brand: string;
+		sizeEU: number & Float;
+		sizeUS: number & Float;
+		sizeUK: number & Float;
+		sizeCM: number & Float;
+		sizeIN: number & Float;
+	}
+	type Float = number & { __float: never };
+	const [fetchedShoesSizes_M, setfetchedShoesSizes_M] = useState<IShoes[]>([]);
 	const [FormValuesMeasurements, setFormValuesMeasurements] = useState({
 		unit: "",
 		size: "",
@@ -79,7 +89,7 @@ const Shoes = () => {
 				},
 			});
 			console.log(response.data);
-			setResultMeasurement(response.data);
+			setfetchedShoesSizes_M(response.data.shoesMeasurement);
 		} catch (error) {
 			console.log(error);
 		}
@@ -98,8 +108,7 @@ const Shoes = () => {
 		sizeCM: number & Float;
 		sizeIN: number & Float;
 	}
-	type Float = number & { __float: never };
-	const [fetchedShoeSizes, setFetchedShoeSizes] = useState<IShoes[]>([]);
+	const [fetchedShoesSizes_B, setfetchedShoesSizes_B] = useState<IShoes[]>([]);
 	const [FormValuesBrand, setFormValuesBrand] = useState({
 		brand: "",
 		size: "",
@@ -153,7 +162,7 @@ const Shoes = () => {
 					gender: FormValuesBrand.gender,
 				},
 			});
-			setFetchedShoeSizes(response.data.shoesBrand);
+			setfetchedShoesSizes_B(response.data.shoesBrand);
 		} catch (error) {
 			console.log(error);
 		}
@@ -182,7 +191,6 @@ const Shoes = () => {
 		"Size CM",
 		"Size INCH",
 	];
-
 	return (
 		<>
 			<Tab.Group>
@@ -284,11 +292,36 @@ const Shoes = () => {
 									</form>
 								</Box>
 							</Box>
-							<table className='table-auto'>
-								<tr>
-									<th>{resultMeasurement}</th>
-								</tr>
-							</table>
+							{/* Table */}
+							<Box
+								className={clsx("mt-2 rounded-2xl border-2 border-primary", {
+									// hidden: !showTable,
+									// block: showTable,
+								})}>
+								<TableContainer className='rounded-2xl h-auto'>
+									<Table>
+										<TableHead>
+											<TableRow>
+												{tableHeader.map((item, index) => (
+													<TableCell key={index}>{item}</TableCell>
+												))}
+											</TableRow>
+										</TableHead>
+										<TableBody>
+											{fetchedShoesSizes_M.map((item, index) => (
+												<TableRow key={index}>
+													<TableCell>{item.brand}</TableCell>
+													<TableCell>{item.sizeEU}</TableCell>
+													<TableCell>{item.sizeUS}</TableCell>
+													<TableCell>{item.sizeUK}</TableCell>
+													<TableCell>{item.sizeCM}</TableCell>
+													<TableCell>{item.sizeIN}</TableCell>
+												</TableRow>
+											))}
+										</TableBody>
+									</Table>
+								</TableContainer>
+							</Box>
 						</Tab.Panel>
 						<Tab.Panel className='w-full lg:w-[650px] flex flex-col'>
 							<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
@@ -384,7 +417,7 @@ const Shoes = () => {
 											</TableRow>
 										</TableHead>
 										<TableBody>
-											{fetchedShoeSizes.map((item, index) => (
+											{fetchedShoesSizes_B.map((item, index) => (
 												<TableRow key={index}>
 													<TableCell>{item.brand}</TableCell>
 													<TableCell>{item.sizeEU}</TableCell>
