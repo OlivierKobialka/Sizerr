@@ -142,8 +142,8 @@ const Shoes = () => {
 			size: FormValuesBrand.size,
 			gender: FormValuesBrand.gender,
 		};
-		console.log("By Brand:", formData);
 
+		console.log("By Brand:", formData);
 		try {
 			const response = await axios.get("http://localhost:8080/api/Shoes-B", {
 				params: {
@@ -395,7 +395,7 @@ const Shoes = () => {
 									<TableCell>{item.sizeUS}</TableCell>
 									<TableCell>{item.sizeUK}</TableCell>
 									<TableCell>{item.sizeCM}</TableCell>
-									<TableCell>{item.sizeINCH}</TableCell>
+									<TableCell>{item.sizeIN}</TableCell>
 								</TableRow>
 							))}
 						</TableBody>
