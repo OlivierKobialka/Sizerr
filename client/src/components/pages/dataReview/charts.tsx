@@ -1,5 +1,7 @@
+import React, { useState, useEffect } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import ReactApexChart from "react-apexcharts";
+import axios from "axios";
 
 const Charts = () => {
 	const ShoeSizes = {
@@ -55,8 +57,21 @@ const Charts = () => {
 			data: [12, 14, 2, 47, 32, 44, 14, 55, 41, 69, 91, 148, 22, 43, 21],
 		},
 	];
-	const maleCount = 32134;
-	const femaleCount = 12321;
+	//! GENDER COUNT
+	const [maleCount, setMaleCount] = useState<number>(0);
+	const [femaleCount, setFemaleCount] = useState<number>(0);
+
+	useEffect(() => {
+		axios
+			.get("http://localhost:8080/data/genders")
+			.then(response => {
+				setMaleCount(response.data.maleCount);
+				setFemaleCount(response.data.femaleCount);
+			})
+			.catch(error => {
+				console.error(error);
+			});
+	}, []);
 
 	const genderCountChart = {
 		series: [maleCount, femaleCount],
