@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const sql = require("mssql");
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
 const app = express();
 const port = 8080;
 // ROUTES
@@ -18,10 +18,10 @@ app.use(express.json());
 
 // DATABASE
 const dbConfig = {
-	user: "sa",
-	password: "Olivier123!",
-	server: "localhost",
-	database: "Sizes",
+	user: process.env.DB_USER,
+	password: process.env.DB_PASSWORD,
+	server: process.env.DB_SERVER,
+	database: process.env.DB_DATABASE,
 	options: {
 		encrypt: true,
 		trustServerCertificate: true,
