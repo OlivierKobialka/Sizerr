@@ -24,7 +24,7 @@ import axios from "axios";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 
-type FormControlLabelBrand_Type = {
+type InputType = {
 	value: string;
 	label: string;
 }[];
@@ -107,6 +107,11 @@ const Shoes = () => {
 	const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSelectedValue(event.target.value);
 	};
+
+	const RadioGroupMeasurements: InputType = [
+		{ value: "cm", label: "CM" },
+		{ value: "in", label: "INCH" },
+	];
 	//! BRAND
 	const [FormValuesBrand, setFormValuesBrand] = useState({
 		brand: "",
@@ -190,7 +195,7 @@ const Shoes = () => {
 		setSelectedValueBrand(event.target.value);
 	};
 
-	const FormControlLabelBrand: FormControlLabelBrand_Type = [
+	const FormControlLabelBrand: InputType = [
 		{ value: "eu", label: "EU" },
 		{ value: "uk", label: "UK" },
 		{ value: "us", label: "US" },
@@ -279,16 +284,14 @@ const Shoes = () => {
 												value={selectedValue}
 												onChange={handleRadioChange}
 												className='w-96 my-1'>
-												<FormControlLabel
-													value='cm'
-													control={<Radio color='info' />}
-													label='CM'
-												/>
-												<FormControlLabel
-													value='in'
-													control={<Radio color='info' />}
-													label='INCH'
-												/>
+												{RadioGroupMeasurements.map((item, index) => (
+													<FormControlLabel
+														key={index}
+														value={item.value}
+														control={<Radio color='info' />}
+														label={item.label}
+													/>
+												))}
 											</RadioGroup>
 										</FormControl>
 										<TextField
