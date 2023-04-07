@@ -25,7 +25,6 @@ import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 
 const Shoes = () => {
-	//! MEASUREMENTS
 	interface IShoes {
 		brand: string;
 		sizeEU: number & Float;
@@ -36,6 +35,8 @@ const Shoes = () => {
 	}
 	type Float = number & { __float: never };
 	const [fetchedShoesSizes, setfetchedShoesSizes] = useState<IShoes[]>([]);
+
+	//! MEASUREMENTS
 	const [FormValuesMeasurements, setFormValuesMeasurements] = useState({
 		unit: "",
 		size: "",
@@ -190,7 +191,7 @@ const Shoes = () => {
 	return (
 		<>
 			<Tab.Group>
-				<Box className='flex flex-col  xl:mx-[20%]'>
+				<Box className='flex flex-col  xl:mx-[15%]'>
 					<Box className='container flex rounded-2xl flex-col items-center pt-3 h-auto xs:w-[400px] xs:place-items-center'>
 						<Tab.List className='bg-blue-500 mb-2 px-3 py-2 flex justify-between  rounded-xl w-full gap-3'>
 							<Tab
@@ -220,7 +221,7 @@ const Shoes = () => {
 						</Tab.List>
 					</Box>
 					<Tab.Panels className='w-full'>
-						<Tab.Panel className='w-full lg:w-[650px] flex flex-col'>
+						<Tab.Panel className='w-full lg:w-[750px] flex flex-col'>
 							<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
 								<Box className='w-full flex flex-col place-items-center gap-2'>
 									<form
@@ -244,7 +245,6 @@ const Shoes = () => {
 												</Select>
 											</FormControl>
 										</Box>
-										{/*  */}
 										<Box className='flex place-items-center justify-center'></Box>
 										<FormControl>
 											<RadioGroup
@@ -274,9 +274,6 @@ const Shoes = () => {
 											required
 										/>
 										<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
-											{/* <button onClick={handleClear} className='mr-3'>
-												clear
-											</button> */}
 											<button
 												onClick={handleScrollToTable}
 												type='submit'
@@ -288,7 +285,7 @@ const Shoes = () => {
 								</Box>
 							</Box>
 						</Tab.Panel>
-						<Tab.Panel className='w-full lg:w-[650px] flex flex-col'>
+						<Tab.Panel className='w-full lg:w-[750px] flex flex-col'>
 							<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
 								<Box className='w-full flex flex-col place-items-center gap-2'>
 									<form onSubmit={handleSubmit}>

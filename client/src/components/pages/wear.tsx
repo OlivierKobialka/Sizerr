@@ -1,17 +1,28 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Tab } from "@headlessui/react";
-import classNames from "classnames";
-import { SelectInputProps } from "@mui/material/Select/SelectInput";
-import { OutlinedInputProps } from "@mui/material/OutlinedInput";
-import React, { useState } from "react";
 import {
-	Box,
-	Select,
-	TextField,
 	FormControl,
 	InputLabel,
 	MenuItem,
+	Select,
+	Box,
+	TextField,
+	Radio,
+	RadioGroup,
+	FormControlLabel,
+	TableCell,
+	TableRow,
+	TableHead,
+	Table,
+	TableContainer,
+	TableBody,
 } from "@pankod/refine-mui";
+import React, { useState, useEffect, useRef } from "react";
+import { Tab } from "@headlessui/react";
+import clsx from "clsx";
+import classNames from "classnames";
+import axios from "axios";
+import { SelectInputProps } from "@mui/material/Select/SelectInput";
+import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 
 type FormData = {
 	unit: string;
@@ -23,7 +34,18 @@ type FormData = {
 	gender: string;
 };
 
-const Wear: React.FC = () => {
+const Wear = () => {
+	interface IWears {
+		brand: string;
+		sizeEU: number & Float;
+		sizeUS: number & Float;
+		sizeUK: number & Float;
+		sizeCM: number & Float;
+		sizeIN: number & Float;
+	}
+	type Float = number & { __float: never };
+	const [fetchedWearSizes, setfetchedWearSizes] = useState<IWears[]>([]);
+
 	//! MEASUREMENTS
 	const [FormValuesMeasurements, setFormValuesMeasurements] = useState({
 		unit: "",
@@ -120,186 +142,215 @@ const Wear: React.FC = () => {
 			setLabel("Bust");
 		}
 	};
+	//! TABLE
+	const tableHeader = [
+		"Brand",
+		"Size EU",
+		"Size US",
+		"Size UK",
+		"Size CM",
+		"Size INCH",
+	];
+	const tableRef = useRef<HTMLTableElement>(null);
 
-	const handleClear = () => {
-		setFormValuesMeasurements({
-			unit: "",
-			chest: "",
-			bust: "",
-			hips: "",
-			inseam: "",
-			waist: "",
-			gender: "",
-		});
-		setFormValuesBrand({
-			brand: "",
-			size: "",
-			gender: "",
-		});
+	const handleScrollToTable = () => {
+		if (tableRef.current) {
+			tableRef.current.scrollIntoView({ behavior: "smooth" });
+		}
 	};
 
 	return (
-		<Tab.Group>
-			<Box className='flex flex-col  xl:mx-[20%]'>
-				<Box className='container flex rounded-2xl flex-col items-center pt-3 h-auto xs:w-[400px]'>
-					<Tab.List className='bg-blue-500 mb-2 px-3 py-2 flex justify-between rounded-xl w-full gap-3'>
-						<Tab
-							className={({ selected }) =>
-								classNames(
-									"w-full rounded-lg py-2.5 text-sm bold leading-5 text-blue-700",
-									"ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
-									selected
-										? "bg-white shadow font-bold"
-										: " hover:bg-white/[0.12] text-white"
-								)
-							}>
-							By Measurments
-						</Tab>
-						<Tab
-							className={({ selected }) =>
-								classNames(
-									"w-full rounded-lg py-2.5 text-sm bold leading-5 text-blue-700",
-									"ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
-									selected
-										? "bg-white shadow font-bold"
-										: " hover:bg-white/[0.12] text-white"
-								)
-							}>
-							By Brand
-						</Tab>
-					</Tab.List>
-				</Box>
-				<Tab.Panels className='w-full'>
-					<Tab.Panel className='w-full'>
-						<form onSubmit={handleSubmitMeasurements}>
-							<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
-								<Box className='w-full flex flex-col place-items-center md:place-items-start md:justify-between gap-2 md:flex-row'>
-									<Box>
-										<FormControl>
-											<InputLabel>Gender</InputLabel>
-											<Select
+		<>
+			<Tab.Group>
+				<Box className='flex flex-col  xl:mx-[20%]'>
+					<Box className='container flex rounded-2xl flex-col items-center pt-3 h-auto xs:w-[400px]'>
+						<Tab.List className='bg-blue-500 mb-2 px-3 py-2 flex justify-between rounded-xl w-full gap-3'>
+							<Tab
+								className={({ selected }) =>
+									classNames(
+										"w-full rounded-lg py-2.5 text-sm bold leading-5 text-blue-700",
+										"ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+										selected
+											? "bg-white shadow font-bold"
+											: " hover:bg-white/[0.12] text-white"
+									)
+								}>
+								By Measurments
+							</Tab>
+							<Tab
+								className={({ selected }) =>
+									classNames(
+										"w-full rounded-lg py-2.5 text-sm bold leading-5 text-blue-700",
+										"ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+										selected
+											? "bg-white shadow font-bold"
+											: " hover:bg-white/[0.12] text-white"
+									)
+								}>
+								By Brand
+							</Tab>
+						</Tab.List>
+					</Box>
+					<Tab.Panels className='w-full'>
+						<Tab.Panel className='w-full lg:w-[750px] flex flex-col'>
+							<form onSubmit={handleSubmitMeasurements}>
+								<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
+									<Box className='w-full flex flex-col place-items-center md:place-items-start md:justify-between gap-2 md:flex-row'>
+										<Box>
+											<FormControl>
+												<InputLabel>Gender</InputLabel>
+												<Select
+													required
+													className='w-64 md:w-56'
+													label='Gender'
+													name='gender'
+													value={FormValuesMeasurements.gender}
+													onChange={handleSelectChangeMeasurements}>
+													{Option.map(option => (
+														<MenuItem key={option.id} value={option.value}>
+															{option.text}
+														</MenuItem>
+													))}
+												</Select>
+											</FormControl>
+										</Box>
+										<Box className='flex flex-col place-items-center gap-2 md:grid md:grid-cols-2'>
+											<TextField
+												label={label}
+												name='chest'
+												value={FormValuesMeasurements.chest}
+												onChange={handleInputChangeMeasurements}
+												className='w-64 pt-2  md:w-56'
 												required
+											/>
+											<TextField
+												label='Hips'
+												name='hips'
+												value={FormValuesMeasurements.hips}
+												onChange={handleInputChangeMeasurements}
+												type='number'
 												className='w-64 md:w-56'
-												label='Gender'
-												name='gender'
-												value={FormValuesMeasurements.gender}
-												onChange={handleSelectChangeMeasurements}>
-												{Option.map(option => (
-													<MenuItem key={option.id} value={option.value}>
-														{option.text}
-													</MenuItem>
-												))}
-											</Select>
-										</FormControl>
+												required
+											/>
+											<TextField
+												label='Inseam'
+												name='inseam'
+												value={FormValuesMeasurements.inseam}
+												onChange={handleInputChangeMeasurements}
+												type='number'
+												className='w-64 md:w-56'
+												required
+											/>
+											<TextField
+												label='Waist'
+												name='waist'
+												value={FormValuesMeasurements.waist}
+												onChange={handleInputChangeMeasurements}
+												type='number'
+												className='w-64 md:w-56'
+												required
+											/>
+										</Box>
 									</Box>
-									<Box className='flex flex-col place-items-center gap-2 md:grid md:grid-cols-2'>
-										<TextField
-											label={label}
-											name='chest'
-											value={FormValuesMeasurements.chest}
-											onChange={handleInputChangeMeasurements}
-											className='w-64 pt-2  md:w-56'
-											required
-										/>
-										<TextField
-											label='Hips'
-											name='hips'
-											value={FormValuesMeasurements.hips}
-											onChange={handleInputChangeMeasurements}
-											type='number'
-											className='w-64 md:w-56'
-											required
-										/>
-										<TextField
-											label='Inseam'
-											name='inseam'
-											value={FormValuesMeasurements.inseam}
-											onChange={handleInputChangeMeasurements}
-											type='number'
-											className='w-64 md:w-56'
-											required
-										/>
-										<TextField
-											label='Waist'
-											name='waist'
-											value={FormValuesMeasurements.waist}
-											onChange={handleInputChangeMeasurements}
-											type='number'
-											className='w-64 md:w-56'
-											required
-										/>
+									<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
+										<button
+											onClick={handleScrollToTable}
+											type='submit'
+											className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
+											Find my Size
+										</button>
 									</Box>
 								</Box>
-								<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
-									<button onClick={handleClear} className='mr-3'>
-										clear
-									</button>
-									<button
-										type='submit'
-										className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
-										Find my Size
-									</button>
-								</Box>
-							</Box>
-						</form>
-					</Tab.Panel>
-					<Tab.Panel>
-						<form onSubmit={handleSubmit}>
-							<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
-								<Box className='w-full flex flex-col place-items-center gap-2'>
-									<Box>
-										<FormControl>
-											<InputLabel>Gender</InputLabel>
-											<Select
+							</form>
+						</Tab.Panel>
+						<Tab.Panel>
+							<form onSubmit={handleSubmit}>
+								<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
+									<Box className='w-full flex flex-col place-items-center gap-2'>
+										<Box>
+											<FormControl>
+												<InputLabel>Gender</InputLabel>
+												<Select
+													required
+													className='w-96'
+													label={handleOptionChange}
+													name='gender'
+													value={FormValuesBrand.gender}
+													onChange={handleSelectChange}>
+													{Option.map(option => (
+														<MenuItem key={option.id} value={option.value}>
+															{option.text}
+														</MenuItem>
+													))}
+												</Select>
+											</FormControl>
+										</Box>
+										<Box className='flex flex-col place-items-center gap-2'>
+											<TextField
 												required
 												className='w-96'
-												label={handleOptionChange}
-												name='gender'
-												value={FormValuesBrand.gender}
-												onChange={handleSelectChange}>
-												{Option.map(option => (
-													<MenuItem key={option.id} value={option.value}>
-														{option.text}
-													</MenuItem>
-												))}
-											</Select>
-										</FormControl>
+												name='brand'
+												label='Brand'
+												value={FormValuesBrand.brand}
+												onChange={handleInputChange}
+											/>
+											<TextField
+												required
+												className='w-96'
+												name='size'
+												label='Size'
+												value={FormValuesBrand.size}
+												onChange={handleInputChange}
+											/>
+										</Box>
 									</Box>
-									<Box className='flex flex-col place-items-center gap-2'>
-										<TextField
-											required
-											className='w-96'
-											name='brand'
-											label='Brand'
-											value={FormValuesBrand.brand}
-											onChange={handleInputChange}
-										/>
-										<TextField
-											required
-											className='w-96'
-											name='size'
-											label='Size'
-											value={FormValuesBrand.size}
-											onChange={handleInputChange}
-										/>
+									<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
+										<button
+											onClick={handleScrollToTable}
+											type='submit'
+											className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
+											Find my Size
+										</button>
 									</Box>
 								</Box>
-								<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
-									<button onClick={handleClear} className='mr-3'>
-										clear
-									</button>
-									<button
-										type='submit'
-										className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
-										Find my Size
-									</button>
-								</Box>
-							</Box>
-						</form>
-					</Tab.Panel>
-				</Tab.Panels>
-			</Box>
-		</Tab.Group>
+							</form>
+						</Tab.Panel>
+					</Tab.Panels>
+					{/* Table */}
+					<Box
+						ref={tableRef}
+						className={clsx("mt-2 rounded-2xl border-2 border-primary", {
+							// hidden: !showTable,
+							// block: showTable,
+						})}>
+						<TableContainer className='rounded-2xl h-auto'>
+							<Table>
+								<TableHead>
+									<TableRow>
+										{tableHeader.map((item, index) => (
+											<TableCell key={index}>{item}</TableCell>
+										))}
+									</TableRow>
+								</TableHead>
+								<TableBody>
+									{fetchedWearSizes.map((item, index) => (
+										<TableRow key={index}>
+											<TableCell>{item.brand}</TableCell>
+											<TableCell>{item.sizeEU}</TableCell>
+											<TableCell>{item.sizeUS}</TableCell>
+											<TableCell>{item.sizeUK}</TableCell>
+											<TableCell>{item.sizeCM}</TableCell>
+											<TableCell>{item.sizeIN}</TableCell>
+										</TableRow>
+									))}
+								</TableBody>
+							</Table>
+						</TableContainer>
+					</Box>
+					{/* Table */}
+				</Box>
+			</Tab.Group>
+		</>
 	);
 };
 
