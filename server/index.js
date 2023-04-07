@@ -9,6 +9,7 @@ const port = 8080;
 // ROUTES
 const { shoesBrand } = require("./routes/Shoes/Shoes-B");
 const { shoesMeasurement } = require("./routes/Shoes/Shoes-M");
+const { genderCount } = require("./routes/Analitycs/ChartData");
 
 // MIDDLEWARE
 app.use(cors());
@@ -39,11 +40,16 @@ sql.connect(dbConfig, error => {
 });
 
 //! Routes
+//? GET
 app.get("/api/Shoes-B", (req, res) => {
 	shoesBrand(req, res, dbConfig);
 });
 app.get("/api/Shoes-M", (req, res) => {
 	shoesMeasurement(req, res, dbConfig);
+});
+//? POST
+app.post("/data/genders", (req, res) => {
+	genderCount(req, res, dbConfig);
 });
 
 // app.get("/api/Shoes-M", async (req, res) => {
