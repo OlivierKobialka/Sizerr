@@ -26,16 +26,21 @@ import axios from "axios";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 
+type FormControlLabelBrand_Type = {
+	value: string;
+	label: string;
+};
+interface IShoes {
+	brand: string;
+	sizeEU: number & Float;
+	sizeUS: number & Float;
+	sizeUK: number & Float;
+	sizeCM: number & Float;
+	sizeIN: number & Float;
+}
+type Float = number & { __float: never };
+
 const Shoes = () => {
-	interface IShoes {
-		brand: string;
-		sizeEU: number & Float;
-		sizeUS: number & Float;
-		sizeUK: number & Float;
-		sizeCM: number & Float;
-		sizeIN: number & Float;
-	}
-	type Float = number & { __float: never };
 	const [fetchedShoesSizes, setfetchedShoesSizes] = useState<IShoes[]>([]);
 
 	const [genderCount, setGenderCount] = useState({ male: 0, female: 0 });
@@ -186,6 +191,12 @@ const Shoes = () => {
 	) => {
 		setSelectedValueBrand(event.target.value);
 	};
+
+	const FormControlLabelBrand: FormControlLabelBrand_Type = [
+		{ value: "eu", label: "EU" },
+		{ value: "uk", label: "UK" },
+		{ value: "us", label: "US" },
+	];
 
 	//! TABLE
 	const [showTable, setShowTable] = useState(false);
@@ -354,21 +365,14 @@ const Shoes = () => {
 													value={selectedValueBrand}
 													onChange={handleRadioChangeBrand}
 													className='w-96 my-1'>
-													<FormControlLabel
-														value='eu'
-														control={<Radio color='info' />}
-														label='EU'
-													/>
-													<FormControlLabel
-														value='uk'
-														control={<Radio color='info' />}
-														label='UK'
-													/>
-													<FormControlLabel
-														value='us'
-														control={<Radio color='info' />}
-														label='US'
-													/>
+													{FormControlLabelBrand.map((item, index) => (
+														<FormControlLabel
+															key={index}
+															value={item.value}
+															control={<Radio color='info' />}
+															label={item.label}
+														/>
+													))}
 												</RadioGroup>
 											</FormControl>
 										</Box>
