@@ -40,14 +40,18 @@ sql.connect(dbConfig, error => {
 });
 
 //! Routes
-//? GET
+//? SHOES
 app.get("/api/Shoes-B", (req, res) => {
 	shoesBrand(req, res, dbConfig);
 });
 app.get("/api/Shoes-M", (req, res) => {
 	shoesMeasurement(req, res, dbConfig);
 });
-//? POST
+
+//? GENDER COUNT
+app.get("/data/genders", (req, res) => {
+	getGenderCount(req, res, dbConfig);
+});
 app.post("/data/genders", (req, res) => {
 	genderCount(req, res, dbConfig);
 });
