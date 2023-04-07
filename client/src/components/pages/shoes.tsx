@@ -16,7 +16,7 @@ import {
 	TableContainer,
 	TableBody,
 } from "@pankod/refine-mui";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Tab } from "@headlessui/react";
 import clsx from "clsx";
 import classNames from "classnames";
@@ -179,6 +179,14 @@ const Shoes = () => {
 		"Size CM",
 		"Size INCH",
 	];
+	const tableRef = useRef<HTMLTableElement>(null);
+
+	const handleScrollToTable = () => {
+		if (tableRef.current) {
+			tableRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	};
+
 	return (
 		<>
 			<Tab.Group>
@@ -270,6 +278,7 @@ const Shoes = () => {
 												clear
 											</button> */}
 											<button
+												onClick={handleScrollToTable}
 												type='submit'
 												className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
 												Find my Size
@@ -349,6 +358,7 @@ const Shoes = () => {
 										</Box>
 										<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
 											<button
+												onClick={handleScrollToTable}
 												type='submit'
 												className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
 												Find my Size
@@ -361,6 +371,7 @@ const Shoes = () => {
 					</Tab.Panels>
 					{/* Table */}
 					<Box
+						ref={tableRef}
 						className={clsx("mt-2 rounded-2xl border-2 border-primary", {
 							// hidden: !showTable,
 							// block: showTable,
