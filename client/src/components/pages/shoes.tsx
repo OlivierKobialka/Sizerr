@@ -15,8 +15,6 @@ import {
 	Table,
 	TableContainer,
 	TableBody,
-	InputAdornment,
-	OutlinedInput,
 } from "@pankod/refine-mui";
 import React, { useState, useEffect, useRef } from "react";
 import { Tab } from "@headlessui/react";
@@ -29,7 +27,7 @@ import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 type FormControlLabelBrand_Type = {
 	value: string;
 	label: string;
-};
+}[];
 interface IShoes {
 	brand: string;
 	sizeEU: number & Float;
