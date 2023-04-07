@@ -250,6 +250,7 @@ const Shoes = () => {
 													className='w-96'
 													name='gender'
 													label='Gender'
+													color='info'
 													value={FormValuesMeasurements.gender}
 													onChange={handleSelectChangeMeasurements}>
 													{Option.map(option => (
@@ -269,12 +270,12 @@ const Shoes = () => {
 												className='w-96 my-1'>
 												<FormControlLabel
 													value='cm'
-													control={<Radio />}
+													control={<Radio color='info' />}
 													label='CM'
 												/>
 												<FormControlLabel
 													value='in'
-													control={<Radio />}
+													control={<Radio color='info' />}
 													label='INCH'
 												/>
 											</RadioGroup>
@@ -283,6 +284,7 @@ const Shoes = () => {
 											className='w-96'
 											type='number'
 											name='size'
+											color='info'
 											label='Size'
 											value={FormValuesMeasurements.size}
 											onChange={handleInputChangeMeasurements}
@@ -352,17 +354,17 @@ const Shoes = () => {
 													className='w-96 my-1'>
 													<FormControlLabel
 														value='eu'
-														control={<Radio />}
+														control={<Radio color='info' />}
 														label='EU'
 													/>
 													<FormControlLabel
 														value='uk'
-														control={<Radio />}
+														control={<Radio color='info' />}
 														label='UK'
 													/>
 													<FormControlLabel
 														value='us'
-														control={<Radio />}
+														control={<Radio color='info' />}
 														label='US'
 													/>
 												</RadioGroup>
