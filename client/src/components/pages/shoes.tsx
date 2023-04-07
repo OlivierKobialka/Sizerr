@@ -35,7 +35,7 @@ const Shoes = () => {
 		sizeIN: number & Float;
 	}
 	type Float = number & { __float: never };
-	const [fetchedShoesSizes_M, setfetchedShoesSizes_M] = useState<IShoes[]>([]);
+	const [fetchedShoesSizes, setfetchedShoesSizes] = useState<IShoes[]>([]);
 	const [FormValuesMeasurements, setFormValuesMeasurements] = useState({
 		unit: "",
 		size: "",
@@ -58,7 +58,6 @@ const Shoes = () => {
 				[name]: value,
 			});
 		};
-	const [resultMeasurement, setResultMeasurement] = useState([]);
 
 	const handleSubmitMeasurements = async (
 		event: React.FormEvent<HTMLFormElement>,
@@ -67,6 +66,7 @@ const Shoes = () => {
 		gender: string
 	) => {
 		event.preventDefault();
+		// clear brand data from inputs
 		setFormValuesBrand({
 			brand: "",
 			size: "",
@@ -88,8 +88,7 @@ const Shoes = () => {
 					gender: FormValuesMeasurements.gender,
 				},
 			});
-			console.log(response.data);
-			setfetchedShoesSizes_M(response.data.shoesMeasurement);
+			setfetchedShoesSizes(response.data.shoesMeasurement);
 		} catch (error) {
 			console.log(error);
 		}
@@ -100,15 +99,6 @@ const Shoes = () => {
 		setSelectedValue(event.target.value);
 	};
 	//! BRAND
-	interface IShoes {
-		brand: string;
-		sizeEU: number & Float;
-		sizeUS: number & Float;
-		sizeUK: number & Float;
-		sizeCM: number & Float;
-		sizeIN: number & Float;
-	}
-	const [fetchedShoesSizes_B, setfetchedShoesSizes_B] = useState<IShoes[]>([]);
 	const [FormValuesBrand, setFormValuesBrand] = useState({
 		brand: "",
 		size: "",
@@ -162,7 +152,7 @@ const Shoes = () => {
 					gender: FormValuesBrand.gender,
 				},
 			});
-			setfetchedShoesSizes_B(response.data.shoesBrand);
+			setfetchedShoesSizes(response.data.shoesBrand);
 		} catch (error) {
 			console.log(error);
 		}
@@ -181,8 +171,6 @@ const Shoes = () => {
 	};
 
 	//! TABLE
-	// const [showTable, setShowTable] = useState(true);
-
 	const tableHeader = [
 		"Brand",
 		"Size EU",
@@ -260,13 +248,11 @@ const Shoes = () => {
 													value='cm'
 													control={<Radio />}
 													label='CM'
-													// checked={selectedValue === "cm"}
 												/>
 												<FormControlLabel
 													value='in'
 													control={<Radio />}
 													label='INCH'
-													// checked={selectedValue === "inch"}
 												/>
 											</RadioGroup>
 										</FormControl>
@@ -291,36 +277,6 @@ const Shoes = () => {
 										</Box>
 									</form>
 								</Box>
-							</Box>
-							{/* Table */}
-							<Box
-								className={clsx("mt-2 rounded-2xl border-2 border-primary", {
-									// hidden: !showTable,
-									// block: showTable,
-								})}>
-								<TableContainer className='rounded-2xl h-auto'>
-									<Table>
-										<TableHead>
-											<TableRow>
-												{tableHeader.map((item, index) => (
-													<TableCell key={index}>{item}</TableCell>
-												))}
-											</TableRow>
-										</TableHead>
-										<TableBody>
-											{fetchedShoesSizes_M.map((item, index) => (
-												<TableRow key={index}>
-													<TableCell>{item.brand}</TableCell>
-													<TableCell>{item.sizeEU}</TableCell>
-													<TableCell>{item.sizeUS}</TableCell>
-													<TableCell>{item.sizeUK}</TableCell>
-													<TableCell>{item.sizeCM}</TableCell>
-													<TableCell>{item.sizeIN}</TableCell>
-												</TableRow>
-											))}
-										</TableBody>
-									</Table>
-								</TableContainer>
 							</Box>
 						</Tab.Panel>
 						<Tab.Panel className='w-full lg:w-[650px] flex flex-col'>
@@ -401,38 +357,39 @@ const Shoes = () => {
 									</form>
 								</Box>
 							</Box>
-							{/* Table */}
-							<Box
-								className={clsx("mt-2 rounded-2xl border-2 border-primary", {
-									// hidden: !showTable,
-									// block: showTable,
-								})}>
-								<TableContainer className='rounded-2xl h-auto'>
-									<Table>
-										<TableHead>
-											<TableRow>
-												{tableHeader.map((item, index) => (
-													<TableCell key={index}>{item}</TableCell>
-												))}
-											</TableRow>
-										</TableHead>
-										<TableBody>
-											{fetchedShoesSizes_B.map((item, index) => (
-												<TableRow key={index}>
-													<TableCell>{item.brand}</TableCell>
-													<TableCell>{item.sizeEU}</TableCell>
-													<TableCell>{item.sizeUS}</TableCell>
-													<TableCell>{item.sizeUK}</TableCell>
-													<TableCell>{item.sizeCM}</TableCell>
-													<TableCell>{item.sizeIN}</TableCell>
-												</TableRow>
-											))}
-										</TableBody>
-									</Table>
-								</TableContainer>
-							</Box>
 						</Tab.Panel>
 					</Tab.Panels>
+					{/* Table */}
+					<Box
+						className={clsx("mt-2 rounded-2xl border-2 border-primary", {
+							// hidden: !showTable,
+							// block: showTable,
+						})}>
+						<TableContainer className='rounded-2xl h-auto'>
+							<Table>
+								<TableHead>
+									<TableRow>
+										{tableHeader.map((item, index) => (
+											<TableCell key={index}>{item}</TableCell>
+										))}
+									</TableRow>
+								</TableHead>
+								<TableBody>
+									{fetchedShoesSizes.map((item, index) => (
+										<TableRow key={index}>
+											<TableCell>{item.brand}</TableCell>
+											<TableCell>{item.sizeEU}</TableCell>
+											<TableCell>{item.sizeUS}</TableCell>
+											<TableCell>{item.sizeUK}</TableCell>
+											<TableCell>{item.sizeCM}</TableCell>
+											<TableCell>{item.sizeIN}</TableCell>
+										</TableRow>
+									))}
+								</TableBody>
+							</Table>
+						</TableContainer>
+					</Box>
+					{/* Table */}
 				</Box>
 			</Tab.Group>
 		</>
