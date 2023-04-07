@@ -8,9 +8,7 @@ async function genderCount(req, res, dbConfig) {
 
 		let result;
 		if (gender === "male") {
-			result = await pool.request().query(`UPDATE genderCount
-    SET Male += 1
-    SELECT COUNT(*) as count FROM genderCount`);
+			result = await pool.request().query(`UPDATE genderCount SET Male += 1`);
 		}
 		if (gender === "female") {
 			result = await pool.request().query(`UPDATE genderCount SET Female += 1`);
