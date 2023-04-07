@@ -1,16 +1,11 @@
 const sql = require("mssql");
 
 async function shoesBrand(req, res, dbConfig) {
-	const { brand, size, gender, measurement } = req.query;
+	const { size, gender, measurement } = req.query;
 
 	try {
 		const pool = await sql.connect(dbConfig);
-		let paramSize;
-		if (measurement !== undefined) {
-			paramSize = `size${measurement.toUpperCase()}`;
-		} else {
-			throw new Error("Measurement parameter is undefined");
-		}
+		let paramSize = `size${measurement.toUpperCase()}`;
 
 		let result;
 		if (gender === "male") {
