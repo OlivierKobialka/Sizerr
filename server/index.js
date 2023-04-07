@@ -9,7 +9,11 @@ const port = 8080;
 // ROUTES
 const { shoesBrand } = require("./routes/Shoes/Shoes-B");
 const { shoesMeasurement } = require("./routes/Shoes/Shoes-M");
-const { genderCount } = require("./routes/Analitycs/ChartData");
+const {
+	genderCount,
+	avgShoeSize,
+	feedbackCategory,
+} = require("./routes/Analitycs/ChartData");
 
 // MIDDLEWARE
 app.use(cors());
@@ -28,7 +32,6 @@ const dbConfig = {
 		trustServerCertificate: true,
 	},
 };
-const pool = new sql.ConnectionPool(dbConfig);
 
 // CONNECT TO DATABASE
 sql.connect(dbConfig, error => {
