@@ -43,7 +43,7 @@ const BlockchainTips = () => {
 	const handleSend = async () => {
 		try {
 			const transactionParam = {
-				to: "0x45B6b39e1Cf8A6b4Ff2720f6BA0089d4574126E5",
+				to: "0x42e80C8f174483898270Bee2DA8077034DdC41dD",
 				from: account,
 				value: "0x38D7EA4C68000",
 			};
@@ -64,7 +64,7 @@ const BlockchainTips = () => {
 			return ethereum
 				.request({ method: "eth_getTransactionReceipt", params: [txhash] })
 				.then(receipt => {
-					if (receipt != null) return "confirmed";
+					if (receipt != null) return "Transction confirmed!";
 					else return checkTransactionLoop();
 				});
 		};
