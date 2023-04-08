@@ -34,6 +34,11 @@ type FormData = {
 	gender: string;
 };
 
+type InputType = {
+	value: string;
+	label: string;
+}[];
+
 const Wear = () => {
 	interface IWears {
 		brand: string;
@@ -93,6 +98,41 @@ const Wear = () => {
 	const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSelectedValue(event.target.value);
 	};
+
+	const RadioGroupMeasurements: InputType = [
+		{ value: "cm", label: "CM" },
+		{ value: "in", label: "INCH" },
+	];
+	const TextFieldMeasurements = [
+		{
+			label: "Chest" || "Bust",
+			name: "chest" || "bust",
+			value: FormValuesMeasurements.chest,
+			onChange: handleInputChangeMeasurements,
+			className: "w-64 pt-2 md:w-56",
+		},
+		{
+			label: "Hips",
+			name: "hips",
+			value: FormValuesMeasurements.hips,
+			onChange: handleInputChangeMeasurements,
+			className: "w-64 md:w-56",
+		},
+		{
+			label: "Inseam",
+			name: "inseam",
+			value: FormValuesMeasurements.inseam,
+			onChange: handleInputChangeMeasurements,
+			className: "w-64 md:w-56",
+		},
+		{
+			label: "Waist",
+			name: "waist",
+			value: FormValuesMeasurements.waist,
+			onChange: handleInputChangeMeasurements,
+			className: "w-64 md:w-56",
+		},
+	];
 	//! BRAND
 	const [FormValuesBrand, setFormValuesBrand] = useState({
 		brand: "",
@@ -215,41 +255,17 @@ const Wear = () => {
 											</FormControl>
 										</Box>
 										<Box className='flex flex-col place-items-center gap-2 md:grid md:grid-cols-2'>
-											<TextField
-												label={label}
-												name='chest'
-												value={FormValuesMeasurements.chest}
-												onChange={handleInputChangeMeasurements}
-												className='w-64 pt-2  md:w-56'
-												required
-											/>
-											<TextField
-												label='Hips'
-												name='hips'
-												value={FormValuesMeasurements.hips}
-												onChange={handleInputChangeMeasurements}
-												type='number'
-												className='w-64 md:w-56'
-												required
-											/>
-											<TextField
-												label='Inseam'
-												name='inseam'
-												value={FormValuesMeasurements.inseam}
-												onChange={handleInputChangeMeasurements}
-												type='number'
-												className='w-64 md:w-56'
-												required
-											/>
-											<TextField
-												label='Waist'
-												name='waist'
-												value={FormValuesMeasurements.waist}
-												onChange={handleInputChangeMeasurements}
-												type='number'
-												className='w-64 md:w-56'
-												required
-											/>
+											{TextFieldMeasurements.map((item, index) => (
+												<TextField
+													required
+													key={index}
+													label={item.label}
+													name={item.name}
+													value={item.value}
+													onChange={handleInputChangeMeasurements}
+													className={item.className}
+												/>
+											))}
 										</Box>
 									</Box>
 									<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
