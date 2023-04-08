@@ -107,6 +107,7 @@ const Shoes = () => {
 					},
 				}
 			);
+			setGenderCount(genderPOST.data.genderCount);
 		} catch (error) {
 			console.log(error);
 		}
@@ -179,7 +180,7 @@ const Shoes = () => {
 			setShowTable(true);
 
 			const genderPOST = await axios.post(
-				"http://localhost:8080/data/genders",
+				"http://localhost:8080/data/genders/post",
 				{
 					params: {
 						gender: FormValuesBrand.gender,
