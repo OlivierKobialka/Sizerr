@@ -21,14 +21,15 @@ const BlockchainTips = () => {
 	const handleClose = () => {
 		setOpen(false);
 	};
-
+	
 	const handleConnect = async () => {
 		try {
+			// @ts-ignore
 			const accounts = await window.ethereum.request({
 				method: "eth_requestAccounts",
 			});
 			setAccount(accounts[0]);
-
+			// @ts-ignore
 			const result = await ethereum.request({
 				method: "eth_getBalance",
 				params: [accounts[0], "latest"],
@@ -48,7 +49,7 @@ const BlockchainTips = () => {
 				from: account,
 				value: "0x38D7EA4C68000",
 			};
-
+			// @ts-ignore
 			const txhash = await ethereum.request({
 				method: "eth_sendTransaction",
 				params: [transactionParam],
@@ -104,8 +105,10 @@ const BlockchainTips = () => {
 
 	const checkTransactionConfirmation = (txhash: string): Promise<string> => {
 		const checkTransactionLoop = (): Promise<string> => {
+			// @ts-ignore
 			return ethereum
-				.request({ method: "eth_getTransactionReceipt", params: [txhash] })
+				.request({ method: "eth_getTransactionReceipt", params: [txhash] }) 
+				// @ts-ignore
 				.then(receipt => {
 					if (receipt != null) return "Transction confirmed!";
 					else return checkTransactionLoop();
