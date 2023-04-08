@@ -168,6 +168,22 @@ const Wear = () => {
 		{ id: 1, value: "male", text: "Male" },
 		{ id: 2, value: "female", text: "Female" },
 	];
+	const TextFieldBrand = [
+		{
+			label: "Brand",
+			name: "brand",
+			value: FormValuesBrand.brand,
+			onChange: handleInputChange,
+			className: "w-96",
+		},
+		{
+			label: "Size",
+			name: "size",
+			value: FormValuesBrand.brand,
+			onChange: handleInputChange,
+			className: "w-96",
+		},
+	];
 	//!
 	const [selectedOption, setSelectedOption] = useState<string>("");
 	const [label, setLabel] = useState<string>("Chest");
@@ -302,22 +318,17 @@ const Wear = () => {
 											</FormControl>
 										</Box>
 										<Box className='flex flex-col place-items-center gap-2'>
-											<TextField
-												required
-												className='w-96'
-												name='brand'
-												label='Brand'
-												value={FormValuesBrand.brand}
-												onChange={handleInputChange}
-											/>
-											<TextField
-												required
-												className='w-96'
-												name='size'
-												label='Size'
-												value={FormValuesBrand.size}
-												onChange={handleInputChange}
-											/>
+											{TextFieldBrand.map((item, index) => (
+												<TextField
+													required
+													key={index}
+													label={item.label}
+													name={item.name}
+													value={item.value}
+													onChange={handleInputChange}
+													className={item.className}
+												/>
+											))}
 										</Box>
 									</Box>
 									<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
