@@ -1,4 +1,4 @@
-import { TbReportMoney } from "react-icons/tb";
+import { GiReceiveMoney } from "react-icons/gi";
 import { Box, Dialog, DialogContent, DialogTitle } from "@pankod/refine-mui";
 import { useState } from "react";
 import Web3 from "web3";
@@ -73,9 +73,9 @@ const BlockchainTips = () => {
 	};
 
 	return (
-		<Box>
-			<button onClick={handleOpen} className="">
-				<TbReportMoney />
+		<Box className="mr-5">
+			<button onClick={handleOpen} className=''>
+				<GiReceiveMoney />
 			</button>
 
 			<Dialog open={open} onClose={handleClose}>
