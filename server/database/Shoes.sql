@@ -1,5 +1,5 @@
-SELECT * from shoesWoman where sizeUK = 10
+SELECT * FROM shoesWoman WHERE sizeCM = 26
 
-select * from genderCount
+select * FROM genderCount
 
 UPDATE genderCount SET Male += 1
