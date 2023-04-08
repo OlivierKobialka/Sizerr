@@ -18,6 +18,7 @@ async function shoesBrand(req, res, dbConfig) {
 		} else {
 			result = await pool
 				.request()
+				.input("size", size)
 				.query(`SELECT * from shoesWoman WHERE ${paramSize}=@size`, [
 					{ name: "size", value: size },
 				]);
