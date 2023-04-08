@@ -1,7 +1,8 @@
 # Sizerr - A simple Size Calculator
 
-[Project for DataBase with SQL database integration and TypeScript React 
+[Project for DataBase with SQL database integration and TypeScript React
 ](https://github.com/OlivierKobialka/Sizerr/blob/master/Description%20of%20Assumptions)
+
 ## How to run
 
 ### Client Side
@@ -20,4 +21,8 @@ npm run start
 
 ## What we used to make this project
 
-[![](https://skills.thijs.gg/icons?i=ts,js,react,tailwind,nodejs,mysql,docker,git)](https://github.com/OlivierKobialka)
+<p align="left">
+  <a href="https://github.com/OlivierKobialka/Sizerr">
+    <img src="https://skillicons.dev/icons?i=git,express,js,ts,react,solidity,nodejs,materialui,tailwind,vercel,mysql,postman" />
+  </a>
+</p>
