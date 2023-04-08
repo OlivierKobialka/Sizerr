@@ -93,6 +93,8 @@ const Wear = () => {
 			gender: FormValuesMeasurements.gender,
 		};
 		console.log("By Measurements:", formData);
+
+		setShowTable(true);
 	};
 	const [selectedValue, setSelectedValue] = React.useState("cm");
 	const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -162,6 +164,8 @@ const Wear = () => {
 			gender: FormValuesBrand.gender,
 		};
 		console.log("By Brand:", formData);
+
+		setShowTable(true);
 	};
 
 	const Option = [
@@ -199,6 +203,7 @@ const Wear = () => {
 		}
 	};
 	//! TABLE
+	const [showTable, setShowTable] = useState(false);
 	const tableHeader = [
 		"Brand",
 		"Size EU",
@@ -347,8 +352,8 @@ const Wear = () => {
 					<Box
 						ref={tableRef}
 						className={clsx("mt-2 rounded-2xl border-2 border-primary", {
-							// hidden: !showTable,
-							// block: showTable,
+							hidden: !showTable,
+							block: showTable,
 						})}>
 						<TableContainer className='rounded-2xl h-auto'>
 							<Table>
