@@ -9,12 +9,11 @@ async function genderCount(req, res, dbConfig) {
 		let result;
 		if (gender === "male") {
 			result = await pool.request().query(`UPDATE genderCount SET Male += 1`);
-		}
-		if (gender === "female") {
+		} else {
 			result = await pool.request().query(`UPDATE genderCount SET Female += 1`);
 		}
-
-		res.status(200).json({ genderCount: result.recordset });
+		res.status(200).send(`${gender}`);
+		// res.status(200).json({ genderCount: result.recordset });
 	} catch (error) {
 		res.status(500).send(`${error}`);
 	}

@@ -55,7 +55,7 @@ app.get("/api/Shoes-M", (req, res) => {
 app.get("/data/genders", (req, res) => {
 	getGenderCount(req, res, dbConfig);
 });
-app.post("/data/genders", (req, res) => {
+app.post("/data/genders/post", (req, res) => {
 	genderCount(req, res, dbConfig);
 });
 

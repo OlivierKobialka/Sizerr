@@ -98,6 +98,15 @@ const Shoes = () => {
 			});
 			setfetchedShoesSizes(response.data.shoesMeasurement);
 			setShowTable(true);
+
+			const genderPOST = await axios.post(
+				"http://localhost:8080/data/genders/post",
+				{
+					params: {
+						gender: FormValuesMeasurements.gender,
+					},
+				}
+			);
 		} catch (error) {
 			console.log(error);
 		}
