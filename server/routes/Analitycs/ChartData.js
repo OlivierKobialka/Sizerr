@@ -7,11 +7,18 @@ async function genderCount(req, res, dbConfig) {
 		const pool = await sql.connect(dbConfig);
 
 		let result;
-		if (gender === "male") {
-			result = await pool.request().query(`UPDATE genderCount SET Male += 1`);
+		if (gender !== undefined) {
+			if (gender === "male") {
+				result = await pool.request().query(`UPDATE genderCount SET Male += 1`);
+			} else {
+				result = await pool
+					.request()
+					.query(`UPDATE genderCount SET Female += 1`);
+			}
 		} else {
-			result = await pool.request().query(`UPDATE genderCount SET Female += 1`);
+			res.send(`gender error, recived: ${gender}`);
 		}
+
 		res.status(200).send(`${gender}`);
 		// res.status(200).json({ genderCount: result.recordset });
 	} catch (error) {
