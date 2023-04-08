@@ -1,29 +1,13 @@
-import { FaEthereum } from "react-icons/fa";
-import {
-	Box,
-	Button,
-	Dialog,
-	DialogActions,
-	DialogContent,
-	DialogContentText,
-	DialogTitle,
-	TextField,
-} from "@pankod/refine-mui";
-import React, { useState } from "react";
+import { TbReportMoney } from "react-icons/tb";
+import { Box, Dialog, DialogContent, DialogTitle } from "@pankod/refine-mui";
+import { useState } from "react";
 import Web3 from "web3";
-
-interface TippingDialogProps {
-	open: boolean;
-	onClose: () => void;
-}
 
 const web3 = new Web3(
 	new Web3.providers.HttpProvider(
 		"https://mainnet.infura.io/v3/eedf9707ecb447868eaedb02c22fa46c"
 	)
 );
-// const contractAddress = "<CONTRACT_ADDRESS>";
-// // const abi = [<CONTRACT_ABI>];
 
 const BlockchainTips = () => {
 	const [open, setOpen] = useState<boolean>(false);
@@ -35,7 +19,6 @@ const BlockchainTips = () => {
 
 	const handleClose = () => {
 		setOpen(false);
-		setBalance(null);
 	};
 
 	const handleConnect = async () => {
@@ -91,26 +74,34 @@ const BlockchainTips = () => {
 
 	return (
 		<Box>
-			<button onClick={handleOpen}>TIP</button>
+			<button onClick={handleOpen} className="">
+				<TbReportMoney />
+			</button>
 
 			<Dialog open={open} onClose={handleClose}>
 				<DialogTitle>Blockchain Tipping</DialogTitle>
 				<DialogContent className='flex justify-around'>
-					<div>
+					<Box className='flex justify-center items-center'>
 						{web3.currentProvider && (
 							<>
-								<button id='connect-button' onClick={handleConnect}>
-									Connect Metamask
-								</button>
+								{account ? null : (
+									<button
+										className='bg-primary text-white rounded-lg py-1 px-3 font-bold'
+										onClick={handleConnect}>
+										Connect Metamask
+									</button>
+								)}
 								{account && (
-									<button id='send-button' onClick={handleSend}>
+									<button
+										className='bg-primary text-white rounded-lg py-1 px-3 font-bold'
+										onClick={handleSend}>
 										Tip 0.001 ETH
 									</button>
 								)}
 							</>
 						)}
-						{!web3.currentProvider && <div>Please install MetaMask</div>}
-					</div>
+						{!web3.currentProvider && <Box>Please install MetaMask</Box>}
+					</Box>
 				</DialogContent>
 			</Dialog>
 		</Box>
