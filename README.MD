@@ -23,6 +23,6 @@ npm run start
 
 <p align="left">
   <a href="https://github.com/OlivierKobialka/Sizerr">
-    <img src="https://skillicons.dev/icons?i=git,express,js,ts,react,solidity,nodejs,materialui,tailwind,vercel,mysql,postman" />
+    <img src="https://skillicons.dev/icons?i=git,express,js,ts,react,solidity,nodejs,materialui,tailwind,vercel,mysql,postman&perline=6" />
   </a>
 </p>
