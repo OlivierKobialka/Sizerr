@@ -258,7 +258,10 @@ const Shoes = () => {
 													onChange={handleSelectChangeMeasurements}>
 													{Option.map(option => (
 														<MenuItem key={option.id} value={option.value}>
-															{option.text}
+															{translate(
+																`pages.Inputs.Genders.${option.text}`,
+																`${option.text}`
+															)}
 														</MenuItem>
 													))}
 												</Select>
@@ -323,7 +326,10 @@ const Shoes = () => {
 													onChange={handleSelectChange}>
 													{Option.map(option => (
 														<MenuItem key={option.value} value={option.value}>
-															{option.text}
+															{translate(
+																`pages.Inputs.Genders.${option.text}`,
+																`${option.text}`
+															)}
 														</MenuItem>
 													))}
 												</Select>

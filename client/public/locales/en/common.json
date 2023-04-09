@@ -1,7 +1,10 @@
 {
 	"pages": {
 		"Inputs": {
-
+      "Genders": {
+        "Male": "Male",
+        "Female": "Female"
+      }
     },
     "Table": {
 			"Headers": {

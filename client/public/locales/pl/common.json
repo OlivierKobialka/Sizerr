@@ -1,14 +1,19 @@
 {
 	"pages": {
-		"Inputs": {},
+		"Inputs": {
+			"Genders": {
+				"Male": "Mężczyzna",
+				"Female": "Kobieta"
+			}
+		},
 		"Table": {
 			"Headers": {
 				"Brand": "Marka",
-        "Size EU": "Rozmiar EU",
-        "Size US": "Rozmiar US",
-        "Size UK": "Rozmiar UK",
-        "Size CM": "Rozmiar CM",
-        "Size INCH": "Rozmiar INCH"
+				"Size EU": "Rozmiar EU",
+				"Size US": "Rozmiar US",
+				"Size UK": "Rozmiar UK",
+				"Size CM": "Rozmiar CM",
+				"Size INCH": "Rozmiar INCH"
 			}
 		},
 		"Tabs": {
