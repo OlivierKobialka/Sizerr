@@ -6,22 +6,23 @@
 			"Converter": "Converter",
 			"Opinion": "Opinion"
 		},
-    "BlockChainTip": {
+		"BlockChainTip": {
 			"Title": "Blockchain Tip",
 			"Connect": "Connect Metamask",
-      "Tip": "Tip 0.001 ETH"
+			"Tip": "Tip 0.001 ETH",
+			"NoMetamask": "Please install MetaMask"
 		},
 		"FormOpinion": {
 			"Title": {
 				"Opinion": "Express your opinion here!",
-        "AddComment": "Add Comment",
-        "Category": "Category",
-        "Buttons": {
-          "Feedback": "Feedback",
-          "Suggestions": "Suggestions",
-          "Complaints": "Complaints",
-          "SubmitYourFeedback": "Submit Your Feedback!"
-        }
+				"AddComment": "Add Comment",
+				"Category": "Category",
+				"Buttons": {
+					"Feedback": "Feedback",
+					"Suggestions": "Suggestions",
+					"Complaints": "Complaints",
+					"SubmitYourFeedback": "Submit Your Feedback!"
+				}
 			}
 		},
 		"Inputs": {

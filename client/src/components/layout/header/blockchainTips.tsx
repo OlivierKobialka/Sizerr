@@ -108,8 +108,8 @@ const BlockchainTips = () => {
 
 	const checkTransactionConfirmation = (txhash: string): Promise<string> => {
 		const checkTransactionLoop = (): Promise<string> => {
-			// @ts-ignore
 			return (
+				// @ts-ignore
 				ethereum
 					.request({ method: "eth_getTransactionReceipt", params: [txhash] })
 					// @ts-ignore
@@ -156,7 +156,14 @@ const BlockchainTips = () => {
 								)}
 							</>
 						)}
-						{!web3.currentProvider && <Box>Please install MetaMask</Box>}
+						{!web3.currentProvider && (
+							<Box>
+								{translate(
+									"pages.BlockChainTip.NoMetamask",
+									"Please install MetaMask"
+								)}
+							</Box>
+						)}
 					</Box>
 				</DialogContent>
 			</Dialog>

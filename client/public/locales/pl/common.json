@@ -9,7 +9,8 @@
 		"BlockChainTip": {
 			"Title": "Napiwek Blockchain",
 			"Connect": "Połącz Metamask",
-			"Tip": "Podaruj 0.001 ETH"
+			"Tip": "Podaruj 0.001 ETH",
+			"NoMetamask": "Proszę zainstaluj MetaMask"
 		},
 		"FormOpinion": {
 			"Title": {
