@@ -216,6 +216,7 @@ const Shoes = () => {
 	//! TABLE
 	const [showTable, setShowTable] = useState(false);
 	const tableHeader = [
+		// { Brand: translate("pages.Table.Headers.Brand", "Brand") },
 		"Brand",
 		"Size EU",
 		"Size US",
@@ -395,7 +396,9 @@ const Shoes = () => {
 								<TableHead>
 									<TableRow>
 										{tableHeader.map((item, index) => (
-											<TableCell key={index}>{item}</TableCell>
+											<TableCell key={index}>
+												{translate(`pages.Table.Headers.${item}`, item)}
+											</TableCell>
 										))}
 									</TableRow>
 								</TableHead>

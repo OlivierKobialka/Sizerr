@@ -1,34 +1,16 @@
 {
 	"pages": {
-		"login": {
-			"title": "Sign in to your account",
-			"signin": "Sign in",
-			"signup": "Sign up",
-			"divider": "or",
-			"fields": {
-				"email": "Email",
-				"password": "Password"
-			},
-			"errors": {
-				"validEmail": "Invalid email address"
-			},
-			"buttons": {
-				"submit": "Login",
-				"forgotPassword": "Forgot password?",
-				"noAccount": "Don’t have an account?",
-				"rememberMe": "Remember me"
-			}
-		},
-		"forgotPassword": {
-			"title": "Forgot your password?",
-			"fields": {
-				"email": "Email"
-			},
-			"errors": {
-				"validEmail": "Invalid email address"
-			},
-			"buttons": {
-				"submit": "Send reset instructions"
+		"Inputs": {
+
+    },
+    "Table": {
+			"Headers": {
+				"Brand": "Marka",
+				"Size EU": "Size EU",
+				"Size US": "Size US",
+				"Size UK": "Size UK",
+				"Size CM": "Size CM",
+				"Size INCH": "Size INCH"
 			}
 		},
 		"Tabs": {
