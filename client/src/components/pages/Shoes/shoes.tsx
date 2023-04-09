@@ -19,10 +19,11 @@ import {
 import React, { useState, useEffect, useRef } from "react";
 import { Tab } from "@headlessui/react";
 import clsx from "clsx";
-import classNames from "classnames";
 import axios from "axios";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
+
+import Tabs from "../Tabs";
 
 type InputType = {
 	value: string;
@@ -179,15 +180,15 @@ const Shoes = () => {
 			setfetchedShoesSizes(response.data.shoesBrand);
 			setShowTable(true);
 
-			const genderPOST = await axios.post(
-				"http://localhost:8080/data/genders/post",
-				{
-					params: {
-						gender: FormValuesBrand.gender,
-					},
-				}
-			);
-			setGenderCount(genderPOST.data.genderCount);
+			// const genderPOST = await axios.post(
+			// 	"http://localhost:8080/data/genders/post",
+			// 	{
+			// 		params: {
+			// 			gender: FormValuesBrand.gender,
+			// 		},
+			// 	}
+			// );
+			// setGenderCount(genderPOST.data.genderCount);
 		} catch (error) {
 			console.log(error);
 		}
@@ -233,34 +234,9 @@ const Shoes = () => {
 		<>
 			<Tab.Group>
 				<Box className='flex flex-col  xl:mx-[15%]'>
-					<Box className='container flex rounded-2xl flex-col items-center pt-3 h-auto xs:w-[400px] xs:place-items-center'>
-						<Tab.List className='bg-primary mb-2 px-3 py-2 flex justify-between  rounded-xl w-full gap-3'>
-							<Tab
-								className={({ selected }) =>
-									classNames(
-										"w-full rounded-lg py-2.5 text-sm bold leading-5 text-primary",
-										"ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
-										selected
-											? "bg-white shadow font-bold "
-											: " hover:bg-white/[0.12] text-[#FCFCFC] hover:text-white"
-									)
-								}>
-								By Measurments
-							</Tab>
-							<Tab
-								className={({ selected }) =>
-									classNames(
-										"w-full rounded-lg py-2.5 text-sm bold leading-5 text-primary",
-										"ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
-										selected
-											? "bg-white shadow font-bold"
-											: " hover:bg-white/[0.12] text-[#FCFCFC] hover:text-white"
-									)
-								}>
-								By Brand
-							</Tab>
-						</Tab.List>
-					</Box>
+					{/*  */}
+					<Tabs />
+					{/*  */}
 					<Tab.Panels className='w-full'>
 						<Tab.Panel className='w-full lg:w-[750px] flex flex-col'>
 							<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
