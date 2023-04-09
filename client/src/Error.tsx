@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { ResourceErrorRouterParams } from "@pankod/refine-core";
-import { RefineErrorPageProps } from "@pankod/refine-ui-types";
+// import { RefineErrorPageProps } from "@pankod/refine-ui-types";
 import {
 	useNavigation,
 	useTranslate,
 	useResourceWithRoute,
 	useRouterContext,
 } from "@pankod/refine-core";
-import { Stack, Button, Tooltip, Typography, Grid } from "@mui/material";
+import { Stack, Tooltip, Typography, Grid } from "@mui/material";
 import { Info } from "@mui/icons-material";
 
 export default Error = () => {

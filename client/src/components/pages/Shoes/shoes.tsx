@@ -22,6 +22,7 @@ import clsx from "clsx";
 import axios from "axios";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
+import { useTranslate } from "@pankod/refine-core";
 
 import Tabs from "../Tabs";
 
@@ -41,7 +42,7 @@ type Float = number & { __float: never };
 
 const Shoes = () => {
 	const [fetchedShoesSizes, setfetchedShoesSizes] = useState<IShoes[]>([]);
-
+	const translate = useTranslate();
 	const [genderCount, setGenderCount] = useState({ male: 0, female: 0 });
 
 	//! MEASUREMENTS
@@ -295,7 +296,10 @@ const Shoes = () => {
 												onClick={handleScrollToTable}
 												type='submit'
 												className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
-												Find my Size
+												{translate(
+													"pages.ShoesWear.buttons.FindMySize",
+													"Find my Size"
+												)}
 											</button>
 										</Box>
 									</form>
@@ -368,7 +372,10 @@ const Shoes = () => {
 												onClick={handleScrollToTable}
 												type='submit'
 												className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
-												Find my Size
+												{translate(
+													"pages.ShoesWear.buttons.FindMySize",
+													"Find my Size"
+												)}
 											</button>
 										</Box>
 									</form>
