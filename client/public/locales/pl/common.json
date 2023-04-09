@@ -6,19 +6,24 @@
 			"Converter": "Tabele",
 			"Opinion": "Opinie"
 		},
-    "FormOpinion": {
-      "Title": {
+		"BlockChainTip": {
+			"Title": "Napiwek Blockchain",
+			"Connect": "Połącz Metamask",
+			"Tip": "Podaruj 0.001 ETH"
+		},
+		"FormOpinion": {
+			"Title": {
 				"Opinion": "Wyraź swoją opinię!",
 				"AddComment": "Dodaj Komentarz",
-        "Category": "Kategoria",
-        "Buttons": {
-          "Feedback": "Opinia",
-          "Suggestion": "Sugestia",
-          "Complaints": "Zażalenie",
-          "SubmitYourFeedback": "Prześlij swoją opinię!"
-        }
+				"Category": "Kategoria",
+				"Buttons": {
+					"Feedback": "Opinia",
+					"Suggestion": "Sugestia",
+					"Complaints": "Zażalenie",
+					"SubmitYourFeedback": "Prześlij swoją opinię!"
+				}
 			}
-    },
+		},
 		"Inputs": {
 			"Genders": {
 				"Male": "Mężczyzna",

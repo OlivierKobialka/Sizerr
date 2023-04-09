@@ -6,6 +6,11 @@
 			"Converter": "Converter",
 			"Opinion": "Opinion"
 		},
+    "BlockChainTip": {
+			"Title": "Blockchain Tip",
+			"Connect": "Connect Metamask",
+      "Tip": "Tip 0.001 ETH"
+		},
 		"FormOpinion": {
 			"Title": {
 				"Opinion": "Express your opinion here!",

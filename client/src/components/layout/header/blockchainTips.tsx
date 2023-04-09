@@ -3,6 +3,7 @@ import { Box, Dialog, DialogContent, DialogTitle } from "@pankod/refine-mui";
 import { useState } from "react";
 import Web3 from "web3";
 import confetti from "canvas-confetti";
+import { useTranslate } from "@pankod/refine-core";
 
 const web3 = new Web3(
 	new Web3.providers.HttpProvider(
@@ -11,6 +12,8 @@ const web3 = new Web3(
 );
 
 const BlockchainTips = () => {
+	const translate = useTranslate();
+
 	const [open, setOpen] = useState<boolean>(false);
 	const [account, setAccount] = useState<string>("");
 
@@ -21,7 +24,7 @@ const BlockchainTips = () => {
 	const handleClose = () => {
 		setOpen(false);
 	};
-	
+
 	const handleConnect = async () => {
 		try {
 			// @ts-ignore
@@ -106,13 +109,15 @@ const BlockchainTips = () => {
 	const checkTransactionConfirmation = (txhash: string): Promise<string> => {
 		const checkTransactionLoop = (): Promise<string> => {
 			// @ts-ignore
-			return ethereum
-				.request({ method: "eth_getTransactionReceipt", params: [txhash] }) 
-				// @ts-ignore
-				.then(receipt => {
-					if (receipt != null) return "Transction confirmed!";
-					else return checkTransactionLoop();
-				});
+			return (
+				ethereum
+					.request({ method: "eth_getTransactionReceipt", params: [txhash] })
+					// @ts-ignore
+					.then(receipt => {
+						if (receipt != null) return "Transction confirmed!";
+						else return checkTransactionLoop();
+					})
+			);
 		};
 
 		return checkTransactionLoop();
@@ -125,7 +130,9 @@ const BlockchainTips = () => {
 			</button>
 
 			<Dialog open={open} onClose={handleClose}>
-				<DialogTitle>Blockchain Tipping</DialogTitle>
+				<DialogTitle>
+					{translate("pages.BlockChainTip.Title", "Blockchain Tip")}
+				</DialogTitle>
 				<DialogContent className='flex justify-around'>
 					<Box className='flex justify-center items-center'>
 						{web3.currentProvider && (
@@ -134,14 +141,17 @@ const BlockchainTips = () => {
 									<button
 										className='bg-primary text-white rounded-lg py-1 px-3 font-bold'
 										onClick={handleConnect}>
-										Connect Metamask
+										{translate(
+											"pages.BlockChainTip.Connect",
+											"Connect Metamask"
+										)}
 									</button>
 								)}
 								{account && (
 									<button
 										className='bg-primary text-white rounded-lg py-1 px-3 font-bold'
 										onClick={handleSend}>
-										Tip 0.001 ETH
+										{translate("pages.BlockChainTip.Tip", "Tip 0.001 ETH")}
 									</button>
 								)}
 							</>
