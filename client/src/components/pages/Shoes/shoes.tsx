@@ -247,12 +247,17 @@ const Shoes = () => {
 										className='w-full flex flex-col place-items-center gap-2'>
 										<Box className='flex place-items-center justify-center'>
 											<FormControl>
-												<InputLabel>Gender</InputLabel>
+												<InputLabel>
+													{translate("pages.Inputs.Genders.Gender", "Gender")}
+												</InputLabel>{" "}
 												<Select
 													required
 													className='w-96'
 													name='gender'
-													label='Gender'
+													label={translate(
+														"pages.Inputs.Genders.Gender",
+														"Gender"
+													)}
 													color='info'
 													value={FormValuesMeasurements.gender}
 													onChange={handleSelectChangeMeasurements}>
@@ -315,11 +320,16 @@ const Shoes = () => {
 									<form onSubmit={handleSubmit}>
 										<Box className='flex flex-col place-items-center justify-center'>
 											<FormControl>
-												<InputLabel>Gender</InputLabel>
+												<InputLabel>
+													{translate("pages.Inputs.Genders.Gender", "Gender")}
+												</InputLabel>
 												<Select
 													className='w-96 mb-3'
 													name='gender'
-													label='Gender'
+													label={translate(
+														"pages.Inputs.Genders.Gender",
+														"Gender"
+													)}
 													color='info'
 													required
 													value={FormValuesBrand.gender}

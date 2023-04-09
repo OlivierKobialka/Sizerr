@@ -3,7 +3,8 @@
 		"Inputs": {
 			"Genders": {
 				"Male": "Mężczyzna",
-				"Female": "Kobieta"
+				"Female": "Kobieta",
+        "Gender": "Pleć"
 			}
 		},
 		"Table": {

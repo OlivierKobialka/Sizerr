@@ -3,7 +3,8 @@
 		"Inputs": {
       "Genders": {
         "Male": "Male",
-        "Female": "Female"
+        "Female": "Female",
+        "Gender": "Gender"
       }
     },
     "Table": {
