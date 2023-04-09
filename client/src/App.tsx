@@ -18,6 +18,7 @@ import { Title, Sider, Layout, Header } from "components/layout";
 import { OffLayoutArea } from "components/offLayoutArea";
 //! pages
 import { Wear, Shoes, Convert, DataReview } from "components/pages";
+import Error from "./Error";
 
 import { TbShirt, TbShoe, TbTable, TbChartBar } from "react-icons/tb";
 
@@ -40,7 +41,7 @@ function App() {
 						dataProvider={dataProvider("http://localhost:8080/api/v1")}
 						notificationProvider={notificationProvider}
 						ReadyPage={ReadyPage}
-						catchAll={<ErrorComponent />}
+						catchAll={<Error />}
 						resources={[
 							{
 								name: "Wear",
