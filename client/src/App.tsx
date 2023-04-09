@@ -6,7 +6,7 @@ import {
 	CssBaseline,
 	GlobalStyles,
 	ReadyPage,
-	ErrorComponent,
+	// ErrorComponent,
 } from "@pankod/refine-mui";
 
 import dataProvider from "@pankod/refine-simple-rest";
