@@ -216,7 +216,6 @@ const Shoes = () => {
 	//! TABLE
 	const [showTable, setShowTable] = useState(false);
 	const tableHeader = [
-		// { Brand: translate("pages.Table.Headers.Brand", "Brand") },
 		"Brand",
 		"Size EU",
 		"Size US",
