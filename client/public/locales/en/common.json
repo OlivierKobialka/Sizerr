@@ -8,7 +8,15 @@
 		},
 		"FormOpinion": {
 			"Title": {
-				"Opinion": "Express your opinion here!"
+				"Opinion": "Express your opinion here!",
+        "AddComment": "Add Comment",
+        "Category": "Category",
+        "Buttons": {
+          "Feedback": "Feedback",
+          "Suggestions": "Suggestions",
+          "Complaints": "Complaints",
+          "SubmitYourFeedback": "Submit Your Feedback!"
+        }
 			}
 		},
 		"Inputs": {

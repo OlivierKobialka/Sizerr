@@ -58,6 +58,21 @@ const Form = () => {
 		}
 	};
 
+	const category = [
+		{
+			value: "feedback",
+			name: "Feedback",
+		},
+		{
+			value: "suggestion",
+			name: "Suggestion",
+		},
+		{
+			value: "complain",
+			name: "Complaints",
+		},
+	];
+
 	//! SNACKBAR
 	const [open, setOpen] = React.useState(false);
 	const handleClickSnackbar = () => {
@@ -96,7 +111,7 @@ const Form = () => {
 				{/* COMMENT */}
 				<Box className='flex w-full justify-between mt-4'>
 					<Typography className='text-gray-400' fontWeight={600}>
-						Add Comment
+						{translate("pages.FormOpinion.Title.AddComment", "Add Comment")}
 					</Typography>
 					<Typography className='text-gray-400'>{`${comment.length}/150`}</Typography>
 				</Box>
@@ -110,39 +125,21 @@ const Form = () => {
 						inputProps={{ maxLength: 150 }}
 					/>
 					<Typography fontWeight={600} className='pt-2 pb-1 text-gray-400'>
-						Category
+						{translate("pages.FormOpinion.Title.Category", "Category")}
 					</Typography>
 					<Box className='flex justify-between mb-2 w-full md:w-1/2 xl:w-2/3'>
-						<button
-							type='button'
-							className={`${
-								selectedButton === "feedback"
-									? "bg-primary font-bold text-white rounded-3xl"
-									: "bg-gray-200 rounded-3xl font-bold text-black"
-							} py-1 px-4`}
-							onClick={() => handleButtonClick("feedback")}>
-							Feedback
-						</button>
-						<button
-							type='button'
-							className={`${
-								selectedButton === "suggestion"
-									? "bg-primary font-bold text-white rounded-3xl"
-									: "bg-gray-200 rounded-3xl font-bold text-black"
-							} py-1 px-4`}
-							onClick={() => handleButtonClick("suggestion")}>
-							Suggestion
-						</button>
-						<button
-							type='button'
-							className={`${
-								selectedButton === "complain"
-									? "bg-primary font-bold text-white rounded-3xl"
-									: "bg-gray-200 rounded-3xl font-bold text-black"
-							} py-1 px-4`}
-							onClick={() => handleButtonClick("complain")}>
-							Complain
-						</button>
+						{category.map((item, index) => (
+							<button
+								type='button'
+								className={`${
+									selectedButton === item.value
+										? "bg-primary font-bold text-white rounded-3xl"
+										: "bg-gray-200 rounded-3xl font-bold text-black"
+								} py-1 px-4`}
+								onClick={() => handleButtonClick(item.value)}>
+								{translate(`pages.FormOpinion.Title.Buttons.${item.name}`)}
+							</button>
+						))}
 					</Box>
 
 					<button
@@ -154,7 +151,10 @@ const Form = () => {
 						onClick={handleClickSnackbar}
 						type='submit'
 						disabled={!comment || remainingChars < 0}>
-						Submit your feedback!
+						{translate(
+							"pages.FormOpinion.Title.Buttons.SubmitYourFeedback",
+							"Submit Your Feedback!"
+						)}
 					</button>
 				</Box>
 			</form>

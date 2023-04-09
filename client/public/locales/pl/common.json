@@ -8,8 +8,16 @@
 		},
     "FormOpinion": {
       "Title": {
-        "Opinion": "Wyraź swoją opinię!"
-      }
+				"Opinion": "Wyraź swoją opinię!",
+				"AddComment": "Dodaj Komentarz",
+        "Category": "Kategoria",
+        "Buttons": {
+          "Feedback": "Opinia",
+          "Suggestion": "Sugestia",
+          "Complaints": "Zażalenie",
+          "SubmitYourFeedback": "Prześlij swoją opinię!"
+        }
+			}
     },
 		"Inputs": {
 			"Genders": {
