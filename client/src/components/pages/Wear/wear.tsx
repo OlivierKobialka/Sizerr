@@ -22,7 +22,7 @@ import clsx from "clsx";
 import axios from "axios";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
-// import { useTranslate } from "@pankod/refine-core";
+import { useTranslate } from "@pankod/refine-core";
 
 import Tabs from "../Tabs";
 
@@ -52,7 +52,7 @@ const Wear = () => {
 	}
 	type Float = number & { __float: never };
 	const [fetchedWearSizes, setfetchedWearSizes] = useState<IWears[]>([]);
-	// const translate = useTranslate();
+	const translate = useTranslate();
 
 	//! MEASUREMENTS
 	const [FormValuesMeasurements, setFormValuesMeasurements] = useState({
@@ -270,7 +270,10 @@ const Wear = () => {
 											onClick={handleScrollToTable}
 											type='submit'
 											className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
-											Find my Size
+											{translate(
+												"pages.ShoesWear.buttons.FindMySize",
+												"Find my Size"
+											)}
 										</button>
 									</Box>
 								</Box>
@@ -317,7 +320,10 @@ const Wear = () => {
 											onClick={handleScrollToTable}
 											type='submit'
 											className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
-											Find my Size
+											{translate(
+												"pages.ShoesWear.buttons.FindMySize",
+												"Find my Size"
+											)}
 										</button>
 									</Box>
 								</Box>
@@ -336,7 +342,9 @@ const Wear = () => {
 								<TableHead>
 									<TableRow>
 										{tableHeader.map((item, index) => (
-											<TableCell key={index}>{item}</TableCell>
+											<TableCell key={index}>
+												{translate(`pages.Table.Headers.${item}`, item)}
+											</TableCell>
 										))}
 									</TableRow>
 								</TableHead>

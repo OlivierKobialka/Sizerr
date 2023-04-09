@@ -1,3 +1,4 @@
+/* eslint-disable no-global-assign */
 import React, { useEffect, useState } from "react";
 import { ResourceErrorRouterParams } from "@pankod/refine-core";
 // import { RefineErrorPageProps } from "@pankod/refine-ui-types";
@@ -9,7 +10,7 @@ import {
 } from "@pankod/refine-core";
 import { Stack, Tooltip, Typography, Grid } from "@mui/material";
 import { Info } from "@mui/icons-material";
-
+// @ts-ignore
 export default Error = () => {
 	const [errorMessage, setErrorMessage] = useState<string>();
 	const { push } = useNavigation();
