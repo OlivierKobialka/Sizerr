@@ -23,7 +23,6 @@ import axios from "axios";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 import { useTranslate } from "@pankod/refine-core";
-
 import Tabs from "../Tabs";
 
 type FormData = {
