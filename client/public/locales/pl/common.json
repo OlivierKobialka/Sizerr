@@ -4,8 +4,10 @@
 			"Genders": {
 				"Male": "Mężczyzna",
 				"Female": "Kobieta",
-        "Gender": "Pleć"
-			}
+				"Gender": "Pleć"
+			},
+			"Brand": "Marka",
+      "Size": "Rozmiar"
 		},
 		"Table": {
 			"Headers": {

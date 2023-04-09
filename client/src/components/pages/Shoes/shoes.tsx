@@ -294,7 +294,7 @@ const Shoes = () => {
 											type='number'
 											name='size'
 											color='info'
-											label='Size'
+											label={translate("pages.Inputs.Size", "Size")}
 											value={FormValuesMeasurements.size}
 											onChange={handleInputChangeMeasurements}
 											required
@@ -349,7 +349,7 @@ const Shoes = () => {
 													className='w-96 '
 													type='text'
 													name='brand'
-													label='Brand'
+													label={translate("pages.Inputs.Brand", "Brand")}
 													color='info'
 													value={FormValuesBrand.brand}
 													onChange={handleInputChange}
@@ -360,7 +360,7 @@ const Shoes = () => {
 												className='w-96'
 												type='number'
 												name='size'
-												label='Size'
+												label={translate("pages.Inputs.Size", "Size")}
 												color='info'
 												value={FormValuesBrand.size}
 												onChange={handleInputChange}

@@ -5,7 +5,9 @@
         "Male": "Male",
         "Female": "Female",
         "Gender": "Gender"
-      }
+      },
+      "Brand": "Brand",
+      "Size": "Size"
     },
     "Table": {
 			"Headers": {
