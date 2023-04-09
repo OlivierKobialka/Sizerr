@@ -6,7 +6,6 @@ import {
 	CssBaseline,
 	GlobalStyles,
 	ReadyPage,
-	// ErrorComponent,
 } from "@pankod/refine-mui";
 
 import dataProvider from "@pankod/refine-simple-rest";
@@ -24,6 +23,7 @@ import { TbShirt, TbShoe, TbTable, TbChartBar } from "react-icons/tb";
 
 function App() {
 	const { t, i18n } = useTranslation();
+	
 
 	const i18nProvider = {
 		translate: (key: string, params: object) => t(key, params),

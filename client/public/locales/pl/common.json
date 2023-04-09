@@ -1,5 +1,16 @@
 {
 	"pages": {
+		"Sider": {
+			"Wear": "Ubrania",
+			"Shoes": "Buty",
+			"Converter": "Tabele",
+			"Opinion": "Opinie"
+		},
+    "FormOpinion": {
+      "Title": {
+        "Opinion": "Wyraź swoją opinię!"
+      }
+    },
 		"Inputs": {
 			"Genders": {
 				"Male": "Mężczyzna",
@@ -7,7 +18,7 @@
 				"Gender": "Pleć"
 			},
 			"Brand": "Marka",
-      "Size": "Rozmiar"
+			"Size": "Rozmiar"
 		},
 		"Table": {
 			"Headers": {

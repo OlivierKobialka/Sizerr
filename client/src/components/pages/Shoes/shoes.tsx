@@ -249,7 +249,7 @@ const Shoes = () => {
 											<FormControl>
 												<InputLabel>
 													{translate("pages.Inputs.Genders.Gender", "Gender")}
-												</InputLabel>{" "}
+												</InputLabel>
 												<Select
 													required
 													className='w-96'

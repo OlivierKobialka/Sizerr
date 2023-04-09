@@ -1,15 +1,26 @@
 {
 	"pages": {
+		"Sider": {
+			"Wear": "Wear",
+			"Shoes": "Shoes",
+			"Converter": "Converter",
+			"Opinion": "Opinion"
+		},
+		"FormOpinion": {
+			"Title": {
+				"Opinion": "Express your opinion here!"
+			}
+		},
 		"Inputs": {
-      "Genders": {
-        "Male": "Male",
-        "Female": "Female",
-        "Gender": "Gender"
-      },
-      "Brand": "Brand",
-      "Size": "Size"
-    },
-    "Table": {
+			"Genders": {
+				"Male": "Male",
+				"Female": "Female",
+				"Gender": "Gender"
+			},
+			"Brand": "Brand",
+			"Size": "Size"
+		},
+		"Table": {
 			"Headers": {
 				"Brand": "Marka",
 				"Size EU": "Size EU",

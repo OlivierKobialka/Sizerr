@@ -22,6 +22,7 @@ import clsx from "clsx";
 import axios from "axios";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
+// import { useTranslate } from "@pankod/refine-core";
 
 import Tabs from "../Tabs";
 
@@ -51,6 +52,7 @@ const Wear = () => {
 	}
 	type Float = number & { __float: never };
 	const [fetchedWearSizes, setfetchedWearSizes] = useState<IWears[]>([]);
+	// const translate = useTranslate();
 
 	//! MEASUREMENTS
 	const [FormValuesMeasurements, setFormValuesMeasurements] = useState({

@@ -2,8 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, TextField } from "@mui/material";
 import axios from "axios";
+import { useTranslate } from "@pankod/refine-core";
 
 const Form = () => {
+	const translate = useTranslate();
+
 	const [opinion, setOpinion] = useState({
 		email: "",
 		comment: "",
@@ -77,7 +80,10 @@ const Form = () => {
 				fontWeight={700}
 				color='#11142d'
 				className='pb-5'>
-				Express your opinion here!
+				{translate(
+					"pages.FormOpinion.Title.Opinion",
+					"Express your opinion here!"
+				)}
 			</Typography>
 			<form onSubmit={handleSubmit} className='flex flex-col'>
 				{/* EMAIL */}
