@@ -15,7 +15,8 @@
 			"Series": {
 				"Feedbacks": "Opinie",
 				"Complaints": "Zażalenia",
-				"Suggestions": "Sugestie"
+				"Suggestions": "Sugestie",
+				"Users": "Użytkownicy"
 			}
 		},
 		"BlockChainTip": {

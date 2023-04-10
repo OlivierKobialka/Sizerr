@@ -28,9 +28,11 @@ const Charts = () => {
 			categories: [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
 		},
 	};
-
+	
+	let seriesName = translate("pages.Charts.Series.Users", "User's");
 	const avgShoeSize = [
 		{
+			name: seriesName,
 			data: [12, 14, 2, 47, 32, 44, 14, 55, 41, 69, 91, 148, 22, 43, 21],
 		},
 	];

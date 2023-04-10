@@ -13,9 +13,10 @@
 				"AvgShoeSize": "Avg. Shoe Size"
 			},
 			"Series": {
-				"Feedbacks": "Opinie",
-				"Complaints": "Zażalenia",
-				"Suggestions": "Sugestie"
+				"Feedbacks": "Feedbacks",
+				"Complaints": "Complaints",
+				"Suggestions": "Suggestions",
+				"Users": "User's"
 			}
 		},
 		"BlockChainTip": {
