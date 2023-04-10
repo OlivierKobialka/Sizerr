@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import ReactApexChart from "react-apexcharts";
 import axios from "axios";
+import { useTranslate } from "@pankod/refine-core";
 
 const Charts = () => {
+	const translate = useTranslate();
 	const ShoeSizes = {
 		chart: {
 			id: "basic-column",
@@ -64,7 +66,10 @@ const Charts = () => {
 	useEffect(() => {
 		async function getGenderCount() {
 			try {
-				const response = await axios.get("http://localhost:8080/data/genders", {});
+				const response = await axios.get(
+					"http://localhost:8080/data/genders",
+					{}
+				);
 			} catch (error) {
 				console.log(error);
 			}
@@ -90,6 +95,13 @@ const Charts = () => {
 	const Feedback = 24;
 	const Suggestion = 34;
 	const Complain = 12;
+	// CHART LABELS
+	const Feedbacks = translate("pages.Charts.Series.Feedbacks", "Feedbacks");
+	const Complaints = translate("pages.Charts.Series.Complaints", "Complaints");
+	const Suggestions = translate(
+		"pages.Charts.Series.Suggestions",
+		"Suggestions"
+	);
 
 	const feedbackCategoryCounter = {
 		series: [Feedback, Suggestion, Complain],
@@ -101,7 +113,7 @@ const Charts = () => {
 				enabled: false,
 			},
 			colors: ["#475be8", "#3399ff", "#ffcc00"],
-			labels: ["Feedbacks", "Suggestions", "Complains"],
+			labels: [Feedbacks, Suggestions, Complaints],
 			legend: {
 				show: false,
 			},
@@ -113,7 +125,7 @@ const Charts = () => {
 			<Box id='chart' className='p-4  grid rounded-2xl bg-[#fcfcfc]'>
 				<Stack direction='row' gap={4} flexWrap='wrap'>
 					<Typography fontSize={28} fontWeight={700} color='#11142d'>
-						Avg. Shoe Size
+						{translate("pages.Charts.Title.AvgShoeSize", "Avg. Shoe Size")}
 					</Typography>
 				</Stack>
 				<Box className='hidden sm:block'>

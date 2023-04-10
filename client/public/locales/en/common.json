@@ -6,6 +6,13 @@
 			"Converter": "Converter",
 			"Opinion": "Opinion"
 		},
+		"Charts": {
+			"Title": {
+				"GenderCount": "Gender Count",
+				"Feedback": "Feedback Category",
+				"AvgShoeSize": "Avg. Shoe Size"
+			}
+		},
 		"BlockChainTip": {
 			"Title": "Blockchain Tip",
 			"Connect": "Connect Metamask",
@@ -29,7 +36,9 @@
 			"Genders": {
 				"Male": "Male",
 				"Female": "Female",
-				"Gender": "Gender"
+				"Gender": "Gender",
+				"Males": "Male's",
+				"Females": "Female's"
 			},
 			"Brand": "Brand",
 			"Size": "Size"

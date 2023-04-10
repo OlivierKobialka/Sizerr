@@ -233,7 +233,10 @@ const Wear = () => {
 												<Select
 													required
 													className='w-64 md:w-56'
-													label='Gender'
+													label={translate(
+														"pages.Inputs.Genders.Gender",
+														"Gender"
+													)}
 													name='gender'
 													value={FormValuesMeasurements.gender}
 													onChange={handleSelectChangeMeasurements}>
@@ -283,7 +286,10 @@ const Wear = () => {
 												<Select
 													required
 													className='w-96'
-													label="Gender"
+													label={translate(
+														"pages.Inputs.Genders.Gender",
+														"Gender"
+													)}
 													name='gender'
 													value={FormValuesBrand.gender}
 													onChange={handleSelectChange}>
@@ -300,7 +306,10 @@ const Wear = () => {
 												<TextField
 													required
 													key={index}
-													label={item.label}
+													label={translate(
+														`pages.Input.${item.label}`,
+														`${item.label}`
+													)}
 													name={item.name}
 													value={item.value}
 													onChange={handleInputChange}

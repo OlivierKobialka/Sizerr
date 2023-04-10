@@ -6,6 +6,18 @@
 			"Converter": "Tabele",
 			"Opinion": "Opinie"
 		},
+		"Charts": {
+			"Title": {
+				"GenderCount": "Gender Count",
+				"Feedback": "Feedback Category",
+				"AvgShoeSize": "Średni Rozmiar Buta"
+			},
+			"Series": {
+				"Feedbacks": "Opinie",
+				"Complaints": "Zażalenia",
+				"Suggestions": "Sugestie"
+			}
+		},
 		"BlockChainTip": {
 			"Title": "Napiwek Blockchain",
 			"Connect": "Połącz Metamask",
@@ -29,7 +41,9 @@
 			"Genders": {
 				"Male": "Mężczyzna",
 				"Female": "Kobieta",
-				"Gender": "Pleć"
+				"Gender": "Pleć",
+				"Males": "Mężczyźni",
+				"Females": "Kobiety"
 			},
 			"Brand": "Marka",
 			"Size": "Rozmiar"
