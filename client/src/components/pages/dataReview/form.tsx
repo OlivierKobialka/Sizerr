@@ -127,7 +127,7 @@ const Form = () => {
 					<Typography fontWeight={600} className='pt-2 pb-1 text-gray-400'>
 						{translate("pages.FormOpinion.Title.Category", "Category")}
 					</Typography>
-					<Box className='flex justify-between mb-2 w-full md:w-1/2 xl:w-2/3'>
+					<Box className='flex justify-between mb-2 w-full md:w-1/2 xl:w-7/12'>
 						{category.map((item, index) => (
 							<button
 								type='button'
