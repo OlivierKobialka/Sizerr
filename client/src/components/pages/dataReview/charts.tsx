@@ -75,6 +75,8 @@ const Charts = () => {
 			}
 		}
 	}, []);
+	let Male_s = translate("pages.Inputs.Genders.Males", "Male's");
+	let Female_s = translate("pages.Inputs.Genders.Females", "Female's");
 
 	const genderCountChart = {
 		series: [maleCount, femaleCount],
@@ -86,7 +88,7 @@ const Charts = () => {
 				enabled: false,
 			},
 			colors: ["#475be8", "#3399ff"],
-			labels: ["Male's", "Female's"],
+			labels: [Male_s, Female_s],
 			legend: {
 				show: false,
 			},
@@ -96,12 +98,9 @@ const Charts = () => {
 	const Suggestion = 34;
 	const Complain = 12;
 	// CHART LABELS
-	const Feedbacks = translate("pages.Charts.Series.Feedbacks", "Feedbacks");
-	const Complaints = translate("pages.Charts.Series.Complaints", "Complaints");
-	const Suggestions = translate(
-		"pages.Charts.Series.Suggestions",
-		"Suggestions"
-	);
+	let Feedbacks = translate("pages.Charts.Series.Feedbacks", "Feedbacks");
+	let Complaints = translate("pages.Charts.Series.Complaints", "Complaints");
+	let Suggestions = translate("pages.Charts.Series.Suggestions", "Suggestions");
 
 	const feedbackCategoryCounter = {
 		series: [Feedback, Suggestion, Complain],

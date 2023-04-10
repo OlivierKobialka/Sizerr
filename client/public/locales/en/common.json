@@ -11,6 +11,11 @@
 				"GenderCount": "Gender Count",
 				"Feedback": "Feedback Category",
 				"AvgShoeSize": "Avg. Shoe Size"
+			},
+			"Series": {
+				"Feedbacks": "Opinie",
+				"Complaints": "Zażalenia",
+				"Suggestions": "Sugestie"
 			}
 		},
 		"BlockChainTip": {
