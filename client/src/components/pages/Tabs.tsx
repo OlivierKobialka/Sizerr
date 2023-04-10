@@ -16,7 +16,7 @@ const Tabs = () => {
 							"ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
 							selected
 								? "bg-white shadow font-bold "
-								: " hover:bg-white/[0.12] text-gray-100 duration-300 ease-in hover:text-white"
+								: " hover:bg-white/[0.12] text-white"
 						)
 					}>
 					{translate("pages.Tabs.M", "By Measurements")}
@@ -28,7 +28,7 @@ const Tabs = () => {
 							"ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
 							selected
 								? "bg-white shadow font-bold"
-								: " hover:bg-white/[0.12] text-gray-100 duration-300 ease-in hover:text-white"
+								: "hover:bg-white/[0.12] text-white "
 						)
 					}>
 					{translate("pages.Tabs.B", "By Brand")}
