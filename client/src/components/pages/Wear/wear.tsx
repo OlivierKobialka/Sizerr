@@ -94,8 +94,6 @@ const Wear = () => {
 			gender: FormValuesMeasurements.gender,
 		};
 		console.log("By Measurements:", formData);
-
-		setShowTable(true);
 	};
 	const [selectedValue, setSelectedValue] = React.useState("cm");
 	const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -165,8 +163,6 @@ const Wear = () => {
 			gender: FormValuesBrand.gender,
 		};
 		console.log("By Brand:", formData);
-
-		setShowTable(true);
 	};
 
 	const Option = [
@@ -287,8 +283,7 @@ const Wear = () => {
 												<Select
 													required
 													className='w-96'
-													// @ts-ignore
-													label={handleOptionChange}
+													label="Gender"
 													name='gender'
 													value={FormValuesBrand.gender}
 													onChange={handleSelectChange}>
