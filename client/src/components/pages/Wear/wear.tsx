@@ -25,22 +25,21 @@ import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 import { useTranslate } from "@pankod/refine-core";
 import Tabs from "../Tabs";
 
-type FormData = {
-	unit: string;
-	chest?: string;
-	bust?: string;
-	hips: string;
-	inseam: string;
-	waist: string;
-	gender: string;
-};
-
-type InputType = {
-	value: string;
-	label: string;
-}[];
-
 const Wear = () => {
+	type FormData = {
+		unit: string;
+		chest?: string;
+		bust?: string;
+		hips: string;
+		inseam: string;
+		waist: string;
+		gender: string;
+	};
+
+	type InputType = {
+		value: string;
+		label: string;
+	}[];
 	interface IWears {
 		brand: string;
 		sizeEU: number & Float;
@@ -288,6 +287,7 @@ const Wear = () => {
 												<Select
 													required
 													className='w-96'
+													// @ts-ignore
 													label={handleOptionChange}
 													name='gender'
 													value={FormValuesBrand.gender}
