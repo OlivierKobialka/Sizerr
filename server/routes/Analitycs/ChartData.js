@@ -44,6 +44,8 @@ async function feedbackCategory(req, res, dbConfig) {
 
 async function getGenderCount(req, res, dbConfig) {
 	try {
+		const pool = await sql.connect(dbConfig);
+
 		const result = await pool.request().query("SELECT * FROM genderCount");
 
 		const maleCount = result.recordsets[0].maleCount;
