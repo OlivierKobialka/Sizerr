@@ -43,7 +43,7 @@ type Float = number & { __float: never };
 const Shoes = () => {
 	const [fetchedShoesSizes, setfetchedShoesSizes] = useState<IShoes[]>([]);
 	const translate = useTranslate();
-	const [genderCount, setGenderCount] = useState({ male: 0, female: 0 });
+	// const [genderCount, setGenderCount] = useState({ male: 0, female: 0 });
 
 	//! MEASUREMENTS
 	const [FormValuesMeasurements, setFormValuesMeasurements] = useState({
@@ -181,14 +181,14 @@ const Shoes = () => {
 			setfetchedShoesSizes(response.data.shoesBrand);
 			setShowTable(true);
 
-			// const genderPOST = await axios.post(
-			// 	"http://localhost:8080/data/genders/post",
-			// 	{
-			// 		params: {
-			// 			gender: FormValuesBrand.gender,
-			// 		},
-			// 	}
-			// );
+			const genderPOST = await axios.post(
+				"http://localhost:8080/data/genders/post",
+				{
+					params: {
+						gender: FormValuesBrand.gender,
+					},
+				}
+			);
 			// setGenderCount(genderPOST.data.genderCount);
 		} catch (error) {
 			console.log(error);
@@ -402,10 +402,13 @@ const Shoes = () => {
 					{/* Table */}
 					<Box
 						ref={tableRef}
-						className={clsx("mt-2 rounded-2xl border-2 border-primary", {
-							hidden: !showTable,
-							block: showTable,
-						})}>
+						className={clsx(
+							"mt-2 rounded-2xl border-2 border-primary w-full lg:w-[750px]",
+							{
+								hidden: !showTable,
+								block: showTable,
+							}
+						)}>
 						<TableContainer className='rounded-2xl h-auto'>
 							<Table>
 								<TableHead>

@@ -28,7 +28,7 @@ const Charts = () => {
 			categories: [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
 		},
 	};
-	
+
 	let seriesName = translate("pages.Charts.Series.Users", "User's");
 	const avgShoeSize = [
 		{
@@ -62,26 +62,28 @@ const Charts = () => {
 		},
 	];
 	//! GENDER COUNT
-	const [maleCount, setMaleCount] = useState<number>(0);
-	const [femaleCount, setFemaleCount] = useState<number>(0);
-
+	interface GenderCount {
+		male: number;
+		female: number;
+	}
+	const [genderCount, setGenderCount] = useState<GenderCount>({
+		male: 0,
+		female: 0,
+	});
 	useEffect(() => {
-		async function getGenderCount() {
-			try {
-				const response = await axios.get(
-					"http://localhost:8080/data/genders",
-					{}
-				);
-			} catch (error) {
-				console.log(error);
-			}
-		}
+		axios
+			.get<GenderCount>("https://localhost:8080/data/genders/get")
+			.then(response => setGenderCount(response.data))
+			.catch(error => console.log(error));
 	}, []);
+	console.log(genderCount);
+
 	let Male_s = translate("pages.Inputs.Genders.Males", "Male's");
 	let Female_s = translate("pages.Inputs.Genders.Females", "Female's");
 
 	const genderCountChart = {
-		series: [maleCount, femaleCount],
+		series: [genderCount.male, genderCount.female],
+		// series: [maleCount, femaleCount],
 		options: {
 			chart: {
 				type: "donut",
