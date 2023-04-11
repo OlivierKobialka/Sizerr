@@ -42,8 +42,22 @@ async function feedbackCategory(req, res, dbConfig) {
 	}
 }
 
+async function getGenderCount(req, res, dbConfig) {
+	try {
+		const result = await pool.request().query("SELECT * FROM genderCount");
+
+		const maleCount = result.recordsets[0].maleCount;
+		const femaleCount = result.recordsets[0].femaleCount;
+
+		res.status(200).send({ male: maleCount, female: femaleCount });
+	} catch (err) {
+		res.status(500).send(`${err}`);
+	}
+}
+
 module.exports = {
 	genderCount,
 	avgShoeSize,
 	feedbackCategory,
+	getGenderCount,
 };

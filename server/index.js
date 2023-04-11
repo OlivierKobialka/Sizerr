@@ -13,6 +13,7 @@ const {
 	genderCount,
 	avgShoeSize,
 	feedbackCategory,
+	getGenderCount,
 } = require("./routes/Analitycs/ChartData");
 
 // MIDDLEWARE
@@ -52,7 +53,7 @@ app.get("/api/Shoes-M", (req, res) => {
 });
 
 //? GENDER COUNT
-app.get("/data/genders", (req, res) => {
+app.get("/data/genders/get", (req, res) => {
 	getGenderCount(req, res, dbConfig);
 });
 app.post("/data/genders/post", (req, res) => {
