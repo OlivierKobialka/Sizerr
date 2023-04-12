@@ -3,8 +3,10 @@ const sql = require("mssql");
 async function userComment(req, res, dbConfig) {
 	const { email, comment, category } = req.query;
 
-	if (!email || !comment || !category) {
-		res.status(400).send("Missing parameters");
+	if (email || comment || category === undefined) {
+		res.status(501).send(
+            '<div style="font-size: 90px;">Undefined.</div>'
+        );
 		return;
 	} else {
 		try {

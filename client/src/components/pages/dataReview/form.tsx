@@ -150,13 +150,13 @@ const Form = () => {
 
 					<button
 						className={`bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 rounded-2xl ${
-							!comment || remainingChars < 0
+							(!email && !comment) || remainingChars < 0
 								? "cursor-not-allowed opacity-50"
 								: ""
 						}`}
 						onClick={handleClickSnackbar}
 						type='submit'
-						disabled={!comment || remainingChars < 0}>
+						disabled={(!email && !comment) || remainingChars < 0}>
 						{translate(
 							"pages.FormOpinion.Title.Buttons.SubmitYourFeedback",
 							"Submit Your Feedback!"
