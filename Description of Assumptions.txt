@@ -11,7 +11,7 @@ Możliwa jest też konwersja innych parametrów, takich jak
 3. Informacje o rozmiarach trzymane są w bazie danych, której nie można edytować z poziomu aplikacji.
 4. Informacje o konwersjach zapisywane są w bazie danych.
 5. (Dodatkowe)Aplikacja pozwala na analizę danych o rozmiarach wybieranych przez użytkowników korzystających z aplikacji.
-6. (Dodatkowe)Aplikacja również pozwala na wyrażenie opinii o danej marce,
+6. Aplikacja również pozwala na wyrażenie opinii o danej marce,
 np. czy rozmiary są zgodne z rzeczywistością, czy są zbyt małe poprzez pole z "Comment Section".
 7. Aplikacja pozwala na zostawienie napiwków dla twórców aplikacji poprzez technologie "Blockchain".
 8. Możliwe jest zmiana języka na stronie z angielskiego na polski i odwrotnie.
