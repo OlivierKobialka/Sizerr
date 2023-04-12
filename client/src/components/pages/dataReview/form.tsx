@@ -4,6 +4,11 @@ import { Box, Typography, TextField } from "@mui/material";
 import axios from "axios";
 import { useTranslate } from "@pankod/refine-core";
 
+type TCategory = {
+	value: string;
+	name: string;
+}[];
+
 const Form = () => {
 	const translate = useTranslate();
 
@@ -59,7 +64,7 @@ const Form = () => {
 		}
 	};
 
-	const category = [
+	const category: TCategory = [
 		{
 			value: "feedback",
 			name: "Feedback",
