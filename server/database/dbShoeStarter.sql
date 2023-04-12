@@ -1,14 +1,5 @@
 CREATE DATABASE Sizes
 
-  create table ShoesWoman(
-  BrandId TINYINT NOT NULL,
-  SizeEU DECIMAL(3,1) not null,
-  SizeUS DECIMAL(3,1) not null,
-  SizeUK DECIMAL(3,1) not null,
-  SizeCM DECIMAL(3,1) not null,
-  SizeIN DECIMAL(3,1) not null,
-  FOREIGN KEY (BrandId) REFERENCES Brand(Id)
-  )
 -------------------------------------
 
 create table Brand 
@@ -27,7 +18,15 @@ VALUES
 
 -----------------------------------------
 
-
+  create table ShoesWoman(
+  BrandId TINYINT NOT NULL,
+  SizeEU DECIMAL(3,1) not null,
+  SizeUS DECIMAL(3,1) not null,
+  SizeUK DECIMAL(3,1) not null,
+  SizeCM DECIMAL(3,1) not null,
+  SizeIN DECIMAL(3,1) not null,
+  FOREIGN KEY (BrandId) REFERENCES Brand(Id)
+  )
 
 
 
