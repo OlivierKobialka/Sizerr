@@ -43,6 +43,7 @@ const Form = () => {
 		setEmail("");
 		setSelectedButton(selectedButton);
 		setRemainingChars(150);
+
 		try {
 			const response = await axios.post("http://localhost:8080/Opinion", {
 				params: {
@@ -51,8 +52,8 @@ const Form = () => {
 					category: selectedButton,
 				},
 			});
-			setOpinion(response.data);
-			console.log(response.data);
+			setOpinion(response.data.userComment);
+			// console.log(response.data);
 		} catch (error) {
 			console.error(error);
 		}

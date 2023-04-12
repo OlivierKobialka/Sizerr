@@ -9,7 +9,7 @@ const port = 8080;
 // ROUTES
 const { shoesBrand } = require("./routes/Shoes/Shoes-B");
 const { shoesMeasurement } = require("./routes/Shoes/Shoes-M");
-const userComment = require("./routes/Analitycs/ReviewsFromUsers");
+const { userComment } = require("./routes/Analitycs/ReviewsFromUsers");
 const {
 	genderCount,
 	avgShoeSize,
