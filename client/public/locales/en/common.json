@@ -47,7 +47,14 @@
 				"Females": "Female's"
 			},
 			"Brand": "Brand",
-			"Size": "Size"
+			"Size": "Size",
+			"Measurements": {
+				"Chest": "Chest",
+				"Bust": "Bust",
+				"Hips": "Hips",
+				"Waist": "Waist",
+				"Inseam": "Inseam"
+			}
 		},
 		"Table": {
 			"Headers": {

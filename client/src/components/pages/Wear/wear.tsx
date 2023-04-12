@@ -8,7 +8,6 @@ import {
 	TextField,
 	Radio,
 	RadioGroup,
-	FormControlLabel,
 	TableCell,
 	TableRow,
 	TableHead,
@@ -253,7 +252,10 @@ const Wear = () => {
 												<TextField
 													required
 													key={index}
-													label={item.label}
+													label={translate(
+														`pages.Inputs.Measurements.${item.label}`,
+														`${item.label}`
+													)}
 													name={item.name}
 													value={item.value}
 													onChange={handleInputChangeMeasurements}

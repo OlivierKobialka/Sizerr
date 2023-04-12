@@ -42,12 +42,19 @@
 			"Genders": {
 				"Male": "Mężczyzna",
 				"Female": "Kobieta",
-				"Gender": "Pleć",
+				"Gender": "Płeć",
 				"Males": "Mężczyźni",
 				"Females": "Kobiety"
 			},
 			"Brand": "Marka",
-			"Size": "Rozmiar"
+			"Size": "Rozmiar",
+			"Measurements": {
+				"Chest": "Klatka Piersiowa",
+				"Bust": "Biust",
+				"Hips": "Biodra",
+				"Waist": "Talia",
+				"Inseam": "Długość Nogawki"
+			}
 		},
 		"Table": {
 			"Headers": {
