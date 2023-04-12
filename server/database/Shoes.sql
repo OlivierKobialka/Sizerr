@@ -4,4 +4,3 @@ select * FROM genderCount
 
 UPDATE genderCount SET Male += 1
 
-select * from 
