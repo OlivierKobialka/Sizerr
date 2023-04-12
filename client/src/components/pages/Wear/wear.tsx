@@ -228,7 +228,9 @@ const Wear = () => {
 									<Box className='w-full flex flex-col place-items-center md:place-items-start md:justify-between gap-2 md:flex-row'>
 										<Box>
 											<FormControl>
-												<InputLabel>Gender</InputLabel>
+												<InputLabel>
+													{translate("pages.Inputs.Genders.Gender", "Gender")}
+												</InputLabel>
 												<Select
 													required
 													className='w-64 md:w-56'
@@ -287,7 +289,9 @@ const Wear = () => {
 									<Box className='w-full flex flex-col place-items-center gap-2'>
 										<Box>
 											<FormControl>
-												<InputLabel>Gender</InputLabel>
+												<InputLabel>
+													{translate("pages.Inputs.Genders.Gender", "Gender")}
+												</InputLabel>
 												<Select
 													required
 													className='w-96'
