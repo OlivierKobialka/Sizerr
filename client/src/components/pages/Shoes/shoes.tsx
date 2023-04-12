@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+// @ts-ignore
 import {
 	FormControl,
 	InputLabel,
@@ -101,14 +102,9 @@ const Shoes = () => {
 			setfetchedShoesSizes(response.data.shoesMeasurement);
 			setShowTable(true);
 
-			// const genderPOST = await axios.post(
-			// 	"http://localhost:8080/data/genders/post",
-			// 	{
-			// 		params: {
-			// 			gender: FormValuesMeasurements.gender,
-			// 		},
-			// 	}
-			// );
+			axios.post("http://localhost:8080/data/genders/post", {
+				gender: FormValuesMeasurements.gender,
+			});
 			// setGenderCount(genderPOST.data.genderCount);
 		} catch (error) {
 			console.log(error);
@@ -243,7 +239,7 @@ const Shoes = () => {
 							<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
 								<Box className='w-full flex flex-col place-items-center gap-2'>
 									<form
-										onSubmit={handleSubmitMeasurements}
+										onSubmit={() => handleSubmitMeasurements()}
 										className='w-full flex flex-col place-items-center gap-2'>
 										<Box className='flex place-items-center justify-center'>
 											<FormControl>

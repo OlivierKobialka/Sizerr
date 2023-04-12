@@ -1,13 +1,15 @@
 const sql = require("mssql");
 
 async function genderCount(req, res, dbConfig) {
-	const { gender } = req.query;
+	console.log(req);
+	const { gender } = req.body;
 
 	try {
 		const pool = await sql.connect(dbConfig);
 
 		let result;
 		if (gender !== undefined) {
+			console.log(gender);
 			if (gender === "male") {
 				result = await pool.request().query(`UPDATE genderCount SET Male += 1`);
 			} else {
