@@ -58,48 +58,7 @@ app.get("/data/genders/get", (req, res) => {
 });
 app.post("/data/genders/post", (req, res) => {
 	genderCount(req, res, dbConfig);
-});
-
-// app.get("/api/Shoes-M", async (req, res) => {
-// 	const { unit, size, gender } = req.query;
-
-// 	try {
-// 		const pool = await sql.connect(dbConfig);
-
-// 		let result;
-
-// 		if (gender === "male" && unit === "cm") {
-// 			result = await pool.request()
-// 				.query`SELECT * FROM dbo.shoesMan WHERE sizeCM = CAST(${size} AS NUMERIC(10, 2))`;
-// 		} else if (gender === "male" && unit === "inch") {
-// 			result = await pool.request()
-// 				.query`SELECT * FROM dbo.shoesMan WHERE sizeIN = ${size}`;
-// 		} else {
-// 			res.status(400).send("Invalid query parameters");
-// 			return;
-// 		}
-
-// 		res.send(result.recordset);
-// 	} catch (error) {
-// 		console.error(error);
-// 		res.status(500).send("Error");
-// 	}
-// });
-
-// app.post("/api/Opinion", async function userComment(req, res) {
-// 	const { email, comment, category } = req.query;
-// 	try {
-// 		await sql.connect(dbConfig);
-
-// 		const result =
-// 			await dbConfig.query`INSERT INTO Comment (email, comment, category) VALUES (${email}, ${comment}, ${category})`;
-// 		res.send("Comment added!");
-// 	} catch (error) {
-// 		console.log(error);
-// 	} finally {
-// 		sql.close();
-// 	}
-// });
+})
 
 app.listen(port, () => {
 	function hi() {
