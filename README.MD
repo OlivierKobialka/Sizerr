@@ -1,7 +1,7 @@
 # Sizerr - A simple Size Calculator
 
 [Project for DataBase with SQL database integration and TypeScript React
-](https://github.com/OlivierKobialka/Sizerr/blob/master/Description%20of%20Assumptions)
+](https://github.com/OlivierKobialka/Sizerr/blob/master/Description%20of%20Assumptions.txt)
 
 ## How to run
 
