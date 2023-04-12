@@ -9,7 +9,7 @@
 		"Charts": {
 			"Title": {
 				"GenderCount": "Gender Count",
-				"Feedback": "Feedback Category",
+				"Feedback": "Kategoria Opinii",
 				"AvgShoeSize": "Średni Rozmiar Buta"
 			},
 			"Series": {
