@@ -32,7 +32,7 @@
 				"Category": "Category",
 				"Buttons": {
 					"Feedback": "Feedback",
-					"Suggestions": "Suggestions",
+					"Suggestion": "Suggestions",
 					"Complaints": "Complaints",
 					"SubmitYourFeedback": "Submit Your Feedback!"
 				}
