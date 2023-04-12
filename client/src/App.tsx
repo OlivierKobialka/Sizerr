@@ -16,14 +16,13 @@ import { ColorModeContextProvider } from "contexts";
 import { Title, Sider, Layout, Header } from "components/layout";
 import { OffLayoutArea } from "components/offLayoutArea";
 //! pages
-import { Wear, Shoes, Convert, DataReview } from "components/pages";
+import { Top, Bottom, Shoes, Convert, DataReview } from "components/pages";
 import Error from "./Error";
 
 import { TbShirt, TbShoe, TbTable, TbChartBar } from "react-icons/tb";
 
 function App() {
 	const { t, i18n } = useTranslation();
-	
 
 	const i18nProvider = {
 		translate: (key: string, params: object) => t(key, params),
@@ -44,9 +43,15 @@ function App() {
 						catchAll={<Error />}
 						resources={[
 							{
-								name: "Wear",
-								list: Wear,
-								show: Wear,
+								name: "Top",
+								list: Top,
+								show: Top,
+								icon: <TbShirt />,
+							},
+							{
+								name: "Bottom",
+								list: Bottom,
+								show: Bottom,
 								icon: <TbShirt />,
 							},
 							{

@@ -9,6 +9,7 @@ const port = 8080;
 // ROUTES
 const { shoesBrand } = require("./routes/Shoes/Shoes-B");
 const { shoesMeasurement } = require("./routes/Shoes/Shoes-M");
+const userComment = require("./routes/Analitycs/ReviewsFromUsers");
 const {
 	genderCount,
 	avgShoeSize,
@@ -58,7 +59,11 @@ app.get("/data/genders/get", (req, res) => {
 });
 app.post("/data/genders/post", (req, res) => {
 	genderCount(req, res, dbConfig);
-})
+});
+//? OPINIONS FROM USERS
+app.post("/Opinion", (req, res) => {
+	userComment(req, res, dbConfig);
+});
 
 app.listen(port, () => {
 	function hi() {

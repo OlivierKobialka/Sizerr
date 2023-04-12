@@ -31,7 +31,7 @@ const Form = () => {
 		const { value } = event.target;
 		setEmail(value);
 	};
-	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+	const formSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const formData = {
 			email: email,
@@ -44,7 +44,7 @@ const Form = () => {
 		setSelectedButton(selectedButton);
 		setRemainingChars(150);
 		try {
-			const response = await axios.post("http://localhost:8080/api/Opinion", {
+			const response = await axios.post("http://localhost:8080/Opinion", {
 				params: {
 					email: email,
 					comment: comment,
@@ -100,7 +100,7 @@ const Form = () => {
 					"Express your opinion here!"
 				)}
 			</Typography>
-			<form onSubmit={handleSubmit} className='flex flex-col'>
+			<form onSubmit={formSubmit} className='flex flex-col'>
 				{/* EMAIL */}
 				<TextField
 					label='Email'

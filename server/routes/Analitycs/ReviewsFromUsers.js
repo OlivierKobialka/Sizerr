@@ -1,21 +1,23 @@
-// import { dbConfig } from " ../../../index";
+const sql = require("mssql");
 
-// async function userComment(req, res) {
-// 	const email = req.body.email;
-// 	const comment = req.body.comment;
-// 	const category = req.body.category;
+async function userComment(req, res, dbConfig) {
+	const email = req.body.email;
+	const comment = req.body.comment;
+	const category = req.body.category;
 
-// 	try {
-// 		await sql.connect(dbConfig);
+	try {
+		await sql.connect(dbConfig);
 
-// 		const result =
-// 			await sql.query`INSERT INTO Comment (email, comment, category) VALUES (${email}, ${comment}, ${category})`;
+		const result =
+			await sql.query`INSERT INTO Comment (email, comment, category) VALUES (${email}, ${comment}, ${category})`;
 
-// 		res.status(200).json({ message: "Comment added successfully" });
-// 	} catch (error) {
-// 		console.log(error);
-// 		res.status(500).send("Server Error");
-// 	} finally {
-// 		sql.close();
-// 	}
-// }
+		res.status(200).json({ message: "Comment added successfully" });
+	} catch (error) {
+		console.log(error);
+		res.status(500).send("Server Error");
+	} finally {
+		sql.close();
+	}
+}
+
+module.exports = { userComment };

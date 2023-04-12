@@ -24,7 +24,7 @@ import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 import { useTranslate } from "@pankod/refine-core";
 import Tabs from "../Tabs";
 
-const Wear = () => {
+const Top = () => {
 	type FormData = {
 		unit: string;
 		chest?: string;
@@ -385,4 +385,4 @@ const Wear = () => {
 	);
 };
 
-export default Wear;
+export default Top;
