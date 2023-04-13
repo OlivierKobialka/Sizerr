@@ -15,7 +15,7 @@ import {
 	Toolbar,
 	Typography,
 } from "@pankod/refine-mui";
-import { DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
+import { TbMoon, TbSun } from "react-icons/tb";
 
 import BlockchainTips from "./blockchainTips";
 
@@ -47,7 +47,7 @@ export const Header: React.FC = () => {
 						onClick={() => {
 							setMode();
 						}}>
-						{mode === "dark" ? <LightModeOutlined /> : <DarkModeOutlined />}
+						{mode === "dark" ? <TbSun /> : <TbMoon />}
 					</IconButton>
 					<FormControl sx={{ m: 1, minWidth: 120 }}>
 						<Select
@@ -82,14 +82,14 @@ export const Header: React.FC = () => {
 							))}
 						</Select>
 					</FormControl>
-					{showUserInfo && (
+					{/* {showUserInfo && (
 						<Stack direction='row' gap='16px' alignItems='center'>
 							{user.avatar && <Avatar src={user?.avatar} alt={user?.name} />}
 							{user.name && (
 								<Typography variant='subtitle2'>{user?.name}</Typography>
 							)}
 						</Stack>
-					)}
+					)} */}
 				</Stack>
 			</Toolbar>
 		</AppBar>
