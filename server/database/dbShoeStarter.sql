@@ -1,11 +1,10 @@
 CREATE DATABASE Sizes
-
 -------------------------------------
 
 create table Brand 
 (
     Id TINYINT NOT NULL,
-    Brand VARCHAR(50) NOT NULL CHECK (Brand > 2),
+    Brand VARCHAR(50) NOT NULL,
     constraint PK_BrandId
     PRIMARY KEY (Id)
 
@@ -145,7 +144,7 @@ create table TopsMan
     ChestIN_min DECIMAL(3,1) NOT NULL,
     ChestIN_max DECIMAL(3,1) NOT NULL,
     ChestCM_min TINYINT NOT NULL,
-     ChestCM_max VARCHAR(10) NOT NULL,
+    ChestCM_max VARCHAR(10) NOT NULL,
     WaistIN_min DECIMAL(3,1) NOT NULL,
     WaistIN_max DECIMAL(3,1) NOT NULL,
     WaistCM_min TINYINT NOT NULL,
@@ -169,7 +168,7 @@ create table TopsWoman
     ChestIN_min DECIMAL(3,1) NOT NULL,
     ChestIN_max DECIMAL(3,1) NOT NULL,
     ChestCM_min TINYINT NOT NULL,
-     ChestCM_max VARCHAR(10) NOT NULL,
+    ChestCM_max VARCHAR(10) NOT NULL,
     WaistIN_min DECIMAL(3,1) NOT NULL,
     WaistIN_max DECIMAL(3,1) NOT NULL,
     WaistCM_min TINYINT NOT NULL,
@@ -199,7 +198,7 @@ VALUES
 ,(2,'L',39.5,42.5,101,108,35,38,89,96,39.5,42,100,107,null,null,null,null),
 (2,'XL',43,46.5,109,118,38.5,42,97,106,42.5,45.5,108,116,null,null,null,null),
 (2,'XXL',47,51,119,130,42.5,47,107,119,46,49,117,125,null,null,null,null),
-(2,'XXXL',51.5,56,131,142,47.5,52,120,132,49.5,53,126,135,null,null,null,null),
+(2,'XXXL',51.5,56,131,142,47.5,52,120,132,49.5,53,126,135,null,null,null,null)
 
 
 
@@ -218,7 +217,7 @@ VALUES
 (2,'M',35,37,89,94,29,31,73,78,41,43,98,103),
 (2,'L',37.5,40,95,101,31.5,33.5,79,85,41,43,104,110),
 (2,'XL',40,43,102,109,34,37,84,94,43.5,46,111,117),
-(2,'XXL',43.5,46.5,110,118,37.5,41,95,104,46.5,49,118,125),
+(2,'XXL',43.5,46.5,110,118,37.5,41,95,104,46.5,49,118,125)
 
 
 
@@ -242,12 +241,12 @@ create table BottomsMan
     HeightIN_max DECIMAL(3,1) ,
     HeightCM_min TINYINT ,
     HeightCM_max TINYINT,
-     FOREIGN KEY (BrandId) REFERENCES Brand(Id))
+    FOREIGN KEY (BrandId) REFERENCES Brand(Id))
 
 
 create table BottomsWoman
 (
-     Id TINYINT NOT NULL IDENTITY(1,1),
+    Id TINYINT NOT NULL IDENTITY(1,1),
     BrandId TINYINT NOT NULL,
     Size VARCHAR(6) NOT NULL CHECK(Size IN ('XXS','XS','S', 'M', 'L', 'XL', 'XXL', 'XXXL')),
     WaistIN_min DECIMAL(3,1) NOT NULL,
@@ -262,7 +261,7 @@ create table BottomsWoman
     HeightIN_max DECIMAL(3,1),
     HeightCM_min TINYINT,
     HeightCM_max TINYINT,
-     FOREIGN KEY (BrandId) REFERENCES Brand(Id))
+    FOREIGN KEY (BrandId) REFERENCES Brand(Id))
 
 
 insert into BottomsMan (BrandId, Size, WaistIN_min, WaistIN_max, WaistCM_min, WaistCM_max, HipIN_min, HipIN_max, HipCM_min, HipCM_max, HeightIN_min, HeightIN_max, HeightCM_min, HeightCM_max)
@@ -281,7 +280,7 @@ VALUES
 (2, 'L', 35.5, 39, 90, 99, 40, 41.5, 101, 105, 74, 77, 170, 183),
 (2, 'XL', 39.5, 43, 100, 109, 42, 43.5, 106, 110, 77, 80, 170, 183),
 (2, '2XL', 43.5, 47, 110, 119, 44, 45.5, 111, 115, 80, 83, 170, 183),
-(2, '3XL', 47.5, 51, 120, 129, 46, 47.5, 116, 120, 83, 86, 170, 183);
+(2, '3XL', 47.5, 51, 120, 129, 46, 47.5, 116, 120, 83, 86, 170, 183)
 
 
 
@@ -313,9 +312,8 @@ VALUES
 
 create table Conversions
 (
-   
     BrandId TINYINT NOT NULL,
-     [Date] DATETIME NOT NULL,
+    [Date] DATETIME NOT NULL,
     Garement VARCHAR(10) NOT NULL CHECK (Garement IN ('ShoesMan','ShoesWoman','TopsMan','TopsWoman','BottomsWoman','BottomsMan')),
     Size VARCHAR(6) NOT NULL,
     SizeUS TINYINT NOT NULL,
@@ -326,3 +324,15 @@ create table Conversions
 
 
 
+create table genderCount 
+(
+    Male int not null, 
+    Female int
+)
+
+create table Comment
+(
+  email varchar(250),
+  comment varchar(150),
+  category varchar(50)  
+)
