@@ -169,7 +169,14 @@ const Top = () => {
 		console.log("By Brand:", formData);
 
 		try {
-			const response = await axios.get("http://localhost:8080/api/Tops-B", {});
+			const response = await axios.get("http://localhost:8080/api/Tops-B", {
+				params: {
+					brand: FormValuesBrand.brand,
+					size: FormValuesBrand.size,
+					gender: FormValuesBrand.gender,
+				},
+			});
+			setfetchedTopWear(response.data.topBrand);
 		} catch (error) {
 			console.log(error);
 		}
@@ -190,7 +197,7 @@ const Top = () => {
 		{
 			label: "Size",
 			name: "size",
-			value: FormValuesBrand.brand,
+			value: FormValuesBrand.size,
 			onChange: handleInputChange,
 			className: "w-96",
 		},
@@ -198,7 +205,6 @@ const Top = () => {
 	//!
 	const [selectedOption, setSelectedOption] = useState<string>("");
 	const [label, setLabel] = useState<string>("Chest");
-	const [value, setValue] = React.useState(0);
 
 	const handleOptionChange = (event: React.ChangeEvent<{ value: unknown }>) => {
 		const selectedValue = event.target.value;

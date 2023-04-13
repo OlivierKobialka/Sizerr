@@ -61,6 +61,7 @@ app.get("/api/Tops-B", (req, res) => {
 app.get("/api/Tops-M", (req, res) => {
 	topMeasurements(req, res, dbConfig);
 });
+//? BOTTOMS
 
 //? GENDER COUNT
 app.get("/data/genders/get", (req, res) => {
