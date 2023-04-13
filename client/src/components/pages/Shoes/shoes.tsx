@@ -32,12 +32,12 @@ type InputType = {
 	label: string;
 }[];
 interface IShoes {
-	brand: string;
-	sizeEU: number & Float;
-	sizeUS: number & Float;
-	sizeUK: number & Float;
-	sizeCM: number & Float;
-	sizeIN: number & Float;
+	BrandId: number;
+	SizeEU: number & Float;
+	SizeUS: number & Float;
+	SizeUK: number & Float;
+	SizeCM: number & Float;
+	SizeIN: number & Float;
 }
 type Float = number & { __float: never };
 
@@ -111,7 +111,7 @@ const Shoes = () => {
 		}
 	};
 
-	const [selectedValue, setSelectedValue] = React.useState("cm");
+	const [selectedValue, setSelectedValue] = React.useState("CM");
 	const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSelectedValue(event.target.value);
 	};
@@ -420,12 +420,12 @@ const Shoes = () => {
 								<TableBody>
 									{fetchedShoesSizes.map((item, index) => (
 										<TableRow key={index}>
-											<TableCell>{item.brand}</TableCell>
-											<TableCell>{item.sizeEU}</TableCell>
-											<TableCell>{item.sizeUS}</TableCell>
-											<TableCell>{item.sizeUK}</TableCell>
-											<TableCell>{item.sizeCM}</TableCell>
-											<TableCell>{item.sizeIN}</TableCell>
+											<TableCell>{item.BrandId}</TableCell>
+											<TableCell>{item.SizeEU}</TableCell>
+											<TableCell>{item.SizeUS}</TableCell>
+											<TableCell>{item.SizeUK}</TableCell>
+											<TableCell>{item.SizeCM}</TableCell>
+											<TableCell>{item.SizeIN}</TableCell>
 										</TableRow>
 									))}
 								</TableBody>

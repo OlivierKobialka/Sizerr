@@ -153,6 +153,7 @@ const Charts = () => {
 			<Box className='grid grid-cols-1 gap-4 pt-4 md:grid-cols-2 h-36'>
 				<Box className=' w-full flex place-content-center bg-[#fcfcfc] rounded-2xl'>
 					<ReactApexChart
+						// @ts-ignore
 						options={genderCountChart.options}
 						series={genderCountChart.series}
 						type='donut'
@@ -170,6 +171,7 @@ const Charts = () => {
 				</Box>
 				<Box className=' w-full flex place-content-center bg-[#fcfcfc] rounded-2xl'>
 					<ReactApexChart
+						// @ts-ignore
 						options={feedbackCategoryCounter.options}
 						series={feedbackCategoryCounter.series}
 						type='donut'
