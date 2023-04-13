@@ -23,11 +23,13 @@
 
 
 
-SELECT * from TopsMan
+SELECT *
+from TopsMan
 
 SELECT
-    Brand.Brand, Size, ChestIN_min,ChestIN_max
+    Brand.Brand, Size, ChestCM_min, ChestCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
 FROM TopsMan INNER JOIN Brand ON Brand.Id = TopsMan.BrandId
+WHERE ChestCM_min <= 100 AND ChestCM_max >= 100 AND WaistCM_min <= 80 AND WaistCM_max >= 80 AND HipCM_min <= 100 AND HipCM_max >= 100
 
 
 
