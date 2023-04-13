@@ -9,6 +9,8 @@ const port = 8080;
 // ROUTES
 const { shoesBrand } = require("./routes/Shoes/Shoes-B");
 const { shoesMeasurement } = require("./routes/Shoes/Shoes-M");
+const { topBrand } = require("./routes/Top/Top-B");
+const { topMeasurements } = require("./routes/Top/Top-M");
 const { userComment } = require("./routes/Analitycs/ReviewsFromUsers");
 const {
 	genderCount,
@@ -51,6 +53,13 @@ app.get("/api/Shoes-B", (req, res) => {
 });
 app.get("/api/Shoes-M", (req, res) => {
 	shoesMeasurement(req, res, dbConfig);
+});
+//? TOPS
+app.get("/api/Tops-B", (req, res) => {
+	topBrand(req, res, dbConfig);
+});
+app.get("/api/Tops-M", (req, res) => {
+	topMeasurements(req, res, dbConfig);
 });
 
 //? GENDER COUNT

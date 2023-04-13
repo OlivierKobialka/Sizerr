@@ -14,6 +14,7 @@ import {
 	Table,
 	TableContainer,
 	TableBody,
+	FormControlLabel,
 } from "@pankod/refine-mui";
 import React, { useState, useEffect, useRef } from "react";
 import { Tab } from "@headlessui/react";
@@ -119,13 +120,6 @@ const Top = () => {
 			className: "w-64 md:w-56",
 		},
 		{
-			label: "Inseam",
-			name: "inseam",
-			value: FormValuesMeasurements.inseam,
-			onChange: handleInputChangeMeasurements,
-			className: "w-64 md:w-56",
-		},
-		{
 			label: "Waist",
 			name: "waist",
 			value: FormValuesMeasurements.waist,
@@ -133,6 +127,7 @@ const Top = () => {
 			className: "w-64 md:w-56",
 		},
 	];
+
 	//! BRAND
 	const [FormValuesBrand, setFormValuesBrand] = useState({
 		brand: "",
@@ -268,6 +263,22 @@ const Top = () => {
 												/>
 											))}
 										</Box>
+										<FormControl>
+											<RadioGroup
+												row
+												value={selectedValue}
+												onChange={handleRadioChange}
+												className='w-96 my-1'>
+												{RadioGroupMeasurements.map((item, index) => (
+													<FormControlLabel
+														key={index}
+														value={item.value}
+														control={<Radio color='info' />}
+														label={item.label}
+													/>
+												))}
+											</RadioGroup>
+										</FormControl>
 									</Box>
 									<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
 										<button
