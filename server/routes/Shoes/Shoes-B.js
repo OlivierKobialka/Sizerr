@@ -5,21 +5,21 @@ async function shoesBrand(req, res, dbConfig) {
 
 	try {
 		const pool = await sql.connect(dbConfig);
-		let paramSize = `size${measurement.toUpperCase()}`;
+		let paramSize = `Size${measurement.toUpperCase()}`;
 
 		let result;
 		if (gender === "male") {
 			result = await pool
 				.request()
 				.input("size", size)
-				.query(`SELECT * from shoesMan WHERE ${paramSize}=@size`, [
+				.query(`SELECT * FROM ShoesMan WHERE ${paramSize}=@size`, [
 					{ name: "size", value: size },
 				]);
 		} else {
 			result = await pool
 				.request()
 				.input("size", size)
-				.query(`SELECT * from shoesWoman WHERE ${paramSize}=@size`, [
+				.query(`SELECT * FROM ShoesWoman WHERE ${paramSize}=@size`, [
 					{ name: "size", value: size },
 				]);
 		}
