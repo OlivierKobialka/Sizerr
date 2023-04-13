@@ -17,9 +17,14 @@ async function shoesMeasurement(req, res, dbConfig) {
 			result = await pool
 				.request()
 				.input("size", size)
-				.query(`SELECT * FROM ShoesMan WHERE ${paramSize}=@size`, [
-					{ name: "size", value: size },
-				]);``
+				.query(
+					`SELECT Brand.Brand, SizeCM, SizeIN, SizeEU, SizeUK, SizeUS
+				FROM ShoesMan 
+				INNER JOIN Brand ON Brand.Id = ShoesMan.BrandID
+				WHERE ${paramSize}=@size`,
+					[{ name: "size", value: size }]
+				);
+			``;
 		} else {
 			result = await pool
 				.request()

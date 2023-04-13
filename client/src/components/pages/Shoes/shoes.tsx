@@ -32,7 +32,7 @@ type InputType = {
 	label: string;
 }[];
 interface IShoes {
-	BrandId: number;
+	Brand: string;
 	SizeEU: number & Float;
 	SizeUS: number & Float;
 	SizeUK: number & Float;
@@ -194,7 +194,7 @@ const Shoes = () => {
 		{ id: 1, value: "male", text: "Male" },
 		{ id: 2, value: "female", text: "Female" },
 	];
-	const [selectedValueBrand, setSelectedValueBrand] = React.useState("eu");
+	const [selectedValueBrand, setSelectedValueBrand] = React.useState("EU");
 	const handleRadioChangeBrand = (
 		event: React.ChangeEvent<HTMLInputElement>
 	) => {
@@ -420,7 +420,7 @@ const Shoes = () => {
 								<TableBody>
 									{fetchedShoesSizes.map((item, index) => (
 										<TableRow key={index}>
-											<TableCell>{item.BrandId}</TableCell>
+											<TableCell>{item.Brand}</TableCell>
 											<TableCell>{item.SizeEU}</TableCell>
 											<TableCell>{item.SizeUS}</TableCell>
 											<TableCell>{item.SizeUK}</TableCell>
