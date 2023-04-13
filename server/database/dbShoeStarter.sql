@@ -439,8 +439,7 @@ create table Conversions
 )
 
 
-
-create table genderCount
+create table GenderCount
 (
   Male int not null,
   Female int

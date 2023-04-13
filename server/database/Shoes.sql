@@ -23,10 +23,11 @@
 
 
 
+SELECT * from TopsMan
 
-
-
-
+SELECT
+    Brand.Brand, Size, ChestIN_min,ChestIN_max
+FROM TopsMan INNER JOIN Brand ON Brand.Id = TopsMan.BrandId
 
 
 

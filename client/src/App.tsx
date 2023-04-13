@@ -19,7 +19,7 @@ import { OffLayoutArea } from "components/offLayoutArea";
 import { Top, Bottom, Shoes, Convert, DataReview } from "components/pages";
 import Error from "./Error";
 
-import { TbShirt, TbShoe, TbTable, TbChartBar } from "react-icons/tb";
+import { TbShirt, TbShoe, TbTable, TbStar } from "react-icons/tb";
 
 function App() {
 	const { t, i18n } = useTranslation();
@@ -70,7 +70,7 @@ function App() {
 								name: "Opinion",
 								list: DataReview,
 								show: DataReview,
-								icon: <TbChartBar />,
+								icon: <TbStar />,
 							},
 						]}
 						Title={Title}
