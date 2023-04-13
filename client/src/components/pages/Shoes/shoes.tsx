@@ -239,7 +239,8 @@ const Shoes = () => {
 							<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
 								<Box className='w-full flex flex-col place-items-center gap-2'>
 									<form
-										onSubmit={() => handleSubmitMeasurements()}
+										// @ts-ignore
+										onSubmit={handleSubmitMeasurements}
 										className='w-full flex flex-col place-items-center gap-2'>
 										<Box className='flex place-items-center justify-center'>
 											<FormControl>
@@ -313,7 +314,9 @@ const Shoes = () => {
 						<Tab.Panel className='w-full lg:w-[750px] flex flex-col'>
 							<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
 								<Box className='w-full flex flex-col place-items-center gap-2'>
-									<form onSubmit={handleSubmit}>
+									<form
+										// @ts-ignore
+										onSubmit={handleSubmit}>
 										<Box className='flex flex-col place-items-center justify-center'>
 											<FormControl>
 												<InputLabel>
