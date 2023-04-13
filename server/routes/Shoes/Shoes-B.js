@@ -5,7 +5,7 @@ async function shoesBrand(req, res, dbConfig) {
 
 	try {
 		const pool = await sql.connect(dbConfig);
-		let paramSize = `Size${measurement.toUpperCase()}`;
+		let paramSize = `Size${measurement}`;
 
 		let result;
 		if (gender === "male") {

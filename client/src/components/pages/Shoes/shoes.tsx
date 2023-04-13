@@ -102,9 +102,9 @@ const Shoes = () => {
 			setfetchedShoesSizes(response.data.shoesMeasurement);
 			setShowTable(true);
 
-			axios.post("http://localhost:8080/data/genders/post", {
-				gender: FormValuesMeasurements.gender,
-			});
+			// axios.post("http://localhost:8080/data/genders/post", {
+			// 	gender: FormValuesMeasurements.gender,
+			// });
 			// setGenderCount(genderPOST.data.genderCount);
 		} catch (error) {
 			console.log(error);
@@ -117,8 +117,8 @@ const Shoes = () => {
 	};
 
 	const RadioGroupMeasurements: InputType = [
-		{ value: "cm", label: "CM" },
-		{ value: "in", label: "INCH" },
+		{ value: "CM", label: "CM" },
+		{ value: "IN", label: "INCH" },
 	];
 	//! BRAND
 	const [FormValuesBrand, setFormValuesBrand] = useState({
@@ -180,9 +180,7 @@ const Shoes = () => {
 			const genderPOST = await axios.post(
 				"http://localhost:8080/data/genders/post",
 				{
-					params: {
-						gender: FormValuesBrand.gender,
-					},
+					gender: FormValuesBrand.gender,
 				}
 			);
 			// setGenderCount(genderPOST.data.genderCount);
@@ -204,9 +202,9 @@ const Shoes = () => {
 	};
 
 	const FormControlLabelBrand: InputType = [
-		{ value: "eu", label: "EU" },
-		{ value: "uk", label: "UK" },
-		{ value: "us", label: "US" },
+		{ value: "EU", label: "EU" },
+		{ value: "UK", label: "UK" },
+		{ value: "US", label: "US" },
 	];
 
 	//! TABLE
