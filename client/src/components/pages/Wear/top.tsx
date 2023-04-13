@@ -29,9 +29,7 @@ const Top = () => {
 	type FormData = {
 		unit: string;
 		chest?: string;
-		bust?: string;
 		hips: string;
-		inseam: string;
 		waist: string;
 		gender: string;
 	};
@@ -42,23 +40,18 @@ const Top = () => {
 	}[];
 	interface IWears {
 		brand: string;
-		sizeEU: number & Float;
-		sizeUS: number & Float;
-		sizeUK: number & Float;
-		sizeCM: number & Float;
-		sizeIN: number & Float;
+		chest: string;
+		hips: string;
+		waist: string;
 	}
-	type Float = number & { __float: never };
-	const [fetchedWearSizes, setfetchedWearSizes] = useState<IWears[]>([]);
+	const [fetchedTopWear, setfetchedTopWear] = useState<IWears[]>([]);
 	const translate = useTranslate();
 
 	//! MEASUREMENTS
 	const [FormValuesMeasurements, setFormValuesMeasurements] = useState({
 		unit: "",
 		chest: "",
-		bust: "",
 		hips: "",
-		inseam: "",
 		waist: "",
 		gender: "",
 	});
@@ -80,20 +73,37 @@ const Top = () => {
 			});
 		};
 
-	const handleSubmitMeasurements = (
-		event: React.FormEvent<HTMLFormElement>
+	const handleSubmitMeasurements = async (
+		event: React.FormEvent<HTMLFormElement>,
+		unit: string,
+		chest: string,
+		hips: string,
+		waist: string,
+		gender: string
 	) => {
 		event.preventDefault();
 		const formData: FormData = {
 			unit: selectedValue,
 			chest: FormValuesMeasurements.chest,
-			bust: FormValuesMeasurements.bust,
 			hips: FormValuesMeasurements.hips,
-			inseam: FormValuesMeasurements.inseam,
 			waist: FormValuesMeasurements.waist,
 			gender: FormValuesMeasurements.gender,
 		};
-		console.log("By Measurements:", formData);
+		console.log("Tops by Measurements:", formData);
+		try {
+			const response = await axios.get("http://localhost:8080/api/Tops-M", {
+				params: {
+					unit: selectedValue,
+					chest: FormValuesMeasurements.chest,
+					hips: FormValuesMeasurements.hips,
+					waist: FormValuesMeasurements.waist,
+					gender: FormValuesMeasurements.gender,
+				},
+			});
+			setfetchedTopWear(response.data.topMeasurements);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 	const [selectedValue, setSelectedValue] = React.useState("cm");
 	const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -149,7 +159,7 @@ const Top = () => {
 		});
 	};
 
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const formData = {
 			brand: FormValuesBrand.brand,
@@ -157,6 +167,12 @@ const Top = () => {
 			gender: FormValuesBrand.gender,
 		};
 		console.log("By Brand:", formData);
+
+		try {
+			const response = await axios.get("http://localhost:8080/api/Tops-B", {});
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const Option = [
@@ -195,14 +211,7 @@ const Top = () => {
 	};
 	//! TABLE
 	const [showTable, setShowTable] = useState(false);
-	const tableHeader = [
-		"Brand",
-		"Size EU",
-		"Size US",
-		"Size UK",
-		"Size CM",
-		"Size INCH",
-	];
+	const tableHeader = ["Brand", "Chest", "Hips", "Waist"];
 	const tableRef = useRef<HTMLTableElement>(null);
 
 	const handleScrollToTable = () => {
@@ -218,7 +227,9 @@ const Top = () => {
 					<Tabs />
 					<Tab.Panels className='w-full'>
 						<Tab.Panel className='w-full lg:w-[750px] flex flex-col'>
-							<form onSubmit={handleSubmitMeasurements}>
+							<form
+								// @ts-ignore
+								onSubmit={handleSubmitMeasurements}>
 								<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
 									<Box className='w-full flex flex-col place-items-center md:place-items-start md:justify-between gap-2 md:flex-row'>
 										<Box>
@@ -375,14 +386,12 @@ const Top = () => {
 									</TableRow>
 								</TableHead>
 								<TableBody>
-									{fetchedWearSizes.map((item, index) => (
+									{fetchedTopWear.map((item, index) => (
 										<TableRow key={index}>
 											<TableCell>{item.brand}</TableCell>
-											<TableCell>{item.sizeEU}</TableCell>
-											<TableCell>{item.sizeUS}</TableCell>
-											<TableCell>{item.sizeUK}</TableCell>
-											<TableCell>{item.sizeCM}</TableCell>
-											<TableCell>{item.sizeIN}</TableCell>
+											<TableCell>{item.chest}</TableCell>
+											<TableCell>{item.hips}</TableCell>
+											<TableCell>{item.waist}</TableCell>
 										</TableRow>
 									))}
 								</TableBody>
