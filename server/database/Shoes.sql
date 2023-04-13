@@ -29,10 +29,9 @@ from TopsMan
 SELECT
     Brand.Brand, Size, ChestCM_min, ChestCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
 FROM TopsMan INNER JOIN Brand ON Brand.Id = TopsMan.BrandId
-WHERE ChestCM_min <= 100 AND ChestCM_max >= 100 AND WaistCM_min <= 80 AND WaistCM_max >= 80 AND HipCM_min <= 100 AND HipCM_max >= 100
+WHERE ChestCM_min <= 130 AND ChestCM_max >= 130 AND WaistCM_min <= 120 AND WaistCM_max >= 120 AND HipCM_min <= 126 AND HipCM_max >= 126
 
-
-
+select  * from TopsMan where ChestCM_min <= 130 AND ChestCM_max >= 130
 
 
 
