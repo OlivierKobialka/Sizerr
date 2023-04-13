@@ -12,16 +12,24 @@ async function shoesBrand(req, res, dbConfig) {
 			result = await pool
 				.request()
 				.input("size", size)
-				.query(`SELECT * FROM ShoesMan WHERE ${paramSize}=@size`, [
-					{ name: "size", value: size },
-				]);
+				.query(
+					`SELECT Brand.Brand, SizeCM, SizeIN, SizeEU, SizeUK, SizeUS
+				FROM ShoesMan 
+				INNER JOIN Brand ON Brand.Id = ShoesMan.BrandID
+				WHERE ${paramSize}=@size`,
+					[{ name: "size", value: size }]
+				);
 		} else {
 			result = await pool
 				.request()
 				.input("size", size)
-				.query(`SELECT * FROM ShoesWoman WHERE ${paramSize}=@size`, [
-					{ name: "size", value: size },
-				]);
+				.query(
+					`SELECT Brand.Brand, SizeCM, SizeIN, SizeEU, SizeUK, SizeUS
+				FROM ShoesWoman 
+				INNER JOIN Brand ON Brand.Id = ShoesWoman.BrandID
+				WHERE ${paramSize}=@size`,
+					[{ name: "size", value: size }]
+				);
 		}
 
 		res.status(200).json({ shoesBrand: result.recordset });
