@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import {
-	useGetIdentity,
+	// useGetIdentity,
 	useGetLocale,
 	useSetLocale,
 } from "@pankod/refine-core";
@@ -13,7 +13,6 @@ import {
 	MenuItem,
 	Select,
 	Toolbar,
-	Typography,
 } from "@pankod/refine-mui";
 import { TbMoon, TbSun } from "react-icons/tb";
 
@@ -29,8 +28,8 @@ export const Header: React.FC = () => {
 	const locale = useGetLocale();
 	const currentLocale = locale();
 
-	const { data: user } = useGetIdentity();
-	const showUserInfo = user && (user.name || user.avatar);
+	// const { data: user } = useGetIdentity();
+	// const showUserInfo = user && (user.name || user.avatar);
 
 	return (
 		<AppBar color='default' position='sticky' elevation={1}>
@@ -40,9 +39,7 @@ export const Header: React.FC = () => {
 					width='100%'
 					justifyContent='flex-end'
 					alignItems='center'>
-					{/* BLOCKCHAIN TIP BUTTON */}
 					<BlockchainTips />
-					{/* BLOCKCHAIN TIP BUTTON */}
 					<IconButton
 						onClick={() => {
 							setMode();
