@@ -59,6 +59,10 @@
 		"Table": {
 			"Headers": {
 				"Brand": "Marka",
+				"Size": "Rozmiar",
+				"Chest": "Klatka Piersiowa",
+				"Hips": "Biodra",
+				"Waist": "Talia",
 				"Size EU": "Rozmiar EU",
 				"Size US": "Rozmiar US",
 				"Size UK": "Rozmiar UK",

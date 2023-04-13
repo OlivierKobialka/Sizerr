@@ -59,6 +59,10 @@
 		"Table": {
 			"Headers": {
 				"Brand": "Brand",
+				"Size": "Size",
+				"Chest": "Chest",
+				"Hips": "Hips",
+				"Waist": "Talia",
 				"Size EU": "Size EU",
 				"Size US": "Size US",
 				"Size UK": "Size UK",

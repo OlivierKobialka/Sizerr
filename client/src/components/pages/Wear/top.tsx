@@ -211,7 +211,7 @@ const Top = () => {
 	};
 	//! TABLE
 	const [showTable, setShowTable] = useState(false);
-	const tableHeader = ["Brand", "Chest", "Hips", "Waist"];
+	const tableHeader = ["Brand", "Size", "Chest", "Hips", "Waist"];
 	const tableRef = useRef<HTMLTableElement>(null);
 
 	const handleScrollToTable = () => {
