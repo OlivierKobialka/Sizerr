@@ -9,7 +9,8 @@ async function topBrand(req, res, dbConfig) {
 		if (gender === "male") {
 			result = await pool
 				.request()
-				.input("size", size, "brand", brand)
+				.input("size", size)
+				.input("brand", brand)
 				.query(
 					`SELECT
     Brand.Brand, Size, ChestCM_min, ChestCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
