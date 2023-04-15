@@ -24,6 +24,22 @@ WHERE Brand.Brand = @brand AND Size = @size`,
 
 			res.status(200).json({ topBrand: result.recordset });
 		} else {
+			result = await pool
+				.request()
+				.input("size", size)
+				.input("brand", brand)
+				.query(
+					`SELECT
+    Brand.Brand, Size, ChestCM_min, ChestCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
+FROM TopsWoman INNER JOIN Brand ON Brand.Id = TopsWoman.BrandId
+WHERE Brand.Brand = @brand AND Size = @size`,
+					[
+						{ name: "size", value: size },
+						{ name: "brand", value: brand },
+					]
+				);
+
+			res.status(200).json({ topBrand: result.recordset });
 		}
 	} catch (error) {
 		res.status(500).send(`${error}`);
