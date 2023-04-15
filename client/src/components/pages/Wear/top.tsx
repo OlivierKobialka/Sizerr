@@ -40,11 +40,15 @@ const Top = () => {
 	}[];
 	interface IWears {
 		brand: string;
-		chest: string;
-		hips: string;
-		waist: string;
+		size: string;
+		chestMin: string;
+		chestMax: string;
+		waistMin: string;
+		waistMax: string;
+		hipsMin: string;
+		hipsMax: string;
 	}
-	const [fetchedTopWear, setfetchedTopWear] = useState<IWears[]>([]);
+	const [fetchedTopWear, setFetchedTopWear] = useState<IWears[]>([]);
 	const translate = useTranslate();
 
 	//! MEASUREMENTS
@@ -100,7 +104,9 @@ const Top = () => {
 					gender: FormValuesMeasurements.gender,
 				},
 			});
-			setfetchedTopWear(response.data.topMeasurements);
+			setFetchedTopWear(response.data.topMeasurements);
+			console.info("Tops by Measurements:", response.data.topMeasurements);
+			setShowTable(true);
 		} catch (error) {
 			console.log(error);
 		}
@@ -116,8 +122,8 @@ const Top = () => {
 	];
 	const TextFieldMeasurements = [
 		{
-			label: "Chest" || "Bust",
-			name: "chest" || "bust",
+			label: "Chest",
+			name: "chest",
 			value: FormValuesMeasurements.chest,
 			onChange: handleInputChangeMeasurements,
 			className: "w-64 pt-2 md:w-56",
@@ -176,7 +182,7 @@ const Top = () => {
 					gender: FormValuesBrand.gender,
 				},
 			});
-			setfetchedTopWear(response.data.topBrand);
+			setFetchedTopWear(response.data.topBrand);
 		} catch (error) {
 			console.log(error);
 		}
@@ -217,7 +223,16 @@ const Top = () => {
 	};
 	//! TABLE
 	const [showTable, setShowTable] = useState(false);
-	const tableHeader = ["Brand", "Size", "Chest", "Hips", "Waist"];
+	const tableHeader = [
+		"Brand",
+		"Size",
+		"Chest min",
+		"Chest max",
+		"Waist min",
+		"Waist max",
+		"Hips min",
+		"Hips max",
+	];
 	const tableRef = useRef<HTMLTableElement>(null);
 
 	const handleScrollToTable = () => {
@@ -395,9 +410,11 @@ const Top = () => {
 									{fetchedTopWear.map((item, index) => (
 										<TableRow key={index}>
 											<TableCell>{item.brand}</TableCell>
-											<TableCell>{item.chest}</TableCell>
-											<TableCell>{item.hips}</TableCell>
-											<TableCell>{item.waist}</TableCell>
+											<TableCell>{item.size}</TableCell>
+											<TableCell>{item.chestMin}-{item.chestMax}</TableCell>
+											<TableCell>{item.waistMin}-{item.waistMax}</TableCell>
+											{/* <TableCell></TableCell> */}
+											<TableCell>{item.hipsMin}-{item.hipsMax}</TableCell>
 										</TableRow>
 									))}
 								</TableBody>
