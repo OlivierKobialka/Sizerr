@@ -223,16 +223,7 @@ const Top = () => {
 	};
 	//! TABLE
 	const [showTable, setShowTable] = useState(false);
-	const tableHeader = [
-		"Brand",
-		"Size",
-		"Chest min",
-		"Chest max",
-		"Waist min",
-		"Waist max",
-		"Hips min",
-		"Hips max",
-	];
+	const tableHeader = ["Brand", "Size", "Chest", "Waist", "Hips"];
 	const tableRef = useRef<HTMLTableElement>(null);
 
 	const handleScrollToTable = () => {
@@ -411,10 +402,16 @@ const Top = () => {
 										<TableRow key={index}>
 											<TableCell>{item.brand}</TableCell>
 											<TableCell>{item.size}</TableCell>
-											<TableCell>{item.chestMin}-{item.chestMax}</TableCell>
-											<TableCell>{item.waistMin}-{item.waistMax}</TableCell>
+											<TableCell>
+												{item.chestMin}-{item.chestMax}
+											</TableCell>
+											<TableCell>
+												{item.waistMin}-{item.waistMax}
+											</TableCell>
 											{/* <TableCell></TableCell> */}
-											<TableCell>{item.hipsMin}-{item.hipsMax}</TableCell>
+											<TableCell>
+												{item.hipsMin}-{item.hipsMax}
+											</TableCell>
 										</TableRow>
 									))}
 								</TableBody>
