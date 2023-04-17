@@ -163,7 +163,7 @@ const BlockchainTips = () => {
 								)}
 								{account && (
 									<Box className='flex flex-col'>
-										<div>
+										<Box>
 											<TextField
 												className='mt-10'
 												id='transactionValue'
@@ -174,12 +174,12 @@ const BlockchainTips = () => {
 												value={transactionValue}
 												onChange={handleTransactionValueChange}
 											/>
-										</div>
+										</Box>
 										<button
 											className={`bg-primary mt-2 text-white rounded-lg py-1 px-3 font-bold ${
 												transactionValue === "" ||
 												transactionValue === "0" ||
-												typeof transactionValue === "undefined" ||
+												typeof transactionValue !== "number" ||
 												transactionValue === null
 													? "opacity-50 cursor-not-allowed"
 													: ""
