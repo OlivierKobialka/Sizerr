@@ -3,6 +3,8 @@ import {
 	Box,
 	Button,
 	ButtonGroup,
+	FormControlLabel,
+	// Switch,
 	Table,
 	TableBody,
 	TableCell,
@@ -15,6 +17,7 @@ import React, { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import axios from "axios";
 import { useTranslate } from "@pankod/refine-core";
+import { Switch } from '@headlessui/react'
 
 interface IProps {
 	Brand: string;
@@ -80,20 +83,37 @@ const Convert = () => {
 		},
 	]
 
+
+	const [enabled, setEnabled] = useState(false)
+
 	return (
 		<Box className='bg-white rounded-2xl p-2'>
 			<Typography fontSize={28} fontWeight={700}>
 				Table Shoes
 			</Typography>
-			<ButtonGroup
-				className='rounded-xl'
-				variant='contained'
-				color='info'
-				aria-label='outlined primary button group'>
-				{tableTypeButton.map((item, index) => (
-					<button className="bg-primary text-white px-2 py-1 font-bold" value={item.value} key={index}>{item.text}</button	>
-				))}
-			</ButtonGroup>
+			<Box className="flex justify-between">
+				<ButtonGroup
+					className='rounded-xl'
+					variant='contained'
+					color='info'
+					aria-label='outlined primary button group'>
+					{tableTypeButton.map((item, index) => (
+						<button className="bg-primary text-white px-2 py-1 font-bold" value={item.value} key={index}>{item.text}</button>
+					))}
+				</ButtonGroup>
+				<Switch
+					checked={enabled}
+					onChange={setEnabled}
+					className={`${enabled ? 'bg-primary' : 'bg-gray-200'
+						} relative inline-flex h-6 w-11 items-center rounded-full`}
+				>
+					{/* <span className="sr-only">Enable notifications</span> */}
+					<span
+						className={`${enabled ? 'translate-x-6' : 'translate-x-1'
+							} inline-block h-4 w-4 transform rounded-full bg-white transition`}
+					/>
+				</Switch>
+			</Box>
 			<Box
 				ref={tableRef}
 				className={clsx(
@@ -129,7 +149,7 @@ const Convert = () => {
 					</Table>
 				</TableContainer>
 			</Box>
-		</Box>
+		</Box >
 	);
 };
 

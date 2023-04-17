@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@headlessui/react": "^1.7.12",
+    "@headlessui/react": "^1.7.14",
     "@metamask/providers": "^10.2.1",
     "@mui/base": "^5.0.0-alpha.119",
     "@mui/icons-material": "^5.8.3",
