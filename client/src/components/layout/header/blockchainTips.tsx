@@ -176,8 +176,21 @@ const BlockchainTips = () => {
 											/>
 										</div>
 										<button
-											className='bg-primary mt-2 text-white rounded-lg py-1 px-3 font-bold'
-											onClick={handleSend}>
+											className={`bg-primary mt-2 text-white rounded-lg py-1 px-3 font-bold ${
+												transactionValue === "" ||
+												transactionValue === "0" ||
+												typeof transactionValue === "undefined" ||
+												transactionValue === null
+													? "opacity-50 cursor-not-allowed"
+													: ""
+											}`}
+											onClick={handleSend}
+											disabled={
+												transactionValue === "" ||
+												transactionValue === "0" ||
+												typeof transactionValue !== "number" ||
+												transactionValue === null
+											}>
 											Tip {transactionValue} ETH
 										</button>
 									</Box>
