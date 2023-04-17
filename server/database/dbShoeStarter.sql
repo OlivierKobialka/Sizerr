@@ -431,20 +431,6 @@ VALUES
 
 ------------------------------------------------------------------
 
-
-create table Conversions
-(
-  BrandId TINYINT NOT NULL,
-  [Date] DATETIME NOT NULL,
-  Garement VARCHAR(10) NOT NULL CHECK (Garement IN ('ShoesMan','ShoesWoman','TopsMan','TopsWoman','BottomsWoman','BottomsMan')),
-  Size VARCHAR(6) NOT NULL,
-  SizeUS TINYINT NOT NULL,
-  SizeUK TINYINT NOT NULL,
-  SizeEU TINYINT NOT NULL,
-  FOREIGN KEY (BrandId) REFERENCES Brand(Id)
-)
-
-
 create table GenderCount
 (
   Male int not null,
