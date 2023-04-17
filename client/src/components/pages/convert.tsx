@@ -40,18 +40,18 @@ const Convert = () => {
 	];
 	const tableRef = useRef<HTMLTableElement>(null);
 
-	const handleScrollToTable = () => {
-		if (tableRef.current) {
-			tableRef.current.scrollIntoView({ behavior: "smooth" });
-		}
-	};
+	// const handleScrollToTable = () => {
+	// 	if (tableRef.current) {
+	// 		tableRef.current.scrollIntoView({ behavior: "smooth" });
+	// 	}
+	// };
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await axios.get('http://localhost:8080/getTableData');
-			setData(result.data);
+			setData(result.data.tableData);
 			setShowTable(true);
-			handleScrollToTable();
+			// handleScrollToTable();
 		};
 		fetchData();
 	}, []);
@@ -100,7 +100,7 @@ const Convert = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{/* {data.map((item, index) => (
+							{data.map((item, index) => (
 								<TableRow key={index}>
 									<TableCell>{item.Brand}</TableCell>
 									<TableCell>{item.SizeEU}</TableCell>
@@ -109,7 +109,7 @@ const Convert = () => {
 									<TableCell>{item.SizeCM}</TableCell>
 									<TableCell>{item.SizeIN}</TableCell>
 								</TableRow>
-							))} */}
+							))}
 						</TableBody>
 					</Table>
 				</TableContainer>
