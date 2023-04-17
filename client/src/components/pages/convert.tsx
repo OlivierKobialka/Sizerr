@@ -37,6 +37,7 @@ const Convert = () => {
 	const translate = useTranslate();
 	const [dataMale, setDataMale] = useState<IProps[]>([]);
 	const [dataFemale, setDataFemale] = useState<IProps[]>([]);
+	const [gender, setGender] = useState<string>("")
 	const [showTable, setShowTable] = useState(false);
 
 	// const []
@@ -151,7 +152,7 @@ const Convert = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{dataMale.map((item, index) => (
+							{/* {dataMale.map((item, index) => (
 								<TableRow key={index}>
 									<TableCell>{item.Brand}</TableCell>
 									<TableCell>{item.SizeEU}</TableCell>
@@ -160,7 +161,34 @@ const Convert = () => {
 									<TableCell>{item.SizeCM}</TableCell>
 									<TableCell>{item.SizeIN}</TableCell>
 								</TableRow>
-							))}
+							))} */}
+
+							{gender === "male" ? (
+
+								dataMale.map((item, index) => (
+									<TableRow key={index}>
+										<TableCell>{item.Brand}</TableCell>
+										<TableCell>{item.SizeEU}</TableCell>
+										<TableCell>{item.SizeUS}</TableCell>
+										<TableCell>{item.SizeUK}</TableCell>
+										<TableCell>{item.SizeCM}</TableCell>
+										<TableCell>{item.SizeIN}</TableCell>
+									</TableRow>
+								))
+							) : (
+								dataFemale.map((item, index) => (
+									<TableRow key={index}>
+										<TableCell>{item.Brand}</TableCell>
+										<TableCell>{item.SizeEU}</TableCell>
+										<TableCell>{item.SizeUS}</TableCell>
+										<TableCell>{item.SizeUK}</TableCell>
+										<TableCell>{item.SizeCM}</TableCell>
+										<TableCell>{item.SizeIN}</TableCell>
+									</TableRow>
+								))
+							)}
+
+
 						</TableBody>
 					</Table>
 				</TableContainer>
