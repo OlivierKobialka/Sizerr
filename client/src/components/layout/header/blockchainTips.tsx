@@ -192,10 +192,10 @@ const BlockchainTips = () => {
 												transactionValue === null ||
 												transactionValue <= 0
 											}>
-											{translate("pages.BlockChainTip.Tip", "Tip")}
+											{translate("pages.BlockChainTip.Tip", "Tip ")}
 											{
 												// @ts-ignore
-												transactionValue <= 0 ? "0" : transactionValue
+												transactionValue <= 0 ? "0 " : transactionValue + " "
 											}
 											ETH
 										</button>
