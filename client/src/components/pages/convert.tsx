@@ -4,6 +4,7 @@ import {
 	Button,
 	ButtonGroup,
 	FormControlLabel,
+	IconButton,
 	// Switch,
 	Table,
 	TableBody,
@@ -11,6 +12,7 @@ import {
 	TableContainer,
 	TableHead,
 	TableRow,
+	Tooltip,
 	Typography,
 } from "@pankod/refine-mui";
 import React, { useEffect, useRef, useState } from "react";
@@ -102,20 +104,28 @@ const Convert = () => {
 						<button className="bg-primary text-white px-2 py-1 font-bold" value={item.value} key={index}>{item.text}</button>
 					))}
 				</ButtonGroup>
-				<Box className="flex justify-around">
-					<TbWoman />
+				<Box className="flex justify-around items-center">
+					<Tooltip title="Female" placement="top">
+						<IconButton>
+							<TbWoman className="w-6 h-auto" />
+						</IconButton>
+					</Tooltip>
 					<Switch
 						checked={enabled}
 						onChange={setEnabled}
 						className={`${enabled ? 'bg-primary' : 'bg-pink-500'
-							} relative inline-flex h-6 w-11 items-center rounded-full duration-300`}
+							} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
 					>
 						<span
 							className={`${enabled ? 'translate-x-6' : 'translate-x-1'
 								} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
 						/>
 					</Switch>
-					<TbMan />
+					<Tooltip title="Male" placement="top">
+						<IconButton>
+							<TbMan className="w-6 h-auto" />
+						</IconButton>
+					</Tooltip>
 				</Box>
 			</Box>
 			<Box
