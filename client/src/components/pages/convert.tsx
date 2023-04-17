@@ -118,6 +118,24 @@ const Convert = () => {
 					))}
 				</ButtonGroup>
 				<Box className="flex justify-around items-center">
+					<Typography>CM</Typography>
+					<Switch
+						// checked={enabled}
+						onChange={setEnabled}
+						className={`${enabled ? 'bg-primary' : 'bg-pink-500'
+							} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
+					>
+						<span
+							className={`${enabled ? 'translate-x-6' : 'translate-x-1'
+								} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+						/>
+					</Switch>
+					<Typography>
+						INCH
+					</Typography>
+				</Box>
+				{/* ! */}
+				<Box className="flex justify-around items-center">
 					<Tooltip title="Female" placement="top">
 						<IconButton>
 							<TbWoman className="w-6 h-auto" />
