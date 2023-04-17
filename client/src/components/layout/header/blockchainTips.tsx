@@ -50,7 +50,7 @@ const BlockchainTips = () => {
 			const wei = parseInt(result, 16);
 			const balance = wei;
 			// / 10 ** 18
-			console.log(balance + " ETH");
+			console.log(`Account Balance: ${balance}`);
 		} catch (error) {
 			alert("Failed to connect!");
 			console.error("Failed to connect:", error);
