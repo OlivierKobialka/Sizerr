@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
 	Box,
 	Button,
@@ -30,13 +31,22 @@ const Convert = () => {
 	const translate = useTranslate();
 	const [data, setData] = useState<IProps[]>([]);
 	const [showTable, setShowTable] = useState(false);
-	const tableHeader = [
+	// const []
+
+	const tableHeader_Shoes = [
 		"Brand",
 		"Size EU",
 		"Size US",
 		"Size UK",
 		"Size CM",
 		"Size INCH",
+	];
+	const tableHeader_Wear = [
+		"Brand",
+		"Size",
+		"Chest",
+		"Hips",
+		"Waist",
 	];
 	const tableRef = useRef<HTMLTableElement>(null);
 
@@ -55,6 +65,20 @@ const Convert = () => {
 		};
 		fetchData();
 	}, []);
+	const tableTypeButton = [
+		{
+			text: "Shoes",
+			value: "Shoes",
+		},
+		{
+			text: "Tops",
+			value: "Tops",
+		},
+		{
+			text: "Bottoms",
+			value: "Bottoms",
+		},
+	]
 
 	return (
 		<Box className='bg-white rounded-2xl p-2'>
@@ -66,18 +90,9 @@ const Convert = () => {
 				variant='contained'
 				color='info'
 				aria-label='outlined primary button group'>
-				<button className='bg-primary text-white font-bold px-2 py-1'>
-					Shoes Male
-				</button>
-				<button className='bg-primary text-white font-bold px-2 py-1'>
-					Shoes Female
-				</button>
-				<button className='bg-primary text-white font-bold px-2 py-1'>
-					Tops Male
-				</button>
-				<button className='bg-primary text-white font-bold px-2 py-1'>
-					Tops Female
-				</button>
+				{tableTypeButton.map((item, index) => (
+					<button className="bg-primary text-white px-2 py-1 font-bold" value={item.value} key={index}>{item.text}</button	>
+				))}
 			</ButtonGroup>
 			<Box
 				ref={tableRef}
@@ -92,7 +107,7 @@ const Convert = () => {
 					<Table>
 						<TableHead>
 							<TableRow>
-								{tableHeader.map((item, index) => (
+								{tableHeader_Shoes.map((item, index) => (
 									<TableCell key={index}>
 										{translate(`pages.Table.Headers.${item}`, item)}
 									</TableCell>
