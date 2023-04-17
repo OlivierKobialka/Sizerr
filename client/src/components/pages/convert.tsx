@@ -99,8 +99,9 @@ const Convert = () => {
 		},
 	]
 
-
-	const [enabled, setEnabled] = useState(false)
+	//! SWITCH
+	const [genderSwitch, setGenderSwitch] = useState(false)
+	const [unit, setUnit] = useState(false)
 
 	return (
 		<Box className='bg-white rounded-2xl p-2'>
@@ -120,13 +121,13 @@ const Convert = () => {
 				<Box className="flex justify-around items-center">
 					<Typography>CM</Typography>
 					<Switch
-						// checked={enabled}
-						onChange={setEnabled}
-						className={`${enabled ? 'bg-primary' : 'bg-pink-500'
+						checked={unit}
+						onChange={setUnit}
+						className={`${unit ? 'bg-primary' : 'bg-pink-500'
 							} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
 					>
 						<span
-							className={`${enabled ? 'translate-x-6' : 'translate-x-1'
+							className={`${unit ? 'translate-x-6' : 'translate-x-1'
 								} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
 						/>
 					</Switch>
@@ -142,13 +143,13 @@ const Convert = () => {
 						</IconButton>
 					</Tooltip>
 					<Switch
-						checked={enabled}
-						onChange={setEnabled}
-						className={`${enabled ? 'bg-primary' : 'bg-pink-500'
+						checked={genderSwitch}
+						onChange={setGenderSwitch}
+						className={`${genderSwitch ? 'bg-primary' : 'bg-pink-500'
 							} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
 					>
 						<span
-							className={`${enabled ? 'translate-x-6' : 'translate-x-1'
+							className={`${genderSwitch ? 'translate-x-6' : 'translate-x-1'
 								} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
 						/>
 					</Switch>
