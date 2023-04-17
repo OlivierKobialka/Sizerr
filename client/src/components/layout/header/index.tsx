@@ -28,9 +28,6 @@ export const Header: React.FC = () => {
 	const locale = useGetLocale();
 	const currentLocale = locale();
 
-	// const { data: user } = useGetIdentity();
-	// const showUserInfo = user && (user.name || user.avatar);
-
 	return (
 		<AppBar color='default' position='sticky' elevation={1}>
 			<Toolbar>
@@ -79,14 +76,6 @@ export const Header: React.FC = () => {
 							))}
 						</Select>
 					</FormControl>
-					{/* {showUserInfo && (
-						<Stack direction='row' gap='16px' alignItems='center'>
-							{user.avatar && <Avatar src={user?.avatar} alt={user?.name} />}
-							{user.name && (
-								<Typography variant='subtitle2'>{user?.name}</Typography>
-							)}
-						</Stack>
-					)} */}
 				</Stack>
 			</Toolbar>
 		</AppBar>

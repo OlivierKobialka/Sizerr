@@ -22,7 +22,7 @@
 		"BlockChainTip": {
 			"Title": "Blockchain Tip",
 			"Connect": "Connect Metamask",
-			"Tip": "Tip 0.001 ETH",
+			"Tip": "Tip",
 			"NoMetamask": "Please install MetaMask"
 		},
 		"FormOpinion": {
