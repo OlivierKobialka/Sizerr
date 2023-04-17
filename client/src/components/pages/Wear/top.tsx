@@ -105,7 +105,6 @@ const Top = () => {
 				},
 			});
 			setFetchedTopWear(response.data.topMeasurements);
-			console.info("Tops by Measurements:", response.data.topMeasurements);
 			setShowTable(true);
 		} catch (error) {
 			console.log(error);
@@ -183,6 +182,7 @@ const Top = () => {
 				},
 			});
 			setFetchedTopWear(response.data.topBrand);
+			setShowTable(true);
 		} catch (error) {
 			console.log(error);
 		}
@@ -406,9 +406,9 @@ const Top = () => {
 												{item.chestMin}-{item.chestMax}
 											</TableCell>
 											<TableCell>
+												{item.waistMax}
 												{item.waistMin}-{item.waistMax}
 											</TableCell>
-											{/* <TableCell></TableCell> */}
 											<TableCell>
 												{item.hipsMin}-{item.hipsMax}
 											</TableCell>
