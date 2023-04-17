@@ -1,5 +1,11 @@
 import { GiReceiveMoney } from "react-icons/gi";
-import { Box, Dialog, DialogContent, DialogTitle } from "@pankod/refine-mui";
+import {
+	Box,
+	Dialog,
+	DialogContent,
+	DialogTitle,
+	TextField,
+} from "@pankod/refine-mui";
 import { useState } from "react";
 import Web3 from "web3";
 import confetti from "canvas-confetti";
@@ -13,7 +19,11 @@ const web3 = new Web3(
 
 const BlockchainTips = () => {
 	const translate = useTranslate();
-
+	const [transactionValue, setTransactionValue] = useState("");
+	// @ts-ignore
+	const handleTransactionValueChange = event => {
+		setTransactionValue(event.target.value);
+	};
 	const [open, setOpen] = useState<boolean>(false);
 	const [account, setAccount] = useState<string>("");
 
@@ -38,19 +48,22 @@ const BlockchainTips = () => {
 				params: [accounts[0], "latest"],
 			});
 			const wei = parseInt(result, 16);
-			const balance = wei / 10 ** 18;
+			const balance = wei;
+			// / 10 ** 18
 			console.log(balance + " ETH");
 		} catch (error) {
+			alert("Failed to connect!");
 			console.error("Failed to connect:", error);
 		}
 	};
 
 	const handleSend = async () => {
 		try {
+			const weiValue = web3.utils.toWei(transactionValue, "ether");
 			const transactionParam = {
 				to: "0x42e80C8f174483898270Bee2DA8077034DdC41dD",
 				from: account,
-				value: "0x38D7EA4C68000",
+				value: web3.utils.toHex(weiValue),
 			};
 			// @ts-ignore
 			const txhash = await ethereum.request({
@@ -60,8 +73,10 @@ const BlockchainTips = () => {
 			const confirmation = await checkTransactionConfirmation(txhash);
 			alert(confirmation);
 		} catch (error) {
+			alert("Failed to send!");
 			console.error("Failed to send:", error);
 		}
+
 		//! confetti
 		const count = 200;
 		const defaults = {
@@ -119,7 +134,6 @@ const BlockchainTips = () => {
 					})
 			);
 		};
-
 		return checkTransactionLoop();
 	};
 
@@ -148,11 +162,25 @@ const BlockchainTips = () => {
 									</button>
 								)}
 								{account && (
-									<button
-										className='bg-primary text-white rounded-lg py-1 px-3 font-bold'
-										onClick={handleSend}>
-										{translate("pages.BlockChainTip.Tip", "Tip 0.001 ETH")}
-									</button>
+									<Box className='flex flex-col'>
+										<div>
+											<TextField
+												className='mt-10'
+												id='transactionValue'
+												type='number'
+												color='info'
+												label='Value (ETH)'
+												variant='outlined'
+												value={transactionValue}
+												onChange={handleTransactionValueChange}
+											/>
+										</div>
+										<button
+											className='bg-primary mt-2 text-white rounded-lg py-1 px-3 font-bold'
+											onClick={handleSend}>
+											Tip {transactionValue} ETH
+										</button>
+									</Box>
 								)}
 							</>
 						)}
