@@ -24,8 +24,11 @@
 
 
 SELECT *
-from TopsMan
+from BottomsMan
 
+SELECT
+    Brand.Brand, Size, HeightCM_min, HeightCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
+FROM BottomsMan INNER JOIN Brand ON Brand.Id = BottomsMan.BrandId
 SELECT
     Brand.Brand, Size, ChestCM_min, ChestCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
 FROM TopsMan INNER JOIN Brand ON Brand.Id = TopsMan.BrandId
