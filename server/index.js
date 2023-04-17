@@ -18,6 +18,7 @@ const {
 	feedbackCategory,
 	getGenderCount,
 } = require("./routes/Analitycs/ChartData");
+const { getTableData } = require("./routes/Analitycs/GetTableData");
 
 // MIDDLEWARE
 app.use(cors());
@@ -76,18 +77,23 @@ app.post("/Opinion", (req, res) => {
 	userComment(req, res, dbConfig);
 });
 
+//? CONVERSIONS
+app.get("/getTableData", (req, res) => {
+	getTableData(req, res, dbConfig);
+})
+
 app.listen(port, () => {
 	function hi() {
 		console.clear();
-		// 	console.log("   ______   ______  ________  ________  _______   _______  ");
-		// 	console.log("  /       /      |/        |/        |/        /         / ");
-		// 	console.log(" /$$$$$$  |$$$$$$/ $$$$$$$$/ $$$$$$$$/ $$$$$$$  |$$$$$$$  |");
-		// 	console.log(" $$ __$$/   $$ |      /$$/  $$ |__    $$ |__$$ |$$ |__$$ | ");
-		// 	console.log(" $$         $$ |     /$$/   $$    |   $$    $$< $$    $$<  ");
-		// 	console.log("  $$$$$$ |  $$ |    /$$/    $$$$$/    $$$$$$$  |$$$$$$$  |");
-		// 	console.log(" /  __$$ | _$$ |_  /$$/____ $$ |_____ $$ |  $$ |$$ |  $$ | ");
-		// 	console.log("$$    $$/ / $$   |/$$      |$$       |$$ |  $$ |$$ |  $$ |");
-		// 	console.log("  $$$$$$/  $$$$$$/ $$$$$$$$/ $$$$$$$$/$$/   $$/ $$/   $$/ ");
+		console.log("   ______   ______  ________  ________  _______   _______  ");
+		console.log("  /       /      |/        |/        |/        /         / ");
+		console.log(" /$$$$$$  |$$$$$$/ $$$$$$$$/ $$$$$$$$/ $$$$$$$  |$$$$$$$  |");
+		console.log(" $$ __$$/   $$ |      /$$/  $$ |__    $$ |__$$ |$$ |__$$ | ");
+		console.log(" $$         $$ |     /$$/   $$    |   $$    $$< $$    $$<  ");
+		console.log("  $$$$$$ |  $$ |    /$$/    $$$$$/    $$$$$$$  |$$$$$$$  |");
+		console.log(" /  __$$ | _$$ |_  /$$/____ $$ |_____ $$ |  $$ |$$ |  $$ | ");
+		console.log("$$    $$/ / $$   |/$$      |$$       |$$ |  $$ |$$ |  $$ |");
+		console.log("  $$$$$$/  $$$$$$/ $$$$$$$$/ $$$$$$$$/$$/   $$/ $$/   $$/ ");
 	}
 	hi();
 	console.log(`  Running on http://localhost:${port}`);
