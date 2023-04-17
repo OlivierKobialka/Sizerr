@@ -35,8 +35,10 @@ type Float = number & { __float: never };
 
 const Convert = () => {
 	const translate = useTranslate();
-	const [data, setData] = useState<IProps[]>([]);
+	const [dataMale, setDataMale] = useState<IProps[]>([]);
+	const [dataFemale, setDataFemale] = useState<IProps[]>([]);
 	const [showTable, setShowTable] = useState(false);
+
 	// const []
 
 	const tableHeader_Shoes = [
@@ -65,7 +67,7 @@ const Convert = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await axios.get('http://localhost:8080/getTableData');
-			setData(result.data.tableData);
+			setDataMale(result.data.tableData);
 			setShowTable(true);
 			// handleScrollToTable();
 		};
@@ -149,7 +151,7 @@ const Convert = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{data.map((item, index) => (
+							{dataMale.map((item, index) => (
 								<TableRow key={index}>
 									<TableCell>{item.Brand}</TableCell>
 									<TableCell>{item.SizeEU}</TableCell>
