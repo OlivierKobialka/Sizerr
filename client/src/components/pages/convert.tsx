@@ -17,7 +17,8 @@ import React, { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import axios from "axios";
 import { useTranslate } from "@pankod/refine-core";
-import { Switch } from '@headlessui/react'
+import { Switch } from '@headlessui/react';
+import { TbMan, TbWoman } from "react-icons/tb";
 
 interface IProps {
 	Brand: string;
@@ -101,18 +102,21 @@ const Convert = () => {
 						<button className="bg-primary text-white px-2 py-1 font-bold" value={item.value} key={index}>{item.text}</button>
 					))}
 				</ButtonGroup>
-				<Switch
-					checked={enabled}
-					onChange={setEnabled}
-					className={`${enabled ? 'bg-primary' : 'bg-gray-200'
-						} relative inline-flex h-6 w-11 items-center rounded-full`}
-				>
-					{/* <span className="sr-only">Enable notifications</span> */}
-					<span
-						className={`${enabled ? 'translate-x-6' : 'translate-x-1'
-							} inline-block h-4 w-4 transform rounded-full bg-white transition`}
-					/>
-				</Switch>
+				<Box className="flex justify-around">
+					<TbWoman />
+					<Switch
+						checked={enabled}
+						onChange={setEnabled}
+						className={`${enabled ? 'bg-primary' : 'bg-pink-500'
+							} relative inline-flex h-6 w-11 items-center rounded-full duration-300`}
+					>
+						<span
+							className={`${enabled ? 'translate-x-6' : 'translate-x-1'
+								} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+						/>
+					</Switch>
+					<TbMan />
+				</Box>
 			</Box>
 			<Box
 				ref={tableRef}
