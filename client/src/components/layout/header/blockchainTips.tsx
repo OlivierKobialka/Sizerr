@@ -19,7 +19,7 @@ const web3 = new Web3(
 
 const BlockchainTips = () => {
 	const translate = useTranslate();
-	const [transactionValue, setTransactionValue] = useState("");
+	const [transactionValue, setTransactionValue] = useState<Number>(0);
 	// @ts-ignore
 	const handleTransactionValueChange = event => {
 		setTransactionValue(event.target.value);
@@ -138,7 +138,7 @@ const BlockchainTips = () => {
 	};
 
 	return (
-		<Box className='mr-5'>
+		<Box className='mr-5 max-w'>
 			<button onClick={handleOpen} className=''>
 				<GiReceiveMoney />
 			</button>
@@ -178,8 +178,8 @@ const BlockchainTips = () => {
 										<button
 											className={`bg-primary mt-2 text-white rounded-lg py-1 px-3 font-bold ${
 												transactionValue === "" ||
-												transactionValue === "0" ||
-												typeof transactionValue !== "number" ||
+												transactionValue <= 0 ||
+												typeof transactionValue === "undefined" ||
 												transactionValue === null
 													? "opacity-50 cursor-not-allowed"
 													: ""
@@ -187,9 +187,9 @@ const BlockchainTips = () => {
 											onClick={handleSend}
 											disabled={
 												transactionValue === "" ||
-												transactionValue === "0" ||
 												typeof transactionValue !== "number" ||
-												transactionValue === null
+												transactionValue === null ||
+												transactionValue <= 0
 											}>
 											Tip {transactionValue} ETH
 										</button>
