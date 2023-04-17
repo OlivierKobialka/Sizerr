@@ -7,8 +7,15 @@ async function getTableData(req, res, dbConfig) {
         const pool = await sql.connect(dbConfig);
 
         let result;
+
+        result = await pool.request().query(`SELECT Brand.Brand, SizeCM, SizeIN, SizeEU, SizeUK, SizeUS
+				FROM ShoesMan 
+				INNER JOIN Brand ON Brand.Id = ShoesMan.BrandID
+`);
+
+        res.status(200).json({ tableData: result.recordset });
     } catch (error) {
-        console.log(`${error}`);
+        res.status(500).send(`${error}`);
     }
 }
 

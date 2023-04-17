@@ -36,7 +36,9 @@ SELECT
 FROM TopsMan INNER JOIN Brand ON Brand.Id = TopsMan.BrandId
 WHERE ChestCM_min <= 130 AND ChestCM_max >= 130 AND WaistCM_min <= 110 AND WaistCM_max >= 110 AND HipCM_min <= 126 AND HipCM_max >= 126
 
-select  * from TopsMan where ChestCM_min <= 130 AND ChestCM_max >= 130
+select *
+from TopsMan
+where ChestCM_min <= 130 AND ChestCM_max >= 130
 
 
 
@@ -54,7 +56,9 @@ select  * from TopsMan where ChestCM_min <= 130 AND ChestCM_max >= 130
 
 
 
-
+SELECT Brand.Brand, SizeCM, SizeIN, SizeEU, SizeUK, SizeUS
+FROM ShoesMan
+    INNER JOIN Brand ON Brand.Id = ShoesMan.BrandID
 
 
 

@@ -10,13 +10,26 @@ import {
 	TableRow,
 	Typography,
 } from "@pankod/refine-mui";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
+import axios from "axios";
 import { useTranslate } from "@pankod/refine-core";
+
+interface IProps {
+	Brand: string;
+	SizeEU: number & Float;
+	SizeUS: number & Float;
+	SizeUK: number & Float;
+	SizeCM: number & Float;
+	SizeIN: number & Float;
+}
+type Float = number & { __float: never };
+
 
 const Convert = () => {
 	const translate = useTranslate();
-	const [showTable, setShowTable] = useState(true);
+	const [data, setData] = useState<IProps[]>([]);
+	const [showTable, setShowTable] = useState(false);
 	const tableHeader = [
 		"Brand",
 		"Size EU",
@@ -32,6 +45,16 @@ const Convert = () => {
 			tableRef.current.scrollIntoView({ behavior: "smooth" });
 		}
 	};
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await axios.get('http://localhost:8080/getTableData');
+			setData(result.data);
+			setShowTable(true);
+			handleScrollToTable();
+		};
+		fetchData();
+	}, []);
 
 	return (
 		<Box className='bg-white rounded-2xl p-2'>
@@ -77,16 +100,16 @@ const Convert = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{/* {fetchedShoesSizes.map((item, index) => (
-							<TableRow key={index}>
-								<TableCell>{item.Brand}</TableCell>
-								<TableCell>{item.SizeEU}</TableCell>
-								<TableCell>{item.SizeUS}</TableCell>
-								<TableCell>{item.SizeUK}</TableCell>
-								<TableCell>{item.SizeCM}</TableCell>
-								<TableCell>{item.SizeIN}</TableCell>
-							</TableRow>
-						))} */}
+							{/* {data.map((item, index) => (
+								<TableRow key={index}>
+									<TableCell>{item.Brand}</TableCell>
+									<TableCell>{item.SizeEU}</TableCell>
+									<TableCell>{item.SizeUS}</TableCell>
+									<TableCell>{item.SizeUK}</TableCell>
+									<TableCell>{item.SizeCM}</TableCell>
+									<TableCell>{item.SizeIN}</TableCell>
+								</TableRow>
+							))} */}
 						</TableBody>
 					</Table>
 				</TableContainer>
