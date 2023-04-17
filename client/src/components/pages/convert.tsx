@@ -35,9 +35,9 @@ type Float = number & { __float: never };
 
 const Convert = () => {
 	const translate = useTranslate();
-	const [dataMale, setDataMale] = useState<IProps[]>([]);
-	const [dataFemale, setDataFemale] = useState<IProps[]>([]);
-	const [gender, setGender] = useState<string>("")
+	const [dataMale, setDataMale] = useState<IProps[]>([]);//!
+	const [dataFemale, setDataFemale] = useState<IProps[]>([]);//!
+	const [gender, setGender] = useState<string>("female");//!
 	const [showTable, setShowTable] = useState(false);
 
 	// const []
@@ -57,6 +57,16 @@ const Convert = () => {
 		"Hips",
 		"Waist",
 	];
+	// const tableBody_Shoes = (
+	// 	<TableRow key={index}>
+	// 		<TableCell>{item.Brand}</TableCell>
+	// 		<TableCell>{item.SizeEU}</TableCell>
+	// 		<TableCell>{item.SizeUS}</TableCell>
+	// 		<TableCell>{item.SizeUK}</TableCell>
+	// 		<TableCell>{item.SizeCM}</TableCell>
+	// 		<TableCell>{item.SizeIN}</TableCell>
+	// 	</TableRow>
+	// );
 	const tableRef = useRef<HTMLTableElement>(null);
 
 	// const handleScrollToTable = () => {
