@@ -18,7 +18,7 @@ const {
 	feedbackCategory,
 	getGenderCount,
 } = require("./routes/Analitycs/ChartData");
-const { getTableData, getTableDataCustom } = require("./routes/Analitycs/GetTableData");
+const { getTableData, getTableDataMale, getTableDataCustom } = require("./routes/Analitycs/GetTableData");
 
 // MIDDLEWARE
 app.use(cors());
@@ -81,6 +81,10 @@ app.post("/Opinion", (req, res) => {
 app.get("/getTableData", (req, res) => {
 	getTableData(req, res, dbConfig);
 })
+app.get("/getTableDataMale", (req, res) => {
+	getTableDataMale(req, res, dbConfig);
+})
+
 app.get("/getTableData_C", (req, res) => {
 	getTableDataCustom(req, res, dbConfig);
 })

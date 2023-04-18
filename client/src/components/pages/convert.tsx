@@ -36,7 +36,7 @@ type Float = number & { __float: never };
 
 const Convert = () => {
 	const translate = useTranslate();
-	const [dataMale, Fem] = useState<IProps[]>([]);//!
+	const [dataMale, setDataMale] = useState<IProps[]>([]);//!
 	const [dataFemale, setDataFemale] = useState<IProps[]>([]);//!
 	const [gender, setGender] = useState<string>("Female");//!
 	const [tableType, setTableType] = useState<string>("Shoes");
@@ -79,8 +79,12 @@ const Convert = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const result = await axios.get('http://localhost:8080/getTableData');
-			setDataFemale(result.data.tableData);
+			const resultFemale = await axios.get('http://localhost:8080/getTableData');
+			setDataFemale(resultFemale.data.tableDataFemale);
+
+			const resultMale = await axios.get('http://localhost:8080/getTableDataMale');
+			setDataMale(resultMale.data.tableDataMale); 
+
 			setShowTable(true);
 		};
 		fetchData();
