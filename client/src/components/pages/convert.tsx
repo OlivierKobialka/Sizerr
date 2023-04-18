@@ -36,9 +36,9 @@ type Float = number & { __float: never };
 
 const Convert = () => {
 	const translate = useTranslate();
-	const [dataMale, setDataMale] = useState<IProps[]>([]);//!
+	const [dataMale, Fem] = useState<IProps[]>([]);//!
 	const [dataFemale, setDataFemale] = useState<IProps[]>([]);//!
-	const [gender, setGender] = useState<string>("male");//!
+	const [gender, setGender] = useState<string>("Female");//!
 	const [tableType, setTableType] = useState<string>("Shoes");
 	const [showTable, setShowTable] = useState(false);
 
@@ -80,11 +80,12 @@ const Convert = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await axios.get('http://localhost:8080/getTableData');
-			setDataMale(result.data.tableData);
+			setDataFemale(result.data.tableData);
 			setShowTable(true);
 		};
 		fetchData();
 	}, []);
+
 	const tableTypeButton = [
 		{
 			text: "Shoes",
@@ -103,6 +104,24 @@ const Convert = () => {
 	//! SWITCH
 	const [genderSwitch, setGenderSwitch] = useState(false)
 	const [unit, setUnit] = useState(false)
+	console.log(genderSwitch);
+
+	// const genderChange = async () => {
+	// 	if (genderSwitch === true) {
+	// 		try {
+	// 			const response = await axios.get("http://localhost:8080/getTableData_C", {
+	// 				params: {
+	// 					gender: "Male"
+	// 				}
+	// 			})
+
+	// 			Fem(response.data.tableDataCustom);
+	// 		} catch (error) {
+	// 			console.log(error);
+	// 		}
+	// 	}
+	// }
+
 
 	return (
 		<Box className='bg-white rounded-2xl p-2'>
@@ -121,23 +140,24 @@ const Convert = () => {
 						<button className="bg-primary text-white px-2 py-1 font-bold" value={item.value} key={index}>{item.text}</button>
 					))}
 				</ButtonGroup>{/* SWITCH */}
-				{tableType === "Shoes" ? (<Box className="flex justify-around items-center">
-					<Typography>CM</Typography>
-					<Switch
-						checked={unit}
-						onChange={setUnit}
-						className={`${unit ? 'bg-primary' : 'bg-pink-500'
-							} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
-					>
-						<span
-							className={`${unit ? 'translate-x-6' : 'translate-x-1'
-								} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
-						/>
-					</Switch>
-					<Typography>
-						INCH
-					</Typography>
-				</Box>) : ""}
+				{tableType !== "Shoes" ? (
+					<Box className="flex justify-around items-center">
+						<Typography>CM</Typography>
+						<Switch
+							checked={unit}
+							onChange={setUnit}
+							className={`${unit ? 'bg-primary' : 'bg-pink-500'
+								} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
+						>
+							<span
+								className={`${unit ? 'translate-x-6' : 'translate-x-1'
+									} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+							/>
+						</Switch>
+						<Typography>
+							INCH
+						</Typography>
+					</Box>) : ""}
 
 				{/* ! */}
 				<Box className="flex justify-around items-center">
@@ -185,20 +205,19 @@ const Convert = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{/* {dataMale.map((item, index) => (
-								<TableRow key={index}>
-									<TableCell>{item.Brand}</TableCell>
-									<TableCell>{item.SizeEU}</TableCell>
-									<TableCell>{item.SizeUS}</TableCell>
-									<TableCell>{item.SizeUK}</TableCell>
-									<TableCell>{item.SizeCM}</TableCell>
-									<TableCell>{item.SizeIN}</TableCell>
-								</TableRow>
+							{/* {{ genderSwitch === false ? dataFemale : dataMale}.map((item, index) => (
+							<TableRow key={index}>
+								<TableCell>{item.Brand}</TableCell>
+								<TableCell>{item.SizeEU}</TableCell>
+								<TableCell>{item.SizeUS}</TableCell>
+								<TableCell>{item.SizeUK}</TableCell>
+								<TableCell>{item.SizeCM}</TableCell>
+								<TableCell>{item.SizeIN}</TableCell>
+							</TableRow>
 							))} */}
 
-							{gender === "male" ? (
-
-								dataMale.map((item, index) => (
+							{genderSwitch === false ? (
+								dataFemale.map((item, index) => (
 									<TableRow key={index}>
 										<TableCell>{item.Brand}</TableCell>
 										<TableCell>{item.SizeEU}</TableCell>
@@ -209,7 +228,7 @@ const Convert = () => {
 									</TableRow>
 								))
 							) : (
-								dataFemale.map((item, index) => (
+								dataMale.map((item, index) => (
 									<TableRow key={index}>
 										<TableCell>{item.Brand}</TableCell>
 										<TableCell>{item.SizeEU}</TableCell>

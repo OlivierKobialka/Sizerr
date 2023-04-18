@@ -81,6 +81,9 @@ app.post("/Opinion", (req, res) => {
 app.get("/getTableData", (req, res) => {
 	getTableData(req, res, dbConfig);
 })
+app.get("/getTableData_C", (req, res) => {
+	getTableDataCustom(req, res, dbConfig);
+})
 
 app.listen(port, () => {
 	function hi() {

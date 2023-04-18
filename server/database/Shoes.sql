@@ -24,7 +24,7 @@
 
 
 SELECT *
-from BottomsMan
+from ShoesWoman
 
 SELECT
     Brand.Brand, Size, HeightCM_min, HeightCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
