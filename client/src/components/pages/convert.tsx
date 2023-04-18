@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
 	Box,
 	FormControlLabel,
@@ -56,32 +55,15 @@ const Convert = () => {
 		"Hips",
 		"Waist",
 	];
-	// const tableBody_Shoes = (
-	// 	<TableRow key={index}>
-	// 		<TableCell>{item.Brand}</TableCell>
-	// 		<TableCell>{item.SizeEU}</TableCell>
-	// 		<TableCell>{item.SizeUS}</TableCell>
-	// 		<TableCell>{item.SizeUK}</TableCell>
-	// 		<TableCell>{item.SizeCM}</TableCell>
-	// 		<TableCell>{item.SizeIN}</TableCell>
-	// 	</TableRow>
-	// );
 	const tableRef = useRef<HTMLTableElement>(null);
-
-	// const handleScrollToTable = () => {
-	// 	if (tableRef.current) {
-	// 		tableRef.current.scrollIntoView({ behavior: "smooth" });
-	// 	}
-	// };
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const resultFemale = await axios.get('http://localhost:8080/getTableData');
-			setDataFemale(resultFemale.data.tableDataFemale);
+			const resultFemaleShoes = await axios.get('http://localhost:8080/getTableData');
+			setDataFemale(resultFemaleShoes.data.tableDataFemale);
 
-			const resultMale = await axios.get('http://localhost:8080/getTableDataMale');
-			setDataMale(resultMale.data.tableDataMale);
-
+			const resultMaleShoes = await axios.get('http://localhost:8080/getTableDataMale');
+			setDataMale(resultMaleShoes.data.tableDataMale);
 			setShowTable(true);
 		};
 		fetchData();
@@ -105,22 +87,6 @@ const Convert = () => {
 	//! SWITCH
 	const [genderSwitch, setGenderSwitch] = useState(false)
 	const [unit, setUnit] = useState(false)
-
-	// const genderChange = async () => {
-	// 	if (genderSwitch === true) {
-	// 		try {
-	// 			const response = await axios.get("http://localhost:8080/getTableData_C", {
-	// 				params: {
-	// 					gender: "Male"
-	// 				}
-	// 			})
-
-	// 			Fem(response.data.tableDataCustom);
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-	// 	}
-	// }
 	console.log(tableType);
 	const [selectedButton, setSelectedButton] = useState<string>("Shoes");
 
@@ -224,17 +190,6 @@ const Convert = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{/* {{ genderSwitch === false ? dataFemale : dataMale}.map((item, index) => (
-							<TableRow key={index}>
-								<TableCell>{item.Brand}</TableCell>
-								<TableCell>{item.SizeEU}</TableCell>
-								<TableCell>{item.SizeUS}</TableCell>
-								<TableCell>{item.SizeUK}</TableCell>
-								<TableCell>{item.SizeCM}</TableCell>
-								<TableCell>{item.SizeIN}</TableCell>
-							</TableRow>
-							))} */}
-
 							{genderSwitch === false ? (
 								dataFemale.map((item, index) => (
 									<TableRow key={index}>
