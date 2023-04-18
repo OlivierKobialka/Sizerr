@@ -68,6 +68,11 @@
 				"Size UK": "Rozmiar UK",
 				"Size CM": "Rozmiar CM",
 				"Size INCH": "Rozmiar INCH"
+			},
+			"Type": {
+				"Shoes": "Buty",
+				"Tops": "Góna część",
+				"Bottoms": "Dolna część"
 			}
 		},
 		"Tabs": {

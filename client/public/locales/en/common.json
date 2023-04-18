@@ -68,6 +68,11 @@
 				"Size UK": "Size UK",
 				"Size CM": "Size CM",
 				"Size INCH": "Size INCH"
+			},
+			"Type": {
+				"Shoes": "Shoes",
+				"Tops": "Tops",
+				"Bottoms": "Bottoms"
 			}
 		},
 		"Tabs": {

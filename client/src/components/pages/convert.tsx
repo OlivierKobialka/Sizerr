@@ -112,7 +112,7 @@ const Convert = () => {
 								: "bg-gray-200 rounded-3xl font-bold text-black"
 								} py-1 px-4 mx-1`}
 							onClick={() => handleButtonClick(item.value)}>
-							{item.text}
+							{translate(`pages.Table.Type.${item.text}`, `${item.text}`)}
 						</button>
 					))}
 				</Box>
@@ -138,7 +138,7 @@ const Convert = () => {
 				) : ""}
 				{/* ! */}
 				<Box className="flex justify-around items-center">
-					<Tooltip title="Female" placement="top">
+					<Tooltip title={translate("pages.Inputs.Genders.Female", "Female")} placement="top">
 						<IconButton>
 							<TbWoman className="w-6 h-auto" />
 						</IconButton>
@@ -154,7 +154,7 @@ const Convert = () => {
 								} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
 						/>
 					</Switch>
-					<Tooltip title="Male" placement="top">
+					<Tooltip title={translate("pages.Inputs.Genders.Male", "Male")} placement="top">
 						<IconButton>
 							<TbMan className="w-6 h-auto" />
 						</IconButton>
