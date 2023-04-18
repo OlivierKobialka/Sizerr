@@ -1,11 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
 	Box,
-	Button,
-	ButtonGroup,
 	FormControlLabel,
 	IconButton,
-	// Switch,
 	Table,
 	TableBody,
 	TableCell,
@@ -83,7 +80,7 @@ const Convert = () => {
 			setDataFemale(resultFemale.data.tableDataFemale);
 
 			const resultMale = await axios.get('http://localhost:8080/getTableDataMale');
-			setDataMale(resultMale.data.tableDataMale); 
+			setDataMale(resultMale.data.tableDataMale);
 
 			setShowTable(true);
 		};
@@ -108,7 +105,6 @@ const Convert = () => {
 	//! SWITCH
 	const [genderSwitch, setGenderSwitch] = useState(false)
 	const [unit, setUnit] = useState(false)
-	console.log(genderSwitch);
 
 	// const genderChange = async () => {
 	// 	if (genderSwitch === true) {
@@ -125,7 +121,14 @@ const Convert = () => {
 	// 		}
 	// 	}
 	// }
+	console.log(tableType);
+	const [selectedButton, setSelectedButton] = useState<string>("Shoes");
 
+	const handleButtonClick = (button: string) => {
+		setSelectedButton(button === selectedButton ? selectedButton : button);
+
+		setTableType(button);
+	};
 
 	return (
 		<Box className='bg-white rounded-2xl p-2'>
@@ -133,17 +136,21 @@ const Convert = () => {
 			<Typography fontSize={28} fontWeight={700}>
 				Table Shoes
 			</Typography>
-
 			<Box className="flex justify-between">
-				<ButtonGroup
-					className='rounded-xl'
-					variant='contained'
-					color='info'
-					aria-label='outlined primary button group'>
+				<Box className="flex justify-between">
 					{tableTypeButton.map((item, index) => (
-						<button className="bg-primary text-white px-2 py-1 font-bold" value={item.value} key={index}>{item.text}</button>
+						<button
+							type='button'
+							className={`${selectedButton === item.value
+								? "bg-primary font-bold text-white rounded-3xl"
+								: "bg-gray-200 rounded-3xl font-bold text-black"
+								} py-1 px-4 mx-1`}
+							onClick={() => handleButtonClick(item.value)}>
+							{item.text}
+						</button>
 					))}
-				</ButtonGroup>{/* SWITCH */}
+				</Box>
+				{/* SWITCH */}
 				{tableType !== "Shoes" ? (
 					<Box className="flex justify-around items-center">
 						<Typography>CM</Typography>
@@ -161,8 +168,8 @@ const Convert = () => {
 						<Typography>
 							INCH
 						</Typography>
-					</Box>) : ""}
-
+					</Box>
+				) : ""}
 				{/* ! */}
 				<Box className="flex justify-around items-center">
 					<Tooltip title="Female" placement="top">
@@ -201,11 +208,19 @@ const Convert = () => {
 					<Table>
 						<TableHead>
 							<TableRow>
-								{tableHeader_Shoes.map((item, index) => (
-									<TableCell key={index}>
-										{translate(`pages.Table.Headers.${item}`, item)}
-									</TableCell>
-								))}
+								{tableType === "Shoes" ?
+									tableHeader_Shoes.map((item, index) => (
+										<TableCell key={index}>
+											{translate(`pages.Table.Headers.${item}`, item)}
+										</TableCell>
+									))
+									:
+									tableHeader_Wear.map((item, index) => (
+										<TableCell key={index}>
+											{translate(`pages.Table.Headers.${item}`, item)}
+										</TableCell>
+									))
+								}
 							</TableRow>
 						</TableHead>
 						<TableBody>
