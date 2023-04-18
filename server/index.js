@@ -18,7 +18,7 @@ const {
 	feedbackCategory,
 	getGenderCount,
 } = require("./routes/Analitycs/ChartData");
-const { getTableData } = require("./routes/Analitycs/GetTableData");
+const { getTableData, getTableDataCustom } = require("./routes/Analitycs/GetTableData");
 
 // MIDDLEWARE
 app.use(cors());

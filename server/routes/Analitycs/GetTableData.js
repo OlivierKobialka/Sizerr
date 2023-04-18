@@ -6,6 +6,24 @@ async function getTableData(req, res, dbConfig) {
     try {
         const pool = await sql.connect(dbConfig);
 
+
+        let result = await pool.request().query(`SELECT Brand.Brand, SizeCM, SizeIN, SizeEU, SizeUK, SizeUS
+				FROM ShoesMan 
+				INNER JOIN Brand ON Brand.Id = ShoesMan.BrandID
+`);
+
+        res.status(200).json({ tableData: result.recordset });
+    } catch (error) {
+        res.status(500).send(`${error}`);
+    }
+}
+
+async function getTableDataCustom(req, res, dbConfig) {
+    const { tableCategory } = req.query;
+
+    try {
+        const pool = await sql.connect(dbConfig);
+
         let result;
         if (unit === "cm") {
             if (tableCategory === "shoes") {
@@ -48,10 +66,9 @@ FROM BottomsMan INNER JOIN Brand ON Brand.Id = BottomsMan.BrandId
         }
 
 
-        res.status(200).json({ tableData: result.recordset });
+        res.status(200).json({ tableDataCustom: result.recordset });
     } catch (error) {
         res.status(500).send(`${error}`);
     }
 }
-
-module.exports = { getTableData };
+module.exports = { getTableData, getTableDataCustom };

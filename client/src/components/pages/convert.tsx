@@ -21,6 +21,7 @@ import axios from "axios";
 import { useTranslate } from "@pankod/refine-core";
 import { Switch } from '@headlessui/react';
 import { TbMan, TbWoman } from "react-icons/tb";
+import ScrollTop from "./ScrollTop";
 
 interface IProps {
 	Brand: string;
@@ -37,7 +38,8 @@ const Convert = () => {
 	const translate = useTranslate();
 	const [dataMale, setDataMale] = useState<IProps[]>([]);//!
 	const [dataFemale, setDataFemale] = useState<IProps[]>([]);//!
-	const [gender, setGender] = useState<string>("female");//!
+	const [gender, setGender] = useState<string>("male");//!
+	const [tableType, setTableType] = useState<string>("Shoes");
 	const [showTable, setShowTable] = useState(false);
 
 	// const []
@@ -80,7 +82,6 @@ const Convert = () => {
 			const result = await axios.get('http://localhost:8080/getTableData');
 			setDataMale(result.data.tableData);
 			setShowTable(true);
-			// handleScrollToTable();
 		};
 		fetchData();
 	}, []);
@@ -105,9 +106,11 @@ const Convert = () => {
 
 	return (
 		<Box className='bg-white rounded-2xl p-2'>
+			<ScrollTop />
 			<Typography fontSize={28} fontWeight={700}>
 				Table Shoes
 			</Typography>
+
 			<Box className="flex justify-between">
 				<ButtonGroup
 					className='rounded-xl'
@@ -117,8 +120,8 @@ const Convert = () => {
 					{tableTypeButton.map((item, index) => (
 						<button className="bg-primary text-white px-2 py-1 font-bold" value={item.value} key={index}>{item.text}</button>
 					))}
-				</ButtonGroup>
-				<Box className="flex justify-around items-center">
+				</ButtonGroup>{/* SWITCH */}
+				{tableType === "Shoes" ? (<Box className="flex justify-around items-center">
 					<Typography>CM</Typography>
 					<Switch
 						checked={unit}
@@ -134,7 +137,8 @@ const Convert = () => {
 					<Typography>
 						INCH
 					</Typography>
-				</Box>
+				</Box>) : ""}
+
 				{/* ! */}
 				<Box className="flex justify-around items-center">
 					<Tooltip title="Female" placement="top">
