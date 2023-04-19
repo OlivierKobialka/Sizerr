@@ -41,9 +41,8 @@ interface ITops {
 
 const Convert = () => {
 	const translate = useTranslate();
-	const [dataMaleShoes, setDataMaleShoes] = useState<IShoes[]>([]);//!
-	const [dataFemaleShoes, setDataFemaleShoes] = useState<IShoes[]>([]);//!
-	// const [gender, setGender] = useState<string>("Female");//!
+	const [dataMaleShoes, setDataMaleShoes] = useState<IShoes[]>([]);
+	const [dataFemaleShoes, setDataFemaleShoes] = useState<IShoes[]>([]);
 	const [tableType, setTableType] = useState<string>("Shoes");
 	const [showTable, setShowTable] = useState(false);
 
@@ -112,7 +111,6 @@ const Convert = () => {
 		setSelectedButton(button === selectedButton ? selectedButton : button);
 		setTableType(button);
 
-		// let resultMale;
 		if (button === "Tops") {
 			let resultMale = await axios.get('http://localhost:8080/getTableData_C', {
 				params: {
@@ -211,7 +209,6 @@ const Convert = () => {
 						</button>
 					))}
 				</Box>
-				{/* SWITCH */}
 				{tableType !== "Shoes" ? (
 					<Box className="flex justify-around items-center">
 						<Typography>CM</Typography>
@@ -231,7 +228,6 @@ const Convert = () => {
 						</Typography>
 					</Box>
 				) : ""}
-				{/* ! */}
 				<Box className="flex justify-around items-center">
 					<Tooltip title={translate("pages.Inputs.Genders.Female", "Female")} placement="top">
 						<IconButton>
