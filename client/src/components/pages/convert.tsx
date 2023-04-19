@@ -142,6 +142,53 @@ const Convert = () => {
 		}
 	};
 
+	let tableBody;
+	console.log(genderSwitch);
+
+	let items
+	switch (tableType) {
+		case 'Shoes':
+			items = genderSwitch ? dataMaleShoes : dataFemaleShoes;
+
+			tableBody = items.map((item, index) => (
+				<TableRow key={index}>
+					<TableCell>{item.Brand}</TableCell>
+					<TableCell>{item.SizeEU}</TableCell>
+					<TableCell>{item.SizeUS}</TableCell>
+					<TableCell>{item.SizeUK}</TableCell>
+					<TableCell>{item.SizeCM}</TableCell>
+					<TableCell>{item.SizeIN}</TableCell>
+				</TableRow>
+			));
+			break;
+		case 'Bottoms':
+			items = genderSwitch ? dataMaleBottoms : dataFemaleBottoms;
+
+			tableBody = items.map((item, index) => (
+				<TableRow key={index}>
+					<TableCell>{item.Brand}</TableCell>
+					<TableCell>{item.Size}</TableCell>
+					<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
+					<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
+					<TableCell>{item.HipsCM_min}-{item.HipsCM_max}</TableCell>
+				</TableRow>
+			));
+			break;
+		default:
+			items = genderSwitch ? dataMaleTops : dataFemaleTops;
+
+			tableBody = items.map((item, index) => (
+				<TableRow key={index}>
+					<TableCell>{item.Brand}</TableCell>
+					<TableCell>{item.Size}</TableCell>
+					<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
+					<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
+					<TableCell>{item.HipsCM_min}-{item.HipsCM_max}</TableCell>
+				</TableRow>
+			))
+
+	}
+
 	return (
 		<Box className='bg-white rounded-2xl p-2'>
 			<ScrollTop />
@@ -236,41 +283,7 @@ const Convert = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{genderSwitch === false ? (
-								tableType === "Shoes" ? (
-									dataFemaleShoes.map((item, index) => (
-										<TableRow key={index}>
-											<TableCell>{item.Brand}</TableCell>
-											<TableCell>{item.SizeEU}</TableCell>
-											<TableCell>{item.SizeUS}</TableCell>
-											<TableCell>{item.SizeUK}</TableCell>
-											<TableCell>{item.SizeCM}</TableCell>
-											<TableCell>{item.SizeIN}</TableCell>
-										</TableRow>
-									))) : (
-									dataFemaleTops.map((item, index) => (
-										<TableRow key={index}>
-											<TableCell>{item.Brand}</TableCell>
-											<TableCell>{item.Size}</TableCell>
-											<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
-											<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
-											<TableCell>{item.HipsCM_min}-{item.HipsCM_max}</TableCell>
-										</TableRow>
-									)))
-							) : (
-								dataMaleShoes.map((item, index) => (
-									<TableRow key={index}>
-										<TableCell>{item.Brand}</TableCell>
-										<TableCell>{item.SizeEU}</TableCell>
-										<TableCell>{item.SizeUS}</TableCell>
-										<TableCell>{item.SizeUK}</TableCell>
-										<TableCell>{item.SizeCM}</TableCell>
-										<TableCell>{item.SizeIN}</TableCell>
-									</TableRow>
-								))
-							)}
-
-
+							{tableBody}
 						</TableBody>
 					</Table>
 				</TableContainer>
