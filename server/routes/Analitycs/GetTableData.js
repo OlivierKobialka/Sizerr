@@ -50,26 +50,39 @@ FROM TopsMan INNER JOIN Brand ON Brand.Id = TopsMan.BrandId`);
                 }
             } else {
                 if (unit === false) {
-
-                } else {
                     result = await pool.request().query(`SELECT
     Brand.Brand, Size, ChestCM_min, ChestCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
 FROM TopsWoman INNER JOIN Brand ON Brand.Id = TopsWoman.BrandId`);
-                }
-                result = await pool.request().query(`SELECT
+                } else {
+                    result = await pool.request().query(`SELECT
     Brand.Brand, Size, ChestIN_min, ChestIN_max, WaistIN_min, WaistIN_max, HipIN_min, HipIN_max
 FROM TopsWoman INNER JOIN Brand ON Brand.Id = TopsWoman.BrandId`);
+                }
+
             }
-            // 
         } else {
             if (gender === true) {
-                result = await pool.request().query(`SELECT
+                if (unit === false) {
+                    result = await pool.request().query(`SELECT
     Brand.Brand, Size, HeightCM_min, HeightCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
 FROM BottomsMan INNER JOIN Brand ON Brand.Id = BottomsMan.BrandId`)
+                } else {
+                    result = await pool.request().query(`SELECT
+    Brand.Brand, Size, HeightIN_min, HeightIN_max, WaistIN_min, WaistIN_max, HipIN_min, HipIN_max
+FROM BottomsMan INNER JOIN Brand ON Brand.Id = BottomsMan.BrandId`)
+                }
+
             } else {
-                result = await pool.request().query(`SELECT
+                if (unit === false) {
+                    result = await pool.request().query(`SELECT
     Brand.Brand, Size, HeightCM_min, HeightCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
 FROM BottomsWoman INNER JOIN Brand ON Brand.Id = BottomsWoman.BrandId`)
+                } else {
+                    result = await pool.request().query(`SELECT
+    Brand.Brand, Size, HeightIN_min, HeightIN_max, WaistIN_min, WaistIN_max, HipIN_min, HipIN_max
+FROM BottomsWoman INNER JOIN Brand ON Brand.Id = BottomsWoman.BrandId`)
+                }
+
             }
         }
 

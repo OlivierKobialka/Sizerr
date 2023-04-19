@@ -36,6 +36,12 @@ interface ITops {
 	WaistCM_max: number & Float;
 	HipCM_min: number & Float;
 	HipCM_max: number & Float;
+	ChestIN_min: number & Float;
+	ChestIN_max: number & Float;
+	WaistIN_min: number & Float;
+	WaistIN_max: number & Float;
+	HipIN_min: number & Float;
+	HipIN_max: number & Float;
 }
 
 
