@@ -81,7 +81,16 @@ const Convert = () => {
 			value: "Bottoms",
 		},
 	]
-
+	interface IdataFemaleTopsCM {
+		Brand: string;
+		Size: string;
+		ChestCM_min: string;
+		ChestCM_max: string;
+		WaistCM_min: string;
+		WaistCM_max: string;
+		HipsCM_min: string;
+		HipsCM_max: string;
+	}
 	//! SWITCH
 	const [genderSwitch, setGenderSwitch] = useState(false)
 	const [unit, setUnit] = useState(false)
@@ -89,7 +98,7 @@ const Convert = () => {
 	const [selectedButton, setSelectedButton] = useState<string>("Shoes");
 
 	const [dataMaleTops, setDataMaleTops] = useState([]);
-	const [dataFemaleTops, setDataFemaleTops] = useState([]);
+	const [dataFemaleTops, setDataFemaleTops] = useState<IdataFemaleTopsCM[]>([]);
 
 	const handleButtonClick = async (button: string) => {
 		setSelectedButton(button === selectedButton ? selectedButton : button);
@@ -212,16 +221,26 @@ const Convert = () => {
 						</TableHead>
 						<TableBody>
 							{genderSwitch === false ? (
-								dataFemaleShoes.map((item, index) => (
-									<TableRow key={index}>
-										<TableCell>{item.Brand}</TableCell>
-										<TableCell>{item.SizeEU}</TableCell>
-										<TableCell>{item.SizeUS}</TableCell>
-										<TableCell>{item.SizeUK}</TableCell>
-										<TableCell>{item.SizeCM}</TableCell>
-										<TableCell>{item.SizeIN}</TableCell>
-									</TableRow>
-								))
+								tableType === "Shoes" ? (
+									dataFemaleShoes.map((item, index) => (
+										<TableRow key={index}>
+											<TableCell>{item.Brand}</TableCell>
+											<TableCell>{item.SizeEU}</TableCell>
+											<TableCell>{item.SizeUS}</TableCell>
+											<TableCell>{item.SizeUK}</TableCell>
+											<TableCell>{item.SizeCM}</TableCell>
+											<TableCell>{item.SizeIN}</TableCell>
+										</TableRow>
+									))) : (
+									dataFemaleTops.map((item, index) => (
+										<TableRow key={index}>
+											<TableCell>{item.Brand}</TableCell>
+											<TableCell>{item.Size}</TableCell>
+											<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
+											<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
+											<TableCell>{item.HipsCM_min}-{item.HipsCM_max}</TableCell>
+										</TableRow>
+									)))
 							) : (
 								dataMaleShoes.map((item, index) => (
 									<TableRow key={index}>
