@@ -1,6 +1,5 @@
 import {
 	Box,
-	FormControlLabel,
 	IconButton,
 	Table,
 	TableBody,
