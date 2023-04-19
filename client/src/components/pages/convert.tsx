@@ -99,6 +99,8 @@ const Convert = () => {
 
 	const [dataMaleTops, setDataMaleTops] = useState([]);
 	const [dataFemaleTops, setDataFemaleTops] = useState<IdataFemaleTopsCM[]>([]);
+	const [dataMaleBottoms, setDataMaleBottoms] = useState([]);
+	const [dataFemaleBottoms, setDataFemaleBottoms] = useState<IdataFemaleTopsCM[]>([]);
 
 	const handleButtonClick = async (button: string) => {
 		setSelectedButton(button === selectedButton ? selectedButton : button);
@@ -110,19 +112,33 @@ const Convert = () => {
 			let resultMale = await axios.get('http://localhost:8080/getTableData_C', {
 				params: {
 					tableType: tableType,
-					gender: genderSwitch
+					gender: true
 				}
 			});
 			let resultFemale = await axios.get('http://localhost:8080/getTableData_C', {
 				params: {
 					tableType: tableType,
-					gender: genderSwitch
+					gender: false
 				}
 			});
 			setDataFemaleTops(resultFemale.data.tableDataCustom);
-
-			// setDataMaleTops(resultMale.data.tableDataCustom);
 			setDataMaleTops(resultMale.data.tableDataCustom);
+		}
+		if (button === "Bottoms") {
+			let resultMale = await axios.get('http://localhost:8080/getTableData_C', {
+				params: {
+					tableType: tableType,
+					gender: true
+				}
+			});
+			let resultFemale = await axios.get('http://localhost:8080/getTableData_C', {
+				params: {
+					tableType: tableType,
+					gender: false
+				}
+			});
+			setDataFemaleBottoms(resultFemale.data.tableDataCustom);
+			setDataMaleBottoms(resultMale.data.tableDataCustom);
 		}
 	};
 
