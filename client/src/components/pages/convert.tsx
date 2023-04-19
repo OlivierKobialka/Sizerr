@@ -32,13 +32,11 @@ type Float = number & { __float: never };
 
 const Convert = () => {
 	const translate = useTranslate();
-	const [dataMale, setDataMale] = useState<IProps[]>([]);//!
-	const [dataFemale, setDataFemale] = useState<IProps[]>([]);//!
-	const [gender, setGender] = useState<string>("Female");//!
+	const [dataMaleShoes, setDataMaleShoes] = useState<IProps[]>([]);//!
+	const [dataFemaleShoes, setDataFemaleShoes] = useState<IProps[]>([]);//!
+	// const [gender, setGender] = useState<string>("Female");//!
 	const [tableType, setTableType] = useState<string>("Shoes");
 	const [showTable, setShowTable] = useState(false);
-
-	// const []
 
 	const tableHeader_Shoes = [
 		"Brand",
@@ -60,10 +58,10 @@ const Convert = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const resultFemaleShoes = await axios.get('http://localhost:8080/getTableData');
-			setDataFemale(resultFemaleShoes.data.tableDataFemale);
+			setDataFemaleShoes(resultFemaleShoes.data.tableDataFemale);
 
 			const resultMaleShoes = await axios.get('http://localhost:8080/getTableDataMale');
-			setDataMale(resultMaleShoes.data.tableDataMale);
+			setDataMaleShoes(resultMaleShoes.data.tableDataMale);
 			setShowTable(true);
 		};
 		fetchData();
@@ -90,16 +88,39 @@ const Convert = () => {
 	console.log(tableType);
 	const [selectedButton, setSelectedButton] = useState<string>("Shoes");
 
-	const handleButtonClick = (button: string) => {
+	const [dataMaleTops, setDataMaleTops] = useState([]);
+	const [dataFemaleTops, setDataFemaleTops] = useState([]);
+
+	const handleButtonClick = async (button: string) => {
 		setSelectedButton(button === selectedButton ? selectedButton : button);
 
 		setTableType(button);
+
+		// let resultMale;
+		if (button === "Tops") {
+			let resultMale = await axios.get('http://localhost:8080/getTableData_C', {
+				params: {
+					tableType: tableType,
+					gender: genderSwitch
+				}
+			});
+			let resultFemale = await axios.get('http://localhost:8080/getTableData_C', {
+				params: {
+					tableType: tableType,
+					gender: genderSwitch
+				}
+			});
+			setDataFemaleTops(resultFemale.data.tableDataCustom);
+
+			// setDataMaleTops(resultMale.data.tableDataCustom);
+			setDataMaleTops(resultMale.data.tableDataCustom);
+		}
 	};
 
 	return (
 		<Box className='bg-white rounded-2xl p-2'>
 			<ScrollTop />
-			<Typography fontSize={28} fontWeight={700}>
+			<Typography fontSize={28} fontWeight={700} className="mb-5">
 				Table Shoes
 			</Typography>
 			<Box className="flex justify-between">
@@ -191,7 +212,7 @@ const Convert = () => {
 						</TableHead>
 						<TableBody>
 							{genderSwitch === false ? (
-								dataFemale.map((item, index) => (
+								dataFemaleShoes.map((item, index) => (
 									<TableRow key={index}>
 										<TableCell>{item.Brand}</TableCell>
 										<TableCell>{item.SizeEU}</TableCell>
@@ -202,7 +223,7 @@ const Convert = () => {
 									</TableRow>
 								))
 							) : (
-								dataMale.map((item, index) => (
+								dataMaleShoes.map((item, index) => (
 									<TableRow key={index}>
 										<TableCell>{item.Brand}</TableCell>
 										<TableCell>{item.SizeEU}</TableCell>

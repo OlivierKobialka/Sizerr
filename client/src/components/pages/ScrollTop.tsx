@@ -8,7 +8,7 @@ const ScrollTop = () => {
     };
 
     return (
-        <button onClick={handleScroll} className='bg-primary rounded-full text-white p-2 fixed bottom-2 right-2'>
+        <button onClick={handleScroll} className='bg-primary rounded-full text-white p-2 fixed bottom-3 right-3'>
             <TbArrowBigUpLines />
         </button>
     )
