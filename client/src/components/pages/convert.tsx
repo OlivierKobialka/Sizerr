@@ -55,10 +55,16 @@ const Convert = () => {
 		"Size CM",
 		"Size INCH",
 	];
-	const tableHeader_Wear = [
+	const tableHeader_Tops = [
 		"Brand",
 		"Size",
 		"Chest",
+		"Waist",
+		"Hips",
+	];
+	const tableHeader_Bottom = [
+		"Brand",
+		"Size",
 		"Waist",
 		"Hips",
 	];
@@ -165,7 +171,6 @@ const Convert = () => {
 				<TableRow key={index}>
 					<TableCell>{item.Brand}</TableCell>
 					<TableCell>{item.Size}</TableCell>
-					<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
 					<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
 					<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
 				</TableRow>
@@ -269,13 +274,20 @@ const Convert = () => {
 										<TableCell key={index}>
 											{translate(`pages.Table.Headers.${item}`, item)}
 										</TableCell>
-									))
-									:
-									tableHeader_Wear.map((item, index) => (
-										<TableCell key={index}>
-											{translate(`pages.Table.Headers.${item}`, item)}
-										</TableCell>
-									))
+									)) :
+									tableType === "Tops" ? (
+										tableHeader_Tops.map((item, index) => (
+											<TableCell key={index}>
+												{translate(`pages.Table.Headers.${item}`, item)}
+											</TableCell>
+										))) : (
+										tableHeader_Bottom.map((item, index) => (
+											<TableCell key={index}>
+												{translate(`pages.Table.Headers.${item}`, item)}
+											</TableCell>
+										)
+										)
+									)
 								}
 							</TableRow>
 						</TableHead>
