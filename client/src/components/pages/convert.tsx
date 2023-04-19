@@ -18,6 +18,7 @@ import { Switch } from '@headlessui/react';
 import { TbMan, TbWoman } from "react-icons/tb";
 import ScrollTop from "./ScrollTop";
 
+type Float = number & { __float: never };
 interface IShoes {
 	Brand: string;
 	SizeEU: number & Float;
@@ -26,7 +27,7 @@ interface IShoes {
 	SizeCM: number & Float;
 	SizeIN: number & Float;
 }
-type Float = number & { __float: never };
+
 interface ITops {
 	Brand: string;
 	Size: string;
@@ -111,6 +112,10 @@ const Convert = () => {
 	const [dataFemaleTops, setDataFemaleTops] = useState<ITops[]>([]);
 	const [dataMaleBottoms, setDataMaleBottoms] = useState<ITops[]>([]);
 	const [dataFemaleBottoms, setDataFemaleBottoms] = useState<ITops[]>([]);
+	const [dataMaleTopsINCH, setDataMaleTopsINCH] = useState<ITops[]>([]);
+	const [dataFemaleTopsINCH, setDataFemaleTopsINCH] = useState<ITops[]>([]);
+	const [dataMaleBottomsINCH, setDataMaleBottomsINCH] = useState<ITops[]>([]);
+	const [dataFemaleBottomsINCH, setDataFemaleBottomsINCH] = useState<ITops[]>([]);
 
 	const handleButtonClick = async (button: string) => {
 		setSelectedButton(button === selectedButton ? selectedButton : button);
@@ -129,6 +134,20 @@ const Convert = () => {
 					tableType: tableType,
 					gender: false,
 					unit: unit
+				}
+			});
+			let resultMaleINCH = await axios.get('http://localhost:8080/getTableData_C', {
+				params: {
+					tableType: tableType,
+					gender: true,
+					unit: false
+				}
+			});
+			let resultFemaleINCH = await axios.get('http://localhost:8080/getTableData_C', {
+				params: {
+					tableType: tableType,
+					gender: false,
+					unit: false
 				}
 			});
 			setDataFemaleTops(resultFemale.data.tableDataCustom);
@@ -157,19 +176,65 @@ const Convert = () => {
 	let tableBody;
 	let items
 	switch (tableType) {
-		case 'Shoes':
-			items = genderSwitch ? dataMaleShoes : dataFemaleShoes;
-			tableBody = items.map((item, index) => (
-				<TableRow key={index}>
-					<TableCell>{item.Brand}</TableCell>
-					<TableCell>{item.SizeEU}</TableCell>
-					<TableCell>{item.SizeUS}</TableCell>
-					<TableCell>{item.SizeUK}</TableCell>
-					<TableCell>{item.SizeCM}</TableCell>
-					<TableCell>{item.SizeIN}</TableCell>
-				</TableRow>
-			));
+		case 'Tops':
+			items = genderSwitch ? dataMaleTops : dataFemaleTops;
+			switch (genderSwitch) {
+				case true:
+					switch (unit) {
+						case true:
+							tableBody = items.map((item, index) => (
+								<TableRow key={index}>
+									<TableCell>{item.Brand}</TableCell>
+									<TableCell>{item.Size}</TableCell>
+									<TableCell>{item.ChestIN_min}-{item.ChestIN_max}</TableCell>
+									<TableCell>{item.WaistIN_min}-{item.WaistIN_max}</TableCell>
+									<TableCell>{item.HipIN_min}-{item.HipIN_max}</TableCell>
+								</TableRow>
+							))
+							break;
+						case false:
+							tableBody = items.map((item, index) => (
+								<TableRow key={index}>
+									<TableCell>{item.Brand}</TableCell>
+									<TableCell>{item.Size}</TableCell>
+									<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
+									<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
+									<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
+								</TableRow>
+							))
+							break;
+					}
+					break;
+				case false:
+					switch (unit) {
+						case true:
+							tableBody = items.map((item, index) => (
+								<TableRow key={index}>
+									<TableCell>{item.Brand}</TableCell>
+									<TableCell>{item.Size}</TableCell>
+									<TableCell>{item.ChestIN_min}-{item.ChestIN_max}</TableCell>
+									<TableCell>{item.WaistIN_min}-{item.WaistIN_max}</TableCell>
+									<TableCell>{item.HipIN_min}-{item.HipIN_max}</TableCell>
+								</TableRow>
+							))
+							break;
+						case false:
+							tableBody = items.map((item, index) => (
+								<TableRow key={index}>
+									<TableCell>{item.Brand}</TableCell>
+									<TableCell>{item.Size}</TableCell>
+									<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
+									<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
+									<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
+								</TableRow>
+							))
+							break;
+					}
+					break;
+			}
+
 			break;
+
 		case 'Bottoms':
 			items = genderSwitch ? dataMaleBottoms : dataFemaleBottoms;
 			switch (unit) {
@@ -195,17 +260,18 @@ const Convert = () => {
 			}
 			break
 		default:
-			items = genderSwitch ? dataMaleTops : dataFemaleTops;
 
+			items = genderSwitch ? dataMaleShoes : dataFemaleShoes;
 			tableBody = items.map((item, index) => (
 				<TableRow key={index}>
 					<TableCell>{item.Brand}</TableCell>
-					<TableCell>{item.Size}</TableCell>
-					<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
-					<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
-					<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
+					<TableCell>{item.SizeEU}</TableCell>
+					<TableCell>{item.SizeUS}</TableCell>
+					<TableCell>{item.SizeUK}</TableCell>
+					<TableCell>{item.SizeCM}</TableCell>
+					<TableCell>{item.SizeIN}</TableCell>
 				</TableRow>
-			))
+			));
 
 	}
 
