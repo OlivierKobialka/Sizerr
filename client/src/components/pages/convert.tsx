@@ -18,7 +18,7 @@ import { Switch } from '@headlessui/react';
 import { TbMan, TbWoman } from "react-icons/tb";
 import ScrollTop from "./ScrollTop";
 
-interface IProps {
+interface IShoes {
 	Brand: string;
 	SizeEU: number & Float;
 	SizeUS: number & Float;
@@ -27,12 +27,22 @@ interface IProps {
 	SizeIN: number & Float;
 }
 type Float = number & { __float: never };
+interface ITops {
+	Brand: string;
+	Size: string;
+	ChestCM_min: number & Float;
+	ChestCM_max: number & Float;
+	WaistCM_min: number & Float;
+	WaistCM_max: number & Float;
+	HipsCM_min: number & Float;
+	HipsCM_max: number & Float;
+}
 
 
 const Convert = () => {
 	const translate = useTranslate();
-	const [dataMaleShoes, setDataMaleShoes] = useState<IProps[]>([]);//!
-	const [dataFemaleShoes, setDataFemaleShoes] = useState<IProps[]>([]);//!
+	const [dataMaleShoes, setDataMaleShoes] = useState<IShoes[]>([]);//!
+	const [dataFemaleShoes, setDataFemaleShoes] = useState<IShoes[]>([]);//!
 	// const [gender, setGender] = useState<string>("Female");//!
 	const [tableType, setTableType] = useState<string>("Shoes");
 	const [showTable, setShowTable] = useState(false);
@@ -80,26 +90,17 @@ const Convert = () => {
 			value: "Bottoms",
 		},
 	]
-	interface IdataFemaleTopsCM {
-		Brand: string;
-		Size: string;
-		ChestCM_min: string;
-		ChestCM_max: string;
-		WaistCM_min: string;
-		WaistCM_max: string;
-		HipsCM_min: string;
-		HipsCM_max: string;
-	}
+
 	//! SWITCH
 	const [genderSwitch, setGenderSwitch] = useState(false)
 	const [unit, setUnit] = useState(false)
 	console.log(tableType);
 	const [selectedButton, setSelectedButton] = useState<string>("Shoes");
 
-	const [dataMaleTops, setDataMaleTops] = useState([]);
-	const [dataFemaleTops, setDataFemaleTops] = useState<IdataFemaleTopsCM[]>([]);
-	const [dataMaleBottoms, setDataMaleBottoms] = useState([]);
-	const [dataFemaleBottoms, setDataFemaleBottoms] = useState<IdataFemaleTopsCM[]>([]);
+	const [dataMaleTops, setDataMaleTops] = useState<ITops[]>([]);
+	const [dataFemaleTops, setDataFemaleTops] = useState<ITops[]>([]);
+	const [dataMaleBottoms, setDataMaleBottoms] = useState<ITops[]>([]);
+	const [dataFemaleBottoms, setDataFemaleBottoms] = useState<ITops[]>([]);
 
 	const handleButtonClick = async (button: string) => {
 		setSelectedButton(button === selectedButton ? selectedButton : button);
@@ -142,8 +143,6 @@ const Convert = () => {
 	};
 
 	let tableBody;
-	console.log(genderSwitch);
-
 	let items
 	switch (tableType) {
 		case 'Shoes':
