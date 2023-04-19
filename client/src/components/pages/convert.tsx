@@ -99,7 +99,6 @@ const Convert = () => {
 	//! SWITCH
 	const [genderSwitch, setGenderSwitch] = useState(false)
 	const [unit, setUnit] = useState(false)
-	console.log(tableType);
 	const [selectedButton, setSelectedButton] = useState<string>("Shoes");
 
 	const [dataMaleTops, setDataMaleTops] = useState<ITops[]>([]);
@@ -115,13 +114,15 @@ const Convert = () => {
 			let resultMale = await axios.get('http://localhost:8080/getTableData_C', {
 				params: {
 					tableType: tableType,
-					gender: true
+					gender: true,
+					unit: unit
 				}
 			});
 			let resultFemale = await axios.get('http://localhost:8080/getTableData_C', {
 				params: {
 					tableType: tableType,
-					gender: false
+					gender: false,
+					unit: unit
 				}
 			});
 			setDataFemaleTops(resultFemale.data.tableDataCustom);
@@ -131,26 +132,27 @@ const Convert = () => {
 			let resultMale = await axios.get('http://localhost:8080/getTableData_C', {
 				params: {
 					tableType: tableType,
-					gender: true
+					gender: true,
+					unit: unit
 				}
 			});
 			let resultFemale = await axios.get('http://localhost:8080/getTableData_C', {
 				params: {
 					tableType: tableType,
-					gender: false
+					gender: false,
+					unit: unit
 				}
 			});
 			setDataFemaleBottoms(resultFemale.data.tableDataCustom);
 			setDataMaleBottoms(resultMale.data.tableDataCustom);
 		}
 	};
-
+	console.log(unit);
 	let tableBody;
 	let items
 	switch (tableType) {
 		case 'Shoes':
 			items = genderSwitch ? dataMaleShoes : dataFemaleShoes;
-
 			tableBody = items.map((item, index) => (
 				<TableRow key={index}>
 					<TableCell>{item.Brand}</TableCell>
@@ -164,16 +166,28 @@ const Convert = () => {
 			break;
 		case 'Bottoms':
 			items = genderSwitch ? dataMaleBottoms : dataFemaleBottoms;
-
-			tableBody = items.map((item, index) => (
-				<TableRow key={index}>
-					<TableCell>{item.Brand}</TableCell>
-					<TableCell>{item.Size}</TableCell>
-					<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
-					<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
-				</TableRow>
-			));
-			break;
+			switch (unit) {
+				case true:
+					tableBody = items.map((item, index) => (
+						<TableRow key={index}>
+							<TableCell>{item.Brand}</TableCell>
+							<TableCell>{item.Size}</TableCell>
+							<TableCell>{item.WaistIN_min}-{item.WaistIN_max}</TableCell>
+							<TableCell>{item.HipIN_min}-{item.HipIN_max}</TableCell>
+						</TableRow>
+					));
+					break;
+				case false:
+					tableBody = items.map((item, index) => (
+						<TableRow key={index}>
+							<TableCell>{item.Brand}</TableCell>
+							<TableCell>{item.Size}</TableCell>
+							<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
+							<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
+						</TableRow>
+					));
+			}
+			break
 		default:
 			items = genderSwitch ? dataMaleTops : dataFemaleTops;
 

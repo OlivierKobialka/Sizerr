@@ -31,7 +31,7 @@ async function getTableDataMale(req, res, dbConfig) {
 }
 
 async function getTableDataCustom(req, res, dbConfig) {
-    const { tableType, gender } = req.query;
+    const { tableType, gender, unit } = req.query;
 
     try {
         const pool = await sql.connect(dbConfig);
@@ -39,14 +39,28 @@ async function getTableDataCustom(req, res, dbConfig) {
         let result;
         if (tableType === "Tops") {
             if (gender === true) {
-                result = await pool.request().query(`SELECT
+                if (unit === false) {
+                    result = await pool.request().query(`SELECT
     Brand.Brand, Size, ChestCM_min, ChestCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
 FROM TopsMan INNER JOIN Brand ON Brand.Id = TopsMan.BrandId`);
+                } else {
+                    result = await pool.request().query(`SELECT
+    Brand.Brand, Size, ChestIN_min, ChestIN_max, WaistIN_min, WaistIN_max, HipIN_min, HipIN_max
+FROM TopsMan INNER JOIN Brand ON Brand.Id = TopsMan.BrandId`);
+                }
             } else {
-                result = await pool.request().query(`SELECT
+                if (unit === false) {
+
+                } else {
+                    result = await pool.request().query(`SELECT
     Brand.Brand, Size, ChestCM_min, ChestCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
 FROM TopsWoman INNER JOIN Brand ON Brand.Id = TopsWoman.BrandId`);
+                }
+                result = await pool.request().query(`SELECT
+    Brand.Brand, Size, ChestIN_min, ChestIN_max, WaistIN_min, WaistIN_max, HipIN_min, HipIN_max
+FROM TopsWoman INNER JOIN Brand ON Brand.Id = TopsWoman.BrandId`);
             }
+            // 
         } else {
             if (gender === true) {
                 result = await pool.request().query(`SELECT
