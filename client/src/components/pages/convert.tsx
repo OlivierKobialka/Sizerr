@@ -34,8 +34,8 @@ interface ITops {
 	ChestCM_max: number & Float;
 	WaistCM_min: number & Float;
 	WaistCM_max: number & Float;
-	HipsCM_min: number & Float;
-	HipsCM_max: number & Float;
+	HipCM_min: number & Float;
+	HipCM_max: number & Float;
 }
 
 
@@ -59,8 +59,8 @@ const Convert = () => {
 		"Brand",
 		"Size",
 		"Chest",
-		"Hips",
 		"Waist",
+		"Hips",
 	];
 	const tableRef = useRef<HTMLTableElement>(null);
 
@@ -104,7 +104,6 @@ const Convert = () => {
 
 	const handleButtonClick = async (button: string) => {
 		setSelectedButton(button === selectedButton ? selectedButton : button);
-
 		setTableType(button);
 
 		// let resultMale;
@@ -168,7 +167,7 @@ const Convert = () => {
 					<TableCell>{item.Size}</TableCell>
 					<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
 					<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
-					<TableCell>{item.HipsCM_min}-{item.HipsCM_max}</TableCell>
+					<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
 				</TableRow>
 			));
 			break;
@@ -181,7 +180,7 @@ const Convert = () => {
 					<TableCell>{item.Size}</TableCell>
 					<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
 					<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
-					<TableCell>{item.HipsCM_min}-{item.HipsCM_max}</TableCell>
+					<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
 				</TableRow>
 			))
 
