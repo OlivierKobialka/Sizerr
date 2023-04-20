@@ -39,14 +39,20 @@ const Top = () => {
 		label: string;
 	}[];
 	interface IWears {
-		brand: string;
-		size: string;
-		chestMin: string;
-		chestMax: string;
-		waistMin: string;
-		waistMax: string;
-		hipsMin: string;
-		hipsMax: string;
+		Brand: string;
+		Size: string;
+		ChestCM_min: string;
+		ChestCM_max: string;
+		ChestIN_min: string;
+		ChestIN_max: string;
+		WaistCM_min: string;
+		WaistCM_max: string;
+		WaistIN_min: string;
+		WaistIN_max: string;
+		HipCM_min: string;
+		HipCM_max: string;
+		HipIN_min: string;
+		HipIN_max: string;
 	}
 	const [fetchedTopWear, setFetchedTopWear] = useState<IWears[]>([]);
 	const translate = useTranslate();
@@ -400,17 +406,16 @@ const Top = () => {
 								<TableBody>
 									{fetchedTopWear.map((item, index) => (
 										<TableRow key={index}>
-											<TableCell>{item.brand}</TableCell>
-											<TableCell>{item.size}</TableCell>
+											<TableCell>{item.Brand}</TableCell>
+											<TableCell>{item.Size}</TableCell>
 											<TableCell>
-												{item.chestMin}-{item.chestMax}
+												{item.ChestCM_min}-{item.ChestCM_max}
 											</TableCell>
 											<TableCell>
-												{item.waistMax}
-												{item.waistMin}-{item.waistMax}
+												{item.WaistCM_min}-{item.WaistCM_max}
 											</TableCell>
 											<TableCell>
-												{item.hipsMin}-{item.hipsMax}
+												{item.HipCM_min}-{item.HipCM_max}
 											</TableCell>
 										</TableRow>
 									))}

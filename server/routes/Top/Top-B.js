@@ -10,15 +10,13 @@ async function topBrand(req, res, dbConfig) {
 			result = await pool
 				.request()
 				.input("size", size)
-				.input("brand", brand)
 				.query(
 					`SELECT
     Brand.Brand, Size, ChestCM_min, ChestCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
 FROM TopsMan INNER JOIN Brand ON Brand.Id = TopsMan.BrandId
-WHERE Brand.Brand = @brand AND Size = @size`,
+WHERE Size = @size`,
 					[
 						{ name: "size", value: size },
-						{ name: "brand", value: brand },
 					]
 				);
 
