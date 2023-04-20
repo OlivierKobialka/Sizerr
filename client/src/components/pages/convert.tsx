@@ -353,111 +353,109 @@ const Convert = () => {
 	return (
 		<Box className='bg-white rounded-2xl p-2'>
 			<ScrollTop />
-			{isLoading ? <Loader /> : (
-				<>
-					<Typography fontSize={28} fontWeight={700} className="mb-5">
-						Table Shoes
-					</Typography>
-					<Box className="flex justify-between">
-						<Box className="flex justify-between">
-							{tableTypeButton.map((item, index) => (
-								<button
-									type='button'
-									className={`${selectedButton === item.value
-										? "bg-primary font-bold text-white rounded-3xl"
-										: "bg-gray-200 rounded-3xl font-bold text-black"
-										} py-1 px-4 mx-1`}
-									onClick={() => handleButtonClick(item.value)}>
-									{translate(`pages.Table.Type.${item.text}`, `${item.text}`)}
-								</button>
-							))}
-						</Box>
-						{tableType !== "Shoes" ? (
-							<Box className="flex justify-around items-center">
-								<Typography>CM</Typography>
-								<Switch
-									checked={unit}
-									onChange={setUnit}
-									className={`${unit ? 'bg-primary' : 'bg-pink-500'
-										} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
-								>
-									<span
-										className={`${unit ? 'translate-x-6' : 'translate-x-1'
-											} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
-									/>
-								</Switch>
-								<Typography>
-									INCH
-								</Typography>
-							</Box>
-						) : ""}
-						<Box className="flex justify-around items-center">
-							<Tooltip title={translate("pages.Inputs.Genders.Female", "Female")} placement="top">
-								<IconButton>
-									<TbWoman className="w-6 h-auto" />
-								</IconButton>
-							</Tooltip>
-							<Switch
-								checked={genderSwitch}
-								onChange={setGenderSwitch}
-								className={`${genderSwitch ? 'bg-primary' : 'bg-pink-500'
-									} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
-							>
-								<span
-									className={`${genderSwitch ? 'translate-x-6' : 'translate-x-1'
-										} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
-								/>
-							</Switch>
-							<Tooltip title={translate("pages.Inputs.Genders.Male", "Male")} placement="top">
-								<IconButton>
-									<TbMan className="w-6 h-auto" />
-								</IconButton>
-							</Tooltip>
-						</Box>
+			<Typography fontSize={28} fontWeight={700} className="mb-5">
+				Table Shoes
+			</Typography>
+			<Box className="flex justify-between">
+				<Box className="flex justify-between">
+					{tableTypeButton.map((item, index) => (
+						<button
+							type='button'
+							className={`${selectedButton === item.value
+								? "bg-primary font-bold text-white rounded-3xl"
+								: "bg-gray-200 rounded-3xl font-bold text-black"
+								} py-1 px-4 mx-1`}
+							onClick={() => handleButtonClick(item.value)}>
+							{translate(`pages.Table.Type.${item.text}`, `${item.text}`)}
+						</button>
+					))}
+				</Box>
+				{tableType !== "Shoes" ? (
+					<Box className="flex justify-around items-center">
+						<Typography>CM</Typography>
+						<Switch
+							checked={unit}
+							onChange={setUnit}
+							className={`${unit ? 'bg-primary' : 'bg-pink-500'
+								} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
+						>
+							<span
+								className={`${unit ? 'translate-x-6' : 'translate-x-1'
+									} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+							/>
+						</Switch>
+						<Typography>
+							INCH
+						</Typography>
 					</Box>
-					<Box
-						ref={tableRef}
-						className={clsx(
-							"mt-2 rounded-2xl border-2 border-primary w-full lg:w-[750px]",
-							{
-								hidden: !showTable,
-								block: showTable,
-							}
-						)}>
+				) : ""}
+				<Box className="flex justify-around items-center">
+					<Tooltip title={translate("pages.Inputs.Genders.Female", "Female")} placement="top">
+						<IconButton>
+							<TbWoman className="w-6 h-auto" />
+						</IconButton>
+					</Tooltip>
+					<Switch
+						checked={genderSwitch}
+						onChange={setGenderSwitch}
+						className={`${genderSwitch ? 'bg-primary' : 'bg-pink-500'
+							} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
+					>
+						<span
+							className={`${genderSwitch ? 'translate-x-6' : 'translate-x-1'
+								} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+						/>
+					</Switch>
+					<Tooltip title={translate("pages.Inputs.Genders.Male", "Male")} placement="top">
+						<IconButton>
+							<TbMan className="w-6 h-auto" />
+						</IconButton>
+					</Tooltip>
+				</Box>
+			</Box>
+			{isLoading ? <Loader /> : (
+				<Box
+					ref={tableRef}
+					className={clsx(
+						"mt-2 rounded-2xl border-2 border-primary w-full lg:w-[750px]",
+						{
+							hidden: !showTable,
+							block: showTable,
+						}
+					)}>
 
-						<TableContainer className='rounded-2xl h-auto'>
-							<Table>
-								<TableHead>
-									<TableRow>
-										{tableType === "Shoes" ?
-											tableHeader_Shoes.map((item, index) => (
+					<TableContainer className='rounded-2xl h-auto'>
+						<Table>
+							<TableHead>
+								<TableRow>
+									{tableType === "Shoes" ?
+										tableHeader_Shoes.map((item, index) => (
+											<TableCell key={index}>
+												{translate(`pages.Table.Headers.${item}`, item)}
+											</TableCell>
+										)) :
+										tableType === "Tops" ? (
+											tableHeader_Tops.map((item, index) => (
 												<TableCell key={index}>
 													{translate(`pages.Table.Headers.${item}`, item)}
 												</TableCell>
-											)) :
-											tableType === "Tops" ? (
-												tableHeader_Tops.map((item, index) => (
-													<TableCell key={index}>
-														{translate(`pages.Table.Headers.${item}`, item)}
-													</TableCell>
-												))) : (
-												tableHeader_Bottom.map((item, index) => (
-													<TableCell key={index}>
-														{translate(`pages.Table.Headers.${item}`, item)}
-													</TableCell>
-												)
-												)
+											))) : (
+											tableHeader_Bottom.map((item, index) => (
+												<TableCell key={index}>
+													{translate(`pages.Table.Headers.${item}`, item)}
+												</TableCell>
 											)
-										}
-									</TableRow>
-								</TableHead>
-								<TableBody>
-									{tableBody}
-								</TableBody>
-							</Table>
-						</TableContainer>
-					</Box>
-				</>
+											)
+										)
+									}
+								</TableRow>
+							</TableHead>
+							<TableBody>
+								{tableBody}
+							</TableBody>
+						</Table>
+					</TableContainer>
+				</Box>
 			)}
 		</Box >
 	);
