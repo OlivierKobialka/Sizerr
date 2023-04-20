@@ -14,6 +14,7 @@ import {
 	Table,
 	TableContainer,
 	TableBody,
+	Typography,
 	FormControlLabel,
 } from "@pankod/refine-mui";
 import React, { useState, useEffect, useRef } from "react";
@@ -24,6 +25,7 @@ import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 import { useTranslate } from "@pankod/refine-core";
 import Tabs from "../Tabs";
+import { Switch } from '@headlessui/react';
 
 const Top = () => {
 	type FormData = {
@@ -55,6 +57,7 @@ const Top = () => {
 		HipIN_max: string;
 	}
 	const [fetchedTopWear, setFetchedTopWear] = useState<IWears[]>([]);
+	const [fetchedTopWearINCH, setFetchedTopWearINCH] = useState<IWears[]>([]);
 	const translate = useTranslate();
 
 	//! MEASUREMENTS
@@ -150,6 +153,7 @@ const Top = () => {
 	];
 
 	//! BRAND
+	const [unit, setUnit] = useState(false)
 	const [FormValuesBrand, setFormValuesBrand] = useState({
 		brand: "",
 		size: "",
@@ -185,15 +189,25 @@ const Top = () => {
 					brand: FormValuesBrand.brand,
 					size: FormValuesBrand.size,
 					gender: FormValuesBrand.gender,
+					unit: false
 				},
 			});
 			setFetchedTopWear(response.data.topBrand);
+			const responseINCH = await axios.get("http://localhost:8080/api/Tops-B", {
+				params: {
+					brand: FormValuesBrand.brand,
+					size: FormValuesBrand.size,
+					gender: FormValuesBrand.gender,
+					unit: true
+				},
+			});
+			setFetchedTopWearINCH(responseINCH.data.topBrandINCH);
 			setShowTable(true);
 		} catch (error) {
 			console.log(error);
 		}
 	};
-
+	console.log(unit);
 	const Option = [
 		{ id: 1, value: "male", text: "Male" },
 		{ id: 2, value: "female", text: "Female" },
@@ -369,6 +383,23 @@ const Top = () => {
 												/>
 											))}
 										</Box>
+										<Box className="flex justify-around items-center">
+											<Typography>CM</Typography>
+											<Switch
+												checked={unit}
+												onChange={setUnit}
+												className={`${unit ? 'bg-primary' : 'bg-pink-500'
+													} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
+											>
+												<span
+													className={`${unit ? 'translate-x-6' : 'translate-x-1'
+														} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+												/>
+											</Switch>
+											<Typography>
+												INCH
+											</Typography>
+										</Box>
 									</Box>
 									<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
 										<button
@@ -403,23 +434,43 @@ const Top = () => {
 										))}
 									</TableRow>
 								</TableHead>
-								<TableBody>
-									{fetchedTopWear.map((item, index) => (
-										<TableRow key={index}>
-											<TableCell>{item.Brand}</TableCell>
-											<TableCell>{item.Size}</TableCell>
-											<TableCell>
-												{item.ChestCM_min}-{item.ChestCM_max}
-											</TableCell>
-											<TableCell>
-												{item.WaistCM_min}-{item.WaistCM_max}
-											</TableCell>
-											<TableCell>
-												{item.HipCM_min}-{item.HipCM_max}
-											</TableCell>
-										</TableRow>
-									))}
-								</TableBody>
+								{unit === false ? (
+									<TableBody>
+										{fetchedTopWear.map((item, index) => (
+											<TableRow key={index}>
+												<TableCell>{item.Brand}</TableCell>
+												<TableCell>{item.Size}</TableCell>
+												<TableCell>
+													{item.ChestCM_min}-{item.ChestCM_max}
+												</TableCell>
+												<TableCell>
+													{item.WaistCM_min}-{item.WaistCM_max}
+												</TableCell>
+												<TableCell>
+													{item.HipCM_min}-{item.HipCM_max}
+												</TableCell>
+											</TableRow>
+										))}
+									</TableBody>
+								) : (
+									<TableBody>
+										{fetchedTopWearINCH.map((item, index) => (
+											<TableRow key={index}>
+												<TableCell>{item.Brand}</TableCell>
+												<TableCell>{item.Size}</TableCell>
+												<TableCell>
+													{item.ChestIN_min}-{item.ChestIN_max}
+												</TableCell>
+												<TableCell>
+													{item.WaistIN_min}-{item.WaistIN_max}
+												</TableCell>
+												<TableCell>
+													{item.HipIN_min}-{item.HipIN_max}
+												</TableCell>
+											</TableRow>
+										))}
+									</TableBody>
+								)}
 							</Table>
 						</TableContainer>
 					</Box>
