@@ -104,63 +104,10 @@ const Convert = () => {
 	const [dataFemaleBottoms, setDataFemaleBottoms] = useState<ITops[]>([]);
 	const [dataMaleTopsINCH, setDataMaleTopsINCH] = useState<ITops[]>([]);
 	const [dataFemaleTopsINCH, setDataFemaleTopsINCH] = useState<ITops[]>([]);
-	const [dataMaleBottomsINCH, setDataMaleBottomsINCH] = useState<ITops[]>([]);
-	const [dataFemaleBottomsINCH, setDataFemaleBottomsINCH] = useState<ITops[]>([]);
 
 	const handleButtonClick = async (button: string) => {
 		setSelectedButton(button === selectedButton ? selectedButton : button);
 		setTableType(button);
-
-		// if (button === "Tops") {
-		// 	let resultMale = await axios.get('http://localhost:8080/getTableData_C', {
-		// 		params: {
-		// 			tableType: tableType,
-		// 			gender: true,
-		// 			unit: unit
-		// 		}
-		// 	});
-		// 	let resultFemale = await axios.get('http://localhost:8080/getTableData_C', {
-		// 		params: {
-		// 			tableType: tableType,
-		// 			gender: false,
-		// 			unit: unit
-		// 		}
-		// 	});
-		// 	let resultMaleINCH = await axios.get('http://localhost:8080/getTableData_C', {
-		// 		params: {
-		// 			tableType: tableType,
-		// 			gender: true,
-		// 			unit: false
-		// 		}
-		// 	});
-		// 	let resultFemaleINCH = await axios.get('http://localhost:8080/getTableData_C', {
-		// 		params: {
-		// 			tableType: tableType,
-		// 			gender: false,
-		// 			unit: false
-		// 		}
-		// 	});
-		// 	setDataFemaleTopsINCH(resultFemale.data.tableDataCustom);
-		// 	setDataMaleTopsINCH(resultMale.data.tableDataCustom);
-		// }
-		// if (button === "Bottoms") {
-		// 	let resultMale = await axios.get('http://localhost:8080/getTableData_C', {
-		// 		params: {
-		// 			tableType: tableType,
-		// 			gender: true,
-		// 			unit: unit
-		// 		}
-		// 	});
-		// 	let resultFemale = await axios.get('http://localhost:8080/getTableData_C', {
-		// 		params: {
-		// 			tableType: tableType,
-		// 			gender: false,
-		// 			unit: unit
-		// 		}
-		// 	});
-		// 	setDataFemaleBottoms(resultFemale.data.tableDataCustom);
-		// 	setDataMaleBottoms(resultMale.data.tableDataCustom);
-		// }
 	};
 
 	useEffect(() => {
