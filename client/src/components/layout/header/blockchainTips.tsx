@@ -4,16 +4,20 @@ import {
 	Dialog,
 	DialogContent,
 	DialogTitle,
+	Snackbar,
 	TextField,
 } from "@pankod/refine-mui";
 import { useState } from "react";
 import Web3 from "web3";
 import confetti from "canvas-confetti";
 import { useTranslate } from "@pankod/refine-core";
+import dotenv from "dotenv";
+
+const API_KEY = process.env.API_INFURA_KEY
 
 const web3 = new Web3(
 	new Web3.providers.HttpProvider(
-		"https://mainnet.infura.io/v3/eedf9707ecb447868eaedb02c22fa46c"
+		`https://goerli.infura.io/${API_KEY}}`
 	)
 );
 
@@ -48,8 +52,7 @@ const BlockchainTips = () => {
 				params: [accounts[0], "latest"],
 			});
 			const wei = parseInt(result, 16);
-			const balance = wei;
-			// / 10 ** 18
+			const balance = wei / 10 ** 18;
 			console.log(`Account Balance: ${balance}`);
 		} catch (error) {
 			alert("Failed to connect!");
@@ -77,12 +80,10 @@ const BlockchainTips = () => {
 			console.error("Failed to send:", error);
 		}
 
-		//! confetti
 		const count = 200;
 		const defaults = {
 			origin: { y: 0.7 },
 		};
-
 		function fire(particleRatio: number, opts: any) {
 			confetti(
 				Object.assign({}, defaults, opts, {
@@ -90,29 +91,24 @@ const BlockchainTips = () => {
 				})
 			);
 		}
-
 		fire(0.25, {
 			spread: 26,
 			startVelocity: 55,
 		});
-
 		fire(0.2, {
 			spread: 60,
 		});
-
 		fire(0.35, {
 			spread: 100,
 			decay: 0.91,
 			scalar: 0.8,
 		});
-
 		fire(0.1, {
 			spread: 120,
 			startVelocity: 25,
 			decay: 0.92,
 			scalar: 1.2,
 		});
-
 		fire(0.1, {
 			spread: 120,
 			startVelocity: 45,
@@ -169,22 +165,21 @@ const BlockchainTips = () => {
 												id='transactionValue'
 												type='number'
 												color='info'
-												label='Value (ETH)'
+												placeholder="Value (ETH)"
 												variant='outlined'
 												value={transactionValue}
 												onChange={handleTransactionValueChange}
 											/>
 										</Box>
 										<button
-											className={`bg-primary mt-2 text-white rounded-lg py-1 px-3 font-bold ${
-												transactionValue === "" ||
+											className={`bg-primary mt-2 text-white rounded-lg py-1 px-3 font-bold ${transactionValue === "" ||
 												// @ts-ignore
 												transactionValue <= 0 ||
 												typeof transactionValue === "undefined" ||
 												transactionValue === null
-													? "opacity-50 cursor-not-allowed"
-													: ""
-											}`}
+												? "opacity-50 cursor-not-allowed"
+												: "cursor-pointer"
+												}`}
 											onClick={handleSend}
 											disabled={
 												transactionValue === "" ||
