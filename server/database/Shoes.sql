@@ -27,10 +27,11 @@ SELECT *
 from TopsMan
 
 SELECT
-    Brand.Brand, Size, HeightCM_min, HeightCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
+    Brand.Brand, Size, HeightCM_min, HeightCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max, Heightin_min, Heightin_max, Waistin_min, Waistin_max, Hipin_min, Hipin_max
 FROM BottomsMan INNER JOIN Brand ON Brand.Id = BottomsMan.BrandId
+
 SELECT
-    Brand.Brand, Size, ChestCM_min, ChestCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
+    Brand.Brand, Size, ChestCM_min, ChestCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max, ChestIN_min, ChestIN_max, WaistIN_min, WaistIN_max, HipIN_min, HipIN_max
 FROM TopsMan INNER JOIN Brand ON Brand.Id = TopsMan.BrandId
 WHERE Brand.Brand = 'Adidas' AND Size = 'XXL'
 

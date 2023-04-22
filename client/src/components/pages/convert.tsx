@@ -172,73 +172,17 @@ const Convert = () => {
 			const resultMaleShoes = await axios.get('http://localhost:8080/getTableDataMale');
 			setDataMaleShoes(resultMaleShoes.data.tableDataMale);
 
-			const resultMaleTops = await axios.get('http://localhost:8080/getTableData_C', {
-				params: {
-					tableType: "Tops",
-					gender: true,
-					unit: false
-				}
-			});
-			setDataMaleTops(resultMaleTops.data.tableDataCustom);
-			const resultMaleTopsINCH = await axios.get('http://localhost:8080/getTableData_C', {
-				params: {
-					tableType: "Tops",
-					gender: true,
-					unit: true
-				}
-			});
-			setDataMaleTopsINCH(resultMaleTopsINCH.data.tableDataCustom);
+			const resultMaleTops = await axios.get('http://localhost:8080/getTableDataTopsMale');
+			setDataMaleTops(resultMaleTops.data.tableDataTopsMale);
 
-			const resultFemaleTops = await axios.get('http://localhost:8080/getTableData_C', {
-				params: {
-					tableType: "Tops",
-					gender: false,
-					unit: false
-				}
-			});
-			setDataFemaleTops(resultFemaleTops.data.tableDataCustom);
-			const resultFemaleTopsINCH = await axios.get('http://localhost:8080/getTableData_C', {
-				params: {
-					tableType: "Tops",
-					gender: false,
-					unit: true
-				}
-			});
-			setDataFemaleTopsINCH(resultFemaleTopsINCH.data.tableDataCustom);
+			const resultFemaleTops = await axios.get('http://localhost:8080/getTableDataTopsFemale');
+			setDataFemaleTops(resultFemaleTops.data.tableDataTopsFemale);
 
-			const resultMaleBottoms = await axios.get('http://localhost:8080/getTableData_C', {
-				params: {
-					tableType: "Bottoms",
-					gender: true,
-					unit: false
-				}
-			});
-			setDataMaleBottoms(resultMaleBottoms.data.tableDataCustom);
-			const resultMaleBottomsINCH = await axios.get('http://localhost:8080/getTableData_C', {
-				params: {
-					tableType: "Bottoms",
-					gender: true,
-					unit: true
-				}
-			});
-			setDataMaleBottomsINCH(resultMaleBottomsINCH.data.tableDataCustom);
+			const resultMaleBottoms = await axios.get('http://localhost:8080/getTableDataBottomsMale');
+			setDataMaleBottoms(resultMaleBottoms.data.tableDataBottomsMale);
 
-			const resultFemaleBottoms = await axios.get('http://localhost:8080/getTableData_C', {
-				params: {
-					tableType: "Bottoms",
-					gender: false,
-					unit: false
-				}
-			});
-			setDataFemaleBottoms(resultFemaleBottoms.data.tableDataCustom);
-			const resultFemaleBottomsINCH = await axios.get('http://localhost:8080/getTableData_C', {
-				params: {
-					tableType: "Bottoms",
-					gender: false,
-					unit: true
-				}
-			});
-			setDataFemaleBottomsINCH(resultFemaleBottomsINCH.data.tableDataCustom);
+			const resultFemaleBottoms = await axios.get('http://localhost:8080/getTableDataBottomsFemale');
+			setDataFemaleBottoms(resultFemaleBottoms.data.tableDataBottomsFemale);
 
 			setShowTable(true);
 		};

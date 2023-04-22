@@ -434,7 +434,7 @@ const Top = () => {
 										))}
 									</TableRow>
 								</TableHead>
-								{unit === false ? (
+								{unit === true ? (
 									<TableBody>
 										{fetchedTopWear.map((item, index) => (
 											<TableRow key={index}>

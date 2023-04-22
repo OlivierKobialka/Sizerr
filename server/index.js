@@ -18,7 +18,7 @@ const {
 	feedbackCategory,
 	getGenderCount,
 } = require("./routes/Analitycs/ChartData");
-const { getTableData, getTableDataMale, getTableDataCustom } = require("./routes/Analitycs/GetTableData");
+const { getTableData, getTableDataMale, getTableDataTopsMale, getTableDataTopsFemale, getTableDataBottomsMale, getTableDataBottomsFemale } = require("./routes/Analitycs/GetTableData");
 
 // MIDDLEWARE
 app.use(cors());
@@ -78,15 +78,26 @@ app.post("/Opinion", (req, res) => {
 });
 
 //? CONVERSIONS
+// SHOES
 app.get("/getTableData", (req, res) => {
 	getTableData(req, res, dbConfig);
 })
 app.get("/getTableDataMale", (req, res) => {
 	getTableDataMale(req, res, dbConfig);
 })
-
-app.get("/getTableData_C", (req, res) => {
-	getTableDataCustom(req, res, dbConfig);
+// TOPS
+app.get("/getTableDataTopsMale", (req, res) => {
+	getTableDataTopsMale(req, res, dbConfig);
+})
+app.get("/getTableDataTopsFemale", (req, res) => {
+	getTableDataTopsFemale(req, res, dbConfig);
+})
+// BOTTOMS
+app.get("/getTableDataBottomsMale", (req, res) => {
+	getTableDataBottomsMale(req, res, dbConfig);
+})
+app.get("/getTableDataBottomsFemale", (req, res) => {
+	getTableDataBottomsFemale(req, res, dbConfig);
 })
 
 app.listen(port, () => {
