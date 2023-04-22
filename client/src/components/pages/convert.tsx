@@ -247,7 +247,7 @@ const Convert = () => {
 			<Typography fontSize={28} fontWeight={700} className="mb-5">
 				Table Shoes
 			</Typography>
-			<Box className="flex justify-between">
+			<Box className="flex justify-between my-2">
 				<Box className="flex justify-between">
 					{tableTypeButton.map((item, index) => (
 						<button
@@ -308,7 +308,7 @@ const Convert = () => {
 				<Box
 					ref={tableRef}
 					className={clsx(
-						"mt-2 rounded-2xl border-2 border-primary w-full lg:w-[750px]",
+						"rounded-2xl border-2 border-primary w-full lg:w-[750px] xl:w-full",
 						{
 							hidden: !showTable,
 							block: showTable,
