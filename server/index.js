@@ -6,7 +6,6 @@ const sql = require("mssql");
 const dotenv = require("dotenv").config();
 const app = express();
 const port = 8080;
-// ROUTES
 const { shoesBrand } = require("./routes/Shoes/Shoes-B");
 const { shoesMeasurement } = require("./routes/Shoes/Shoes-M");
 const { topBrand } = require("./routes/Top/Top-B");
@@ -20,13 +19,11 @@ const {
 } = require("./routes/Analitycs/ChartData");
 const { getTableData, getTableDataMale, getTableDataTopsMale, getTableDataTopsFemale, getTableDataBottomsMale, getTableDataBottomsFemale } = require("./routes/Analitycs/GetTableData");
 
-// MIDDLEWARE
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 
-// DATABASE
 const dbConfig = {
 	user: process.env.DB_USER,
 	password: process.env.DB_PASSWORD,
@@ -38,7 +35,6 @@ const dbConfig = {
 	},
 };
 
-// CONNECT TO DATABASE
 sql.connect(dbConfig, error => {
 	if (error) {
 		console.log(error);
