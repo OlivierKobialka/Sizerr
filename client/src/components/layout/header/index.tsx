@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import {
-	// useGetIdentity,
 	useGetLocale,
 	useSetLocale,
 } from "@pankod/refine-core";
