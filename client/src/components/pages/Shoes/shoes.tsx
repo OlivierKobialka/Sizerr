@@ -43,7 +43,6 @@ const Shoes = () => {
 	const [fetchedShoesSizes, setfetchedShoesSizes] = useState<IShoes[]>([]);
 	const translate = useTranslate();
 
-	//! MEASUREMENTS
 	const [FormValuesMeasurements, setFormValuesMeasurements] = useState({
 		unit: "",
 		size: "",
@@ -69,9 +68,6 @@ const Shoes = () => {
 
 	const handleSubmitMeasurements = async (
 		event: React.FormEvent<HTMLFormElement>,
-		unit: string,
-		size: string,
-		gender: string
 	) => {
 		event.preventDefault();
 		setFormValuesBrand({
@@ -133,11 +129,7 @@ const Shoes = () => {
 	};
 
 	const handleSubmit = async (
-		event: React.FormEvent<HTMLFormElement>,
-		brand: string,
-		size: string,
-		gender: string,
-		measurement: string
+		event: React.FormEvent<HTMLFormElement>
 	) => {
 		setFormValuesMeasurements({
 			unit: "",
@@ -163,7 +155,6 @@ const Shoes = () => {
 					gender: FormValuesBrand.gender,
 				}
 			);
-			// setGenderCount(genderPOST.data.genderCount);
 		} catch (error) {
 			console.log(error);
 		}
@@ -274,7 +265,7 @@ const Shoes = () => {
 											<button
 												onClick={handleScrollToTable}
 												type='submit'
-												className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
+												className='findMySize'>
 												{translate(
 													"pages.ShoesWear.buttons.FindMySize",
 													"Find my Size"
@@ -291,7 +282,7 @@ const Shoes = () => {
 									<form
 										// @ts-ignore
 										onSubmit={handleSubmit}>
-										<Box className='flex flex-col place-items-center justify-center'>
+										<Box className='w-full flex flex-col place-items-center gap-2'>
 											<FormControl>
 												<InputLabel>
 													{translate("pages.Inputs.Genders.Gender", "Gender")}
@@ -360,7 +351,7 @@ const Shoes = () => {
 											<button
 												onClick={handleScrollToTable}
 												type='submit'
-												className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
+												className='findMySize'>
 												{translate(
 													"pages.ShoesWear.buttons.FindMySize",
 													"Find my Size"
