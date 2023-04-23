@@ -296,7 +296,7 @@ const Top = () => {
 													required
 													key={index}
 													label={translate(
-														`pages.Inputs.Measurements.${item.label}`,
+														`pages.Table.Headers.${item.label}`,
 														`${item.label}`
 													)}
 													name={item.name}
@@ -373,7 +373,7 @@ const Top = () => {
 													required
 													key={index}
 													label={translate(
-														`pages.Input.${item.label}`,
+														`pages.Table.Headers.${item.label}`,
 														`${item.label}`
 													)}
 													name={item.name}

@@ -34,6 +34,7 @@ const Charts = () => {
 		{
 			name: seriesName,
 			data: [12, 14, 2, 47, 32, 44, 14, 55, 41, 69, 91, 148, 22, 43, 21],
+			color: "#475be8",
 		},
 	];
 	//? ROW CHART
@@ -150,7 +151,7 @@ const Charts = () => {
 				</Box>
 			</Box>
 			{/* SMALLER CHARTS */}
-			<Box className='grid grid-cols-1 gap-4 pt-4 md:grid-cols-2 h-36'>
+			<Box className='grid grid-cols-1 gap-4 pt-4 xs:grid-cols-2 h-36'>
 				<Box className=' w-full flex place-content-center bg-[#fcfcfc] rounded-2xl'>
 					<ReactApexChart
 						// @ts-ignore
