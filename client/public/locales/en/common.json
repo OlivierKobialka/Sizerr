@@ -57,6 +57,7 @@
 			}
 		},
 		"Table": {
+			"Title": "Size Chart",
 			"Headers": {
 				"Brand": "Brand",
 				"Size": "Size",

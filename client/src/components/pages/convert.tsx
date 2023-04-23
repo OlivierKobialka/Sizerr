@@ -104,6 +104,7 @@ const Convert = () => {
 	const [dataFemaleBottoms, setDataFemaleBottoms] = useState<ITops[]>([]);
 	const [dataMaleTopsINCH, setDataMaleTopsINCH] = useState<ITops[]>([]);
 	const [dataFemaleTopsINCH, setDataFemaleTopsINCH] = useState<ITops[]>([]);
+	console.log(dataMaleTopsINCH);
 
 	const handleButtonClick = async (button: string) => {
 		setSelectedButton(button === selectedButton ? selectedButton : button);
@@ -244,7 +245,7 @@ const Convert = () => {
 		<Box className='bg-white rounded-2xl p-2'>
 			<ScrollTop />
 			<Typography fontSize={28} fontWeight={700} className="mb-5">
-				Table Shoes
+				{translate("pages.Table.Title", "Size Chart")}
 			</Typography>
 			<Box className="flex justify-between my-2">
 				<Box className="flex justify-between">

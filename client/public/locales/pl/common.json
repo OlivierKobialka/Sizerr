@@ -57,6 +57,7 @@
 			}
 		},
 		"Table": {
+			"Title": "Tabela Rozmiarów",
 			"Headers": {
 				"Brand": "Marka",
 				"Size": "Rozmiar",
