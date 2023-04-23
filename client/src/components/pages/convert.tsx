@@ -44,6 +44,10 @@ interface ITops {
 	WaistIN_max: number & Float;
 	HipIN_min: number & Float;
 	HipIN_max: number & Float;
+	Waistin_min: number & Float;
+	Waistin_max: number & Float;
+	Hipin_min: number & Float;
+	Hipin_max: number & Float;
 }
 
 
@@ -175,8 +179,8 @@ const Convert = () => {
 						<TableRow key={index}>
 							<TableCell>{item.Brand}</TableCell>
 							<TableCell>{item.Size}</TableCell>
-							<TableCell>{item.WaistIN_min}-{item.WaistIN_max}</TableCell>
-							<TableCell>{item.HipIN_min}-{item.HipIN_max}</TableCell>
+							<TableCell>{item.Waistin_min}-{item.Waistin_max}</TableCell>
+							<TableCell>{item.Hipin_min}-{item.Hipin_max}</TableCell>
 						</TableRow>
 					));
 					break;
