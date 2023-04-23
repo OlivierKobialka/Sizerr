@@ -102,9 +102,6 @@ const Convert = () => {
 	const [dataFemaleTops, setDataFemaleTops] = useState<ITops[]>([]);
 	const [dataMaleBottoms, setDataMaleBottoms] = useState<ITops[]>([]);
 	const [dataFemaleBottoms, setDataFemaleBottoms] = useState<ITops[]>([]);
-	const [dataMaleTopsINCH, setDataMaleTopsINCH] = useState<ITops[]>([]);
-	const [dataFemaleTopsINCH, setDataFemaleTopsINCH] = useState<ITops[]>([]);
-	console.log(dataMaleTopsINCH);
 
 	const handleButtonClick = async (button: string) => {
 		setSelectedButton(button === selectedButton ? selectedButton : button);
