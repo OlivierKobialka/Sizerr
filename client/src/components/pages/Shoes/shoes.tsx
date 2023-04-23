@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// @ts-ignore
 import {
 	FormControl,
 	InputLabel,
@@ -44,7 +42,6 @@ type Float = number & { __float: never };
 const Shoes = () => {
 	const [fetchedShoesSizes, setfetchedShoesSizes] = useState<IShoes[]>([]);
 	const translate = useTranslate();
-	// const [genderCount, setGenderCount] = useState({ male: 0, female: 0 });
 
 	//! MEASUREMENTS
 	const [FormValuesMeasurements, setFormValuesMeasurements] = useState({
@@ -77,20 +74,12 @@ const Shoes = () => {
 		gender: string
 	) => {
 		event.preventDefault();
-		// clear brand data from inputs
 		setFormValuesBrand({
 			brand: "",
 			size: "",
 			gender: "",
 			measurement: "",
 		});
-		const formData = {
-			unit: selectedValue,
-			size: FormValuesMeasurements.size,
-			gender: FormValuesMeasurements.gender,
-		};
-		console.log("By Measurements:", formData);
-
 		try {
 			const response = await axios.get("http://localhost:8080/api/Shoes-M", {
 				params: {
@@ -143,7 +132,6 @@ const Shoes = () => {
 		});
 	};
 
-	// ? fetching data from database
 	const handleSubmit = async (
 		event: React.FormEvent<HTMLFormElement>,
 		brand: string,
@@ -157,14 +145,6 @@ const Shoes = () => {
 			gender: "",
 		});
 		event.preventDefault();
-		const formData = {
-			measurement: selectedValueBrand,
-			brand: FormValuesBrand.brand,
-			size: FormValuesBrand.size,
-			gender: FormValuesBrand.gender,
-		};
-
-		console.log("By Brand:", formData);
 		try {
 			const response = await axios.get("http://localhost:8080/api/Shoes-B", {
 				params: {
@@ -189,7 +169,6 @@ const Shoes = () => {
 		}
 	};
 
-	// ? radio gender shoesBrand
 	const Option = [
 		{ id: 1, value: "male", text: "Male" },
 		{ id: 2, value: "female", text: "Female" },
@@ -207,7 +186,6 @@ const Shoes = () => {
 		{ value: "US", label: "US" },
 	];
 
-	//! TABLE
 	const [showTable, setShowTable] = useState(false);
 	const tableHeader = [
 		"Brand",
@@ -229,9 +207,7 @@ const Shoes = () => {
 		<>
 			<Tab.Group>
 				<Box className='flex flex-col  xl:mx-[15%]'>
-					{/*  */}
 					<Tabs />
-					{/*  */}
 					<Tab.Panels className='w-full'>
 						<Tab.Panel className='w-full lg:w-[750px] flex flex-col'>
 							<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
@@ -396,7 +372,6 @@ const Shoes = () => {
 							</Box>
 						</Tab.Panel>
 					</Tab.Panels>
-					{/* Table */}
 					<Box
 						ref={tableRef}
 						className={clsx(
@@ -432,7 +407,6 @@ const Shoes = () => {
 							</Table>
 						</TableContainer>
 					</Box>
-					{/* Table */}
 				</Box>
 			</Tab.Group>
 		</>

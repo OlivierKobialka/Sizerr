@@ -137,7 +137,6 @@ const Convert = () => {
 		fetchData();
 	}, []);
 
-	console.log(unit);
 	let tableBody;
 	let items
 	switch (tableType) {
