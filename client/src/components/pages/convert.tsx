@@ -141,64 +141,92 @@ const Convert = () => {
 	let tableBody;
 	let items
 	switch (tableType) {
+		// case 'Tops':
+		// 	items = genderSwitch ? dataMaleTops : dataFemaleTops;
+		// 	switch (genderSwitch) {
+		// 		case true:
+		// 			items = unit ? dataMaleTopsINCH : dataMaleTops;
+		// 			switch (unit) {
+		// 				case true:
+		// 					tableBody = items.map((item, index) => (
+		// 						<TableRow key={index}>
+		// 							<TableCell>{item.Brand}</TableCell>
+		// 							<TableCell>{item.Size}</TableCell>
+		// 							<TableCell>{item.ChestIN_min}-{item.ChestIN_max}</TableCell>
+		// 							<TableCell>{item.WaistIN_min}-{item.WaistIN_max}</TableCell>
+		// 							<TableCell>{item.HipIN_min}-{item.HipIN_max}</TableCell>
+		// 						</TableRow>
+		// 					))
+		// 					break;
+		// 				case false:
+		// 					tableBody = items.map((item, index) => (
+		// 						<TableRow key={index}>
+		// 							<TableCell>{item.Brand}</TableCell>
+		// 							<TableCell>{item.Size}</TableCell>
+		// 							<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
+		// 							<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
+		// 							<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
+		// 						</TableRow>
+		// 					))
+		// 					break;
+		// 			}
+		// 			break;
+		// 		case false:
+		// 			items = unit ? dataFemaleTopsINCH : dataFemaleTops;
+		// 			switch (unit) {
+		// 				case true:
+		// 					tableBody = items.map((item, index) => (
+		// 						<TableRow key={index}>
+		// 							<TableCell>{item.Brand}</TableCell>
+		// 							<TableCell>{item.Size}</TableCell>
+		// 							<TableCell>{item.ChestIN_min}-{item.ChestIN_max}</TableCell>
+		// 							<TableCell>{item.WaistIN_min}-{item.WaistIN_max}</TableCell>
+		// 							<TableCell>{item.HipIN_min}-{item.HipIN_max}</TableCell>
+		// 						</TableRow>
+		// 					))
+		// 					break;
+		// 				case false:
+		// 					tableBody = items.map((item, index) => (
+		// 						<TableRow key={index}>
+		// 							<TableCell>{item.Brand}</TableCell>
+		// 							<TableCell>{item.Size}</TableCell>
+		// 							<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
+		// 							<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
+		// 							<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
+		// 						</TableRow>
+		// 					))
+		// 					break;
+		// 			}
+		// 			break;
+		// 	}
+		// 	break;
 		case 'Tops':
 			items = genderSwitch ? dataMaleTops : dataFemaleTops;
-			switch (genderSwitch) {
+			switch (unit) {
 				case true:
-					items = unit ? dataMaleTopsINCH : dataMaleTops;
-					switch (unit) {
-						case true:
-							tableBody = items.map((item, index) => (
-								<TableRow key={index}>
-									<TableCell>{item.Brand}</TableCell>
-									<TableCell>{item.Size}</TableCell>
-									<TableCell>{item.ChestIN_min}-{item.ChestIN_max}</TableCell>
-									<TableCell>{item.WaistIN_min}-{item.WaistIN_max}</TableCell>
-									<TableCell>{item.HipIN_min}-{item.HipIN_max}</TableCell>
-								</TableRow>
-							))
-							break;
-						case false:
-							tableBody = items.map((item, index) => (
-								<TableRow key={index}>
-									<TableCell>{item.Brand}</TableCell>
-									<TableCell>{item.Size}</TableCell>
-									<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
-									<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
-									<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
-								</TableRow>
-							))
-							break;
-					}
+					tableBody = items.map((item, index) => (
+						<TableRow key={index}>
+							<TableCell>{item.Brand}</TableCell>
+							<TableCell>{item.Size}</TableCell>
+							<TableCell>{item.ChestIN_min}-{item.ChestIN_max}</TableCell>
+							<TableCell>{item.WaistIN_min}-{item.WaistIN_max}</TableCell>
+							<TableCell>{item.HipIN_min}-{item.HipIN_max}</TableCell>
+						</TableRow>
+					));
 					break;
 				case false:
-					items = unit ? dataFemaleTopsINCH : dataFemaleTops;
-					switch (unit) {
-						case true:
-							tableBody = items.map((item, index) => (
-								<TableRow key={index}>
-									<TableCell>{item.Brand}</TableCell>
-									<TableCell>{item.Size}</TableCell>
-									<TableCell>{item.ChestIN_min}-{item.ChestIN_max}</TableCell>
-									<TableCell>{item.WaistIN_min}-{item.WaistIN_max}</TableCell>
-									<TableCell>{item.HipIN_min}-{item.HipIN_max}</TableCell>
-								</TableRow>
-							))
-							break;
-						case false:
-							tableBody = items.map((item, index) => (
-								<TableRow key={index}>
-									<TableCell>{item.Brand}</TableCell>
-									<TableCell>{item.Size}</TableCell>
-									<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
-									<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
-									<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
-								</TableRow>
-							))
-							break;
-					}
+					tableBody = items.map((item, index) => (
+						<TableRow key={index}>
+							<TableCell>{item.Brand}</TableCell>
+							<TableCell>{item.Size}</TableCell>
+							<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
+							<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
+							<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
+						</TableRow>
+					));
 					break;
 			}
+
 			break;
 
 		case 'Bottoms':
