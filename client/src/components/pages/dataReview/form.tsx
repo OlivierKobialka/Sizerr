@@ -137,11 +137,10 @@ const Form = () => {
 						{category.map((item, index) => (
 							<button
 								type='button'
-								className={`${
-									selectedButton === item.value
-										? "bg-primary font-bold text-white rounded-3xl"
-										: "bg-gray-200 rounded-3xl font-bold text-black"
-								} py-1 px-4`}
+								className={`${selectedButton === item.value
+									? "bg-primary font-bold text-white rounded-3xl"
+									: "bg-gray-200 rounded-3xl font-bold text-black"
+									} py-1 px-4 mx-1`}
 								onClick={() => handleButtonClick(item.value)}>
 								{translate(`pages.FormOpinion.Title.Buttons.${item.name}`)}
 							</button>
@@ -149,11 +148,10 @@ const Form = () => {
 					</Box>
 
 					<button
-						className={`bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 rounded-2xl ${
-							(!email && !comment) || remainingChars < 0
+						className={`bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 rounded-2xl ${(!email && !comment) || remainingChars < 0
 								? "cursor-not-allowed opacity-50"
 								: ""
-						}`}
+							}`}
 						onClick={handleClickSnackbar}
 						type='submit'
 						disabled={(!email && !comment) || remainingChars < 0}>
