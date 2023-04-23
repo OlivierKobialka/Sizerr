@@ -327,7 +327,7 @@ const Top = () => {
 										<button
 											onClick={handleScrollToTable}
 											type='submit'
-											className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
+											className='findMySize'>
 											{translate(
 												"pages.ShoesWear.buttons.FindMySize",
 												"Find my Size"
@@ -405,7 +405,7 @@ const Top = () => {
 										<button
 											onClick={handleScrollToTable}
 											type='submit'
-											className='w-full bg-primary font-bold text-white bold rounded-xl  hover:bg-[#1e36e8] duration-200 ease-out py-2'>
+											className='findMySize'>
 											{translate(
 												"pages.ShoesWear.buttons.FindMySize",
 												"Find my Size"
