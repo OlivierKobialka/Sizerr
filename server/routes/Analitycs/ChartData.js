@@ -2,7 +2,6 @@ const sql = require("mssql");
 
 async function genderCount(req, res, dbConfig) {
 	const { gender } = req.query;
-	console.log(gender);
 
 	try {
 		const pool = await sql.connect(dbConfig);
@@ -17,7 +16,7 @@ async function genderCount(req, res, dbConfig) {
 					.query(`UPDATE GenderCount SET Female += 1`);
 			}
 		} else {
-			res.send(`Recived: ${gender}`);
+			res.status(500).send(`Recived: ${gender}`);
 		}
 
 		res.status(200).json({ GenderCount: result.recordset });
