@@ -49,7 +49,7 @@ where ChestCM_min <= 130 AND ChestCM_max >= 130
 
 
 
-
+select *from Comment
 
 
 
