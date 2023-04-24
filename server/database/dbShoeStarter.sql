@@ -433,10 +433,12 @@ VALUES
 
 create table GenderCount
 (
-  Male int not null,
+  Male int,
   Female int
 )
-
+insert into GenderCount values (0,0)
+SELECT * from GenderCount
+UPDATE GenderCount SET Male += 1
 create table Comment
 (
   email varchar(250),

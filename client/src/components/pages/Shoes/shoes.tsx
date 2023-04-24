@@ -15,7 +15,7 @@ import {
 	TableContainer,
 	TableBody,
 } from "@pankod/refine-mui";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Tab } from "@headlessui/react";
 import clsx from "clsx";
 import axios from "axios";
@@ -86,13 +86,15 @@ const Shoes = () => {
 			});
 			setfetchedShoesSizes(response.data.shoesMeasurement);
 			setShowTable(true);
-
-			// axios.post("http://localhost:8080/data/genders/post", {
-			// 	gender: FormValuesMeasurements.gender,
-			// });
-			// setGenderCount(genderPOST.data.genderCount);
+			await axios.post(
+				"http://localhost:8080/data/genders/post",
+				{
+					params: { gender: FormValuesMeasurements.gender }
+				}
+			);
+			console.log(FormValuesMeasurements.gender);
 		} catch (error) {
-			console.log(error);
+			console.log(`${error}`);
 		}
 	};
 
@@ -149,7 +151,7 @@ const Shoes = () => {
 			setfetchedShoesSizes(response.data.shoesBrand);
 			setShowTable(true);
 
-			const genderPOST = await axios.post(
+			await axios.post(
 				"http://localhost:8080/data/genders/post",
 				{
 					gender: FormValuesBrand.gender,

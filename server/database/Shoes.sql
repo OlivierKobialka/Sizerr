@@ -49,9 +49,12 @@ where ChestCM_min <= 130 AND ChestCM_max >= 130
 
 
 
-select *from Comment
+-- select *from Comment
 
+select * from GenderCount
+UPDATE GenderCount SET Male += 1
 
+UPDATE GenderCount SET Female += 1
 
 
 
