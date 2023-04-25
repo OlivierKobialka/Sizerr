@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
 	FormControl,
 	InputLabel,
@@ -444,7 +443,7 @@ const Top = () => {
 													{item.ChestCM_min}-{item.ChestCM_max}
 												</TableCell>
 												<TableCell>
-													{item.WaistCM_min}-{item.WaistCM_max}
+													0-{item.WaistCM_max}
 												</TableCell>
 												<TableCell>
 													{item.HipCM_min}-{item.HipCM_max}
