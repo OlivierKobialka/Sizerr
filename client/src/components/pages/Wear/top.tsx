@@ -32,10 +32,6 @@ const Top = () => {
 		gender: string;
 	};
 
-	type InputType = {
-		value: string;
-		label: string;
-	}[];
 	interface IWears {
 		Brand: string;
 		Size: string;
@@ -83,11 +79,6 @@ const Top = () => {
 
 	const handleSubmitMeasurements = async (
 		event: React.FormEvent<HTMLFormElement>,
-		unit: string,
-		chest: string,
-		hips: string,
-		waist: string,
-		gender: string
 	) => {
 		event.preventDefault();
 		const formData: FormData = {
@@ -115,14 +106,6 @@ const Top = () => {
 		}
 	};
 	const [selectedValue, setSelectedValue] = React.useState("cm");
-	const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setSelectedValue(event.target.value);
-	};
-
-	const RadioGroupMeasurements: InputType = [
-		{ value: "cm", label: "CM" },
-		{ value: "in", label: "INCH" },
-	];
 	const TextFieldMeasurements = [
 		{
 			label: "Chest",
@@ -216,19 +199,6 @@ const Top = () => {
 			className: "w-96",
 		},
 	];
-	//!
-	const [selectedOption, setSelectedOption] = useState<string>("");
-	const [label, setLabel] = useState<string>("Chest");
-
-	const handleOptionChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-		const selectedValue = event.target.value;
-		setSelectedOption(selectedValue as string);
-		if (selectedValue === "men") {
-			setLabel("Chest");
-		} else if (selectedValue === "women") {
-			setLabel("Bust");
-		}
-	};
 	//! TABLE
 	const [showTable, setShowTable] = useState(false);
 	const tableHeader = ["Brand", "Size", "Chest", "Waist", "Hips"];

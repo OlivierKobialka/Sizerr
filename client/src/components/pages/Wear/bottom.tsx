@@ -5,19 +5,15 @@ import {
 	Select,
 	Box,
 	TextField,
-	Radio,
-	RadioGroup,
 	TableCell,
 	TableRow,
 	TableHead,
 	Table,
 	TableContainer,
 	TableBody,
-	FormControlLabel,
-	FormLabel,
 	Typography,
 } from "@pankod/refine-mui";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Tab } from "@headlessui/react";
 import clsx from "clsx";
 import axios from "axios";
@@ -61,7 +57,6 @@ const Bottom = () => {
 		Heightin_min: string;
 		Heightin_max: string;
 	}
-	type Float = number & { __float: never };
 	const [fetchedWearSizes, setfetchedWearSizes] = useState<IWears[]>([]);
 	const translate = useTranslate();
 
