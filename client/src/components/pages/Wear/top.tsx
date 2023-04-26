@@ -56,7 +56,7 @@ const Top = () => {
 		HipIN_max: string;
 	}
 	const [fetchedTopWear, setFetchedTopWear] = useState<IWears[]>([]);
-	const [fetchedTopWearINCH, setFetchedTopWearINCH] = useState<IWears[]>([]);
+	// const [fetchedTopWearINCH, setFetchedTopWearINCH] = useState<IWears[]>([]);
 	const translate = useTranslate();
 
 	//! MEASUREMENTS
@@ -192,15 +192,15 @@ const Top = () => {
 				},
 			});
 			setFetchedTopWear(response.data.topBrand);
-			const responseINCH = await axios.get("http://localhost:8080/api/Tops-B", {
-				params: {
-					brand: FormValuesBrand.brand,
-					size: FormValuesBrand.size,
-					gender: FormValuesBrand.gender,
-					unit: true
-				},
-			});
-			setFetchedTopWearINCH(responseINCH.data.topBrandINCH);
+			// const responseINCH = await axios.get("http://localhost:8080/api/Tops-B", {
+			// 	params: {
+			// 		brand: FormValuesBrand.brand,
+			// 		size: FormValuesBrand.size,
+			// 		gender: FormValuesBrand.gender,
+			// 		unit: true
+			// 	},
+			// });
+			// setFetchedTopWear(responseINCH.data.topBrandINCH);
 			setShowTable(true);
 		} catch (error) {
 			console.log(error);
@@ -433,7 +433,7 @@ const Top = () => {
 										))}
 									</TableRow>
 								</TableHead>
-								{unit === true ? (
+								{unit === false ? (
 									<TableBody>
 										{fetchedTopWear.map((item, index) => (
 											<TableRow key={index}>
@@ -453,7 +453,7 @@ const Top = () => {
 									</TableBody>
 								) : (
 									<TableBody>
-										{fetchedTopWearINCH.map((item, index) => (
+										{fetchedTopWear.map((item, index) => (
 											<TableRow key={index}>
 												<TableCell>{item.Brand}</TableCell>
 												<TableCell>{item.Size}</TableCell>

@@ -72,10 +72,15 @@ FROM ShoesMan
 
 
 
+SELECT
+    Brand.Brand, Size, ChestCM_min, ChestCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max, ChestIN_min, ChestIN_max, WaistIN_min, WaistIN_max, HipIN_min, HipIN_max
+FROM TopsWoman INNER JOIN Brand ON Brand.Id = TopsWoman.BrandId
 
 
-
-
+SELECT
+    Brand.Brand, Size, ChestCM_min, ChestCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max
+FROM TopsWoman INNER JOIN Brand ON Brand.Id = TopsWoman.BrandId
+where Brand.brand = 'Adidas' AND Size = 'XXL'
 
 
 SELECT *
