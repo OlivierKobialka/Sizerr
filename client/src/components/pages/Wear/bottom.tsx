@@ -226,7 +226,7 @@ const Bottom = () => {
 	// 	}
 	// };
 	//! TABLE
-	const [showTable, setShowTable] = useState(true);
+	const [showTable, setShowTable] = useState(false);
 	const tableHeader = [
 		"Brand",
 		"Size",
