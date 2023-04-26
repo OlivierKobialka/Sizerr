@@ -42,12 +42,24 @@ const Bottom = () => {
 		label: string;
 	}[];
 	interface IWears {
-		brand: string;
-		sizeEU: number & Float;
-		sizeUS: number & Float;
-		sizeUK: number & Float;
-		sizeCM: number & Float;
-		sizeIN: number & Float;
+		Brand: string;
+		Size: string;
+		ChestCM_min: string;
+		ChestCM_max: string;
+		ChestIN_min: string;
+		ChestIN_max: string;
+		WaistCM_min: string;
+		WaistCM_max: string;
+		WaistIN_min: string;
+		WaistIN_max: string;
+		HipCM_min: string;
+		HipCM_max: string;
+		HipIN_min: string;
+		HipIN_max: string;
+		HeightCM_min: string;
+		HeightCM_max: string;
+		Heightin_min: string;
+		Heightin_max: string;
 	}
 	type Float = number & { __float: never };
 	const [fetchedWearSizes, setfetchedWearSizes] = useState<IWears[]>([]);
@@ -217,11 +229,11 @@ const Bottom = () => {
 	const [showTable, setShowTable] = useState(false);
 	const tableHeader = [
 		"Brand",
-		"Size EU",
-		"Size US",
-		"Size UK",
-		"Size CM",
-		"Size INCH",
+		"Size",
+		"Chest",
+		"Waist",
+		"Hips",
+		"Height",
 	];
 	const tableRef = useRef<HTMLTableElement>(null);
 
@@ -412,18 +424,34 @@ const Bottom = () => {
 										))}
 									</TableRow>
 								</TableHead>
-								<TableBody>
-									{fetchedWearSizes.map((item, index) => (
-										<TableRow key={index}>
-											<TableCell>{item.brand}</TableCell>
-											<TableCell>{item.sizeEU}</TableCell>
-											<TableCell>{item.sizeUS}</TableCell>
-											<TableCell>{item.sizeUK}</TableCell>
-											<TableCell>{item.sizeCM}</TableCell>
-											<TableCell>{item.sizeIN}</TableCell>
-										</TableRow>
-									))}
-								</TableBody>
+								{unit === false ? (
+									<TableBody>
+										{fetchedWearSizes.map((item, index) => (
+											<TableRow key={index}>
+												<TableCell>{item.Brand}</TableCell>
+												<TableCell>{item.Size}</TableCell>
+												<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
+												<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
+												<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
+												<TableCell>{item.HeightCM_min}-{item.HeightCM_max}</TableCell>
+											</TableRow>
+										))}
+									</TableBody>
+								) : (
+									<TableBody>
+										{fetchedWearSizes.map((item, index) => (
+											<TableRow key={index}>
+												<TableCell>{item.Brand}</TableCell>
+												<TableCell>{item.Size}</TableCell>
+												<TableCell>{item.ChestIN_min}-{item.ChestIN_max}</TableCell>
+												<TableCell>{item.WaistIN_min}-{item.WaistIN_max}</TableCell>
+												<TableCell>{item.HipIN_min}-{item.HipIN_max}</TableCell>
+												<TableCell>{item.Heightin_min}-{item.Heightin_max}</TableCell>
+											</TableRow>
+										))}
+									</TableBody>
+								)}
+
 							</Table>
 						</TableContainer>
 					</Box>

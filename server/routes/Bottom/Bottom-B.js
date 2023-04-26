@@ -1,7 +1,7 @@
 const sql = require("mssql");
 
 async function bottomBrand(req, res, dbConfig) {
-    const { gender, brand, size } = req.query;
+    const { gender, size } = req.query;
 
     try {
         const pool = await sql.connect(dbConfig);

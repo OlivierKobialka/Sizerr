@@ -171,12 +171,6 @@ const Top = () => {
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		const formData = {
-			brand: FormValuesBrand.brand,
-			size: FormValuesBrand.size,
-			gender: FormValuesBrand.gender,
-		};
-		console.log("By Brand:", formData);
 
 		try {
 			const response = await axios.get("http://localhost:8080/api/Tops-B", {
@@ -201,7 +195,7 @@ const Top = () => {
 			console.log(error);
 		}
 	};
-	console.log(unit);
+
 	const Option = [
 		{ id: 1, value: "male", text: "Male" },
 		{ id: 2, value: "female", text: "Female" },
