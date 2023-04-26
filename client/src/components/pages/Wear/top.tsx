@@ -5,8 +5,6 @@ import {
 	Select,
 	Box,
 	TextField,
-	Radio,
-	RadioGroup,
 	TableCell,
 	TableRow,
 	TableHead,
@@ -14,7 +12,6 @@ import {
 	TableContainer,
 	TableBody,
 	Typography,
-	FormControlLabel,
 } from "@pankod/refine-mui";
 import React, { useState, useRef } from "react";
 import { Tab } from "@headlessui/react";
