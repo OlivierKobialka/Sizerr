@@ -184,7 +184,6 @@ const Top = () => {
 					brand: FormValuesBrand.brand,
 					size: FormValuesBrand.size,
 					gender: FormValuesBrand.gender,
-					unit: false
 				},
 			});
 			setFetchedTopWear(response.data.topBrand);

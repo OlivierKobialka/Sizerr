@@ -13,6 +13,9 @@ import {
 	Table,
 	TableContainer,
 	TableBody,
+	FormControlLabel,
+	FormLabel,
+	Typography,
 } from "@pankod/refine-mui";
 import React, { useState, useEffect, useRef } from "react";
 import { Tab } from "@headlessui/react";
@@ -22,12 +25,12 @@ import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 import { useTranslate } from "@pankod/refine-core";
 import Tabs from "../Tabs";
+import { Switch } from "@headlessui/react";
 
 const Bottom = () => {
 	type FormData = {
 		unit: string;
-		chest?: string;
-		bust?: string;
+		chest: string;
 		hips: string;
 		inseam: string;
 		waist: string;
@@ -85,7 +88,6 @@ const Bottom = () => {
 		const formData: FormData = {
 			unit: selectedValue,
 			chest: FormValuesMeasurements.chest,
-			bust: FormValuesMeasurements.bust,
 			hips: FormValuesMeasurements.hips,
 			inseam: FormValuesMeasurements.inseam,
 			waist: FormValuesMeasurements.waist,
@@ -104,8 +106,8 @@ const Bottom = () => {
 	];
 	const TextFieldMeasurements = [
 		{
-			label: "Chest" || "Bust",
-			name: "chest" || "bust",
+			label: "Chest",
+			name: "chest",
 			value: FormValuesMeasurements.chest,
 			onChange: handleInputChangeMeasurements,
 			className: "w-64 pt-2 md:w-56",
@@ -133,6 +135,8 @@ const Bottom = () => {
 		},
 	];
 	//! BRAND
+	const [unit, setUnit] = useState(false)
+
 	const [FormValuesBrand, setFormValuesBrand] = useState({
 		brand: "",
 		size: "",
@@ -153,7 +157,7 @@ const Bottom = () => {
 		});
 	};
 
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const formData = {
 			brand: FormValuesBrand.brand,
@@ -161,6 +165,19 @@ const Bottom = () => {
 			gender: FormValuesBrand.gender,
 		};
 		console.log("By Brand:", formData);
+		try {
+			const response = await axios.get('http://localhost:8000/api/Bottoms-B', {
+				params: {
+					brand: FormValuesBrand.brand,
+					size: FormValuesBrand.size,
+					gender: FormValuesBrand.gender,
+				},
+			})
+			setfetchedWearSizes(response.data.bottomBrand);
+			setShowTable(true);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const Option = [
@@ -178,7 +195,7 @@ const Bottom = () => {
 		{
 			label: "Size",
 			name: "size",
-			value: FormValuesBrand.brand,
+			value: FormValuesBrand.size,
 			onChange: handleInputChange,
 			className: "w-96",
 		},
@@ -186,17 +203,16 @@ const Bottom = () => {
 	//!
 	const [selectedOption, setSelectedOption] = useState<string>("");
 	const [label, setLabel] = useState<string>("Chest");
-	const [value, setValue] = React.useState(0);
 
-	const handleOptionChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-		const selectedValue = event.target.value;
-		setSelectedOption(selectedValue as string);
-		if (selectedValue === "men") {
-			setLabel("Chest");
-		} else if (selectedValue === "women") {
-			setLabel("Bust");
-		}
-	};
+	// const handleOptionChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+	// 	const selectedValue = event.target.value;
+	// 	setSelectedOption(selectedValue as string);
+	// 	if (selectedValue === "men") {
+	// 		setLabel("Chest");
+	// 	} else if (selectedValue === "women") {
+	// 		setLabel("Bust");
+	// 	}
+	// };
 	//! TABLE
 	const [showTable, setShowTable] = useState(false);
 	const tableHeader = [
@@ -267,6 +283,23 @@ const Bottom = () => {
 												/>
 											))}
 										</Box>
+										<Box className="flex justify-around items-center">
+											<Typography>CM</Typography>
+											<Switch
+												checked={unit}
+												onChange={setUnit}
+												className={`${unit ? 'bg-primary' : 'bg-pink-500'
+													} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
+											>
+												<span
+													className={`${unit ? 'translate-x-6' : 'translate-x-1'
+														} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+												/>
+											</Switch>
+											<Typography>
+												INCH
+											</Typography>
+										</Box>
 									</Box>
 									<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
 										<button
@@ -327,6 +360,23 @@ const Bottom = () => {
 													className={item.className}
 												/>
 											))}
+										</Box>
+										<Box className="flex justify-around items-center">
+											<Typography>CM</Typography>
+											<Switch
+												checked={unit}
+												onChange={setUnit}
+												className={`${unit ? 'bg-primary' : 'bg-pink-500'
+													} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
+											>
+												<span
+													className={`${unit ? 'translate-x-6' : 'translate-x-1'
+														} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+												/>
+											</Switch>
+											<Typography>
+												INCH
+											</Typography>
 										</Box>
 									</Box>
 									<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
