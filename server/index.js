@@ -7,6 +7,8 @@ const app = express();
 const port = 8080;
 const { shoesBrand } = require("./routes/Shoes/Shoes-B");
 const { shoesMeasurement } = require("./routes/Shoes/Shoes-M");
+const { bottomBrand } = require("./routes/Bottom/Bottom-B");
+const { bottomMeasurements } = require("./routes/Bottom/Bottom-M");
 const { topBrand } = require("./routes/Top/Top-B");
 const { topMeasurements } = require("./routes/Top/Top-M");
 const { userComment } = require("./routes/Analitycs/ReviewsFromUsers");
@@ -58,6 +60,12 @@ app.get("/api/Tops-M", (req, res) => {
 	topMeasurements(req, res, dbConfig);
 });
 //? BOTTOMS
+app.get("/api/Bottoms-B", (req, res) => {
+	bottomBrand(req, res, dbConfig);
+});
+app.get("/api/Bottoms-M", (req, res) => {
+	bottomMeasurements(req, res, dbConfig);
+});
 
 //? GENDER COUNT
 app.get("/data/genders/get", (req, res) => {
