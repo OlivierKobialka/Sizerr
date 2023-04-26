@@ -16,7 +16,7 @@ import {
 	Typography,
 	FormControlLabel,
 } from "@pankod/refine-mui";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Tab } from "@headlessui/react";
 import clsx from "clsx";
 import axios from "axios";
@@ -56,7 +56,6 @@ const Top = () => {
 		HipIN_max: string;
 	}
 	const [fetchedTopWear, setFetchedTopWear] = useState<IWears[]>([]);
-	// const [fetchedTopWearINCH, setFetchedTopWearINCH] = useState<IWears[]>([]);
 	const translate = useTranslate();
 
 	//! MEASUREMENTS
@@ -415,7 +414,6 @@ const Top = () => {
 							</form>
 						</Tab.Panel>
 					</Tab.Panels>
-					{/* Table */}
 					<Box
 						ref={tableRef}
 						className={clsx("mt-2 rounded-2xl border-2 border-primary", {
@@ -443,7 +441,7 @@ const Top = () => {
 													{item.ChestCM_min}-{item.ChestCM_max}
 												</TableCell>
 												<TableCell>
-													0-{item.WaistCM_max}
+													{item.WaistCM_min}-{item.WaistCM_max}
 												</TableCell>
 												<TableCell>
 													{item.HipCM_min}-{item.HipCM_max}
@@ -473,7 +471,6 @@ const Top = () => {
 							</Table>
 						</TableContainer>
 					</Box>
-					{/* Table */}
 				</Box>
 			</Tab.Group>
 		</>
