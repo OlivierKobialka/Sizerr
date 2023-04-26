@@ -88,7 +88,7 @@ const Bottom = () => {
 			});
 		};
 
-	const handleSubmitMeasurements = (
+	const handleSubmitMeasurements = async (
 		event: React.FormEvent<HTMLFormElement>
 	) => {
 		event.preventDefault();
@@ -101,16 +101,28 @@ const Bottom = () => {
 			gender: FormValuesMeasurements.gender,
 		};
 		console.log("By Measurements:", formData);
+
+		try {
+			const response = await axios.get('http://localhost:8000/api/Bottoms-M', {
+				params: {
+					gender: FormValuesBrand.gender,
+					chest: FormValuesMeasurements.chest,
+					hips: FormValuesMeasurements.hips,
+					inseam: FormValuesMeasurements.inseam,
+					waist: FormValuesMeasurements.waist,
+				},
+			})
+			setfetchedWearSizes(response.data.bottomMeasurements);
+			setShowTable(true);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 	const [selectedValue, setSelectedValue] = React.useState("cm");
 	const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSelectedValue(event.target.value);
 	};
 
-	const RadioGroupMeasurements: InputType = [
-		{ value: "cm", label: "CM" },
-		{ value: "in", label: "INCH" },
-	];
 	const TextFieldMeasurements = [
 		{
 			label: "Chest",
