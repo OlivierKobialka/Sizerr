@@ -53,7 +53,8 @@
 				"Bust": "Bust",
 				"Hips": "Hips",
 				"Waist": "Waist",
-				"Inseam": "Inseam"
+				"Inseam": "Inseam",
+				"Height": "Height"
 			}
 		},
 		"Table": {

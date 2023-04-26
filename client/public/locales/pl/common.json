@@ -53,7 +53,8 @@
 				"Bust": "Biust",
 				"Hips": "Biodra",
 				"Waist": "Talia",
-				"Inseam": "Długość Nogawki"
+				"Inseam": "Długość Nogawki",
+				"Height": "Wzrost"
 			}
 		},
 		"Table": {
