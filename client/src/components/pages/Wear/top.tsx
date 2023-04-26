@@ -304,22 +304,23 @@ const Top = () => {
 												/>
 											))}
 										</Box>
-										<FormControl>
-											<RadioGroup
-												row
-												value={selectedValue}
-												onChange={handleRadioChange}
-												className='w-96 my-1'>
-												{RadioGroupMeasurements.map((item, index) => (
-													<FormControlLabel
-														key={index}
-														value={item.value}
-														control={<Radio color='info' />}
-														label={item.label}
-													/>
-												))}
-											</RadioGroup>
-										</FormControl>
+										<Box className="flex justify-around items-center">
+											<Typography>CM</Typography>
+											<Switch
+												checked={unit}
+												onChange={setUnit}
+												className={`${unit ? 'bg-primary' : 'bg-pink-500'
+													} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
+											>
+												<span
+													className={`${unit ? 'translate-x-6' : 'translate-x-1'
+														} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+												/>
+											</Switch>
+											<Typography>
+												INCH
+											</Typography>
+										</Box>
 									</Box>
 									<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
 										<button
