@@ -37,7 +37,7 @@ async function topMeasurements(req, res, dbConfig) {
 					.input("hips", hips)
 					.input("waist", waist)
 					.query(
-						`SELECT Brand.Brand, Size, ChestCM_min,ChestCM_max, WaistCM_min WaistCM_max, HipCM_min, HipCM_max, ChestIN_min, ChestIN_max, WaistIN_min WaistIN_max, HipIN_min, HipIN_max  FROM TopsWoman INNER JOIN Brand ON Brand.Id = TopsWoman.BrandId WHERE ChestCM_min <= @chest AND ChestCM_max >= @chest AND HipCM_min <= @hips AND HipCM_max >= @hips`,
+						`SELECT Brand.Brand, Size, ChestCM_min,ChestCM_max, WaistCM_min WaistCM_max, HipCM_min, HipCM_max, ChestIN_min, ChestIN_max, WaistIN_min WaistIN_max, HipIN_min, HipIN_max FROM TopsWoman INNER JOIN Brand ON Brand.Id = TopsWoman.BrandId WHERE ChestCM_min <= @chest AND ChestCM_max >= @chest AND HipCM_min <= @hips AND HipCM_max >= @hips`,
 						[
 							{ name: "chest", value: chest },
 							{ name: "hips", value: hips },
@@ -49,7 +49,7 @@ async function topMeasurements(req, res, dbConfig) {
 			}
 		}
 	} catch (error) {
-		res.status(500).send(`SERVER: ${error}`);
+		res.status(500).send(`${error}`);
 	}
 }
 

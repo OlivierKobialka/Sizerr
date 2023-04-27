@@ -6,10 +6,10 @@ async function shoesMeasurement(req, res, dbConfig) {
 	try {
 		const pool = await sql.connect(dbConfig);
 		let paramSize;
-		if (unit !== undefined) {
-			paramSize = `Size${unit}`;
+		if (unit === false) {
+			paramSize = "SizeCM";
 		} else {
-			throw new Error("Measurement parameter is undefined");
+			paramSize = "SizeIN";
 		}
 
 		let result;
@@ -24,7 +24,6 @@ async function shoesMeasurement(req, res, dbConfig) {
 				WHERE ${paramSize}=@size`,
 					[{ name: "size", value: size }]
 				);
-			``;
 		} else {
 			result = await pool
 				.request()

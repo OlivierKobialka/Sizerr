@@ -14,6 +14,8 @@ import {
 	Table,
 	TableContainer,
 	TableBody,
+	Typography,
+
 } from "@pankod/refine-mui";
 import React, { useState, useRef } from "react";
 import { Tab } from "@headlessui/react";
@@ -22,6 +24,7 @@ import axios from "axios";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 import { useTranslate } from "@pankod/refine-core";
+import { Switch } from '@headlessui/react'
 
 import Tabs from "../Tabs";
 
@@ -40,6 +43,9 @@ interface IShoes {
 type Float = number & { __float: never };
 
 const Shoes = () => {
+	const [unit, setUnit] = useState(false)
+	console.log(unit);
+
 	const [fetchedShoesSizes, setfetchedShoesSizes] = useState<IShoes[]>([]);
 	const translate = useTranslate();
 
@@ -79,7 +85,7 @@ const Shoes = () => {
 		try {
 			const response = await axios.get("http://localhost:8080/api/Shoes-M", {
 				params: {
-					unit: selectedValue,
+					unit: unit,
 					size: FormValuesMeasurements.size,
 					gender: FormValuesMeasurements.gender,
 				},
@@ -151,12 +157,12 @@ const Shoes = () => {
 			setfetchedShoesSizes(response.data.shoesBrand);
 			setShowTable(true);
 
-			await axios.post(
-				"http://localhost:8080/data/genders/post",
-				{
-					gender: FormValuesBrand.gender,
-				}
-			);
+			// await axios.post(
+			// 	"http://localhost:8080/data/genders/post",
+			// 	{
+			// 		gender: FormValuesBrand.gender,
+			// 	}
+			// );
 		} catch (error) {
 			console.log(error);
 		}
@@ -236,8 +242,7 @@ const Shoes = () => {
 												</Select>
 											</FormControl>
 										</Box>
-										<Box className='flex place-items-center justify-center'></Box>
-										<FormControl>
+										{/* <FormControl>
 											<RadioGroup
 												row
 												value={selectedValue}
@@ -252,7 +257,7 @@ const Shoes = () => {
 													/>
 												))}
 											</RadioGroup>
-										</FormControl>
+										</FormControl> */}
 										<TextField
 											className='w-96'
 											type='number'
@@ -263,6 +268,23 @@ const Shoes = () => {
 											onChange={handleInputChangeMeasurements}
 											required
 										/>
+										<Box className="flex justify-around items-center">
+											<Typography>CM</Typography>
+											<Switch
+												checked={unit}
+												onChange={setUnit}
+												className={`${unit ? 'bg-primary' : 'bg-pink-500'
+													} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
+											>
+												<span
+													className={`${unit ? 'translate-x-6' : 'translate-x-1'
+														} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+												/>
+											</Switch>
+											<Typography>
+												INCH
+											</Typography>
+										</Box>
 										<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
 											<button
 												onClick={handleScrollToTable}
