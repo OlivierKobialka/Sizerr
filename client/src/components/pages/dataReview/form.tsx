@@ -53,22 +53,20 @@ const Form = () => {
 		setEmail("");
 		setSelectedButton(selectedButton);
 		setRemainingChars(150);
-
 		try {
 			await axios.post("http://localhost:8080/Opinion", {
 				params: {
-					email: email,
-					comment: comment,
-					category: selectedButton,
+					email: formData.email,
+					comment: formData.comment,
+					category: formData.category,
 				},
 			});
 			// setOpinion(response.data.userComment);
-			// console.log(response.data);
 		} catch (error) {
 			console.error(error);
 		}
 	};
-
+	//! =======================================================
 	const category: TCategory = [
 		{
 			value: "feedback",
