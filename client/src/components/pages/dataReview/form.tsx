@@ -22,10 +22,10 @@ const Form = () => {
 	// 	comment: "",
 	// 	category: "",
 	// });
-	const [comment, setComment] = useState("");
-	const [email, setEmail] = useState("");
+	const [comment, setComment] = useState<string>("");
+	const [email, setEmail] = useState<string>("");
 	const [selectedButton, setSelectedButton] = useState<string>("feedback");
-	const [remainingChars, setRemainingChars] = useState(150);
+	const [remainingChars, setRemainingChars] = useState<number>(150);
 
 	const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = event.target;
@@ -55,7 +55,7 @@ const Form = () => {
 		setRemainingChars(150);
 
 		try {
-			const response = await axios.post("http://localhost:8080/Opinion", {
+			await axios.post("http://localhost:8080/Opinion", {
 				params: {
 					email: email,
 					comment: comment,

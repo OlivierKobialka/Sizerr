@@ -14,6 +14,9 @@ async function userComment(req, res, dbConfig) {
 
 			let result = await pool
 				.request()
+				.input("email", email)
+				.input("comment", comment)
+				.input("category", category)
 				.query(
 					`INSERT INTO Comment (email, comment, category) VALUES ('${email}', '${comment}', '${category}')`
 				);
