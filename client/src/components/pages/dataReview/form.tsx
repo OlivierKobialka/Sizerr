@@ -49,10 +49,7 @@ const Form = () => {
 			category: selectedButton,
 		};
 		console.log(formData);
-		// setComment("");
-		// setEmail("");
-		// setSelectedButton(selectedButton);
-		// setRemainingChars(150);
+
 		try {
 			await axios.post("http://localhost:8080/Opinion", {
 				email: formData.email,
@@ -62,6 +59,10 @@ const Form = () => {
 		} catch (error) {
 			console.error(error);
 		}
+		setComment("");
+		setEmail("");
+		setSelectedButton(selectedButton);
+		setRemainingChars(150);
 	};
 	//! =======================================================
 	const category: TCategory = [
