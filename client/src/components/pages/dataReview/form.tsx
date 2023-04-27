@@ -49,19 +49,16 @@ const Form = () => {
 			category: selectedButton,
 		};
 		console.log(formData);
-		setComment("");
-		setEmail("");
-		setSelectedButton(selectedButton);
-		setRemainingChars(150);
+		// setComment("");
+		// setEmail("");
+		// setSelectedButton(selectedButton);
+		// setRemainingChars(150);
 		try {
 			await axios.post("http://localhost:8080/Opinion", {
-				params: {
-					email: formData.email,
-					comment: formData.comment,
-					category: formData.category,
-				},
+				email: formData.email,
+				comment: formData.comment,
+				category: formData.category,
 			});
-			// setOpinion(response.data.userComment);
 		} catch (error) {
 			console.error(error);
 		}
