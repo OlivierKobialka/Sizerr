@@ -18,8 +18,12 @@
 
 -- UPDATE genderCount SET Male += 1
 
--- select *
--- from Comment
+select *
+from Comment
+
+INSERT INTO Comment (email, comment, category) VALUES (
+    'a@example.com', 'This is a comment', 'feedback'
+)
 
 
 

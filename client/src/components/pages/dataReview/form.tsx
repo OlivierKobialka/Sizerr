@@ -8,15 +8,20 @@ type TCategory = {
 	value: string;
 	name: string;
 }[];
+type IComment = {
+	comment: string;
+	category: string;
+	email: string;
+}[]
 
 const Form = () => {
 	const translate = useTranslate();
 
-	const [opinion, setOpinion] = useState({
-		email: "",
-		comment: "",
-		category: "",
-	});
+	// const [opinion, setOpinion] = useState<IComment>({
+	// 	email: "",
+	// 	comment: "",
+	// 	category: "",
+	// });
 	const [comment, setComment] = useState("");
 	const [email, setEmail] = useState("");
 	const [selectedButton, setSelectedButton] = useState<string>("feedback");
@@ -57,7 +62,7 @@ const Form = () => {
 					category: selectedButton,
 				},
 			});
-			setOpinion(response.data.userComment);
+			// setOpinion(response.data.userComment);
 			// console.log(response.data);
 		} catch (error) {
 			console.error(error);
@@ -149,8 +154,8 @@ const Form = () => {
 
 					<button
 						className={`bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 rounded-2xl ${(!email && !comment) || remainingChars < 0
-								? "cursor-not-allowed opacity-50"
-								: ""
+							? "cursor-not-allowed opacity-50"
+							: ""
 							}`}
 						onClick={handleClickSnackbar}
 						type='submit'

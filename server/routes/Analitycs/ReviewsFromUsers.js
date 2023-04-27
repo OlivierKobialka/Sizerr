@@ -5,8 +5,8 @@ async function userComment(req, res, dbConfig) {
 
 	if (email || comment || category === undefined) {
 		res.status(501).send(
-            '<div style="font-size: 90px;">Undefined.</div>'
-        );
+			'parameters are undefined'
+		);
 		return;
 	} else {
 		try {
