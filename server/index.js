@@ -17,6 +17,7 @@ const {
 	avgShoeSize,
 	feedbackCategory,
 	getGenderCount,
+	feedbackCategoryPOST,
 } = require("./routes/Analitycs/ChartData");
 const { getTableData, getTableDataMale, getTableDataTopsMale, getTableDataTopsFemale, getTableDataBottomsMale, getTableDataBottomsFemale } = require("./routes/Analitycs/GetTableData");
 
@@ -74,6 +75,13 @@ app.get("/data/genders/get", (req, res) => {
 app.post("/data/genders/post", (req, res) => {
 	genderCount(req, res, dbConfig);
 });
+
+app.get("/data/opinionCategory", (req, res) => {
+	feedbackCategory(req, res, dbConfig);
+})
+app.post("/data/opinionCategory-post", (req, res) => {
+	feedbackCategoryPOST(req, res, dbConfig);
+})
 
 //? OPINIONS FROM USERS
 app.post("/Opinion", (req, res) => {

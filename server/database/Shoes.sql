@@ -1,11 +1,10 @@
 select *
 from Comment
 
-INSERT INTO Comment (email, comment, category) VALUES (
-    'a@example.com', 'This is a comment', 'feedback'
-)
+select * from FeedbackCount
 
-
+UPDATE FeedbackCount SET suggestion += 1
+update FeedbackCount set complain += 1
 
 SELECT *
 from TopsMan

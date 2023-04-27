@@ -40,6 +40,31 @@ async function feedbackCategory(req, res, dbConfig) {
 		res.status(500).send(`${error}`);
 	}
 }
+async function feedbackCategoryPOST(req, res, dbConfig) {
+	const { category } = req.body;
+
+	let option = "";
+
+	if (category === "feedback") {
+		option = "feedback";
+	} else if (category === "suggestion") {
+		option = "suggestion";
+	} else if (category === "complain") {
+		option = "complain";
+	} else { res.status(500).send(`Recived: ${category}`); }
+	try {
+		const pool = await sql.connect(dbConfig);
+
+		let result = await pool
+			.request()
+			.input("category", option)
+			.query(`UPDATE FeedbackCount SET ${option} += 1
+`)
+		res.status(200)
+	} catch (error) {
+		res.status(500).send(`${error}`);
+	}
+}
 
 async function getGenderCount(req, res, dbConfig) {
 	try {
@@ -60,5 +85,5 @@ module.exports = {
 	genderCount,
 	avgShoeSize,
 	feedbackCategory,
-	getGenderCount,
+	getGenderCount, feedbackCategoryPOST
 };

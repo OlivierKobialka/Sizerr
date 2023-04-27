@@ -28,4 +28,5 @@ async function userComment(req, res, dbConfig) {
 	}
 }
 
+
 module.exports = { userComment };

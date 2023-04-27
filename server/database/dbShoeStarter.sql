@@ -445,3 +445,11 @@ create table Comment
   comment varchar(150),
   category varchar(50)
 )
+create table FeedbackCount
+(
+  feedback int,
+  suggestion int,
+  complain int
+)
+
+drop table FeedbackCount

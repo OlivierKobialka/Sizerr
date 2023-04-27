@@ -56,6 +56,7 @@ const Form = () => {
 				comment: formData.comment,
 				category: formData.category,
 			});
+			await axios.post("http://localhost:8080/data/opinionCategory-post", { category: formData.category });
 		} catch (error) {
 			console.error(error);
 		}
