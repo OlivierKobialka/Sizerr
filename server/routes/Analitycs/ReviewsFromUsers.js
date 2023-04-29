@@ -18,10 +18,11 @@ async function userComment(req, res, dbConfig) {
 				.input("comment", comment)
 				.input("category", category)
 				.query(
-					`INSERT INTO Comment (email, comment, category) VALUES ('${email}', '${comment}', '${category}')`
+					`INSERT INTO Comment (email, comment, category) VALUES ('${email}', '${comment}', '${category}')`,
+					[{ name: "email", value: email }, { name: "comment", value: comment }, { name: "category", value: category }]
 				);
 
-			res.status(200).json({ userComment: result.recordset });
+			res.status(200).send("Comment added");
 		} catch (error) {
 			res.status(500).send(`${error}`);
 		}
