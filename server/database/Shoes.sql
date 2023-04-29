@@ -1,6 +1,6 @@
-select *
-from Comment
-
+SELECT
+    Brand.Brand, Size, HeightCM_min, HeightCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max, Heightin_min, Heightin_max, Waistin_min, Waistin_max, Hipin_min, Hipin_max
+FROM BottomsMan INNER JOIN Brand ON Brand.Id = BottomsMan.BrandId
 -- select * from FeedbackCount
 
 -- UPDATE FeedbackCount SET suggestion += 1
