@@ -122,21 +122,21 @@ const Bottom = () => {
 			name: "hips",
 			value: FormValuesMeasurements.hips,
 			onChange: handleInputChangeMeasurements,
-			className: "w-64 md:w-56",
+			className: "w-96",
 		},
 		// {
 		// 	label: "Inseam",
 		// 	name: "inseam",
 		// 	value: FormValuesMeasurements.inseam,
 		// 	onChange: handleInputChangeMeasurements,
-		// 	className: "w-64 md:w-56",
+		// 	className: "w-96",
 		// },
 		{
 			label: "Waist",
 			name: "waist",
 			value: FormValuesMeasurements.waist,
 			onChange: handleInputChangeMeasurements,
-			className: "w-64 md:w-56",
+			className: "w-96",
 		},
 	];
 	//! BRAND
@@ -252,7 +252,7 @@ const Bottom = () => {
 												</InputLabel>
 												<Select
 													required
-													className='w-64 md:w-56'
+													className='w-96'
 													label={translate(
 														"pages.Inputs.Genders.Gender",
 														"Gender"
