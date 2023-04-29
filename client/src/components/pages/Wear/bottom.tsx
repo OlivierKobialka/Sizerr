@@ -125,13 +125,13 @@ const Bottom = () => {
 			onChange: handleInputChangeMeasurements,
 			className: "w-64 md:w-56",
 		},
-		{
-			label: "Inseam",
-			name: "inseam",
-			value: FormValuesMeasurements.inseam,
-			onChange: handleInputChangeMeasurements,
-			className: "w-64 md:w-56",
-		},
+		// {
+		// 	label: "Inseam",
+		// 	name: "inseam",
+		// 	value: FormValuesMeasurements.inseam,
+		// 	onChange: handleInputChangeMeasurements,
+		// 	className: "w-64 md:w-56",
+		// },
 		{
 			label: "Waist",
 			name: "waist",
