@@ -40,18 +40,14 @@ const Bottom = () => {
 	interface IWears {
 		Brand: string;
 		Size: string;
-		ChestCM_min: string;
-		ChestCM_max: string;
-		ChestIN_min: string;
-		ChestIN_max: string;
 		WaistCM_min: string;
 		WaistCM_max: string;
-		WaistIN_min: string;
-		WaistIN_max: string;
+		Waistin_min: string;
+		Waistin_max: string;
 		HipCM_min: string;
 		HipCM_max: string;
-		HipIN_min: string;
-		HipIN_max: string;
+		Hipin_min: string;
+		Hipin_max: string;
 		HeightCM_min: string;
 		HeightCM_max: string;
 		Heightin_min: string;
@@ -185,7 +181,7 @@ const Bottom = () => {
 		};
 		console.log("By Brand:", formData);
 		try {
-			const response = await axios.get('http://localhost:8000/api/Bottoms-B', {
+			const response = await axios.get('http://localhost:8080/api/Bottoms-B', {
 				params: {
 					brand: FormValuesBrand.brand,
 					size: FormValuesBrand.size,
@@ -237,7 +233,6 @@ const Bottom = () => {
 	const tableHeader = [
 		"Brand",
 		"Size",
-		"Chest",
 		"Waist",
 		"Hips",
 		"Height",
@@ -437,7 +432,6 @@ const Bottom = () => {
 											<TableRow key={index}>
 												<TableCell>{item.Brand}</TableCell>
 												<TableCell>{item.Size}</TableCell>
-												<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
 												<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
 												<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
 												<TableCell>{item.HeightCM_min}-{item.HeightCM_max}</TableCell>
@@ -450,9 +444,8 @@ const Bottom = () => {
 											<TableRow key={index}>
 												<TableCell>{item.Brand}</TableCell>
 												<TableCell>{item.Size}</TableCell>
-												<TableCell>{item.ChestIN_min}-{item.ChestIN_max}</TableCell>
-												<TableCell>{item.WaistIN_min}-{item.WaistIN_max}</TableCell>
-												<TableCell>{item.HipIN_min}-{item.HipIN_max}</TableCell>
+												<TableCell>{item.Waistin_min}-{item.Waistin_max}</TableCell>
+												<TableCell>{item.Hipin_min}-{item.Hipin_max}</TableCell>
 												<TableCell>{item.Heightin_min}-{item.Heightin_max}</TableCell>
 											</TableRow>
 										))}
