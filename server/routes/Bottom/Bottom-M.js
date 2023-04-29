@@ -11,7 +11,7 @@ async function bottomMeasurements(req, res, dbConfig) {
             result = await pool
                 .request()
                 .input("hips", hips)
-                .input("inseam", inseam)
+                // .input("inseam", inseam)
                 .input("waist", waist)
                 .query(`SELECT
     Brand.Brand, Size, HeightCM_min, HeightCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max, Heightin_min, Heightin_max, Waistin_min, Waistin_max, Hipin_min, Hipin_max

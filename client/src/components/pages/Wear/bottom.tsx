@@ -100,9 +100,8 @@ const Bottom = () => {
 			const response = await axios.get('http://localhost:8000/api/Bottoms-M', {
 				params: {
 					gender: FormValuesBrand.gender,
-					chest: FormValuesMeasurements.chest,
 					hips: FormValuesMeasurements.hips,
-					inseam: FormValuesMeasurements.inseam,
+					// inseam: FormValuesMeasurements.inseam,
 					waist: FormValuesMeasurements.waist,
 				},
 			})
