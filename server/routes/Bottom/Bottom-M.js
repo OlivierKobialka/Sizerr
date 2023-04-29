@@ -18,7 +18,7 @@ async function bottomMeasurements(req, res, dbConfig) {
 FROM BottomsMan INNER JOIN Brand ON Brand.Id = BottomsMan.BrandId
 WHERE HipCM_min <= @hips AND HipCM_max >= @hips AND WaistCM_min <= @waist AND WaistCM_max >= @waist`, [
                     { name: "hips", value: hips },
-                    { name: "inseam", value: inseam },
+                    // { name: "inseam", value: inseam },
                     { name: "waist", value: waist },
                 ])
 

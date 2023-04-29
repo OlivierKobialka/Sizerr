@@ -27,7 +27,7 @@ const Bottom = () => {
 	type FormData = {
 		unit: string;
 		hips: string;
-		inseam: string;
+		// inseam: string;
 		waist: string;
 		gender: string;
 	};
@@ -90,16 +90,16 @@ const Bottom = () => {
 		const formData: FormData = {
 			unit: selectedValue,
 			hips: FormValuesMeasurements.hips,
-			inseam: FormValuesMeasurements.inseam,
+			// inseam: FormValuesMeasurements.inseam,
 			waist: FormValuesMeasurements.waist,
 			gender: FormValuesMeasurements.gender,
 		};
 		console.log("By Measurements:", formData);
 
 		try {
-			const response = await axios.get('http://localhost:8000/api/Bottoms-M', {
+			const response = await axios.get('http://localhost:8080/api/Bottoms-M', {
 				params: {
-					gender: FormValuesBrand.gender,
+					gender: FormValuesMeasurements.gender,
 					hips: FormValuesMeasurements.hips,
 					// inseam: FormValuesMeasurements.inseam,
 					waist: FormValuesMeasurements.waist,
