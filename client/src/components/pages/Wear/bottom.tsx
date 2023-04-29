@@ -26,7 +26,6 @@ import { Switch } from "@headlessui/react";
 const Bottom = () => {
 	type FormData = {
 		unit: string;
-		chest: string;
 		hips: string;
 		inseam: string;
 		waist: string;
@@ -90,7 +89,6 @@ const Bottom = () => {
 		event.preventDefault();
 		const formData: FormData = {
 			unit: selectedValue,
-			chest: FormValuesMeasurements.chest,
 			hips: FormValuesMeasurements.hips,
 			inseam: FormValuesMeasurements.inseam,
 			waist: FormValuesMeasurements.waist,
@@ -120,13 +118,6 @@ const Bottom = () => {
 	};
 
 	const TextFieldMeasurements = [
-		{
-			label: "Chest",
-			name: "chest",
-			value: FormValuesMeasurements.chest,
-			onChange: handleInputChangeMeasurements,
-			className: "w-64 pt-2 md:w-56",
-		},
 		{
 			label: "Hips",
 			name: "hips",

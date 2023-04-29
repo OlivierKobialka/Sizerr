@@ -6,7 +6,7 @@ async function bottomBrand(req, res, dbConfig) {
     try {
         const pool = await sql.connect(dbConfig);
 
-        let result;``
+        let result;
         if (gender === "male") {
             result = await pool
                 .request()

@@ -1,8 +1,9 @@
 SELECT
     Brand.Brand, Size, HeightCM_min, HeightCM_max, WaistCM_min, WaistCM_max, HipCM_min, HipCM_max, Heightin_min, Heightin_max, Waistin_min, Waistin_max, Hipin_min, Hipin_max
 FROM BottomsMan INNER JOIN Brand ON Brand.Id = BottomsMan.BrandId
+WHERE HipCM_min <= 80 AND HipCM_max >= 80 AND WaistCM_min <= 60 AND WaistCM_max >= 60
 -- select * from FeedbackCount
-
+select * from BottomsMan
 -- UPDATE FeedbackCount SET suggestion += 1
 -- update FeedbackCount set complain += 1
 
