@@ -59,7 +59,11 @@ async function feedbackCategoryPOST(req, res, dbConfig) {
 			.request()
 			.input("category", option)
 			.query(`UPDATE FeedbackCount SET ${option} += 1
-`)
+`, [
+				{
+					name: 'category', value: option	
+				}
+			])
 		res.status(200)
 	} catch (error) {
 		res.status(500).send(`${error}`);
