@@ -72,10 +72,15 @@ const Charts = () => {
 		female: 0,
 	});
 	useEffect(() => {
-		axios
-			.get<GenderCount>("https://localhost:8080/data/genders/get")
-			.then(response => setGenderCount(response.data))
-			.catch(error => console.log(error));
+		const fecthGenders = async () => {
+			try {
+				const response = await axios.get("https://localhost:8080/data/genders/get")
+				setGenderCount(response.data.getGenderCount)
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fecthGenders();
 	}, []);
 	console.log(genderCount);
 

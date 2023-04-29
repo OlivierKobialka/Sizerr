@@ -61,7 +61,7 @@ async function feedbackCategoryPOST(req, res, dbConfig) {
 			.query(`UPDATE FeedbackCount SET ${option} += 1
 `, [
 				{
-					name: 'category', value: option	
+					name: 'category', value: option
 				}
 			])
 		res.status(200)
@@ -74,14 +74,12 @@ async function getGenderCount(req, res, dbConfig) {
 	try {
 		const pool = await sql.connect(dbConfig);
 
-		const result = await pool.request().query("SELECT * FROM genderCount");
-
-		const maleCount = result.recordsets[0].maleCount;
-		const femaleCount = result.recordsets[0].femaleCount;
-
-		res.status(200).send({ male: maleCount, female: femaleCount });
-	} catch (err) {
-		res.status(500).send(`${err}`);
+		const result = await pool
+			.request()
+			.query("SELECT * FROM GenderCount");
+		res.status(200).send({ getGenderCount: result.recordset });
+	} catch (error) {
+		res.status(500).send(`${error}`);
 	}
 }
 
