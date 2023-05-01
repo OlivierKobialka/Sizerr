@@ -71,6 +71,7 @@ const Charts = () => {
 		male: 0,
 		female: 0,
 	});
+	
 	useEffect(() => {
 		const fecthGenders = async () => {
 			try {
@@ -89,7 +90,6 @@ const Charts = () => {
 
 	const genderCountChart = {
 		series: [genderCount.male, genderCount.female],
-		// series: [maleCount, femaleCount],
 		options: {
 			chart: {
 				type: "donut",
