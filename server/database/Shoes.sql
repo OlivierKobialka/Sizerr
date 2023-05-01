@@ -1,5 +1,5 @@
 
-select * from GenderCount
+select * from Comment
 
 -- UPDATE FeedbackCount SET suggestion += 1
 -- update FeedbackCount set complain += 1

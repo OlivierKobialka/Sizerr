@@ -74,10 +74,13 @@ async function getGenderCount(req, res, dbConfig) {
 	try {
 		const pool = await sql.connect(dbConfig);
 
-		const result = await pool
+		let result = await pool
 			.request()
-			.query("SELECT * FROM GenderCount");
-		res.status(200).send({ getGenderCount: result.recordset });
+			.query("SELECT SUM(CASE WHEN gender='male' THEN 1 ELSE 0 END) AS male_count, SUM(CASE WHEN gender='female' THEN 1 ELSE 0 END) AS female_count FROM GenderCount");
+			
+		const { male_count, female_count } = result.recordset[0];
+
+		res.status(200).send({ maleCount: male_count, femaleCount: female_count });
 	} catch (error) {
 		res.status(500).send(`${error}`);
 	}

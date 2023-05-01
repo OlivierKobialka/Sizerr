@@ -71,25 +71,31 @@ const Charts = () => {
 		male: 0,
 		female: 0,
 	});
-	
+
 	useEffect(() => {
-		const fecthGenders = async () => {
+		const fetchGenders = async () => {
 			try {
-				const response = await axios.get("https://localhost:8080/data/genders/get")
-				setGenderCount(response.data.getGenderCount)
+				const response = await axios.get("https://localhost:8080/data/genders/get");
+				setGenderCount({
+					male: response.data.maleCount,
+					female: response.data.femaleCount,
+				});
+
 			} catch (error) {
 				console.log(error);
 			}
 		};
-		fecthGenders();
+		fetchGenders();
 	}, []);
-	console.log(genderCount);
 
 	let Male_s = translate("pages.Inputs.Genders.Males", "Male's");
 	let Female_s = translate("pages.Inputs.Genders.Females", "Female's");
 
+	let maleCount = genderCount.male
+	let femaleCount = genderCount.female
+
 	const genderCountChart = {
-		series: [genderCount.male, genderCount.female],
+		series: [maleCount, femaleCount],
 		options: {
 			chart: {
 				type: "donut",
