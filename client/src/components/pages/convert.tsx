@@ -106,7 +106,7 @@ const Convert = () => {
 	const [dataFemaleTops, setDataFemaleTops] = useState<ITops[]>([]);
 	const [dataMaleBottoms, setDataMaleBottoms] = useState<ITops[]>([]);
 	const [dataFemaleBottoms, setDataFemaleBottoms] = useState<ITops[]>([]);
-	const host = 'http://localhost:8080'
+	const host = 'http://localhost:8080/getTableData'
 
 	const handleButtonClick = async (button: string) => {
 		setSelectedButton(button === selectedButton ? selectedButton : button);
@@ -116,22 +116,22 @@ const Convert = () => {
 	useEffect(() => {
 		setIsLoading(true);
 		const fetchData = async () => {
-			const resultFemaleShoes = await axios.get(`${host}/getTableData`);
+			const resultFemaleShoes = await axios.get(`${host}`);
 			setDataFemaleShoes(resultFemaleShoes.data.tableDataFemale);
 
-			const resultMaleShoes = await axios.get(`${host}/getTableDataMale`);
+			const resultMaleShoes = await axios.get(`${host}Male`);
 			setDataMaleShoes(resultMaleShoes.data.tableDataMale);
 
-			const resultMaleTops = await axios.get(`${host}/getTableDataTopsMale`);
+			const resultMaleTops = await axios.get(`${host}TopsMale`);
 			setDataMaleTops(resultMaleTops.data.tableDataTopsMale);
 
-			const resultFemaleTops = await axios.get(`${host} / getTableDataTopsFemale`);
+			const resultFemaleTops = await axios.get(`${host}TopsFemale`);
 			setDataFemaleTops(resultFemaleTops.data.tableDataTopsFemale);
 
-			const resultMaleBottoms = await axios.get(`${host} / getTableDataBottomsMale`);
+			const resultMaleBottoms = await axios.get(`${host}BottomsMale`);
 			setDataMaleBottoms(resultMaleBottoms.data.tableDataBottomsMale);
 
-			const resultFemaleBottoms = await axios.get(`${host}/getTableDataBottomsFemale`);
+			const resultFemaleBottoms = await axios.get(`${host}BottomsFemale`);
 			setDataFemaleBottoms(resultFemaleBottoms.data.tableDataBottomsFemale);
 
 			setShowTable(true);
