@@ -5,6 +5,7 @@ import axios from "axios";
 import { useTranslate } from "@pankod/refine-core";
 
 const Charts = () => {
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const translate = useTranslate();
 	const ShoeSizes = {
 		chart: {
@@ -72,21 +73,22 @@ const Charts = () => {
 		female: 0,
 	});
 
-	useEffect(() => {
-		const fetchGenders = async () => {
-			try {
-				const response = await axios.get("https://localhost:8080/data/genders/get");
-				setGenderCount({
-					male: response.data.maleCount,
-					female: response.data.femaleCount,
-				});
-
-			} catch (error) {
-				console.log(error);
-			}
-		};
-		fetchGenders();
-	}, []);
+	// useEffect(() => {
+	// 	const fetchGenders = async () => {
+	// 		try {
+	// 			const response = await axios.get("https://localhost:8080/data/genders/get");
+	// 			// setGenderCount({
+	// 			// 	male: response.data.maleCount,
+	// 			// 	female: response.data.femaleCount,
+	// 			// });
+	// 			setGenderCount(response.data.GenderCount);
+	// 		} catch (error) {
+	// 			console.log(error);
+	// 		}
+	// 	};
+	// 	fetchGenders();
+	// }, []);
+	// console.log(genderCount);
 
 	let labelMale = translate("pages.Inputs.Genders.Males", "Male's");
 	let labelFemale = translate("pages.Inputs.Genders.Females", "Female's");
@@ -110,6 +112,28 @@ const Charts = () => {
 			},
 		},
 	};
+	const [feedbackCount, setFeedbackCount] = useState({
+		Feedback: 0,
+		Suggestion: 0,
+		Complaint: 0,
+	})	
+
+	useEffect(() => {
+		const fetchFeedbacks = async () => {
+			setIsLoading(true);
+			try {
+				let response = await axios.get("https://localhost:8080/data/opinionCategory");
+
+				setFeedbackCount(response.data.FeedbackCount);
+				setIsLoading(false);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		fetchFeedbacks()
+		console.log(feedbackCount);
+	}, [feedbackCount])
+
 	const Feedback = 24;
 	const Suggestion = 34;
 	const Complain = 12;
