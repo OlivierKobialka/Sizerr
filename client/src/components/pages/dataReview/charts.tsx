@@ -88,8 +88,8 @@ const Charts = () => {
 		fetchGenders();
 	}, []);
 
-	let Male_s = translate("pages.Inputs.Genders.Males", "Male's");
-	let Female_s = translate("pages.Inputs.Genders.Females", "Female's");
+	let labelMale = translate("pages.Inputs.Genders.Males", "Male's");
+	let labelFemale = translate("pages.Inputs.Genders.Females", "Female's");
 
 	let maleCount = genderCount.male
 	let femaleCount = genderCount.female
@@ -104,7 +104,7 @@ const Charts = () => {
 				enabled: false,
 			},
 			colors: ["#475be8", "#3399ff"],
-			labels: [Male_s, Female_s],
+			labels: [labelMale, labelFemale],
 			legend: {
 				show: false,
 			},
