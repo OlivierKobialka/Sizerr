@@ -96,7 +96,7 @@ const Shoes = () => {
 			await axios.post(
 				"http://localhost:8080/data/genders/post",
 				{
-						gender: FormValuesMeasurements.gender
+					gender: FormValuesMeasurements.gender,
 				}
 			);
 		} catch (error) {
@@ -109,10 +109,6 @@ const Shoes = () => {
 		setSelectedValue(event.target.value);
 	};
 
-	const RadioGroupMeasurements: InputType = [
-		{ value: "CM", label: "CM" },
-		{ value: "IN", label: "INCH" },
-	];
 	//! BRAND
 	const [FormValuesBrand, setFormValuesBrand] = useState({
 		brand: "",
@@ -169,8 +165,8 @@ const Shoes = () => {
 	};
 
 	const Option = [
-		{ id: 1, value: "male", text: "Male" },
-		{ id: 2, value: "female", text: "Female" },
+		{ id: 1, value: "Male", text: "Male" },
+		{ id: 2, value: "Female", text: "Female" },
 	];
 	const [selectedValueBrand, setSelectedValueBrand] = React.useState("EU");
 	const handleRadioChangeBrand = (

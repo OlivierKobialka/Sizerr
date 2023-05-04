@@ -6,10 +6,9 @@ async function genderCount(req, res, dbConfig) {
 	try {
 		const pool = await sql.connect(dbConfig);
 
-		let params = gender.toUpperCase();
 		let result;
 		if (gender !== undefined) {
-			result = await pool.request().query(`UPDATE GenderCount SET ${params} += 1`);
+			result = await pool.request().query(`UPDATE GenderCount SET ${gender} += 1`);
 		} else {
 			res.status(500).send(`Recived: ${gender}`);
 		}
