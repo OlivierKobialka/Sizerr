@@ -68,7 +68,7 @@ async function feedbackCategoryPOST(req, res, dbConfig) {
 	}
 }
 
-async function getGenderCount(req, res, dbConfig) {
+async function getGenderCount(res, dbConfig) {
 	try {
 		const pool = await sql.connect(dbConfig);
 
@@ -80,7 +80,7 @@ async function getGenderCount(req, res, dbConfig) {
 		// let { male_count, female_count } = result.recordset[0];
 
 		// res.status(200).send({ maleCount: male_count, femaleCount: female_count });
-		res.status(200).json({ GenderCount: result.recordset });
+		res.status(200).json({ getGenderCount: result.recordset });
 	} catch (error) {
 		res.status(500).send(`${error}`);
 	}

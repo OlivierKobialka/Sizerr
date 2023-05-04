@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useState, useEffect } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import ReactApexChart from "react-apexcharts";
 import axios from "axios";
 import { useTranslate } from "@pankod/refine-core";
 
 const Charts = () => {
+	const host = 'https://localhost:8080/data/'
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const translate = useTranslate();
 	const ShoeSizes = {
@@ -65,36 +67,37 @@ const Charts = () => {
 	];
 	//! GENDER COUNT
 	interface GenderCount {
-		male: number;
-		female: number;
+		Male: number;
+		Female: number;
 	}
-	const [genderCount, setGenderCount] = useState<GenderCount>({
-		male: 0,
-		female: 0,
+
+	const [genderCount, setGenderCount] = useState({
+		Male: 1,
+		Female: 2,
 	});
 
-	// useEffect(() => {
-	// 	const fetchGenders = async () => {
-	// 		try {
-	// 			const response = await axios.get("https://localhost:8080/data/genders/get");
-	// 			// setGenderCount({
-	// 			// 	male: response.data.maleCount,
-	// 			// 	female: response.data.femaleCount,
-	// 			// });
-	// 			setGenderCount(response.data.GenderCount);
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-	// 	};
-	// 	fetchGenders();
-	// }, []);
-	// console.log(genderCount);
+	useEffect(() => {
+		setIsLoading(true);
+		const fecthGenderCount = async () => {
+			try {
+				let response = await axios.get(`${host}genders/get`)
+
+				setGenderCount(response.data.getGenderCount);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+
+		fecthGenderCount();
+		setIsLoading(false);
+	}, [genderCount])
+
 
 	let labelMale = translate("pages.Inputs.Genders.Males", "Male's");
 	let labelFemale = translate("pages.Inputs.Genders.Females", "Female's");
 
-	let maleCount = genderCount.male
-	let femaleCount = genderCount.female
+	let maleCount = genderCount.Male
+	let femaleCount = genderCount.Female
 
 	const genderCountChart = {
 		series: [maleCount, femaleCount],
@@ -116,23 +119,23 @@ const Charts = () => {
 		Feedback: 0,
 		Suggestion: 0,
 		Complaint: 0,
-	})	
+	})
 
-	useEffect(() => {
-		const fetchFeedbacks = async () => {
-			setIsLoading(true);
-			try {
-				let response = await axios.get("https://localhost:8080/data/opinionCategory");
+	// useEffect(() => {
+	// 	const fetchFeedbacks = async () => {
+	// 		setIsLoading(true);
+	// 		try {
+	// 			let response = await axios.get(`${host}opinionCategory`);
 
-				setFeedbackCount(response.data.FeedbackCount);
-				setIsLoading(false);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-		fetchFeedbacks()
-		console.log(feedbackCount);
-	}, [feedbackCount])
+	// 			setFeedbackCount(response.data.FeedbackCount);
+	// 			setIsLoading(false);
+	// 		} catch (error) {
+	// 			console.log(error);
+	// 		}
+	// 	}
+	// 	fetchFeedbacks()
+	// 	console.log(feedbackCount);
+	// }, [feedbackCount])
 
 	const Feedback = 24;
 	const Suggestion = 34;
