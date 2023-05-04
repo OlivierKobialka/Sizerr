@@ -238,22 +238,6 @@ const Shoes = () => {
 												</Select>
 											</FormControl>
 										</Box>
-										{/* <FormControl>
-											<RadioGroup
-												row
-												value={selectedValue}
-												onChange={handleRadioChange}
-												className='w-96 my-1'>
-												{RadioGroupMeasurements.map((item, index) => (
-													<FormControlLabel
-														key={index}
-														value={item.value}
-														control={<Radio color='info' />}
-														label={item.label}
-													/>
-												))}
-											</RadioGroup>
-										</FormControl> */}
 										<TextField
 											className='w-96'
 											type='number'
