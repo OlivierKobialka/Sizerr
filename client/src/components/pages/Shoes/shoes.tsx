@@ -165,8 +165,8 @@ const Shoes = () => {
 	};
 
 	const Option = [
-		{ id: 1, value: "Male", text: "Male" },
-		{ id: 2, value: "Female", text: "Female" },
+		{ id: 1, text: "Male" },
+		{ id: 2, text: "Female" },
 	];
 	const [selectedValueBrand, setSelectedValueBrand] = React.useState("EU");
 	const handleRadioChangeBrand = (
@@ -228,7 +228,7 @@ const Shoes = () => {
 													value={FormValuesMeasurements.gender}
 													onChange={handleSelectChangeMeasurements}>
 													{Option.map(option => (
-														<MenuItem key={option.id} value={option.value}>
+														<MenuItem key={option.id} value={option.text}>
 															{translate(
 																`pages.Inputs.Genders.${option.text}`,
 																`${option.text}`
@@ -319,7 +319,7 @@ const Shoes = () => {
 													value={FormValuesBrand.gender}
 													onChange={handleSelectChange}>
 													{Option.map(option => (
-														<MenuItem key={option.value} value={option.value}>
+														<MenuItem key={option.id} value={option.text}>
 															{translate(
 																`pages.Inputs.Genders.${option.text}`,
 																`${option.text}`
