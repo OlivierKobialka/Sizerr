@@ -76,21 +76,21 @@ const Charts = () => {
 		Female: 2,
 	});
 
-	useEffect(() => {
-		setIsLoading(true);
-		const fecthGenderCount = async () => {
-			try {
-				let response = await axios.get(`${host}genders/get`)
+	// useEffect(() => {
+	// 	setIsLoading(true);
+	// 	const fecthGenderCount = async () => {
+	// 		try {
+	// 			let response = await axios.get(`${host}genders/get`)
 
-				setGenderCount(response.data.getGenderCount);
-			} catch (error) {
-				console.log(error);
-			}
-		}
+	// 			setGenderCount(response.data.getGenderCount);
+	// 		} catch (error) {
+	// 			console.log(error);
+	// 		}
+	// 	}
 
-		fecthGenderCount();
-		setIsLoading(false);
-	}, [genderCount])
+	// 	fecthGenderCount();
+	// 	setIsLoading(false);
+	// }, [genderCount])
 
 
 	let labelMale = translate("pages.Inputs.Genders.Males", "Male's");
