@@ -96,12 +96,11 @@ const Shoes = () => {
 			await axios.post(
 				"http://localhost:8080/data/genders/post",
 				{
-					params: { gender: FormValuesMeasurements.gender }
+						gender: FormValuesMeasurements.gender
 				}
 			);
-			console.log(FormValuesMeasurements.gender);
 		} catch (error) {
-			console.log(`${error}`);
+			console.log(error);
 		}
 	};
 

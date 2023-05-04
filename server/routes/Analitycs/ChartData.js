@@ -1,7 +1,7 @@
 const sql = require("mssql");
 
 async function genderCount(req, res, dbConfig) {
-	const { gender } = req.query;
+	const { gender } = req.body;
 
 	try {
 		const pool = await sql.connect(dbConfig);
@@ -96,5 +96,6 @@ module.exports = {
 	genderCount,
 	avgShoeSize,
 	feedbackCategory,
-	getGenderCount, feedbackCategoryPOST
+	getGenderCount,
+	feedbackCategoryPOST
 };
