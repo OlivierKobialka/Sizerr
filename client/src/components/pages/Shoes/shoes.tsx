@@ -153,12 +153,12 @@ const Shoes = () => {
 			setfetchedShoesSizes(response.data.shoesBrand);
 			setShowTable(true);
 
-			// await axios.post(
-			// 	"http://localhost:8080/data/genders/post",
-			// 	{
-			// 		gender: FormValuesBrand.gender,
-			// 	}
-			// );
+			await axios.post(
+				"http://localhost:8080/data/genders/post",
+				{
+					gender: FormValuesBrand.gender,
+				}
+			);
 		} catch (error) {
 			console.log(error);
 		}
