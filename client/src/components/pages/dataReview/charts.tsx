@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import ReactApexChart from "react-apexcharts";
-import axios from "axios";
+import axios, { AxiosResponse } from 'axios';
 import { useTranslate } from "@pankod/refine-core";
 
 const Charts = () => {
@@ -66,31 +65,30 @@ const Charts = () => {
 		},
 	];
 	//! GENDER COUNT
-	interface GenderCount {
-		Male: number;
-		Female: number;
-	}
 
-	const [genderCount, setGenderCount] = useState({
-		Male: 1,
-		Female: 2,
+	const [genderCount, setGenderCount] = useState<{ Male: number; Female: number }>({
+		Male: 0,
+		Female: 0,
 	});
 
-	// useEffect(() => {
-	// 	setIsLoading(true);
-	// 	const fecthGenderCount = async () => {
-	// 		try {
-	// 			let response = await axios.get(`${host}genders/get`)
+	useEffect(() => {
+		setIsLoading(true);
 
-	// 			setGenderCount(response.data.getGenderCount);
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-	// 	}
+		async function fetchGenderCounts(): Promise<void> {
+			try {
+				const response: AxiosResponse<{ Male: number; Female: number }> = await axios.get(
+					`${host}genders/get`
+				);
 
-	// 	fecthGenderCount();
-	// 	setIsLoading(false);
-	// }, [genderCount])
+				const data = response.data;
+				setGenderCount({ Male: data.Male, Female: data.Female })
+			} catch (error) {
+				console.error(error);
+			}
+		}
+		fetchGenderCounts()
+		setIsLoading(false);
+	}, [])
 
 
 	let labelMale = translate("pages.Inputs.Genders.Males", "Male's");

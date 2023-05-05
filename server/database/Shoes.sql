@@ -1,5 +1,5 @@
 
-SELECT * FROM GenderCount
+SELECT * as count FROM GenderCount
 update  GenderCount SET Female += 1
 -- UPDATE FeedbackCount SET suggestion += 1
 -- update FeedbackCount set complain += 1
