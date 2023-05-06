@@ -436,7 +436,7 @@ VALUES
 create table GenderCount
 (
   Male int,
-  Female int
+  Female int,
 )
 insert into GenderCount values (0,0)
 SELECT * from GenderCount
@@ -445,7 +445,7 @@ create table Comment
 (
   email varchar(250),
   comment varchar(150),
-  category varchar(50)
+  category varchar(50),
 )
 create table FeedbackCount
 (
