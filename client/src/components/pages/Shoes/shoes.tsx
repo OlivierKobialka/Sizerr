@@ -26,8 +26,8 @@ import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 import { useTranslate } from "@pankod/refine-core";
 import { Switch } from '@headlessui/react'
-
 import Tabs from "../Tabs";
+
 interface IShoes {
 	Brand: string;
 	SizeEU: number & Float;
@@ -159,7 +159,7 @@ const Shoes = () => {
 		}
 	};
 
-	const Option = [
+	const Option: { id: number; text: string }[] = [
 		{ id: 1, text: "Male" },
 		{ id: 2, text: "Female" },
 	];
