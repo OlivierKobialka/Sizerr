@@ -17,7 +17,7 @@ import { Title, Sider, Layout, Header } from "components/layout";
 import { OffLayoutArea } from "components/offLayoutArea";
 //! pages
 import { Top, Bottom, Shoes, Convert, DataReview } from "components/pages";
-import Error from "./Error";
+import { Error, Welcome } from "./index"
 
 import { TbShirt, TbShoe, TbTable, TbStar } from "react-icons/tb";
 
@@ -32,6 +32,7 @@ function App() {
 
 	return (
 		<ColorModeContextProvider>
+			<Welcome />
 			<CssBaseline />
 			<GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
 			<RefineSnackbarProvider>
@@ -86,15 +87,5 @@ function App() {
 		</ColorModeContextProvider>
 	);
 }
-
-console.log("   ______   ______  ________  ________  _______   _______  ");
-console.log("  /       /      |/        |/        |/        /         / ");
-console.log(" /$$$$$$  |$$$$$$/ $$$$$$$$/ $$$$$$$$/ $$$$$$$  |$$$$$$$  |");
-console.log(" $$ __$$/   $$ |      /$$/  $$ |__    $$ |__$$ |$$ |__$$ | ");
-console.log(" $$         $$ |     /$$/   $$    |   $$    $$< $$    $$<  ");
-console.log("  $$$$$$ |  $$ |    /$$/    $$$$$/    $$$$$$$  |$$$$$$$  |");
-console.log(" /  __$$ | _$$ |_  /$$/____ $$ |_____ $$ |  $$ |$$ |  $$ | ");
-console.log("$$    $$/ / $$   |/$$      |$$       |$$ |  $$ |$$ |  $$ |");
-console.log("  $$$$$$/  $$$$$$/ $$$$$$$$/ $$$$$$$$/$$/   $$/ $$/   $$/ ");
 
 export default App;
