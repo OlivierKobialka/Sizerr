@@ -108,6 +108,12 @@ const Top = () => {
 			});
 			setFetchedTopWear(response.data.topMeasurements);
 			setShowTable(true);
+			await axios.post(
+				"http://localhost:8080/data/genders/post",
+				{
+					gender: FormValuesMeasurements.gender,
+				}
+			);
 		} catch (error) {
 			console.log(error);
 		}
@@ -176,6 +182,12 @@ const Top = () => {
 			});
 			setFetchedTopWear(response.data.topBrand);
 			setShowTable(true);
+			await axios.post(
+				"http://localhost:8080/data/genders/post",
+				{
+					gender: FormValuesBrand.gender,
+				}
+			);
 		} catch (error) {
 			console.log(error);
 		}
