@@ -222,7 +222,7 @@ const Bottom = () => {
 	return (
 		<>
 			<Tab.Group>
-				<Box className='flex flex-col  xl:mx-[20%]'>
+				<Box className='flex flex-col xl:mx-[20%]'>
 					<Tabs />
 					<Tab.Panels className='w-full'>
 						<Tab.Panel className='w-full lg:w-[750px] flex flex-col'>
@@ -382,7 +382,6 @@ const Bottom = () => {
 							</form>
 						</Tab.Panel>
 					</Tab.Panels>
-					{/* Table */}
 					<Box
 						ref={tableRef}
 						className={clsx("mt-2 rounded-2xl border-2 border-primary", {
@@ -429,7 +428,6 @@ const Bottom = () => {
 							</Table>
 						</TableContainer>
 					</Box>
-					{/* Table */}
 				</Box>
 			</Tab.Group>
 		</>
