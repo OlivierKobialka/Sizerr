@@ -26,7 +26,7 @@ import { Switch } from '@headlessui/react';
 const Top = () => {
 	type FormData = {
 		unit: string;
-		chest?: string;
+		chest: string;
 		hips: string;
 		waist: string;
 		gender: string;
@@ -175,15 +175,6 @@ const Top = () => {
 				},
 			});
 			setFetchedTopWear(response.data.topBrand);
-			// const responseINCH = await axios.get("http://localhost:8080/api/Tops-B", {
-			// 	params: {
-			// 		brand: FormValuesBrand.brand,
-			// 		size: FormValuesBrand.size,
-			// 		gender: FormValuesBrand.gender,
-			// 		unit: true
-			// 	},
-			// });
-			// setFetchedTopWear(responseINCH.data.topBrandINCH);
 			setShowTable(true);
 		} catch (error) {
 			console.log(error);
@@ -229,7 +220,6 @@ const Top = () => {
 					<Tab.Panels className='w-full'>
 						<Tab.Panel className='w-full lg:w-[750px] flex flex-col'>
 							<form
-								// @ts-ignore
 								onSubmit={handleSubmitMeasurements}>
 								<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
 									<Box className='w-full flex flex-col place-items-center md:place-items-start md:justify-between gap-2 md:flex-row'>
