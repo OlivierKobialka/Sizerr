@@ -367,7 +367,7 @@ create table BottomsWoman
   HeightIN_max DECIMAL(3,1),
   HeightCM_min TINYINT,
   HeightCM_max TINYINT,
-  FOREIGN KEY (BrandId) REFERENCES Brand(Id)
+  FOREIGN KEY (BrandId) REFERENCES Brand(Id),
   Inseam DECIMAL(3,1) NOT NULL
 )
 
@@ -451,7 +451,39 @@ create table FeedbackCount
 (
   feedback int,
   suggestion int,
-  complain int
+  complain int,
 )
 
-drop table FeedbackCount
+create table ShoeSizeCounterEU
+(
+  35 int,
+  36 int,
+  37 int,
+  38 int,
+  39 int,
+  40 int,
+  41 int,
+  42 int,
+  43 int,
+  44 int,
+  45 int,
+  46 int,
+  47 int,
+  48 int,
+)
+
+create table ShoeSizeCounterUS
+(
+  4 int,
+  5 int,
+  6 int,
+  7 int,
+  8 int,
+  9 int,
+  10 int,
+  11 int,
+  12 int,
+  13 int,
+  14 int,
+  15 int, 
+)
