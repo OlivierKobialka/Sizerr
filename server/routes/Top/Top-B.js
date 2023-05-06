@@ -7,7 +7,7 @@ async function topBrand(req, res, dbConfig) {
 		const pool = await sql.connect(dbConfig);
 
 		let result;
-		if (gender === "male") {
+		if (gender === "Male") {
 
 			result = await pool
 				.request()

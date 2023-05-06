@@ -8,7 +8,7 @@ async function shoesBrand(req, res, dbConfig) {
 		let paramSize = `Size${measurement}`;
 
 		let result;
-		if (gender === "male") {
+		if (gender === "Male") {
 			result = await pool
 				.request()
 				.input("size", size)

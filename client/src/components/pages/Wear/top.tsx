@@ -52,13 +52,20 @@ const Top = () => {
 	const translate = useTranslate();
 
 	//! MEASUREMENTS
-	const [FormValuesMeasurements, setFormValuesMeasurements] = useState({
+	const [FormValuesMeasurements, setFormValuesMeasurements] = useState<{
+		unit: string;
+		chest: string;
+		hips: string;
+		waist: string;
+		gender: string;
+	}>({
 		unit: "",
 		chest: "",
 		hips: "",
 		waist: "",
 		gender: "",
 	});
+
 
 	const handleInputChangeMeasurements: OutlinedInputProps["onChange"] =
 		event => {
@@ -132,7 +139,11 @@ const Top = () => {
 
 	//! BRAND
 	const [unit, setUnit] = useState(false)
-	const [FormValuesBrand, setFormValuesBrand] = useState({
+	const [FormValuesBrand, setFormValuesBrand] = useState<{
+		brand: string;
+		size: string;
+		gender: string;
+	}>({
 		brand: "",
 		size: "",
 		gender: "",
@@ -179,9 +190,9 @@ const Top = () => {
 		}
 	};
 
-	const Option = [
-		{ id: 1, value: "male", text: "Male" },
-		{ id: 2, value: "female", text: "Female" },
+	const Option: { id: number; value: string }[] = [
+		{ id: 1, value: "Male" },
+		{ id: 2, value: "Female" },
 	];
 	const TextFieldBrand = [
 		{
@@ -240,8 +251,8 @@ const Top = () => {
 													{Option.map(option => (
 														<MenuItem key={option.id} value={option.value}>
 															{translate(
-																`pages.Inputs.Genders.${option.text}`,
-																`${option.text}`
+																`pages.Inputs.Genders.${option.value}`,
+																`${option.value}`
 															)}
 														</MenuItem>
 													))}
@@ -318,8 +329,8 @@ const Top = () => {
 													{Option.map(option => (
 														<MenuItem key={option.id} value={option.value}>
 															{translate(
-																`pages.Inputs.Genders.${option.text}`,
-																`${option.text}`
+																`pages.Inputs.Genders.${option.value}`,
+																`${option.value}`
 															)}
 														</MenuItem>
 													))}

@@ -14,7 +14,7 @@ async function topMeasurements(req, res, dbConfig) {
 		} else if (typeof waist === "undefined" || waist === null || waist === "") {
 			res.status(400).json({ error: "Waist measurement is required." });
 		} else {
-			if (gender === "male") {
+			if (gender === "Male") {
 				result = await pool
 					.request()
 					.input("chest", chest)
