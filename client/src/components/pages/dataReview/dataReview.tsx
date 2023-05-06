@@ -3,7 +3,7 @@ import { Box } from "@pankod/refine-mui";
 import Charts from "./charts";
 import Form from "./form";
 
-const Analitycs = () => {
+export default function Analitycs() {
 	return (
 		<Box className='flex-col-reverse xl:flex-row flex xl:gap-x-4 gap-y-4'>
 			<Charts />
@@ -11,5 +11,3 @@ const Analitycs = () => {
 		</Box>
 	);
 };
-
-export default Analitycs;

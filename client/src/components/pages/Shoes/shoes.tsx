@@ -38,7 +38,7 @@ interface IShoes {
 }
 type Float = number & { __float: never };
 
-const Shoes = () => {
+export default function Shoes() {
 	const [unit, setUnit] = useState(false)
 	console.log(unit);
 
@@ -402,5 +402,3 @@ const Shoes = () => {
 		</>
 	);
 };
-
-export default Shoes;

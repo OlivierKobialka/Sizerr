@@ -23,7 +23,7 @@ import { useTranslate } from "@pankod/refine-core";
 import Tabs from "../Tabs";
 import { Switch } from '@headlessui/react';
 
-const Top = () => {
+export default function Top() {
 
 	interface IWears {
 		Brand: string;
@@ -43,8 +43,6 @@ const Top = () => {
 	}
 	const [fetchedTopWear, setFetchedTopWear] = useState<IWears[]>([]);
 	const translate = useTranslate();
-
-	//! MEASUREMENTS
 	const [FormValuesMeasurements, setFormValuesMeasurements] = useState<{
 		unit: string;
 		chest: string;
@@ -128,7 +126,6 @@ const Top = () => {
 		},
 	];
 
-	//! BRAND
 	const [unit, setUnit] = useState(false)
 	const [FormValuesBrand, setFormValuesBrand] = useState<{
 		brand: string;
@@ -198,7 +195,7 @@ const Top = () => {
 			className: "w-96",
 		},
 	];
-	//! TABLE
+
 	const [showTable, setShowTable] = useState(false);
 	const tableHeader = ["Brand", "Size", "Chest", "Waist", "Hips"];
 	const tableRef = useRef<HTMLTableElement>(null);
@@ -435,5 +432,3 @@ const Top = () => {
 		</>
 	);
 };
-
-export default Top;

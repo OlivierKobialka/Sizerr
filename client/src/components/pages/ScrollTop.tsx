@@ -1,7 +1,7 @@
 import React from 'react'
 import { TbArrowBigUpLines } from "react-icons/tb"
 
-const ScrollTop = () => {
+export default function ScrollTop() {
     const handleScroll = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -14,4 +14,3 @@ const ScrollTop = () => {
     )
 }
 
-export default ScrollTop

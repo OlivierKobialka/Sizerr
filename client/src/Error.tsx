@@ -10,8 +10,8 @@ import {
 } from "@pankod/refine-core";
 import { Stack, Tooltip, Typography, Grid } from "@mui/material";
 import { Info } from "@mui/icons-material";
-// @ts-ignore
-export default Error = () => {
+
+export default function Error() {
 	const [errorMessage, setErrorMessage] = useState<string>();
 	const { push } = useNavigation();
 	const translate = useTranslate();

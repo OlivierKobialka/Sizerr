@@ -4,7 +4,6 @@ import {
 	Dialog,
 	DialogContent,
 	DialogTitle,
-	Snackbar,
 	TextField,
 } from "@pankod/refine-mui";
 import { useState } from "react";
@@ -21,7 +20,7 @@ const web3 = new Web3(
 	)
 );
 
-const BlockchainTips = () => {
+export default function BlockchainTips() {
 	const translate = useTranslate();
 	const [transactionValue, setTransactionValue] = useState("");
 	// @ts-ignore
@@ -213,5 +212,3 @@ const BlockchainTips = () => {
 		</Box>
 	);
 };
-
-export default BlockchainTips;

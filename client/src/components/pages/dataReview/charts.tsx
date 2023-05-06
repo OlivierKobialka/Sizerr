@@ -4,7 +4,7 @@ import ReactApexChart from "react-apexcharts";
 import axios, { AxiosResponse } from 'axios';
 import { useTranslate } from "@pankod/refine-core";
 
-const Charts = () => {
+export default function Charts() {
 	const host = 'https://localhost:8080/data/'
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const translate = useTranslate();
@@ -228,5 +228,3 @@ const Charts = () => {
 		</Box>
 	);
 };
-
-export default Charts;

@@ -1,27 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, Typography, TextField } from "@mui/material";
 import axios from "axios";
 import { useTranslate } from "@pankod/refine-core";
 
-type TCategory = {
-	value: string;
-	name: string;
-}[];
-type IComment = {
-	comment: string;
-	category: string;
-	email: string;
-}[]
-
-const Form = () => {
+export default function Form() {
 	const translate = useTranslate();
-
-	// const [opinion, setOpinion] = useState<IComment>({
-	// 	email: "",
-	// 	comment: "",
-	// 	category: "",
-	// });
 	const [comment, setComment] = useState<string>("");
 	const [email, setEmail] = useState<string>("");
 	const [selectedButton, setSelectedButton] = useState<string>("feedback");
@@ -65,8 +48,8 @@ const Form = () => {
 		setSelectedButton(selectedButton);
 		setRemainingChars(150);
 	};
-	//! =======================================================
-	const category: TCategory = [
+
+	const category: { value: string; name: string }[] = [
 		{
 			value: "feedback",
 			name: "Feedback",
@@ -81,21 +64,6 @@ const Form = () => {
 		},
 	];
 
-	//! SNACKBAR
-	const [open, setOpen] = React.useState(false);
-	const handleClickSnackbar = () => {
-		setOpen(true);
-	};
-	const handleClose = (
-		event?: React.SyntheticEvent | Event,
-		reason?: string
-	) => {
-		if (reason === "clickaway") {
-			return;
-		}
-		setOpen(false);
-	};
-
 	return (
 		<Box className='p-4 flex-1 flex flex-col rounded-2xl bg-[#fcfcfc] xl:w-1/4'>
 			<Typography
@@ -109,14 +77,12 @@ const Form = () => {
 				)}
 			</Typography>
 			<form onSubmit={formSubmit} className='flex flex-col'>
-				{/* EMAIL */}
 				<TextField
 					label='Email'
 					type='email'
 					value={email}
 					onChange={handleEmailChange}
 				/>
-				{/* COMMENT */}
 				<Box className='flex w-full justify-between mt-4'>
 					<Typography className='text-gray-400' fontWeight={600}>
 						{translate("pages.FormOpinion.Title.AddComment", "Add Comment")}
@@ -154,7 +120,6 @@ const Form = () => {
 							? "cursor-not-allowed opacity-50"
 							: ""
 							}`}
-						onClick={handleClickSnackbar}
 						type='submit'
 						disabled={(!email && !comment) || remainingChars < 0}>
 						{translate(
@@ -167,5 +132,3 @@ const Form = () => {
 		</Box>
 	);
 };
-
-export default Form;

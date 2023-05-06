@@ -51,7 +51,7 @@ interface ITops {
 }
 
 
-const Convert = () => {
+export default function Convert() {
 	const [isLoading, setIsLoading] = useState(true);
 	const translate = useTranslate();
 	const [dataMaleShoes, setDataMaleShoes] = useState<IShoes[]>([]);
@@ -97,7 +97,6 @@ const Convert = () => {
 		},
 	]
 
-	//! SWITCH
 	const [genderSwitch, setGenderSwitch] = useState(false)
 	const [unit, setUnit] = useState(false)
 	const [selectedButton, setSelectedButton] = useState<string>("Shoes");
@@ -322,5 +321,3 @@ const Convert = () => {
 		</Box >
 	);
 };
-
-export default Convert;

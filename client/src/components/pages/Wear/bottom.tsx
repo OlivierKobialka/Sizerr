@@ -24,7 +24,7 @@ import { useTranslate } from "@pankod/refine-core";
 import Tabs from "../Tabs";
 import { Switch } from "@headlessui/react";
 
-const Bottom = () => {
+export default function Bottom() {
 	type FormData = {
 		unit: string;
 		hips: string;
@@ -434,5 +434,3 @@ const Bottom = () => {
 		</>
 	);
 };
-
-export default Bottom;

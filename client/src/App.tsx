@@ -7,7 +7,6 @@ import {
 	GlobalStyles,
 	ReadyPage,
 } from "@pankod/refine-mui";
-
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { useTranslation } from "react-i18next";
@@ -15,13 +14,11 @@ import { RefineKbarProvider } from "@pankod/refine-kbar";
 import { ColorModeContextProvider } from "contexts";
 import { Title, Sider, Layout, Header } from "components/layout";
 import { OffLayoutArea } from "components/offLayoutArea";
-//! pages
 import { Top, Bottom, Shoes, Convert, DataReview } from "components/pages";
 import { Error, Welcome } from "./index"
-
 import { TbShirt, TbShoe, TbTable, TbStar } from "react-icons/tb";
 
-function App() {
+export default function App() {
 	const { t, i18n } = useTranslation();
 
 	const i18nProvider = {
@@ -87,5 +84,3 @@ function App() {
 		</ColorModeContextProvider>
 	);
 }
-
-export default App;
