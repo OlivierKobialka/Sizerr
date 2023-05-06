@@ -5,7 +5,7 @@ const sql = require("mssql");
 const dotenv = require("dotenv").config();
 const app = express();
 const port = 8080;
-const { shoesBrand } = require("./routes/Shoes/Shoes-B");
+const { shoesBrand, } = require("./routes/Shoes/Shoes-B");
 const { shoesMeasurement } = require("./routes/Shoes/Shoes-M");
 const { bottomBrand } = require("./routes/Bottom/Bottom-B");
 const { bottomMeasurements } = require("./routes/Bottom/Bottom-M");
@@ -19,7 +19,13 @@ const {
 	getGenderCount,
 	feedbackCategoryPOST,
 } = require("./routes/Analitycs/ChartData");
-const { getTableData, getTableDataMale, getTableDataTopsMale, getTableDataTopsFemale, getTableDataBottomsMale, getTableDataBottomsFemale } = require("./routes/Analitycs/GetTableData");
+const { getTableData,
+	getTableDataMale,
+	getTableDataTopsMale,
+	getTableDataTopsFemale,
+	getTableDataBottomsMale,
+	getTableDataBottomsFemale
+} = require("./routes/Analitycs/GetTableData");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
