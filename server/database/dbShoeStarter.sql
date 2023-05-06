@@ -487,3 +487,15 @@ create table ShoeSizeCounterUS
   14 int,
   15 int, 
 )
+
+create table TopSizeCounter
+(
+  XXS int,
+  XS int,
+  S int,
+  M int,
+  L int,
+  XL int,
+  XXL int,
+  XXXL int,
+)
