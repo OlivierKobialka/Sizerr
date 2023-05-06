@@ -24,13 +24,6 @@ import Tabs from "../Tabs";
 import { Switch } from '@headlessui/react';
 
 const Top = () => {
-	type FormData = {
-		unit: string;
-		chest: string;
-		hips: string;
-		waist: string;
-		gender: string;
-	};
 
 	interface IWears {
 		Brand: string;
@@ -88,14 +81,6 @@ const Top = () => {
 		event: React.FormEvent<HTMLFormElement>,
 	) => {
 		event.preventDefault();
-		const formData: FormData = {
-			unit: selectedValue,
-			chest: FormValuesMeasurements.chest,
-			hips: FormValuesMeasurements.hips,
-			waist: FormValuesMeasurements.waist,
-			gender: FormValuesMeasurements.gender,
-		};
-		console.log("Tops by Measurements:", formData);
 		try {
 			const response = await axios.get("http://localhost:8080/api/Tops-M", {
 				params: {
