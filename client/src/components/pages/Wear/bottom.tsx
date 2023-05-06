@@ -32,10 +32,6 @@ const Bottom = () => {
 		gender: string;
 	};
 
-	type InputType = {
-		value: string;
-		label: string;
-	}[];
 	interface IWears {
 		Brand: string;
 		Size: string;
@@ -87,14 +83,6 @@ const Bottom = () => {
 		event: React.FormEvent<HTMLFormElement>
 	) => {
 		event.preventDefault();
-		const formData: FormData = {
-			unit: selectedValue,
-			hips: FormValuesMeasurements.hips,
-			// inseam: FormValuesMeasurements.inseam,
-			waist: FormValuesMeasurements.waist,
-			gender: FormValuesMeasurements.gender,
-		};
-		console.log("By Measurements:", formData);
 
 		try {
 			const response = await axios.get('http://localhost:8080/api/Bottoms-M', {
@@ -164,12 +152,6 @@ const Bottom = () => {
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		const formData = {
-			brand: FormValuesBrand.brand,
-			size: FormValuesBrand.size,
-			gender: FormValuesBrand.gender,
-		};
-		console.log("By Brand:", formData);
 		try {
 			const response = await axios.get('http://localhost:8080/api/Bottoms-B', {
 				params: {
@@ -185,9 +167,9 @@ const Bottom = () => {
 		}
 	};
 
-	const Option = [
-		{ id: 1, value: "male", text: "Male" },
-		{ id: 2, value: "female", text: "Female" },
+	const Option: { id: number; value: string; }[] = [
+		{ id: 1, value: "Male" },
+		{ id: 2, value: "Female" },
 	];
 	const TextFieldBrand = [
 		{
@@ -208,19 +190,9 @@ const Bottom = () => {
 	//!
 	const [selectedOption, setSelectedOption] = useState<string>("");
 	const [label, setLabel] = useState<string>("Chest");
-
-	// const handleOptionChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-	// 	const selectedValue = event.target.value;
-	// 	setSelectedOption(selectedValue as string);
-	// 	if (selectedValue === "men") {
-	// 		setLabel("Chest");
-	// 	} else if (selectedValue === "women") {
-	// 		setLabel("Bust");
-	// 	}
-	// };
 	//! TABLE
-	const [showTable, setShowTable] = useState(false);
-	const tableHeader = [
+	const [showTable, setShowTable] = useState<boolean>(false);
+	const tableHeader: string[] = [
 		"Brand",
 		"Size",
 		"Waist",
@@ -263,8 +235,8 @@ const Bottom = () => {
 													{Option.map(option => (
 														<MenuItem key={option.id} value={option.value}>
 															{translate(
-																`pages.Inputs.Genders.${option.text}`,
-																`${option.text}`
+																`pages.Inputs.Genders.${option.value}`,
+																`${option.value}`
 															)}
 														</MenuItem>
 													))}
@@ -341,8 +313,8 @@ const Bottom = () => {
 													{Option.map(option => (
 														<MenuItem key={option.id} value={option.value}>
 															{translate(
-																`pages.Inputs.Genders.${option.text}`,
-																`${option.text}`
+																`pages.Inputs.Genders.${option.value}`,
+																`${option.value}`
 															)}
 														</MenuItem>
 													))}
