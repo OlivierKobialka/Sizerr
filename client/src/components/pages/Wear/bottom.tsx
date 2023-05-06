@@ -95,6 +95,12 @@ const Bottom = () => {
 			})
 			setfetchedWearSizes(response.data.bottomMeasurements);
 			setShowTable(true);
+			await axios.post(
+				"http://localhost:8080/data/genders/post",
+				{
+					gender: FormValuesMeasurements.gender,
+				}
+			);
 		} catch (error) {
 			console.log(error);
 		}
@@ -162,6 +168,12 @@ const Bottom = () => {
 			})
 			setfetchedWearSizes(response.data.bottomBrand);
 			setShowTable(true);
+			await axios.post(
+				"http://localhost:8080/data/genders/post",
+				{
+					gender: FormValuesBrand.gender,
+				}
+			);
 		} catch (error) {
 			console.log(error);
 		}
