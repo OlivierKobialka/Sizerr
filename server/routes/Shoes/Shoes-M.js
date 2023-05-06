@@ -13,7 +13,7 @@ async function shoesMeasurement(req, res, dbConfig) {
 		}
 
 		let result;
-		if (gender === "male") {
+		if (gender === "Male") {
 			result = await pool
 				.request()
 				.input("size", size)

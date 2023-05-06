@@ -28,11 +28,6 @@ import { useTranslate } from "@pankod/refine-core";
 import { Switch } from '@headlessui/react'
 
 import Tabs from "../Tabs";
-
-type InputType = {
-	value: string;
-	label: string;
-}[];
 interface IShoes {
 	Brand: string;
 	SizeEU: number & Float;
@@ -175,10 +170,10 @@ const Shoes = () => {
 		setSelectedValueBrand(event.target.value);
 	};
 
-	const FormControlLabelBrand: InputType = [
-		{ value: "EU", label: "EU" },
-		{ value: "UK", label: "UK" },
-		{ value: "US", label: "US" },
+	const FormControlLabelBrand: { value: string }[] = [
+		{ value: "EU" },
+		{ value: "UK" },
+		{ value: "US" },
 	];
 
 	const [showTable, setShowTable] = useState(false);
@@ -345,7 +340,7 @@ const Shoes = () => {
 															key={index}
 															value={item.value}
 															control={<Radio color='info' />}
-															label={item.label}
+															label={item.value}
 														/>
 													))}
 												</RadioGroup>
