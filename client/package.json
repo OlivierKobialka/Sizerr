@@ -48,6 +48,7 @@
   },
   "scripts": {
     "dev": "refine start",
+    "server": "serve -s build",
     "build": "refine build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
