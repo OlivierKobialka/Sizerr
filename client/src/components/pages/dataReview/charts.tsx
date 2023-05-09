@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import ReactApexChart from "react-apexcharts";
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from "axios";
 import { useTranslate } from "@pankod/refine-core";
 
 export default function Charts() {
-	const host = 'https://localhost:8080/data/'
+	const host = "https://localhost:8080/data/";
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const translate = useTranslate();
 	const ShoeSizes = {
@@ -66,36 +66,38 @@ export default function Charts() {
 	];
 	//! GENDER COUNT
 
-	const [genderCount, setGenderCount] = useState<{ Male: number; Female: number }>({
+	const [genderCount, setGenderCount] = useState<{
+		Male: number;
+		Female: number;
+	}>({
 		Male: 0,
 		Female: 0,
 	});
 
-	useEffect(() => {
-		setIsLoading(true);
+	// useEffect(() => {
+	// 	setIsLoading(true);
 
-		async function fetchGenderCounts(): Promise<void> {
-			try {
-				const response: AxiosResponse<{ Male: number; Female: number }> = await axios.get(
-					`${host}genders/get`
-				);
+	// 	async function fetchGenderCounts(): Promise<void> {
+	// 		try {
+	// 			const response: AxiosResponse<{ Male: number; Female: number }> = await axios.get(
+	// 				`${host}genders/get`
+	// 			);
 
-				const data = response.data;
-				setGenderCount({ Male: data.Male, Female: data.Female })
-			} catch (error) {
-				console.error(error);
-			}
-		}
-		fetchGenderCounts()
-		setIsLoading(false);
-	}, [])
-
+	// 			const data = response.data;
+	// 			setGenderCount({ Male: data.Male, Female: data.Female })
+	// 		} catch (error) {
+	// 			console.error(error);
+	// 		}
+	// 	}
+	// 	fetchGenderCounts()
+	// 	setIsLoading(false);
+	// }, [])
 
 	let labelMale = translate("pages.Inputs.Genders.Males", "Male's");
 	let labelFemale = translate("pages.Inputs.Genders.Females", "Female's");
 
-	let maleCount = genderCount.Male
-	let femaleCount = genderCount.Female
+	let maleCount = genderCount.Male;
+	let femaleCount = genderCount.Female;
 
 	const genderCountChart = {
 		series: [maleCount, femaleCount],
@@ -117,7 +119,7 @@ export default function Charts() {
 		Feedback: 0,
 		Suggestion: 0,
 		Complaint: 0,
-	})
+	});
 
 	// useEffect(() => {
 	// 	const fetchFeedbacks = async () => {
@@ -227,4 +229,4 @@ export default function Charts() {
 			</Box>
 		</Box>
 	);
-};
+}
