@@ -15,7 +15,7 @@ import { ColorModeContextProvider } from "contexts";
 import { Title, Sider, Layout, Header } from "components/layout";
 import { OffLayoutArea } from "components/offLayoutArea";
 import { Top, Bottom, Shoes, Convert, DataReview } from "components/pages";
-import { Error, Welcome } from "./index";
+import { Error, Welcome } from "./aaa";
 import { TbShirt, TbShoe, TbTable, TbStar } from "react-icons/tb";
 
 const App = () => {
