@@ -16,7 +16,6 @@ import {
 	TableContainer,
 	TableBody,
 	Typography,
-
 } from "@pankod/refine-mui";
 import React, { useState, useRef } from "react";
 import { Tab } from "@headlessui/react";
@@ -25,7 +24,7 @@ import axios from "axios";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 import { useTranslate } from "@pankod/refine-core";
-import { Switch } from '@headlessui/react'
+import { Switch } from "@headlessui/react";
 import Tabs from "../Tabs";
 
 interface IShoes {
@@ -38,8 +37,8 @@ interface IShoes {
 }
 type Float = number & { __float: never };
 
-export default function Shoes() {
-	const [unit, setUnit] = useState(false)
+const Shoes = () => {
+	const [unit, setUnit] = useState(false);
 	console.log(unit);
 
 	const [fetchedShoesSizes, setfetchedShoesSizes] = useState<IShoes[]>([]);
@@ -69,7 +68,7 @@ export default function Shoes() {
 		};
 
 	const handleSubmitMeasurements = async (
-		event: React.FormEvent<HTMLFormElement>,
+		event: React.FormEvent<HTMLFormElement>
 	) => {
 		event.preventDefault();
 		setFormValuesBrand({
@@ -88,12 +87,9 @@ export default function Shoes() {
 			});
 			setfetchedShoesSizes(response.data.shoesMeasurement);
 			setShowTable(true);
-			await axios.post(
-				"http://localhost:8080/data/genders/post",
-				{
-					gender: FormValuesMeasurements.gender,
-				}
-			);
+			await axios.post("http://localhost:8080/data/genders/post", {
+				gender: FormValuesMeasurements.gender,
+			});
 		} catch (error) {
 			console.log(error);
 		}
@@ -127,9 +123,7 @@ export default function Shoes() {
 		});
 	};
 
-	const handleSubmit = async (
-		event: React.FormEvent<HTMLFormElement>
-	) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		setFormValuesMeasurements({
 			unit: "",
 			size: "",
@@ -148,12 +142,9 @@ export default function Shoes() {
 			setfetchedShoesSizes(response.data.shoesBrand);
 			setShowTable(true);
 
-			await axios.post(
-				"http://localhost:8080/data/genders/post",
-				{
-					gender: FormValuesBrand.gender,
-				}
-			);
+			await axios.post("http://localhost:8080/data/genders/post", {
+				gender: FormValuesBrand.gender,
+			});
 		} catch (error) {
 			console.log(error);
 		}
@@ -243,22 +234,21 @@ export default function Shoes() {
 											onChange={handleInputChangeMeasurements}
 											required
 										/>
-										<Box className="flex justify-around items-center">
+										<Box className='flex justify-around items-center'>
 											<Typography>CM</Typography>
 											<Switch
 												checked={unit}
 												onChange={setUnit}
-												className={`${unit ? 'bg-primary' : 'bg-pink-500'
-													} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
-											>
+												className={`${
+													unit ? "bg-primary" : "bg-pink-500"
+												} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}>
 												<span
-													className={`${unit ? 'translate-x-6' : 'translate-x-1'
-														} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+													className={`${
+														unit ? "translate-x-6" : "translate-x-1"
+													} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
 												/>
 											</Switch>
-											<Typography>
-												INCH
-											</Typography>
+											<Typography>INCH</Typography>
 										</Box>
 										<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
 											<button
@@ -402,3 +392,5 @@ export default function Shoes() {
 		</>
 	);
 };
+
+export default Shoes;

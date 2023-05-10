@@ -23,7 +23,7 @@ import { useTranslate } from "@pankod/refine-core";
 import Tabs from "../Tabs";
 import { Switch } from '@headlessui/react';
 
-export default function Top() {
+const Top=() =>{
 
 	interface IWears {
 		Brand: string;
@@ -432,3 +432,5 @@ export default function Top() {
 		</>
 	);
 };
+
+export default Top;

@@ -24,7 +24,7 @@ import { useTranslate } from "@pankod/refine-core";
 import Tabs from "../Tabs";
 import { Switch } from "@headlessui/react";
 
-export default function Bottom() {
+const Bottom = () => {
 	type FormData = {
 		unit: string;
 		hips: string;
@@ -86,22 +86,19 @@ export default function Bottom() {
 		event.preventDefault();
 
 		try {
-			const response = await axios.get('http://localhost:8080/api/Bottoms-M', {
+			const response = await axios.get("http://localhost:8080/api/Bottoms-M", {
 				params: {
 					gender: FormValuesMeasurements.gender,
 					hips: FormValuesMeasurements.hips,
 					// inseam: FormValuesMeasurements.inseam,
 					waist: FormValuesMeasurements.waist,
 				},
-			})
+			});
 			setfetchedWearSizes(response.data.bottomMeasurements);
 			setShowTable(true);
-			await axios.post(
-				"http://localhost:8080/data/genders/post",
-				{
-					gender: FormValuesMeasurements.gender,
-				}
-			);
+			await axios.post("http://localhost:8080/data/genders/post", {
+				gender: FormValuesMeasurements.gender,
+			});
 		} catch (error) {
 			console.log(error);
 		}
@@ -135,7 +132,7 @@ export default function Bottom() {
 		},
 	];
 	//! BRAND
-	const [unit, setUnit] = useState(false)
+	const [unit, setUnit] = useState(false);
 
 	const [FormValuesBrand, setFormValuesBrand] = useState({
 		brand: "",
@@ -160,27 +157,24 @@ export default function Bottom() {
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		try {
-			const response = await axios.get('http://localhost:8080/api/Bottoms-B', {
+			const response = await axios.get("http://localhost:8080/api/Bottoms-B", {
 				params: {
 					brand: FormValuesBrand.brand,
 					size: FormValuesBrand.size,
 					gender: FormValuesBrand.gender,
 				},
-			})
+			});
 			setfetchedWearSizes(response.data.bottomBrand);
 			setShowTable(true);
-			await axios.post(
-				"http://localhost:8080/data/genders/post",
-				{
-					gender: FormValuesBrand.gender,
-				}
-			);
+			await axios.post("http://localhost:8080/data/genders/post", {
+				gender: FormValuesBrand.gender,
+			});
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	const Option: { id: number; value: string; }[] = [
+	const Option: { id: number; value: string }[] = [
 		{ id: 1, value: "Male" },
 		{ id: 2, value: "Female" },
 	];
@@ -205,13 +199,7 @@ export default function Bottom() {
 	const [label, setLabel] = useState<string>("Chest");
 	//! TABLE
 	const [showTable, setShowTable] = useState<boolean>(false);
-	const tableHeader: string[] = [
-		"Brand",
-		"Size",
-		"Waist",
-		"Hips",
-		"Height",
-	];
+	const tableHeader: string[] = ["Brand", "Size", "Waist", "Hips", "Height"];
 	const tableRef = useRef<HTMLTableElement>(null);
 
 	const handleScrollToTable = () => {
@@ -272,22 +260,21 @@ export default function Bottom() {
 												/>
 											))}
 										</Box>
-										<Box className="flex justify-around items-center">
+										<Box className='flex justify-around items-center'>
 											<Typography>CM</Typography>
 											<Switch
 												checked={unit}
 												onChange={setUnit}
-												className={`${unit ? 'bg-primary' : 'bg-pink-500'
-													} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
-											>
+												className={`${
+													unit ? "bg-primary" : "bg-pink-500"
+												} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}>
 												<span
-													className={`${unit ? 'translate-x-6' : 'translate-x-1'
-														} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+													className={`${
+														unit ? "translate-x-6" : "translate-x-1"
+													} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
 												/>
 											</Switch>
-											<Typography>
-												INCH
-											</Typography>
+											<Typography>INCH</Typography>
 										</Box>
 									</Box>
 									<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
@@ -350,22 +337,21 @@ export default function Bottom() {
 												/>
 											))}
 										</Box>
-										<Box className="flex justify-around items-center">
+										<Box className='flex justify-around items-center'>
 											<Typography>CM</Typography>
 											<Switch
 												checked={unit}
 												onChange={setUnit}
-												className={`${unit ? 'bg-primary' : 'bg-pink-500'
-													} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
-											>
+												className={`${
+													unit ? "bg-primary" : "bg-pink-500"
+												} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}>
 												<span
-													className={`${unit ? 'translate-x-6' : 'translate-x-1'
-														} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+													className={`${
+														unit ? "translate-x-6" : "translate-x-1"
+													} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
 												/>
 											</Switch>
-											<Typography>
-												INCH
-											</Typography>
+											<Typography>INCH</Typography>
 										</Box>
 									</Box>
 									<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
@@ -406,9 +392,15 @@ export default function Bottom() {
 											<TableRow key={index}>
 												<TableCell>{item.Brand}</TableCell>
 												<TableCell>{item.Size}</TableCell>
-												<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
-												<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
-												<TableCell>{item.HeightCM_min}-{item.HeightCM_max}</TableCell>
+												<TableCell>
+													{item.WaistCM_min}-{item.WaistCM_max}
+												</TableCell>
+												<TableCell>
+													{item.HipCM_min}-{item.HipCM_max}
+												</TableCell>
+												<TableCell>
+													{item.HeightCM_min}-{item.HeightCM_max}
+												</TableCell>
 											</TableRow>
 										))}
 									</TableBody>
@@ -418,14 +410,19 @@ export default function Bottom() {
 											<TableRow key={index}>
 												<TableCell>{item.Brand}</TableCell>
 												<TableCell>{item.Size}</TableCell>
-												<TableCell>{item.Waistin_min}-{item.Waistin_max}</TableCell>
-												<TableCell>{item.Hipin_min}-{item.Hipin_max}</TableCell>
-												<TableCell>{item.Heightin_min}-{item.Heightin_max}</TableCell>
+												<TableCell>
+													{item.Waistin_min}-{item.Waistin_max}
+												</TableCell>
+												<TableCell>
+													{item.Hipin_min}-{item.Hipin_max}
+												</TableCell>
+												<TableCell>
+													{item.Heightin_min}-{item.Heightin_max}
+												</TableCell>
 											</TableRow>
 										))}
 									</TableBody>
 								)}
-
 							</Table>
 						</TableContainer>
 					</Box>
@@ -434,3 +431,5 @@ export default function Bottom() {
 		</>
 	);
 };
+
+export default Bottom;
