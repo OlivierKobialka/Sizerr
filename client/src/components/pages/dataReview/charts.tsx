@@ -138,7 +138,6 @@ const Charts = () => {
 	const Suggestion = feedbackCount.Suggestion;
 	const Complain = feedbackCount.Complaint;
 
-	// CHART LABELS
 	let Feedbacks_Labels = translate(
 		"pages.Charts.Series.Feedbacks",
 		"Feedbacks"
