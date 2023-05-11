@@ -199,8 +199,29 @@ const Charts = () => {
 				</Box>
 			</Box>
 			{/* SMALLER CHARTS */}
-			<Box className='grid grid-cols-1 gap-4 pt-4 xs:grid-cols-2 h-36'>
-				<Box className=' w-full flex place-content-center bg-[#fcfcfc] rounded-2xl'>
+			<Box className='grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 h-36'>
+				<Box className='sm:hidden'>
+					<Box className=' w-full grid grid-cols-2 place-content-center bg-[#fcfcfc] rounded-2xl'>
+						<ReactApexChart
+							// @ts-ignore
+							options={genderCountChart.options}
+							series={genderCountChart.series}
+							type='donut'
+							height={150}
+							a
+						/>
+						<ReactApexChart
+							// @ts-ignore
+							options={feedbackCategoryCounter.options}
+							series={feedbackCategoryCounter.series}
+							type='donut'
+							height={150}
+							a
+						/>
+					</Box>
+				</Box>
+				{/* XS */}
+				<Box className='hidden w-full sm:flex place-content-center bg-[#fcfcfc] rounded-2xl'>
 					<ReactApexChart
 						// @ts-ignore
 						options={genderCountChart.options}
@@ -218,7 +239,7 @@ const Charts = () => {
 						</Typography>
 					</Box>
 				</Box>
-				<Box className=' w-full flex place-content-center bg-[#fcfcfc] rounded-2xl'>
+				<Box className='hidden w-full sm:flex place-content-center bg-[#fcfcfc] rounded-2xl'>
 					<ReactApexChart
 						// @ts-ignore
 						options={feedbackCategoryCounter.options}
