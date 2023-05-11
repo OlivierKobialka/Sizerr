@@ -124,8 +124,12 @@ const Charts = () => {
 			try {
 				const response = await axios.get(`${host}opinionCategory`);
 
-				const { Feedback, Suggestion, Complaint } = response.data.FeedbackCount;
-				setFeedbackCount({ Feedback, Suggestion, Complaint });
+				const { feedback, suggestion, complain } = response.data.FeedbackCount;
+				setFeedbackCount({
+					Feedback: feedback,
+					Suggestion: suggestion,
+					Complaint: complain,
+				});
 			} catch (error) {
 				console.error(error);
 			}
