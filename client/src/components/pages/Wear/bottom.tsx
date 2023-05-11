@@ -28,7 +28,7 @@ const Bottom = () => {
 	type FormData = {
 		unit: string;
 		hips: string;
-		// inseam: string;
+		inseam: string;
 		waist: string;
 		gender: string;
 	};
@@ -56,9 +56,7 @@ const Bottom = () => {
 	const [FormValuesMeasurements, setFormValuesMeasurements] = useState({
 		unit: "",
 		chest: "",
-		bust: "",
 		hips: "",
-		inseam: "",
 		waist: "",
 		gender: "",
 	});
@@ -116,13 +114,6 @@ const Bottom = () => {
 			onChange: handleInputChangeMeasurements,
 			className: "w-96",
 		},
-		// {
-		// 	label: "Inseam",
-		// 	name: "inseam",
-		// 	value: FormValuesMeasurements.inseam,
-		// 	onChange: handleInputChangeMeasurements,
-		// 	className: "w-96",
-		// },
 		{
 			label: "Waist",
 			name: "waist",

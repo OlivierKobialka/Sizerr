@@ -346,9 +346,8 @@ create table BottomsMan
   HeightCM_min TINYINT ,
   HeightCM_max TINYINT,
   FOREIGN KEY (BrandId) REFERENCES Brand(Id),
-  Inseam DECIMAL(3,1) NOT NULL
+  -- Inseam DECIMAL(3,1) NOT NULL
 )
-
 
 create table BottomsWoman
 (
@@ -368,7 +367,7 @@ create table BottomsWoman
   HeightCM_min TINYINT,
   HeightCM_max TINYINT,
   FOREIGN KEY (BrandId) REFERENCES Brand(Id),
-  Inseam DECIMAL(3,1) NOT NULL
+  -- Inseam DECIMAL(3,1) NOT NULL
 )
 
 insert into BottomsMan
