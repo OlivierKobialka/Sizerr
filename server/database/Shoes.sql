@@ -6,19 +6,19 @@
 
 -- select * from ShoesMan
 
-create table ShoeSizeCounterEU (
-    35 int,
-    36 int,
-    37 int,
-    38 int,
-    39 int,
-    40 int,
-    41 int,
-    42 int,
-    43 int,
-    44 int,
-    45 int,
-    46 int,
-    47 int,
-    48 int,
-)
+-- create  (
+--     35 int,
+--     36 int,
+--     37 int,
+--     38 int,
+--     39 int,
+--     40 int,
+--     41 int,
+--     42 int,
+--     43 int,
+--     44 int,
+--     45 int,
+--     46 int,
+--     47 int,
+--     48 int,
+-- )
