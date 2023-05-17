@@ -11,8 +11,11 @@ const Charts = () => {
     const translate = useTranslate();
     const [ShoeSizeCountEU, setShoeSizeCountEU] = useState<number[]>([]);
     const ShoeSizes = {
+        series: [{
+            name: "Shoe Size",
+            data: ShoeSizeCountEU,
+        }],
         chart: {
-            id: "basic-column",
             toolbar: {
                 show: false,
             },
@@ -51,6 +54,8 @@ const Charts = () => {
                 console.error(error);
             }
         }
+
+        console.log(ShoeSizeCountEU);
         fetchAvgShoeSize();
         setIsLoading(false);
     }, []);
@@ -86,10 +91,7 @@ const Charts = () => {
 
     const avgShoeSizeRow = [
         {
-            data: [
-                12, 2, 3, 14, 2, 47, 32, 44, 14, 55, 41, 69, 91, 148, 22, 43,
-                21,
-            ],
+            data: ShoeSizeCountEU,
         },
     ];
     //! GENDER COUNT
@@ -216,7 +218,7 @@ const Charts = () => {
                 </Stack>
                 <Box className="hidden sm:block">
                     <ReactApexChart
-                        series={avgShoeSize}
+                        series={[{ data: ShoeSizeCountEU }]}
                         type="bar"
                         height={350}
                         options={ShoeSizes}
@@ -242,7 +244,6 @@ const Charts = () => {
                             series={genderCountChart.series}
                             type="donut"
                             height={150}
-                            a
                         />
                         <ReactApexChart
                             // @ts-ignore
@@ -250,7 +251,6 @@ const Charts = () => {
                             series={feedbackCategoryCounter.series}
                             type="donut"
                             height={150}
-                            a
                         />
                     </Box>
                 </Box>
