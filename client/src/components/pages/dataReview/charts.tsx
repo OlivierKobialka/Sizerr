@@ -9,6 +9,7 @@ const Charts = () => {
     const host = "http://localhost:8080/data/";
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const translate = useTranslate();
+    const [ShoeSizeCountEU, setShoeSizeCountEU] = useState<number[]>([]);
     const ShoeSizes = {
         chart: {
             id: "basic-column",
@@ -35,10 +36,29 @@ const Charts = () => {
     };
 
     let seriesName = translate("pages.Charts.Series.Users", "User's");
+
+    useEffect(() => {
+        setIsLoading(true);
+
+        async function fetchAvgShoeSize(): Promise<void> {
+            try {
+                const response = await axios.get(
+                    `http://localhost:8080/getShoeSizeCount`
+                );
+
+                setShoeSizeCountEU(response.data.ShoeSizeCounterEU);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchAvgShoeSize();
+        setIsLoading(false);
+    }, []);
+
     const avgShoeSize = [
         {
             name: seriesName,
-            data: [12, 14, 2, 47, 32, 44, 14, 55, 41, 69, 91, 148, 22, 43, 21],
+            data: ShoeSizeCountEU,
             color: "#475be8",
         },
     ];

@@ -22,3 +22,6 @@
 --     47 int,
 --     48 int,
 -- )
+select * from ShoeSizeCounterEU
+
+UPDATE ShoeSizeCounterEU SET size35 += 1

@@ -5,7 +5,7 @@ const sql = require("mssql");
 const dotenv = require("dotenv").config();
 const app = express();
 const port = 8080;
-const { shoesBrand, } = require("./routes/Shoes/Shoes-B");
+const { shoesBrand } = require("./routes/Shoes/Shoes-B");
 const { shoesMeasurement } = require("./routes/Shoes/Shoes-M");
 const { bottomBrand } = require("./routes/Bottom/Bottom-B");
 const { bottomMeasurements } = require("./routes/Bottom/Bottom-M");
@@ -18,13 +18,16 @@ const {
 	feedbackCategory,
 	getGenderCount,
 	feedbackCategoryPOST,
+	ShoeSizeCounter,
+	ShoeSizeCounterPOST,
 } = require("./routes/Analitycs/ChartData");
-const { getTableData,
+const {
+	getTableData,
 	getTableDataMale,
 	getTableDataTopsMale,
 	getTableDataTopsFemale,
 	getTableDataBottomsMale,
-	getTableDataBottomsFemale
+	getTableDataBottomsFemale,
 } = require("./routes/Analitycs/GetTableData");
 
 app.use(cors());
@@ -84,38 +87,46 @@ app.post("/data/genders/post", (req, res) => {
 
 app.get("/data/opinionCategory", (req, res) => {
 	feedbackCategory(req, res, dbConfig);
-})
+});
 app.post("/data/opinionCategory-post", (req, res) => {
 	feedbackCategoryPOST(req, res, dbConfig);
-})
+});
 
 //? OPINIONS FROM USERS
 app.post("/Opinion", (req, res) => {
 	userComment(req, res, dbConfig);
 });
 
+// SHOE SIZE COUNTER
+app.get("/getShoeSizeCount", (req, res) => {
+	ShoeSizeCounter(req, res, dbConfig);
+});
+app.post("/postShoeSizeCount", (req, res) => {
+	ShoeSizeCounterPOST(req, res, dbConfig);
+});
+
 //? CONVERSIONS
 // SHOES
 app.get("/getTableData", (req, res) => {
 	getTableData(req, res, dbConfig);
-})
+});
 app.get("/getTableDataMale", (req, res) => {
 	getTableDataMale(req, res, dbConfig);
-})
+});
 // TOPS
 app.get("/getTableDataTopsMale", (req, res) => {
 	getTableDataTopsMale(req, res, dbConfig);
-})
+});
 app.get("/getTableDataTopsFemale", (req, res) => {
 	getTableDataTopsFemale(req, res, dbConfig);
-})
+});
 // BOTTOMS
 app.get("/getTableDataBottomsMale", (req, res) => {
 	getTableDataBottomsMale(req, res, dbConfig);
-})
+});
 app.get("/getTableDataBottomsFemale", (req, res) => {
 	getTableDataBottomsFemale(req, res, dbConfig);
-})
+});
 
 app.listen(port, () => {
 	function hi() {

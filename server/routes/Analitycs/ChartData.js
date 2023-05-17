@@ -92,10 +92,50 @@ async function getGenderCount(req, res, dbConfig) {
 	}
 }
 
+async function ShoeSizeCounter(req, res, dbConfig) {
+	try {
+		const pool = await sql.connect(dbConfig);
+
+		let result = await pool.request().query("SELECT * FROM ShoeSizeCounterEU");
+
+		let ShoeSizeCounterEU = result.recordset[0];
+
+		res.status(200).json({ ShoeSizeCounterEU });
+	} catch (error) {
+		res.status(500).send(`${error}`);
+	}
+}
+async function ShoeSizeCounterPOST(req, res, dbConfig) {
+	const { size, unit } = req.body;
+
+	try {
+		const pool = await sql.connect(dbConfig);
+
+		if (unit === false) {
+		} else {
+			let result = await pool
+				.request()
+				.input("size", size)
+				.query(`UPDATE ShoeSizeCounterUS SET size${size} += 1`, [
+					{
+						name: "size",
+						value: size,
+					},
+				]);
+		}
+
+		res.status(200);
+	} catch (error) {
+		res.status(500).send(`${error}`);
+	}
+}
+
 module.exports = {
 	genderCount,
 	avgShoeSize,
 	feedbackCategory,
 	getGenderCount,
 	feedbackCategoryPOST,
+	ShoeSizeCounter,
+	ShoeSizeCounterPOST,
 };
