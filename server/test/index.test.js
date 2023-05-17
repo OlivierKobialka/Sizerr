@@ -27,4 +27,8 @@ describe("Tests for server/index.js", () => {
 	beforeEach(() => {
 		dbStub = sinon.stub(db, "query");
 	});
+
+	after(() => {
+		dbStub.restore();
+	});
 });
