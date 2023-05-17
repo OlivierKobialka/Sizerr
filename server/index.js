@@ -144,3 +144,5 @@ app.listen(port, () => {
 	hi();
 	console.log(`  Running on http://localhost:${port}`);
 });
+
+module.exports = {dbConfig};
