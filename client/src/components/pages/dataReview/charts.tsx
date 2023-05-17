@@ -11,10 +11,12 @@ const Charts = () => {
     const translate = useTranslate();
     const [ShoeSizeCountEU, setShoeSizeCountEU] = useState<number[]>([]);
     const ShoeSizes = {
-        series: [{
-            name: "Shoe Size",
-            data: ShoeSizeCountEU,
-        }],
+        series: [
+            {
+                name: "Shoe Size",
+                data: ShoeSizeCountEU,
+            },
+        ],
         chart: {
             toolbar: {
                 show: false,
