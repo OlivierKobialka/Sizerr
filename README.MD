@@ -16,6 +16,8 @@ npm run dev
 ### Server Side
 
 ```bash
+npm install
+
 npm run start
 ```
 

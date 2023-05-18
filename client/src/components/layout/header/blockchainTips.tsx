@@ -12,15 +12,13 @@ import confetti from "canvas-confetti";
 import { useTranslate } from "@pankod/refine-core";
 import dotenv from "dotenv";
 
-const API_KEY = process.env.API_INFURA_KEY
+const API_KEY = process.env.API_INFURA_KEY;
 
 const web3 = new Web3(
-	new Web3.providers.HttpProvider(
-		`https://goerli.infura.io/${API_KEY}}`
-	)
+	new Web3.providers.HttpProvider(`https://goerli.infura.io/${API_KEY}}`)
 );
 
-export default function BlockchainTips() {
+const BlockchainTips = () => {
 	const translate = useTranslate();
 	const [transactionValue, setTransactionValue] = useState("");
 	// @ts-ignore
@@ -165,21 +163,22 @@ export default function BlockchainTips() {
 												id='transactionValue'
 												type='number'
 												color='info'
-												placeholder="Value (ETH)"
+												placeholder='Value (ETH)'
 												variant='outlined'
 												value={transactionValue}
 												onChange={handleTransactionValueChange}
 											/>
 										</Box>
 										<button
-											className={`bg-primary mt-2 text-white rounded-lg py-1 px-3 font-bold ${transactionValue === "" ||
+											className={`bg-primary mt-2 text-white rounded-lg py-1 px-3 font-bold ${
+												transactionValue === "" ||
 												// @ts-ignore
 												transactionValue <= 0 ||
 												typeof transactionValue === "undefined" ||
 												transactionValue === null
-												? "opacity-50 cursor-not-allowed"
-												: "cursor-pointer"
-												}`}
+													? "opacity-50 cursor-not-allowed"
+													: "cursor-pointer"
+											}`}
 											onClick={handleSend}
 											disabled={
 												transactionValue === "" ||
@@ -212,3 +211,5 @@ export default function BlockchainTips() {
 		</Box>
 	);
 };
+
+export default BlockchainTips;

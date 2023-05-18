@@ -11,7 +11,7 @@ import {
 import { Stack, Tooltip, Typography, Grid } from "@mui/material";
 import { Info } from "@mui/icons-material";
 
-export default function Error() {
+const Error = () => {
 	const [errorMessage, setErrorMessage] = useState<string>();
 	const { push } = useNavigation();
 	const translate = useTranslate();
@@ -69,7 +69,7 @@ export default function Error() {
 					</Typography>
 
 					{errorMessage && (
-						<Tooltip title={errorMessage} className="mr-2">
+						<Tooltip title={errorMessage} className='mr-2'>
 							<Info data-testid='error-component-tooltip' />
 						</Tooltip>
 					)}
@@ -83,3 +83,5 @@ export default function Error() {
 		</Grid>
 	);
 };
+
+export default Error;
