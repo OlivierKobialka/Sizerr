@@ -5,13 +5,19 @@ import ReactApexChart from "react-apexcharts";
 import axios, { AxiosResponse } from "axios";
 import { useTranslate } from "@pankod/refine-core";
 
-export default function Charts() {
-	const host = "https://localhost:8080/data/";
+const Charts = () => {
+	const host = "http://localhost:8080/data/";
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const translate = useTranslate();
+	const [ShoeSizeCountEU, setShoeSizeCountEU] = useState<number[]>([]);
 	const ShoeSizes = {
+		series: [
+			{
+				name: "Shoe Size",
+				data: ShoeSizeCountEU,
+			},
+		],
 		chart: {
-			id: "basic-column",
 			toolbar: {
 				show: false,
 			},
@@ -33,10 +39,31 @@ export default function Charts() {
 	};
 
 	let seriesName = translate("pages.Charts.Series.Users", "User's");
+
+	useEffect(() => {
+		setIsLoading(true);
+
+		async function fetchAvgShoeSize(): Promise<void> {
+			try {
+				const response = await axios.get(
+					`http://localhost:8080/getShoeSizeCount`
+				);
+
+				setShoeSizeCountEU(response.data.ShoeSizeCounterEU);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+
+		console.log(ShoeSizeCountEU);
+		fetchAvgShoeSize();
+		setIsLoading(false);
+	}, []);
+
 	const avgShoeSize = [
 		{
 			name: seriesName,
-			data: [12, 14, 2, 47, 32, 44, 14, 55, 41, 69, 91, 148, 22, 43, 21],
+			data: ShoeSizeCountEU,
 			color: "#475be8",
 		},
 	];
@@ -48,7 +75,9 @@ export default function Charts() {
 			},
 		},
 		xaxis: {
-			categories: [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
+			categories: [
+				35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+			],
 		},
 		plotOptions: {
 			bar: {
@@ -62,37 +91,35 @@ export default function Charts() {
 
 	const avgShoeSizeRow = [
 		{
-			data: [12, 14, 2, 47, 32, 44, 14, 55, 41, 69, 91, 148, 22, 43, 21],
+			data: ShoeSizeCountEU,
 		},
 	];
 	//! GENDER COUNT
 
-	const [genderCount, setGenderCount] = useState<{
-		Male: number;
-		Female: number;
-	}>({
+	const [genderCount, setGenderCount] = useState({
 		Male: 0,
 		Female: 0,
 	});
 
-	// useEffect(() => {
-	// 	setIsLoading(true);
+	useEffect(() => {
+		setIsLoading(true);
 
-	// 	async function fetchGenderCounts(): Promise<void> {
-	// 		try {
-	// 			const response: AxiosResponse<{ Male: number; Female: number }> = await axios.get(
-	// 				`${host}genders/get`
-	// 			);
+		async function fetchGenderCounts(): Promise<void> {
+			try {
+				const response = await axios.get(`${host}genders/get`);
 
-	// 			const data = response.data;
-	// 			setGenderCount({ Male: data.Male, Female: data.Female })
-	// 		} catch (error) {
-	// 			console.error(error);
-	// 		}
-	// 	}
-	// 	fetchGenderCounts()
-	// 	setIsLoading(false);
-	// }, [])
+				const { Male, Female } = response.data.genderCount;
+				setGenderCount({
+					Male,
+					Female,
+				});
+			} catch (error) {
+				console.error(error);
+			}
+		}
+		fetchGenderCounts();
+		setIsLoading(false);
+	}, []);
 
 	let labelMale = translate("pages.Inputs.Genders.Males", "Male's");
 	let labelFemale = translate("pages.Inputs.Genders.Females", "Female's");
@@ -122,29 +149,43 @@ export default function Charts() {
 		Complaint: 0,
 	});
 
-	// useEffect(() => {
-	// 	const fetchFeedbacks = async () => {
-	// 		setIsLoading(true);
-	// 		try {
-	// 			let response = await axios.get(`${host}opinionCategory`);
+	useEffect(() => {
+		setIsLoading(true);
 
-	// 			setFeedbackCount(response.data.FeedbackCount);
-	// 			setIsLoading(false);
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-	// 	}
-	// 	fetchFeedbacks()
-	// 	console.log(feedbackCount);
-	// }, [feedbackCount])
+		async function fetchFeedbacks(): Promise<void> {
+			try {
+				const response = await axios.get(`${host}opinionCategory`);
 
-	const Feedback = 24;
-	const Suggestion = 34;
-	const Complain = 12;
-	// CHART LABELS
-	let Feedbacks = translate("pages.Charts.Series.Feedbacks", "Feedbacks");
-	let Complaints = translate("pages.Charts.Series.Complaints", "Complaints");
-	let Suggestions = translate("pages.Charts.Series.Suggestions", "Suggestions");
+				const { feedback, suggestion, complain } = response.data.FeedbackCount;
+				setFeedbackCount({
+					Feedback: feedback,
+					Suggestion: suggestion,
+					Complaint: complain,
+				});
+			} catch (error) {
+				console.error(error);
+			}
+		}
+		fetchFeedbacks();
+		setIsLoading(false);
+	}, []);
+
+	const Feedback = feedbackCount.Feedback;
+	const Suggestion = feedbackCount.Suggestion;
+	const Complain = feedbackCount.Complaint;
+
+	let Feedbacks_Labels = translate(
+		"pages.Charts.Series.Feedbacks",
+		"Feedbacks"
+	);
+	let Complaints_Labels = translate(
+		"pages.Charts.Series.Complaints",
+		"Complaints"
+	);
+	let Suggestions_Labels = translate(
+		"pages.Charts.Series.Suggestions",
+		"Suggestions"
+	);
 
 	const feedbackCategoryCounter = {
 		series: [Feedback, Suggestion, Complain],
@@ -156,7 +197,7 @@ export default function Charts() {
 				enabled: false,
 			},
 			colors: ["#475be8", "#3399ff", "#ffcc00"],
-			labels: [Feedbacks, Suggestions, Complaints],
+			labels: [Feedbacks_Labels, Suggestions_Labels, Complaints_Labels],
 			legend: {
 				show: false,
 			},
@@ -173,7 +214,7 @@ export default function Charts() {
 				</Stack>
 				<Box className='hidden sm:block'>
 					<ReactApexChart
-						series={avgShoeSize}
+						series={[{ data: ShoeSizeCountEU }]}
 						type='bar'
 						height={350}
 						options={ShoeSizes}
@@ -190,8 +231,27 @@ export default function Charts() {
 				</Box>
 			</Box>
 			{/* SMALLER CHARTS */}
-			<Box className='grid grid-cols-1 gap-4 pt-4 xs:grid-cols-2 h-36'>
-				<Box className=' w-full flex place-content-center bg-[#fcfcfc] rounded-2xl'>
+			<Box className='grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 h-36'>
+				<Box className='sm:hidden'>
+					<Box className=' w-full grid grid-cols-2 place-content-center bg-[#fcfcfc] rounded-2xl'>
+						<ReactApexChart
+							// @ts-ignore
+							options={genderCountChart.options}
+							series={genderCountChart.series}
+							type='donut'
+							height={150}
+						/>
+						<ReactApexChart
+							// @ts-ignore
+							options={feedbackCategoryCounter.options}
+							series={feedbackCategoryCounter.series}
+							type='donut'
+							height={150}
+						/>
+					</Box>
+				</Box>
+				{/* XS */}
+				<Box className='hidden w-full sm:flex place-content-center bg-[#fcfcfc] rounded-2xl'>
 					<ReactApexChart
 						// @ts-ignore
 						options={genderCountChart.options}
@@ -209,7 +269,7 @@ export default function Charts() {
 						</Typography>
 					</Box>
 				</Box>
-				<Box className=' w-full flex place-content-center bg-[#fcfcfc] rounded-2xl'>
+				<Box className='hidden w-full sm:flex place-content-center bg-[#fcfcfc] rounded-2xl'>
 					<ReactApexChart
 						// @ts-ignore
 						options={feedbackCategoryCounter.options}
@@ -230,4 +290,6 @@ export default function Charts() {
 			</Box>
 		</Box>
 	);
-}
+};
+
+export default Charts;

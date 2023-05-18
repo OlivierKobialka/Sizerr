@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Tab } from "@headlessui/react";
 import { useTranslate } from "@pankod/refine-core";
 
-export default function Tabs() {
+const Tabs=() =>{
 	const translate = useTranslate();
 
 	return (
@@ -37,3 +37,5 @@ export default function Tabs() {
 		</Box>
 	);
 };
+
+export default Tabs;

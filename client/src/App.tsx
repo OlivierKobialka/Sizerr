@@ -15,10 +15,10 @@ import { ColorModeContextProvider } from "contexts";
 import { Title, Sider, Layout, Header } from "components/layout";
 import { OffLayoutArea } from "components/offLayoutArea";
 import { Top, Bottom, Shoes, Convert, DataReview } from "components/pages";
-import { Error, Welcome } from "./index"
+import { Error, Welcome } from "./aaa";
 import { TbShirt, TbShoe, TbTable, TbStar } from "react-icons/tb";
 
-export default function App() {
+const App = () => {
 	const { t, i18n } = useTranslation();
 
 	const i18nProvider = {
@@ -83,4 +83,6 @@ export default function App() {
 			</RefineSnackbarProvider>
 		</ColorModeContextProvider>
 	);
-}
+};
+
+export default App;

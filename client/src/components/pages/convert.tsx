@@ -14,7 +14,7 @@ import React, { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import axios from "axios";
 import { useTranslate } from "@pankod/refine-core";
-import { Switch } from '@headlessui/react';
+import { Switch } from "@headlessui/react";
 import { TbMan, TbWoman } from "react-icons/tb";
 import ScrollTop from "./ScrollTop";
 import Loader from "Loader";
@@ -50,8 +50,7 @@ interface ITops {
 	Hipin_max: number & Float;
 }
 
-
-export default function Convert() {
+const Convert = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const translate = useTranslate();
 	const [dataMaleShoes, setDataMaleShoes] = useState<IShoes[]>([]);
@@ -67,19 +66,8 @@ export default function Convert() {
 		"Size CM",
 		"Size INCH",
 	];
-	const tableHeader_Tops = [
-		"Brand",
-		"Size",
-		"Chest",
-		"Waist",
-		"Hips",
-	];
-	const tableHeader_Bottom = [
-		"Brand",
-		"Size",
-		"Waist",
-		"Hips",
-	];
+	const tableHeader_Tops = ["Brand", "Size", "Chest", "Waist", "Hips"];
+	const tableHeader_Bottom = ["Brand", "Size", "Waist", "Hips"];
 	const tableRef = useRef<HTMLTableElement>(null);
 
 	const tableTypeButton = [
@@ -95,17 +83,17 @@ export default function Convert() {
 			text: "Bottoms",
 			value: "Bottoms",
 		},
-	]
+	];
 
-	const [genderSwitch, setGenderSwitch] = useState(false)
-	const [unit, setUnit] = useState(false)
+	const [genderSwitch, setGenderSwitch] = useState(false);
+	const [unit, setUnit] = useState(false);
 	const [selectedButton, setSelectedButton] = useState<string>("Shoes");
 
 	const [dataMaleTops, setDataMaleTops] = useState<ITops[]>([]);
 	const [dataFemaleTops, setDataFemaleTops] = useState<ITops[]>([]);
 	const [dataMaleBottoms, setDataMaleBottoms] = useState<ITops[]>([]);
 	const [dataFemaleBottoms, setDataFemaleBottoms] = useState<ITops[]>([]);
-	const host = 'http://localhost:8080/getTableData'
+	const host = "http://localhost:8080/getTableData";
 
 	const handleButtonClick = async (button: string) => {
 		setSelectedButton(button === selectedButton ? selectedButton : button);
@@ -140,9 +128,9 @@ export default function Convert() {
 	}, []);
 
 	let tableBody;
-	let items
+	let items;
 	switch (tableType) {
-		case 'Tops':
+		case "Tops":
 			items = genderSwitch ? dataMaleTops : dataFemaleTops;
 			switch (unit) {
 				case true:
@@ -150,9 +138,15 @@ export default function Convert() {
 						<TableRow key={index}>
 							<TableCell>{item.Brand}</TableCell>
 							<TableCell>{item.Size}</TableCell>
-							<TableCell>{item.ChestIN_min}-{item.ChestIN_max}</TableCell>
-							<TableCell>{item.WaistIN_min}-{item.WaistIN_max}</TableCell>
-							<TableCell>{item.HipIN_min}-{item.HipIN_max}</TableCell>
+							<TableCell>
+								{item.ChestIN_min}-{item.ChestIN_max}
+							</TableCell>
+							<TableCell>
+								{item.WaistIN_min}-{item.WaistIN_max}
+							</TableCell>
+							<TableCell>
+								{item.HipIN_min}-{item.HipIN_max}
+							</TableCell>
 						</TableRow>
 					));
 					break;
@@ -161,9 +155,15 @@ export default function Convert() {
 						<TableRow key={index}>
 							<TableCell>{item.Brand}</TableCell>
 							<TableCell>{item.Size}</TableCell>
-							<TableCell>{item.ChestCM_min}-{item.ChestCM_max}</TableCell>
-							<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
-							<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
+							<TableCell>
+								{item.ChestCM_min}-{item.ChestCM_max}
+							</TableCell>
+							<TableCell>
+								{item.WaistCM_min}-{item.WaistCM_max}
+							</TableCell>
+							<TableCell>
+								{item.HipCM_min}-{item.HipCM_max}
+							</TableCell>
 						</TableRow>
 					));
 					break;
@@ -171,7 +171,7 @@ export default function Convert() {
 
 			break;
 
-		case 'Bottoms':
+		case "Bottoms":
 			items = genderSwitch ? dataMaleBottoms : dataFemaleBottoms;
 			switch (unit) {
 				case true:
@@ -179,8 +179,12 @@ export default function Convert() {
 						<TableRow key={index}>
 							<TableCell>{item.Brand}</TableCell>
 							<TableCell>{item.Size}</TableCell>
-							<TableCell>{item.Waistin_min}-{item.Waistin_max}</TableCell>
-							<TableCell>{item.Hipin_min}-{item.Hipin_max}</TableCell>
+							<TableCell>
+								{item.Waistin_min}-{item.Waistin_max}
+							</TableCell>
+							<TableCell>
+								{item.Hipin_min}-{item.Hipin_max}
+							</TableCell>
 						</TableRow>
 					));
 					break;
@@ -189,12 +193,16 @@ export default function Convert() {
 						<TableRow key={index}>
 							<TableCell>{item.Brand}</TableCell>
 							<TableCell>{item.Size}</TableCell>
-							<TableCell>{item.WaistCM_min}-{item.WaistCM_max}</TableCell>
-							<TableCell>{item.HipCM_min}-{item.HipCM_max}</TableCell>
+							<TableCell>
+								{item.WaistCM_min}-{item.WaistCM_max}
+							</TableCell>
+							<TableCell>
+								{item.HipCM_min}-{item.HipCM_max}
+							</TableCell>
 						</TableRow>
 					));
 			}
-			break
+			break;
 
 		default:
 			items = genderSwitch ? dataMaleShoes : dataFemaleShoes;
@@ -208,73 +216,81 @@ export default function Convert() {
 					<TableCell>{item.SizeIN}</TableCell>
 				</TableRow>
 			));
-
 	}
 
 	return (
 		<Box className='bg-white rounded-2xl p-2'>
 			<ScrollTop />
-			<Typography fontSize={28} fontWeight={700} className="mb-5">
+			<Typography fontSize={28} fontWeight={700} className='mb-5'>
 				{translate("pages.Table.Title", "Size Chart")}
 			</Typography>
-			<Box className="flex justify-between my-2">
-				<Box className="flex justify-between">
+			<Box className='flex justify-between my-2'>
+				<Box className='flex justify-between'>
 					{tableTypeButton.map((item, index) => (
 						<button
 							type='button'
-							className={`${selectedButton === item.value
-								? "bg-primary font-bold text-white rounded-3xl"
-								: "bg-gray-200 rounded-3xl font-bold text-black"
-								} py-1 px-4 mx-1`}
+							className={`${
+								selectedButton === item.value
+									? "bg-primary font-bold text-white rounded-3xl"
+									: "bg-gray-200 rounded-3xl font-bold text-black"
+							} py-1 px-4 mx-1`}
 							onClick={() => handleButtonClick(item.value)}>
 							{translate(`pages.Table.Type.${item.text}`, `${item.text}`)}
 						</button>
 					))}
 				</Box>
 				{tableType !== "Shoes" ? (
-					<Box className="flex justify-around items-center">
+					<Box className='flex justify-around items-center'>
 						<Typography>CM</Typography>
 						<Switch
 							checked={unit}
 							onChange={setUnit}
-							className={`${unit ? 'bg-primary' : 'bg-pink-500'
-								} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
-						>
+							className={`${
+								unit ? "bg-primary" : "bg-pink-500"
+							} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}>
 							<span
-								className={`${unit ? 'translate-x-6' : 'translate-x-1'
-									} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+								className={`${
+									unit ? "translate-x-6" : "translate-x-1"
+								} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
 							/>
 						</Switch>
-						<Typography>
-							INCH
-						</Typography>
+						<Typography>INCH</Typography>
 					</Box>
-				) : ""}
-				<Box className="flex justify-around items-center">
-					<Tooltip title={translate("pages.Inputs.Genders.Female", "Female")} placement="top">
+				) : (
+					""
+				)}
+				<Box className='flex justify-around items-center'>
+					<Tooltip
+						title={translate("pages.Inputs.Genders.Female", "Female")}
+						placement='top'>
 						<IconButton>
-							<TbWoman className="w-6 h-auto" />
+							<TbWoman className='w-6 h-auto' />
 						</IconButton>
 					</Tooltip>
 					<Switch
 						checked={genderSwitch}
 						onChange={setGenderSwitch}
-						className={`${genderSwitch ? 'bg-primary' : 'bg-pink-500'
-							} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
-					>
+						className={`${
+							genderSwitch ? "bg-primary" : "bg-pink-500"
+						} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}>
 						<span
-							className={`${genderSwitch ? 'translate-x-6' : 'translate-x-1'
-								} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+							className={`${
+								genderSwitch ? "translate-x-6" : "translate-x-1"
+							} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
 						/>
 					</Switch>
-					<Tooltip title={translate("pages.Inputs.Genders.Male", "Male")} placement="top">
+					<Tooltip
+						title={translate("pages.Inputs.Genders.Male", "Male")}
+						placement='top'>
 						<IconButton>
-							<TbMan className="w-6 h-auto" />
+							<TbMan className='w-6 h-auto' />
 						</IconButton>
 					</Tooltip>
 				</Box>
 			</Box>
-			{isLoading ? <Loader /> : (
+			{isLoading ? (
+				<Loader />
+			) : (
 				<Box
 					ref={tableRef}
 					className={clsx(
@@ -284,40 +300,36 @@ export default function Convert() {
 							block: showTable,
 						}
 					)}>
-
 					<TableContainer className='rounded-2xl h-auto'>
 						<Table>
 							<TableHead>
 								<TableRow>
-									{tableType === "Shoes" ?
-										tableHeader_Shoes.map((item, index) => (
-											<TableCell key={index}>
-												{translate(`pages.Table.Headers.${item}`, item)}
-											</TableCell>
-										)) :
-										tableType === "Tops" ? (
-											tableHeader_Tops.map((item, index) => (
+									{tableType === "Shoes"
+										? tableHeader_Shoes.map((item, index) => (
 												<TableCell key={index}>
 													{translate(`pages.Table.Headers.${item}`, item)}
 												</TableCell>
-											))) : (
-											tableHeader_Bottom.map((item, index) => (
+										  ))
+										: tableType === "Tops"
+										? tableHeader_Tops.map((item, index) => (
 												<TableCell key={index}>
 													{translate(`pages.Table.Headers.${item}`, item)}
 												</TableCell>
-											)
-											)
-										)
-									}
+										  ))
+										: tableHeader_Bottom.map((item, index) => (
+												<TableCell key={index}>
+													{translate(`pages.Table.Headers.${item}`, item)}
+												</TableCell>
+										  ))}
 								</TableRow>
 							</TableHead>
-							<TableBody>
-								{tableBody}
-							</TableBody>
+							<TableBody>{tableBody}</TableBody>
 						</Table>
 					</TableContainer>
 				</Box>
 			)}
-		</Box >
+		</Box>
 	);
 };
+
+export default Convert;

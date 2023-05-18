@@ -8,7 +8,9 @@ async function genderCount(req, res, dbConfig) {
 
 		let result;
 		if (gender !== undefined) {
-			result = await pool.request().query(`UPDATE GenderCount SET ${gender} += 1`);
+			result = await pool
+				.request()
+				.query(`UPDATE GenderCount SET ${gender} += 1`);
 		} else {
 			res.status(500).send(`Recived: ${gender}`);
 		}
@@ -27,13 +29,15 @@ async function avgShoeSize(req, res, dbConfig) {
 	}
 }
 
-async function feedbackCategory(res, dbConfig) {
+async function feedbackCategory(req, res, dbConfig) {
 	try {
 		const pool = await sql.connect(dbConfig);
 
 		let result = await pool.request().query("SELECT * FROM FeedbackCount");
 
-		res.status(200).json({ FeedbackCount: result.recordset });
+		let FeedbackCount = result.recordset[0];
+
+		res.status(200).json({ FeedbackCount });
 	} catch (error) {
 		res.status(500).send(`${error}`);
 	}
@@ -49,26 +53,32 @@ async function feedbackCategoryPOST(req, res, dbConfig) {
 		option = "suggestion";
 	} else if (category === "complain") {
 		option = "complain";
-	} else { res.status(500).send(`Recived: ${category}`); }
+	} else {
+		res.status(500).send(`Recived: ${category}`);
+	}
 	try {
 		const pool = await sql.connect(dbConfig);
 
 		let result = await pool
 			.request()
 			.input("category", option)
-			.query(`UPDATE FeedbackCount SET ${option} += 1
-`, [
-				{
-					name: 'category', value: option
-				}
-			])
-		res.status(200)
+			.query(
+				`UPDATE FeedbackCount SET ${option} += 1
+`,
+				[
+					{
+						name: "category",
+						value: option,
+					},
+				]
+			);
+		res.status(200);
 	} catch (error) {
 		res.status(500).send(`${error}`);
 	}
 }
 
-async function getGenderCount(res, dbConfig) {
+async function getGenderCount(req, res, dbConfig) {
 	try {
 		const pool = await sql.connect(dbConfig);
 
@@ -77,7 +87,44 @@ async function getGenderCount(res, dbConfig) {
 		let genderCount = result.recordset[0];
 
 		res.status(200).json({ genderCount });
+	} catch (error) {
+		res.status(500).send(`${error}`);
+	}
+}
 
+async function ShoeSizeCounter(req, res, dbConfig) {
+	try {
+		const pool = await sql.connect(dbConfig);
+
+		let result = await pool.request().query("SELECT * FROM ShoeSizeCounterEU");
+
+		let ShoeSizeCounterEU = result.recordset[0];
+
+		res.status(200).json({ ShoeSizeCounterEU });
+	} catch (error) {
+		res.status(500).send(`${error}`);
+	}
+}
+async function ShoeSizeCounterPOST(req, res, dbConfig) {
+	const { size, unit } = req.body;
+
+	try {
+		const pool = await sql.connect(dbConfig);
+
+		if (unit === false) {
+		} else {
+			let result = await pool
+				.request()
+				.input("size", size)
+				.query(`UPDATE ShoeSizeCounterUS SET size${size} += 1`, [
+					{
+						name: "size",
+						value: size,
+					},
+				]);
+		}
+
+		res.status(200);
 	} catch (error) {
 		res.status(500).send(`${error}`);
 	}
@@ -88,5 +135,7 @@ module.exports = {
 	avgShoeSize,
 	feedbackCategory,
 	getGenderCount,
-	feedbackCategoryPOST
+	feedbackCategoryPOST,
+	ShoeSizeCounter,
+	ShoeSizeCounterPOST,
 };

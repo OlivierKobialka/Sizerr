@@ -3,7 +3,7 @@ import { Box, Typography, TextField } from "@mui/material";
 import axios from "axios";
 import { useTranslate } from "@pankod/refine-core";
 
-export default function Form() {
+const Form = () => {
 	const translate = useTranslate();
 	const [comment, setComment] = useState<string>("");
 	const [email, setEmail] = useState<string>("");
@@ -39,7 +39,9 @@ export default function Form() {
 				comment: formData.comment,
 				category: formData.category,
 			});
-			await axios.post("http://localhost:8080/data/opinionCategory-post", { category: formData.category });
+			await axios.post("http://localhost:8080/data/opinionCategory-post", {
+				category: formData.category,
+			});
 		} catch (error) {
 			console.error(error);
 		}
@@ -105,10 +107,11 @@ export default function Form() {
 						{category.map((item, index) => (
 							<button
 								type='button'
-								className={`${selectedButton === item.value
-									? "bg-primary font-bold text-white rounded-3xl"
-									: "bg-gray-200 rounded-3xl font-bold text-black"
-									} py-1 px-4 mx-1`}
+								className={`${
+									selectedButton === item.value
+										? "bg-primary font-bold text-white rounded-3xl"
+										: "bg-gray-200 rounded-3xl font-bold text-black"
+								} py-1 px-4 mx-1`}
 								onClick={() => handleButtonClick(item.value)}>
 								{translate(`pages.FormOpinion.Title.Buttons.${item.name}`)}
 							</button>
@@ -116,10 +119,11 @@ export default function Form() {
 					</Box>
 
 					<button
-						className={`bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 rounded-2xl ${(!email && !comment) || remainingChars < 0
-							? "cursor-not-allowed opacity-50"
-							: ""
-							}`}
+						className={`bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 rounded-2xl ${
+							(!email && !comment) || remainingChars < 0
+								? "cursor-not-allowed opacity-50"
+								: ""
+						}`}
 						type='submit'
 						disabled={(!email && !comment) || remainingChars < 0}>
 						{translate(
@@ -132,3 +136,5 @@ export default function Form() {
 		</Box>
 	);
 };
+
+export default Form;

@@ -21,10 +21,9 @@ import { SelectInputProps } from "@mui/material/Select/SelectInput";
 import { OutlinedInputProps } from "@mui/material/OutlinedInput";
 import { useTranslate } from "@pankod/refine-core";
 import Tabs from "../Tabs";
-import { Switch } from '@headlessui/react';
+import { Switch } from "@headlessui/react";
 
-export default function Top() {
-
+const Top = () => {
 	interface IWears {
 		Brand: string;
 		Size: string;
@@ -57,7 +56,6 @@ export default function Top() {
 		gender: "",
 	});
 
-
 	const handleInputChangeMeasurements: OutlinedInputProps["onChange"] =
 		event => {
 			const { name, value } = event.target;
@@ -76,7 +74,7 @@ export default function Top() {
 		};
 
 	const handleSubmitMeasurements = async (
-		event: React.FormEvent<HTMLFormElement>,
+		event: React.FormEvent<HTMLFormElement>
 	) => {
 		event.preventDefault();
 		try {
@@ -91,12 +89,9 @@ export default function Top() {
 			});
 			setFetchedTopWear(response.data.topMeasurements);
 			setShowTable(true);
-			await axios.post(
-				"http://localhost:8080/data/genders/post",
-				{
-					gender: FormValuesMeasurements.gender,
-				}
-			);
+			await axios.post("http://localhost:8080/data/genders/post", {
+				gender: FormValuesMeasurements.gender,
+			});
 		} catch (error) {
 			console.log(error);
 		}
@@ -126,7 +121,7 @@ export default function Top() {
 		},
 	];
 
-	const [unit, setUnit] = useState(false)
+	const [unit, setUnit] = useState(false);
 	const [FormValuesBrand, setFormValuesBrand] = useState<{
 		brand: string;
 		size: string;
@@ -164,12 +159,9 @@ export default function Top() {
 			});
 			setFetchedTopWear(response.data.topBrand);
 			setShowTable(true);
-			await axios.post(
-				"http://localhost:8080/data/genders/post",
-				{
-					gender: FormValuesBrand.gender,
-				}
-			);
+			await axios.post("http://localhost:8080/data/genders/post", {
+				gender: FormValuesBrand.gender,
+			});
 		} catch (error) {
 			console.log(error);
 		}
@@ -213,8 +205,7 @@ export default function Top() {
 					<Tabs />
 					<Tab.Panels className='w-full'>
 						<Tab.Panel className='w-full lg:w-[750px] flex flex-col'>
-							<form
-								onSubmit={handleSubmitMeasurements}>
+							<form onSubmit={handleSubmitMeasurements}>
 								<Box className='bg-white container flex rounded-2xl flex-col items-center p-3 h-auto'>
 									<Box className='w-full flex flex-col place-items-center md:place-items-start md:justify-between gap-2 md:flex-row'>
 										<Box>
@@ -259,22 +250,21 @@ export default function Top() {
 												/>
 											))}
 										</Box>
-										<Box className="flex justify-around items-center">
+										<Box className='flex justify-around items-center'>
 											<Typography>CM</Typography>
 											<Switch
 												checked={unit}
 												onChange={setUnit}
-												className={`${unit ? 'bg-primary' : 'bg-pink-500'
-													} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
-											>
+												className={`${
+													unit ? "bg-primary" : "bg-pink-500"
+												} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}>
 												<span
-													className={`${unit ? 'translate-x-6' : 'translate-x-1'
-														} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+													className={`${
+														unit ? "translate-x-6" : "translate-x-1"
+													} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
 												/>
 											</Switch>
-											<Typography>
-												INCH
-											</Typography>
+											<Typography>INCH</Typography>
 										</Box>
 									</Box>
 									<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
@@ -337,22 +327,21 @@ export default function Top() {
 												/>
 											))}
 										</Box>
-										<Box className="flex justify-around items-center">
+										<Box className='flex justify-around items-center'>
 											<Typography>CM</Typography>
 											<Switch
 												checked={unit}
 												onChange={setUnit}
-												className={`${unit ? 'bg-primary' : 'bg-pink-500'
-													} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}
-											>
+												className={`${
+													unit ? "bg-primary" : "bg-pink-500"
+												} relative inline-flex h-6 w-11 items-center rounded-full duration-300 mx-2`}>
 												<span
-													className={`${unit ? 'translate-x-6' : 'translate-x-1'
-														} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
+													className={`${
+														unit ? "translate-x-6" : "translate-x-1"
+													} inline-block h-4 w-4 transform rounded-full bg-white duration-300 transition`}
 												/>
 											</Switch>
-											<Typography>
-												INCH
-											</Typography>
+											<Typography>INCH</Typography>
 										</Box>
 									</Box>
 									<Box className='mt-10 w-full xl:w-96 md:mt-20 flex justify-between items-center'>
@@ -432,3 +421,5 @@ export default function Top() {
 		</>
 	);
 };
+
+export default Top;

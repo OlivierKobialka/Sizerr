@@ -1,13 +1,13 @@
 const sql = require("mssql");
 
 async function bottomMeasurements(req, res, dbConfig) {
-    const { gender, hips, inseam, waist } = req.query;
+    const { gender, hips, waist } = req.query;
 
     try {
         const pool = await sql.connect(dbConfig);
 
         let result;
-        if (gender === "male") {
+        if (gender === "Male") {
             result = await pool
                 .request()
                 .input("hips", hips)
@@ -18,7 +18,6 @@ async function bottomMeasurements(req, res, dbConfig) {
 FROM BottomsMan INNER JOIN Brand ON Brand.Id = BottomsMan.BrandId
 WHERE HipCM_min <= @hips AND HipCM_max >= @hips AND WaistCM_min <= @waist AND WaistCM_max >= @waist`, [
                     { name: "hips", value: hips },
-                    // { name: "inseam", value: inseam },
                     { name: "waist", value: waist },
                 ])
 
