@@ -221,13 +221,13 @@ const Charts = () => {
                 </Stack>
                 <Box className="hidden sm:block">
                     <ReactApexChart
-                        series={[{ data: ShoeSizeCountEU }]}
+                        series={avgShoeSizeRow}
                         type="bar"
                         height={350}
                         options={ShoeSizes}
                     />
                 </Box>
-                {/* MOBILE */}
+                {/* VERTICAL */}
                 <Box className="block sm:hidden">
                     <ReactApexChart
                         series={avgShoeSizeRow}
@@ -237,7 +237,6 @@ const Charts = () => {
                     />
                 </Box>
             </Box>
-            {/* SMALLER CHARTS */}
             <Box className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 h-36">
                 <Box className="sm:hidden">
                     <Box className=" w-full grid grid-cols-2 place-content-center bg-[#fcfcfc] rounded-2xl">
