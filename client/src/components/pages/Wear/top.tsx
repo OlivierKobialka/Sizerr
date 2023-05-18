@@ -127,11 +127,7 @@ const Top = () => {
     ];
 
     const [unit, setUnit] = useState(false);
-    const [FormValuesBrand, setFormValuesBrand] = useState<{
-        brand: string;
-        size: string;
-        gender: string;
-    }>({
+    const [FormValuesBrand, setFormValuesBrand] = useState({
         brand: "",
         size: "",
         gender: "",
