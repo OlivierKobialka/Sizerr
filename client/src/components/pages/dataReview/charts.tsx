@@ -26,7 +26,25 @@ const Charts = () => {
     const host = "http://localhost:8080/data/";
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const translate = useTranslate();
-    const [ShoeSizeCountEU, setShoeSizeCountEU] = useState<ShoeSizeCountEU[]>();
+    const [ShoeSizeCountEU, setShoeSizeCountEU] = useState({
+        size35: 0,
+        size36: 0,
+        size37: 0,
+        size38: 0,
+        size39: 0,
+        size40: 0,
+        size41: 0,
+        size42: 0,
+        size43: 0,
+        size44: 0,
+        size45: 0,
+        size46: 0,
+        size47: 0,
+        size48: 0,
+    });
+    const chartCategories = [
+        36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48,
+    ];
     const ShoeSizes = {
         series: [
             {
@@ -51,7 +69,7 @@ const Charts = () => {
             },
         },
         xaxis: {
-            categories: [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48],
+            categories: chartCategories,
         },
     };
 
@@ -92,9 +110,7 @@ const Charts = () => {
             },
         },
         xaxis: {
-            categories: [
-                35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-            ],
+            categories: chartCategories,
         },
         plotOptions: {
             bar: {
