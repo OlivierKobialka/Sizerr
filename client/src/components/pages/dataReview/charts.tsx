@@ -5,11 +5,28 @@ import ReactApexChart from "react-apexcharts";
 import axios, { AxiosResponse } from "axios";
 import { useTranslate } from "@pankod/refine-core";
 
+interface ShoeSizeCountEU {
+    size35: number;
+    size36: number;
+    size37: number;
+    size38: number;
+    size39: number;
+    size40: number;
+    size41: number;
+    size42: number;
+    size43: number;
+    size44: number;
+    size45: number;
+    size46: number;
+    size47: number;
+    size48: number;
+}
+
 const Charts = () => {
     const host = "http://localhost:8080/data/";
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const translate = useTranslate();
-    const [ShoeSizeCountEU, setShoeSizeCountEU] = useState<number[]>([]);
+    const [ShoeSizeCountEU, setShoeSizeCountEU] = useState<ShoeSizeCountEU[]>();
     const ShoeSizes = {
         series: [
             {
@@ -34,9 +51,7 @@ const Charts = () => {
             },
         },
         xaxis: {
-            categories: [
-                36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-            ],
+            categories: [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48],
         },
     };
 
