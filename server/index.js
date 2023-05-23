@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const sql = require("mssql");
 const dotenv = require("dotenv").config();
 const app = express();
-const port = 8080;
+const PORT = process.env.PORT;
 const { shoesBrand } = require("./routes/Shoes/Shoes-B");
 const { shoesMeasurement } = require("./routes/Shoes/Shoes-M");
 const { bottomBrand } = require("./routes/Bottom/Bottom-B");
@@ -128,7 +128,7 @@ app.get("/getTableDataBottomsFemale", (req, res) => {
 	getTableDataBottomsFemale(req, res, dbConfig);
 });
 
-app.listen(port, () => {
+app.listen(PORT, () => {
 	function hi() {
 		console.clear();
 		console.log("   ______   ______  ________  ________  _______   _______  ");
@@ -142,7 +142,7 @@ app.listen(port, () => {
 		console.log("  $$$$$$/  $$$$$$/ $$$$$$$$/ $$$$$$$$/$$/   $$/ $$/   $$/ ");
 	}
 	hi();
-	console.log(`  Running on http://localhost:${port}`);
+	console.log(`  Running on http://localhost:${PORT}`);
 });
 
-module.exports = {dbConfig};
+module.exports = { dbConfig };

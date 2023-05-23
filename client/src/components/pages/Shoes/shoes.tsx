@@ -38,6 +38,8 @@ interface IShoes {
 type Float = number & { __float: never };
 
 const Shoes = () => {
+    const host = "http://localhost:3001";
+
     const [unit, setUnit] = useState(false);
     console.log(unit);
 
@@ -81,7 +83,7 @@ const Shoes = () => {
         });
         try {
             const response = await axios.get(
-                "http://localhost:8080/api/Shoes-M",
+                `${host}/api/Shoes-M`,
                 {
                     params: {
                         unit: unit,
@@ -92,10 +94,10 @@ const Shoes = () => {
             );
             setfetchedShoesSizes(response.data.shoesMeasurement);
             setShowTable(true);
-            await axios.post("http://localhost:8080/data/genders/post", {
+            await axios.post(`${host}/data/genders/post`, {
                 gender: FormValuesMeasurements.gender,
             });
-            await axios.post("http://localhost:8080/postShoeSizeCount", {
+            await axios.post(`${host}/postShoeSizeCount`, {
                 size: FormValuesMeasurements.size,
 				unit: unit,
             });
@@ -141,7 +143,7 @@ const Shoes = () => {
         event.preventDefault();
         try {
             const response = await axios.get(
-                "http://localhost:8080/api/Shoes-B",
+                `${host}/api/Shoes-B`,
                 {
                     params: {
                         measurement: selectedValueBrand,
@@ -154,10 +156,10 @@ const Shoes = () => {
             setfetchedShoesSizes(response.data.shoesBrand);
             setShowTable(true);
 
-            await axios.post("http://localhost:8080/data/genders/post", {
+            await axios.post(`${host}/data/genders/post`, {
                 gender: FormValuesBrand.gender,
             });
-			await axios.post("http://localhost:8080/postShoeSizeCount", {
+			await axios.post(`${host}/postShoeSizeCount`, {
 				size: FormValuesBrand.size,
             });
         } catch (error) {

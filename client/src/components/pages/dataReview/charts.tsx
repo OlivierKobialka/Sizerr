@@ -23,7 +23,7 @@ interface ShoeSizeCountEU {
 }
 
 const Charts = () => {
-    const host = "http://localhost:8080/data/";
+    const host = "http://localhost:3001/data/";
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const translate = useTranslate();
     const [ShoeSizeCountEU, setShoeSizeCountEU] = useState({
