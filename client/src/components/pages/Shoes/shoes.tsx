@@ -148,7 +148,7 @@ const Shoes = () => {
                     params: {
                         measurement: selectedValueBrand,
                         brand: FormValuesBrand.brand,
-                        size: FormValuesBrand.size,
+                        size: FormValuesBrand.size, 
                         gender: FormValuesBrand.gender,
                     },
                 }
