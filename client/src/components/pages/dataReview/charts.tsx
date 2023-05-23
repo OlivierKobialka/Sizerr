@@ -26,7 +26,7 @@ const Charts = () => {
     const host = "http://localhost:3001/data/";
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const translate = useTranslate();
-    const [ShoeSizeCountEU, setShoeSizeCountEU] = useState({
+    const [ShoeSizeCountEU, setShoeSizeCountEU] = useState<ShoeSizeCountEU>({
         size35: 0,
         size36: 0,
         size37: 0,
@@ -42,7 +42,7 @@ const Charts = () => {
         size47: 0,
         size48: 0,
     });
-    const chartCategories = [
+    const chartCategories: number[] = [
         36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48,
     ];
     const ShoeSizes = {
@@ -73,7 +73,7 @@ const Charts = () => {
         },
     };
 
-    let seriesName = translate("pages.Charts.Series.Users", "User's");
+    let seriesName: string = translate("pages.Charts.Series.Users", "User's");
 
     useEffect(() => {
         setIsLoading(true);
