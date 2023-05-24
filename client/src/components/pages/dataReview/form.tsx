@@ -4,6 +4,8 @@ import axios from "axios";
 import { useTranslate } from "@pankod/refine-core";
 
 const Form = () => {
+	const host = "http://localhost:3001";
+
 	const translate = useTranslate();
 	const [comment, setComment] = useState<string>("");
 	const [email, setEmail] = useState<string>("");
@@ -34,12 +36,12 @@ const Form = () => {
 		console.log(formData);
 
 		try {
-			await axios.post("http://localhost:8080/Opinion", {
+			await axios.post(`${host}/Opinion`, {
 				email: formData.email,
 				comment: formData.comment,
 				category: formData.category,
 			});
-			await axios.post("http://localhost:8080/data/opinionCategory-post", {
+			await axios.post(`${host}/data/opinionCategory-post`, {
 				category: formData.category,
 			});
 		} catch (error) {

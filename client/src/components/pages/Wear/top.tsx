@@ -24,6 +24,8 @@ import Tabs from "../Tabs";
 import { Switch } from "@headlessui/react";
 
 const Top = () => {
+    const host = "http://localhost:3001";
+
     interface IWears {
         Brand: string;
         Size: string;
@@ -81,7 +83,7 @@ const Top = () => {
         event.preventDefault();
         try {
             const response = await axios.get(
-                "http://localhost:8080/api/Tops-M",
+                `${host}/api/Tops-M`,
                 {
                     params: {
                         unit: selectedValue,
@@ -94,7 +96,7 @@ const Top = () => {
             );
             setFetchedTopWear(response.data.topMeasurements);
             setShowTable(true);
-            await axios.post("http://localhost:8080/data/genders/post", {
+            await axios.post(`${host}/data/genders/post`, {
                 gender: FormValuesMeasurements.gender,
             });
         } catch (error) {
@@ -152,7 +154,7 @@ const Top = () => {
 
         try {
             const response = await axios.get(
-                "http://localhost:8080/api/Tops-B",
+                `${host}/api/Tops-B`,
                 {
                     params: {
                         brand: FormValuesBrand.brand,
@@ -163,7 +165,7 @@ const Top = () => {
             );
             setFetchedTopWear(response.data.topBrand);
             setShowTable(true);
-            await axios.post("http://localhost:8080/data/genders/post", {
+            await axios.post(`${host}/data/genders/post`, {
                 gender: FormValuesBrand.gender,
             });
         } catch (error) {
