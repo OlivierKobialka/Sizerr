@@ -1,0 +1,15 @@
+@layer utilities {
+	::selection {
+		@apply text-white bg-primary;
+	}
+}
+
+@layer components {
+	.findMySize {
+		@apply w-full bg-primary font-bold text-white rounded-xl hover:bg-[#1e36e8] duration-200 ease-out py-2;
+	}
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

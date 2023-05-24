@@ -1,0 +1,96 @@
+{
+	"pages": {
+		"Sider": {
+			"Wear": "Wears",
+			"Shoes": "Shoes",
+			"Converter": "Converters",
+			"Opinion": "Opinions"
+		},
+		"Charts": {
+			"Title": {
+				"GenderCount": "Gender Count",
+				"Feedback": "Feedback Category",
+				"AvgShoeSize": "Avg. Shoe Size"
+			},
+			"Series": {
+				"Feedbacks": "Feedbacks",
+				"Complaints": "Complaints",
+				"Suggestions": "Suggestions",
+				"Users": "User's"
+			}
+		},
+		"BlockChainTip": {
+			"Title": "Blockchain Tip",
+			"Connect": "Connect Metamask",
+			"Tip": "Tip ",
+			"NoMetamask": "Please install MetaMask"
+		},
+		"FormOpinion": {
+			"Title": {
+				"Opinion": "Express your opinion here!",
+				"AddComment": "Add Comment",
+				"Category": "Category",
+				"Buttons": {
+					"Feedback": "Feedback",
+					"Suggestion": "Suggestions",
+					"Complaints": "Complaints",
+					"SubmitYourFeedback": "Submit Your Feedback!"
+				}
+			}
+		},
+		"Inputs": {
+			"Genders": {
+				"Male": "Male",
+				"Female": "Female",
+				"Gender": "Gender",
+				"Males": "Male's",
+				"Females": "Female's"
+			},
+			"Brand": "Brand",
+			"Size": "Size",
+			"Measurements": {
+				"Chest": "Chest",
+				"Bust": "Bust",
+				"Hips": "Hips",
+				"Waist": "Waist",
+				"Inseam": "Inseam",
+				"Height": "Height"
+			}
+		},
+		"Table": {
+			"Title": "Size Chart",
+			"Headers": {
+				"Brand": "Brand",
+				"Size": "Size",
+				"Chest": "Chest",
+				"Hips": "Hips",
+				"Waist": "Waist",
+				"Size EU": "Size EU",
+				"Size US": "Size US",
+				"Size UK": "Size UK",
+				"Size CM": "Size CM",
+				"Size INCH": "Size INCH"
+			},
+			"Type": {
+				"Shoes": "Shoes",
+				"Tops": "Tops",
+				"Bottoms": "Bottoms"
+			}
+		},
+		"Tabs": {
+			"M": "By Measurements",
+			"B": "By Brand"
+		},
+		"ShoesWear": {
+			"buttons": {
+				"FindMySize": "Find My Size"
+			}
+		},
+		"error": {
+			"info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
+			"404": "Sorry, the page you visited does not exist.",
+			"resource404": "Are you sure you have created the {{resource}} resource.",
+			"backHome": "Back Home"
+		}
+	}
+}

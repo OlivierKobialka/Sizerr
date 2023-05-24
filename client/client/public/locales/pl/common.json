@@ -1,0 +1,96 @@
+{
+	"pages": {
+		"Sider": {
+			"Wear": "Ubrania",
+			"Shoes": "Buty",
+			"Converter": "Tabele",
+			"Opinion": "Opinie"
+		},
+		"Charts": {
+			"Title": {
+				"GenderCount": "Gender Count",
+				"Feedback": "Kategoria Opinii",
+				"AvgShoeSize": "Średni Rozmiar Buta"
+			},
+			"Series": {
+				"Feedbacks": "Opinie",
+				"Complaints": "Zażalenia",
+				"Suggestions": "Sugestie",
+				"Users": "Użytkownicy"
+			}
+		},
+		"BlockChainTip": {
+			"Title": "Napiwek Blockchain",
+			"Connect": "Połącz Metamask",
+			"Tip": "Podaruj ",
+			"NoMetamask": "Proszę zainstaluj MetaMask"
+		},
+		"FormOpinion": {
+			"Title": {
+				"Opinion": "Wyraź swoją opinię!",
+				"AddComment": "Dodaj Komentarz",
+				"Category": "Kategoria",
+				"Buttons": {
+					"Feedback": "Opinia",
+					"Suggestion": "Sugestia",
+					"Complaints": "Zażalenie",
+					"SubmitYourFeedback": "Prześlij swoją opinię!"
+				}
+			}
+		},
+		"Inputs": {
+			"Genders": {
+				"Male": "Mężczyzna",
+				"Female": "Kobieta",
+				"Gender": "Płeć",
+				"Males": "Mężczyźni",
+				"Females": "Kobiety"
+			},
+			"Brand": "Marka",
+			"Size": "Rozmiar",
+			"Measurements": {
+				"Chest": "Klatka Piersiowa",
+				"Bust": "Biust",
+				"Hips": "Biodra",
+				"Waist": "Talia",
+				"Inseam": "Długość Nogawki",
+				"Height": "Wzrost"
+			}
+		},
+		"Table": {
+			"Title": "Tabela Rozmiarów",
+			"Headers": {
+				"Brand": "Marka",
+				"Size": "Rozmiar",
+				"Chest": "Klatka Piersiowa",
+				"Hips": "Biodra",
+				"Waist": "Talia",
+				"Size EU": "Rozmiar EU",
+				"Size US": "Rozmiar US",
+				"Size UK": "Rozmiar UK",
+				"Size CM": "Rozmiar CM",
+				"Size INCH": "Rozmiar CAL"
+			},
+			"Type": {
+				"Shoes": "Buty",
+				"Tops": "Góna część",
+				"Bottoms": "Dolna część"
+			}
+		},
+		"Tabs": {
+			"M": "Po Wymiarach",
+			"B": "Po Marce"
+		},
+		"ShoesWear": {
+			"buttons": {
+				"FindMySize": "Znajdź Mój Rozmiar"
+			}
+		},
+		"error": {
+			"info": "Najprawdopodobniej zapomniałeś(-aś) dodać {{action}} komponent do {{resource}} zasobu.",
+			"404": "Przepraszamy, ale nie możemy znaleźć strony, której szukasz.",
+			"resource404": "Are you sure you have created the {{resource}} resource.",
+			"backHome": "Powrót"
+		}
+	}
+}
